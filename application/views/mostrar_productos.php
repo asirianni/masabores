@@ -474,7 +474,7 @@
                         
                         function optionsFormatter(value, row, index) {
                             return [        
-                                '<a class="btn btn-primary" href="#sharp" onclick = "agregar_producto('+row.codigo+' , &#39'+row.cod_prod+'&#39;, &#39'+row.descripcion+'&#39;, 1, '+row.precio+')";>',
+                                '<a class="btn btn-primary" href="#sharp" onclick = "agregar_producto('+row.codigo+' , &#39&#39, &#39'+row.descripcion+'&#39;, 1, '+row.precio+')";>',
                                     '<i class="fa fa-cart-arrow-down" aria-hidden="true"> + </i>',
                                 '</a>',
                                 '<a class="btn btn-primary" href="#sharp" onclick = "ver_imagen(&#39'+row.cod_prod+'&#39;)";>',

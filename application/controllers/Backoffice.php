@@ -193,32 +193,33 @@ class Backoffice extends CI_Controller {
                 $i=1;
                 foreach ($sheetData as $index => $value) {            
                     if ( $index != 1 ){
+                        
 //                        $arr_datos = array(
 //                            'campo'  => $value['A'],
 //                            'campo1'  =>  $value['B'],
 //                            'campo2' =>  $value['C'],
 //                            'campo3'  =>  $value['D'],                                        
 //                        );
-                        $codigo = str_replace("'","",$value['A']);
-                        $codigo_sin_especios = preg_replace("[\s+]","", $codigo);
+//                        $codigo = str_replace("'","",$value['A']);
+//                        $codigo_sin_especios = preg_replace("[\s+]","", $codigo);
                         //$codigo_sin_asteriscos = str_replace("*","", $codigo_sin_especios);
                         //$codigo_sin_barras = str_replace("/","", $$codigo_sin_asteriscos);
                         
                         $arr_datos = array(
                             'codigo'  => $i,
-                            'cod_prod'  => $codigo_sin_especios,
-                            'descripcion'  => $value['B'],
-                            'publico'  => $value['E'],
-                            'instalador'  => $value['F'],
-                            'ferreteria'  => $value['G'],
-                            'revendedor'  => $value['H'],
-                            'ferre_local'  => $value['I'],
-                            'lista_adicional'  => $value['J'],
-                            'iva'  => $value['K'],
-                            'sub_rubro'  => $value['L'],
+                            'memo'  => $value['A'],
+                            'cod_prod'  => $value['B'],
+                            'descripcion'  => $value['C'],
+                            'cod_barra'  => $value['D'],
+                            'cod_grupo'  => $value['E'],
+                            'cod_proveedor'  => $value['G'],
+                            'precio_1'  => $value['I'],
+                            'precio_2'  => $value['J'],
+                            'precio_3'  => $value['K'],
+                            'iva'  => 21,
+                            'sub_rubro'  => null,
                             'imagen'  => null,
                             'perfil'  => null,
-                            'precio'  => null,
                             'mostrar'  => 'si'
                                                                   
                         );

@@ -200,7 +200,7 @@ class Almacen_model extends CI_Model {
         
         function todos_productos($busqueda) {
             $lista=  $this->obtener_lista_precios();
-            $query = $this->db->query("select codigo, cod_prod, descripcion, round($lista*1.21, 2) as precio from productos where descripcion LIKE '%$busqueda%'");
+            $query = $this->db->query("select codigo, cod_prod, descripcion, round($lista, 2) as precio from productos where descripcion LIKE '%$busqueda%'");
             return $query->result_array();
 	}
         
