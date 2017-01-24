@@ -83,8 +83,10 @@ class Welcome extends CI_Controller {
                 if ($usuario_verificado->getExiste()) {
                   if($usuario_verificado->getTipo_usuario()==1 || $usuario_verificado->getTipo_usuario()==3){
                       redirect('/backoffice/escritorio');
-                  } else {
-                      redirect('/backoffice/escritorio');
+                  } 
+                  else if($usuario_verificado->getTipo_usuario() == 2)
+                  {
+                      redirect('/Vendedor');
                   }
                 }else{
                     $output['salida_error']="datos incorrectos, ingreselos nuevamente";

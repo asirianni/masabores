@@ -207,4 +207,10 @@ class Cliente_model extends CI_Model {
             $minimo=$valor_obtenido['descripcion'];
             return $minimo;
     }
+    
+    public function getClientes()
+    {
+        $r = $this->db->query("select * from cliente");
+        return $r->result_array();
+    }
 }
