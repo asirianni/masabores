@@ -174,6 +174,18 @@ class Pedido_model extends CI_Model {
 	
 	}
 	
+        public function obtener_pedidos_pendientes(){
+		$consulta="Select * from pedido where estado=1";
+		$query = $this->db->query($consulta);
+		return $query->result_array();
+	
+	}
+        public function obtener_detalle_pedido($pedido){
+		$consulta="Select * from pedido_detalle where num_pedido=$pedido";
+		$query = $this->db->query($consulta);
+		return $query->result_array();
+	
+	}
 	
 	
 }

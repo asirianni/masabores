@@ -248,7 +248,8 @@ class Welcome extends CI_Controller {
             if ($pedido_detalle!=null) {
                 foreach($pedido_detalle as $p){
                     //verificamos la insercion, si falla sale con un break del bucle
-                    if ($this->Pedido_model->insertarPedidoDetalle($consulta, $p["cod_prod"], $p["pre"], $p["cant"])) {
+                    $cod_base=$this->Almacen_model->get_codigo_masabores($p["cod"]);
+                    if ($this->Pedido_model->insertarPedidoDetalle($consulta, $cod_base["cod_prod"], $p["pre"], $p["cant"])) {
                             ;
                     }else{
                             break;
@@ -256,7 +257,7 @@ class Welcome extends CI_Controller {
                 }
             }
 
-            $this->enviar_pedido($this->session->userdata('correo'), $this->session->userdata('nombre'), $consulta, $fecha);
+            //$this->enviar_pedido($this->session->userdata('correo'), $this->session->userdata('nombre'), $consulta, $fecha);
 
             $output["correo"]= $this->Configuracion_model->obtener_config(1);
             $output["movil"]= $this->Configuracion_model->obtener_config(2);

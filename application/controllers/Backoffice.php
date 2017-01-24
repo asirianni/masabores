@@ -448,8 +448,9 @@ class Backoffice extends CI_Controller {
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();
 			$crud->set_table('productos');
+                        $crud->set_primary_key('cod_prod','productos');
 			//$crud->columns('codigo','sub_rubro','descripcion','imagen', 'precio');
-			$crud->set_relation('sub_rubro','rubros','descripcion');
+//			$crud->set_relation('sub_rubro','rubros','descripcion');
 //			$crud->set_field_upload('imagen','assets/recursos/images/product-almacen');
 //                        $crud->set_field_upload('frente','assets/recursos/images/product-almacen');
 //                        $crud->set_field_upload('perfil','assets/recursos/images/product-almacen');
@@ -940,7 +941,7 @@ class Backoffice extends CI_Controller {
 								}else{
 									$salida.="<tr>
 	                                            <td>Local</td>
-												<td>".$datos_local['cod_fab']."</td>
+												<td>".$datos_local['cod_web']."</td>
 	                                        </tr>
 											<tr>
 	                                            <td>Direccion</td>
@@ -1006,9 +1007,9 @@ class Backoffice extends CI_Controller {
                            	foreach ($detalle as $d){
                            			$salida.="<tr>
 	                                            <td>".$d['codigo']."</td>
-												<td>".$d['producto']."</td>
-												<td>".$d['cantidad']."</td>
-												<td>".$d['precio']."</td>
+                                                    <td>".$d['producto']."</td>
+                                                    <td>".$d['cantidad']."</td>
+                                                    <td>".$d['precio']."</td>
 												
 	                                        </tr>";
                            	}  
@@ -1075,6 +1076,28 @@ class Backoffice extends CI_Controller {
 		$output['salida_error']="";
 		$this->load->view('back/loguin/ingreso', $output);
 	}
+        
+        public function generar_pedidos_texto() {
+            header('Content-type: text/plain');
+            header("Content-Disposition: attachment; filename=\"lorem-prueba.odb\"");
+            $pedido_numero=1;
+            $pedido=$this->Pedido_model->obtener_pedidos_pendientes();
+            foreach($pedido as $p){
+                $detalle=$this->Pedido_model->obtener_detalle_pedido($p["numero"]);
+                foreach ($detalle as $d) {
+                    $cliente=$p["cliente"];
+                    $articulo=$d["producto"];
+                    $cantidad=$d["cantidad"];
+                    $descuento="0";
+                    $vendedor="1";
+                    echo "\"".$pedido_numero."\",\"".$cliente."\",\"".$articulo."\",\"".$cantidad."\",\"".$descuento."\",\"".$vendedor."\"\r\n";
+                }
+               $pedido_numero++; 
+            }
+            
+            
+            
+        }
 
 	
 }

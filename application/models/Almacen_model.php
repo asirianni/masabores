@@ -231,6 +231,11 @@ class Almacen_model extends CI_Model {
                     . "and pd.mostrar='si'");
             return $query->result_array();
         }
+        
+        function get_codigo_masabores($codigo) {
+            $query = $this->db->query("Select cod_prod from productos where codigo=$codigo");
+            return $query->row_array();
+        }
 	
 	
 }
