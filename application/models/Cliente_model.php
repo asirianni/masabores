@@ -213,4 +213,10 @@ class Cliente_model extends CI_Model {
         $r = $this->db->query("select * from cliente");
         return $r->result_array();
     }
+    
+    public function getBusquedaClientesPorCampo($texto,$campo)
+    {
+        $r = $this->db->query("select * from cliente where $campo like '%$texto%'");
+        return $r->result_array();
+    }
 }
