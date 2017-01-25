@@ -219,4 +219,12 @@ class Cliente_model extends CI_Model {
         $r = $this->db->query("select * from cliente where $campo like '%$texto%'");
         return $r->result_array();
     }
+    
+    public function getListaPreciosCliente($codigo_cliente)
+    {
+        $r = $this->db->query("select lista_precios from cliente where codigo = $codigo_cliente");
+        $r= $r->row_array();
+        return (int)$r["lista_precios"];
+    }
+    
 }
