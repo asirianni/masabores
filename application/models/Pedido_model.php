@@ -68,14 +68,30 @@ class Pedido_model extends CI_Model {
 		return $retiros_nuevos;
 	}
 	public function obtener_delivery_nuevos() {
-		$delivery_nuevos=0;
-		$query = $this->db->query("select count(numero) as delivery from pedido where f_entrega is not null and estado = 1");
-		$valor_obtenido=$query->row_array();
-		
-		if ($valor_obtenido!=null) {
-			$delivery_nuevos=$valor_obtenido['delivery'];
-		}
-		return $delivery_nuevos;
+            $delivery_nuevos=0;
+            $query = $this->db->query("select count(numero) as delivery from pedido where f_entrega is not null and estado = 1");
+            $valor_obtenido=$query->row_array();
+
+            if ($valor_obtenido!=null) {
+                    $delivery_nuevos=$valor_obtenido['delivery'];
+            }
+            return $delivery_nuevos;
+	}
+        
+        public function obtener_pedidos_descarga() {
+            $descarga=0;
+            $query = $this->db->query("select count(p.numero) as nuevos from pedido as p, cliente as c
+                            WHERE p.cliente=c.codigo
+                            AND c.codigo_masabores IS NOT NULL
+                            AND c.vendedor IS NOT NULL
+                            AND p.estado=1
+                            AND c.estado='confirmado'");
+            $valor_obtenido=$query->row_array();
+
+            if ($valor_obtenido!=null) {
+                    $descarga=$valor_obtenido['nuevos'];
+            }
+            return $descarga;
 	}
 	
 	//si el tipo es 1 trae los pedidos con fecha de retiro.
@@ -175,7 +191,14 @@ class Pedido_model extends CI_Model {
 	}
 	
         public function obtener_pedidos_pendientes(){
-		$consulta="Select * from pedido where estado=1";
+		$consulta="SELECT p.numero as numero,
+                                  p.cliente as cliente
+                            FROM pedido as p, cliente as c
+                            WHERE p.cliente=c.codigo
+                            AND c.codigo_masabores IS NOT NULL
+                            AND c.vendedor IS NOT NULL
+                            AND p.estado=1
+                            AND c.estado='confirmado'";
 		$query = $this->db->query($consulta);
 		return $query->result_array();
 	

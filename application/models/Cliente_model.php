@@ -163,7 +163,7 @@ class Cliente_model extends CI_Model {
 
     public function obtener_clientes_nuevos() {
             $clientes_nuevos=0;
-            $query = $this->db->query("SELECT COUNT( codigo ) AS cantidad FROM cliente WHERE estado ='confirmado'");
+            $query = $this->db->query("SELECT COUNT( codigo ) AS cantidad FROM cliente WHERE estado ='pendiente'");
             $valor_obtenido=$query->row_array();
 
             if ($valor_obtenido!=null) {
@@ -220,11 +220,9 @@ class Cliente_model extends CI_Model {
         return $r->result_array();
     }
     
-    public function getListaPreciosCliente($codigo_cliente)
+    public function get_Cliente($codigo)
     {
-        $r = $this->db->query("select lista_precios from cliente where codigo = $codigo_cliente");
-        $r= $r->row_array();
-        return (int)$r["lista_precios"];
+        $r = $this->db->query("select * from cliente where codigo=$codigo");
+        return $r->row_array();
     }
-    
 }

@@ -18,18 +18,11 @@ class Productos_model extends CI_Model
     
     public function __construct() {
         parent::__construct();
-        $this->load->database();
     }
     
     public function getProductos()
     {
-        $r = $this->db->query("select * from productos");
-        return $r->result_array();
-    }
-    
-    public function buscarProductosPorCampo($texto,$campo,$lista_precio)
-    {
-        $r = $this->db->query("SELECT productos.codigo, productos.descripcion, productos.precio_$lista_precio as precio from productos where $campo Like '%$texto%'");
+        $r = $this->db->query("select * from producto");
         return $r->result_array();
     }
 }

@@ -197,6 +197,10 @@ class Almacen_model extends CI_Model {
 		$query = $this->db->query("TRUNCATE TABLE productos ");
 		
 	}
+        function limpiar_tabla_grupos() {
+		$query = $this->db->query("TRUNCATE TABLE grupos ");
+		
+	}
         
         function todos_productos($busqueda) {
             $lista=  $this->obtener_lista_precios();
@@ -235,6 +239,16 @@ class Almacen_model extends CI_Model {
         function get_codigo_masabores($codigo) {
             $query = $this->db->query("Select cod_prod from productos where codigo=$codigo");
             return $query->row_array();
+        }
+        
+        function limpiar_espacios(){
+            $limpiar_campo_tabla_productos="UPDATE productos SET cod_prod = TRIM(cod_prod);";
+            $limpiar_campo_tabla_pedido_detalle="UPDATE pedido_detalle SET producto = TRIM(producto);";
+            $limpiar_campo_tabla_grupos="UPDATE grupos SET grupo = TRIM(grupo);";
+            
+            $this->db->query($limpiar_campo_tabla_productos);
+            $this->db->query($limpiar_campo_tabla_pedido_detalle);
+            $this->db->query($limpiar_campo_tabla_grupos);
         }
 	
 	

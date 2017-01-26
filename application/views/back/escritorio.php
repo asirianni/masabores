@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $clientes?></div>
-                                    <div>Nuevos Clientes!</div>
+                                    <div>Clientes Pendientes!</div>
                                 </div>
                             </div>
                         </div>
@@ -171,13 +171,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $pedidos?></div>
-                                    <div>Nuevos Pedidos!</div>
+                                    <div>Descargue Pedidos!</div>
                                 </div>
                             </div>
                         </div>
-                        <a href='<?php echo site_url('backoffice/pedidos/0')?>'>
+                        <a href='<?php echo site_url('backoffice/generar_pedidos_texto')?>'>
                             <div class="panel-footer">
-                                <span class="pull-left">Ver Detalles</span>
+                                <span class="pull-left">Descargar</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

@@ -182,29 +182,21 @@ class Backoffice extends CI_Controller {
             require_once(APPPATH.'/libraries/lib_excel/PHPExcel/IOFactory.php');
             try {
                 $this->Almacen_model->limpiar_tabla_productos();
+                $this->Almacen_model->limpiar_tabla_grupos();
                     //Cargar PHPExcel library
                 $this->load->library('excel');
                 $name   = $_FILES['uploaded']['name'];
                 $tname  = $_FILES['uploaded']['tmp_name'];
                 $obj_excel = PHPExcel_IOFactory::load($tname);
+                $codigos_grupos= array();
+                $descripcion_grupos=array();
                 
                 $sheetData = $obj_excel->getActiveSheet()->toArray(null,true,true,true);
                 $arr_datos = array();
                 $i=1;
                 foreach ($sheetData as $index => $value) {            
                     if ( $index != 1 ){
-                        
-//                        $arr_datos = array(
-//                            'campo'  => $value['A'],
-//                            'campo1'  =>  $value['B'],
-//                            'campo2' =>  $value['C'],
-//                            'campo3'  =>  $value['D'],                                        
-//                        );
-//                        $codigo = str_replace("'","",$value['A']);
-//                        $codigo_sin_especios = preg_replace("[\s+]","", $codigo);
-                        //$codigo_sin_asteriscos = str_replace("*","", $codigo_sin_especios);
-                        //$codigo_sin_barras = str_replace("/","", $$codigo_sin_asteriscos);
-                        
+                                                
                         $arr_datos = array(
                             'codigo'  => $i,
                             'memo'  => $value['A'],
@@ -223,6 +215,13 @@ class Backoffice extends CI_Controller {
                             'mostrar'  => 'si'
                                                                   
                         );
+                        
+                        if (!in_array($value['E'], $codigos_grupos)) {
+                            array_push($codigos_grupos, $value['E']);
+                            array_push($descripcion_grupos, $value['F']);
+                        }
+                        
+                        
                         foreach ($arr_datos as $llave => $valor) {
                                 $arr_datos[$llave] = $valor;
                         }
@@ -230,6 +229,15 @@ class Backoffice extends CI_Controller {
                         $i++;
                     } 
                 }
+                
+                for($i=0;$i < count($codigos_grupos); ++$i){
+                    $grupos_seleccionado = array(
+                        'codigo'  => $codigos_grupos[$i],
+                        'grupo'  => $descripcion_grupos[$i]                                      
+                    );
+                    $this->db->insert('grupos',$grupos_seleccionado);
+                }
+                $this->Almacen_model->limpiar_espacios();
                 $output["error"]=false;
                 $output["importacion"]=true; 
                 $this->load->view('back/importador_precios.php', $output);
@@ -672,14 +680,14 @@ class Backoffice extends CI_Controller {
         }
 		
 	private function cargar_datos_escritorio() {
-		$retiro=$this->Pedido_model->obtener_retiros_nuevos();
-		$delivery=$this->Pedido_model->obtener_delivery_nuevos();
-		
-		$output['clientes']=$this->Cliente_model->obtener_clientes_nuevos();
-		$output['pedidos']=$retiro+$delivery;
-		$output['delivery']=$delivery;
-		$output['retiro']=$retiro;
-		return $output;
+            $retiro=$this->Pedido_model->obtener_retiros_nuevos();
+            $delivery=$this->Pedido_model->obtener_delivery_nuevos();
+
+            $output['clientes']=$this->Cliente_model->obtener_clientes_nuevos();
+            $output['pedidos']=$this->Pedido_model->obtener_pedidos_descarga();
+            $output['delivery']=$delivery;
+            $output['retiro']=$retiro;
+            return $output;
 	}
 	
 	private function renderizar_listado_clientes_nuevos() {
@@ -1078,21 +1086,25 @@ class Backoffice extends CI_Controller {
 	}
         
         public function generar_pedidos_texto() {
+            
             header('Content-type: text/plain');
-            header("Content-Disposition: attachment; filename=\"lorem-prueba.odb\"");
+            header("Content-Disposition: attachment; filename=\"pedidos.odb\"");
             $pedido_numero=1;
             $pedido=$this->Pedido_model->obtener_pedidos_pendientes();
+            
             foreach($pedido as $p){
                 $detalle=$this->Pedido_model->obtener_detalle_pedido($p["numero"]);
+                $datos_complementarios_cliente=$this->Cliente_model->get_Cliente($p["cliente"]);
                 foreach ($detalle as $d) {
                     $cliente=$p["cliente"];
                     $articulo=$d["producto"];
                     $cantidad=$d["cantidad"];
-                    $descuento="0";
-                    $vendedor="1";
+                    $descuento=$d["descuento"];;
+                    $vendedor=$datos_complementarios_cliente["vendedor"];
                     echo "\"".$pedido_numero."\",\"".$cliente."\",\"".$articulo."\",\"".$cantidad."\",\"".$descuento."\",\"".$vendedor."\"\r\n";
                 }
-               $pedido_numero++; 
+                $this->Pedido_model->actualizar_pedido($p["numero"], 2);
+                $pedido_numero++; 
             }
             
             
