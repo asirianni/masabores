@@ -209,6 +209,46 @@ class Pedido_model extends CI_Model {
 		return $query->result_array();
 	
 	}
+        
+    public function registroPedidoPorVendedor($cliente,$total)
+    {
+        $datos = Array(
+            "fecha"=>Date("Y-m-d H:i:s"),
+            "cliente"=>$cliente,
+            "total"=>$total,
+            "f_entrega"=>Date("Y-m-d"),
+        );
+        
+        return $this->db->insert("pedido",$datos);
+    }
+    
+    public function registroPedidoDetallePorVendedor($pedido,$arreglo)
+    {
+        for($i=0; $i < count($arreglo);$i++)
+        {
+            // obteniendo alfanumerico
+            
+            $producto = $this->db->query("select cod_prod from productos where codigo = ".$arreglo[$i][0]."");
+            $producto = $producto->row_array();
+            $datos = Array(
+                "num_pedido"=>$pedido,
+                "producto"=>$producto["cod_prod"],
+                "cantidad"=>$arreglo[$i][1],
+                "precio"=>$arreglo[$i][2],
+                "descuento"=>$arreglo[$i][3],
+            );
+            
+            $this->db->insert("pedido_detalle",$datos);
+        }
+    }
+    
+    public function getUltimoIdPedido()
+    {
+        $r = $this->db->query("select max(numero) as numero from pedido");
+        $r = $r->row_array();
+        $r= (int)$r["numero"];
+        return $r;
+    }
 	
 	
 }

@@ -44,7 +44,6 @@ class Cliente_model extends CI_Model {
                                                             WHERE c.correo = '$correo'");
             return $query->row_array();
     }
-
     function obtener_listado_direcciones($correo) {
             $query = $this->db->query("SELECT d.codigo AS codigo, 
                                                                     d.direccion AS direccion, 
@@ -57,7 +56,6 @@ class Cliente_model extends CI_Model {
                                                                     AND c.correo =  '$correo'");
             return $query->result_array();
     }
-
     function obtener_listado_direcciones_by_cod($cliente) {
             $query = $this->db->query("SELECT d.codigo AS codigo, 
                                                                     d.direccion AS direccion, 
@@ -70,7 +68,6 @@ class Cliente_model extends CI_Model {
                                                                     AND c.codigo =  $cliente");
             return $query->result_array();
     }
-
     function obtener_local_entrega_by_cod_direccion($cod_direccion) {
             $local;
             $query = $this->db->query("select local from direccion_entrega where codigo=$cod_direccion");
@@ -110,12 +107,10 @@ class Cliente_model extends CI_Model {
             }
             return $direccion;
     }
-
     function obtener_pass($correo, $pass) {
             $query = $this->db->query("SELECT * FROM cliente where correo = ".$correo."and pass=".$pass);
             return $query->row_array();
     }
-
     function insertarCliente($cliente) {
             $data = array(
                     'codigo' => $cliente->codigo,
@@ -138,7 +133,6 @@ class Cliente_model extends CI_Model {
             // se va a signar desde el back ofice
             $this->insertar_direccion_asociada($cliente->codigo, $cliente->direccion, $cliente->localidad, null, 'p', null);
     }
-
     function insertar_direccion_asociada($cliente, $direccion, $localidad, $costo, $estado, $local) {
             $data = array(
                     'codigo' => null,
@@ -151,7 +145,6 @@ class Cliente_model extends CI_Model {
             );
             $this->db->insert('direccion_entrega', $data);
     }
-
     function modificar_cliente($cliente) {
             $query = $this->db->query("SELECT * FROM item where destacado = 10");
             return $query->result_array();
@@ -160,18 +153,15 @@ class Cliente_model extends CI_Model {
     public function count() {
             return $this->db->count_all('cliente');
     }
-
     public function obtener_clientes_nuevos() {
             $clientes_nuevos=0;
-            $query = $this->db->query("SELECT COUNT( codigo ) AS cantidad FROM cliente WHERE estado ='pendiente'");
+            $query = $this->db->query("SELECT COUNT( codigo ) AS cantidad FROM cliente WHERE estado ='confirmado'");
             $valor_obtenido=$query->row_array();
-
             if ($valor_obtenido!=null) {
                     $clientes_nuevos=$valor_obtenido['cantidad'];
             }
             return $clientes_nuevos;
     }
-
     public function obtener_listados_clientes_pendientes() {
             $query = $this->db->query("SELECT c.codigo AS codigo, c.correo AS correo, c.apellido AS apellido, c.direccion AS direccion, c.localidad AS localidad, c.celular AS tel, e.estado AS estado
                                                                FROM cliente AS c, estado_cliente AS e
@@ -220,9 +210,11 @@ class Cliente_model extends CI_Model {
         return $r->result_array();
     }
     
-    public function get_Cliente($codigo)
+    public function getListaPreciosCliente($codigo_cliente)
     {
-        $r = $this->db->query("select * from cliente where codigo=$codigo");
-        return $r->row_array();
+        $r = $this->db->query("select lista_precios from cliente where codigo = $codigo_cliente");
+        $r= $r->row_array();
+        return (int)$r["lista_precios"];
     }
+    
 }
