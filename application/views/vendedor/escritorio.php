@@ -16,6 +16,9 @@
     <link rel='stylesheet' href='<?php echo base_url(); ?>recursos/css/bootstrap-table.css'/>
     <!-- DataTables -->
     <link rel='stylesheet' href='<?php echo base_url(); ?>recursos/css/dataTables.bootstrap.css'>
+    <!-- JQUERY MOBILE -->
+    <link rel='stylesheet' href='<?php echo base_url(); ?>recursos/js/jquery-mobile/demos.css'>
+    <link rel='stylesheet' href='<?php echo base_url(); ?>recursos/js/jquery-mobile/jquery.mobile-1.4.5.min.css'>
     
     <!-- CSS MARIO STYLES :D -->
 	<style>
@@ -83,19 +86,38 @@
 		<div class="header">
 			<h3 class="text-center">Vendedor</h3>
 		</div>
-
-		<div id="botonera">
+                
+                <div class="ui-body-a ui-body">
+				<h3>Swatch "a"</h3>
+				<div data-role="navbar" class="ui-navbar" role="navigation">
+					<ul class="ui-grid-d">
+						<li class="ui-block-a"><a href="#" id="botonera1" data-icon="grid" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top ui-btn-active" onclick="boton_pulsado(1)">1</a></li>
+						<li class="ui-block-b"><a href="#" id="botonera2" data-icon="star" class="ui-link ui-btn ui-icon-star ui-btn-icon-top" onclick="boton_pulsado(2)">2</a></li>
+						<li class="ui-block-c"><a href="#" id="botonera3" data-icon="gear" class="ui-link ui-btn ui-icon-gear ui-btn-icon-top" onclick="boton_pulsado(3)">3</a></li>
+						<li class="ui-block-d"><a href="#" id="botonera4" data-icon="arrow-l" class="ui-link ui-btn ui-icon-arrow-l ui-btn-icon-top" onclick="boton_pulsado(4)">4</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div>
+                
+		<!--<div id="botonera">
                     <a href="#" id="botonera1" class="btn btn-large btn-primary" onclick="boton_pulsado(1)"><i class="fa fa-plus"></i>1</a>
                     <a href="#" id="botonera2" class="btn btn-large btn-danger" onclick="boton_pulsado(2)"><i class="fa fa-plus"></i>2</a>
                     <a href="#" id="botonera3" class="btn btn-large btn-danger" onclick="boton_pulsado(3)"><i class="fa fa-plus"></i>3</a>
                     <a href="#" id="botonera4" class="btn btn-large btn-danger" onclick="boton_pulsado(4)"><i class="fa fa-plus"></i>4</a>
-		</div>
+		</div>-->
                 <div>
                     <h2 class="text-right">Total $<span id="total_venta">0</span></h2>
                     
                 </div>
 
 		<div id="paso1">
+                    <ul data-role="listview" data-filter="true" data-filter-placeholder="Find cars..." data-filter-theme="a" data-inset="true">
+                        <li>Acura</li>
+                        <li>Audi</li>
+                        <li>BMW</li>
+                        <li>Cadillac</li>
+                        <li>Ferrari</li>
+                    </ul>
                     <p class="explicacion-paso"><span class="numero-paso">Paso 1:</span> Buscar el cliente</p>
 			<div id="buscador">
 				<div class="form-group">
@@ -177,6 +199,10 @@
 
     <!-- DataTables -->
     <script src='<?php echo base_url(); ?>recursos/js/jquery.dataTables.min.js'></script>
+    
+    <!-- JQUERY MOBILE -->
+    <script src='<?php echo base_url(); ?>recursos/js/jquery-mobile/index.js'></script>
+    <script src='<?php echo base_url(); ?>recursos/js/jquery-mobile/jquery.mobile-1.4.5.min.js'></script>
 
     <script>
     /*$("#tabla-clientes").DataTable({
@@ -396,7 +422,7 @@
         
         function boton_pulsado(id)
         {
-            for(var i=1; i <= 4;i++)
+            /*for(var i=1; i <= 4;i++)
             {
                 $("#botonera"+i).removeClass("btn-primary");
                 $("#botonera"+i).addClass("btn-danger");
@@ -406,11 +432,10 @@
             
             $("#botonera"+id).removeClass("btn-danger");
             $("#botonera"+id).addClass("btn-primary");
-            $("#paso"+id).removeAttr("hidden");
+            $("#paso"+id).removeAttr("hidden");*/
             
             if(id == 1 || id == 2)
             {
-                alert("reinicio");
                 reiniciar_sistema();
             } 
         }
