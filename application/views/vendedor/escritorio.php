@@ -134,7 +134,7 @@
                         <?php 
                             foreach ($productos as $value) {
                                 echo "<li>
-                                        <p onClick='seleccionar_producto(".$value["codigo"].",&#39;".$value["descripcion"]."&#39;)' style='color: #4fa7d9;font-weight: bold;font-size: 20px;'>".$value["descripcion"]."</p>
+                                        <p onClick='seleccionar_producto(".$value["codigo"].",&#39;".$value["descripcion"]."&#39;,".$value["precio_1"].",".$value["precio_2"].",".$value["precio_3"].")' style='color: #4fa7d9;font-weight: bold;font-size: 20px;'>".$value["descripcion"]."</p>
                                         <p>cod barra: ".$value["cod_barra"]."</p>
                                         <p>cod_prod: ".$value["cod_prod"]."</p>
                                         <p class='precio_1'>precio 1: $".$value["precio_1"]."</p>
@@ -344,7 +344,7 @@
             
 	}
         
-        function seleccionar_producto(id,descripcion)
+        function seleccionar_producto(id,descripcion,precio_1,precio_2,precio_3)
         {
             if(arrayBuscarElemento(codigos_productos_agregados,id) != null)// FIJARSE SI SE AGREGO
             {
@@ -366,20 +366,24 @@
                 $("#subtotal_"+id).text(total);
                 $("#cantidad_"+id).val(cantidad);
                 
-                actualizar_total();
                 
             }
             else
             {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url()?>index.php/Response_Ajax/getPrecioProductoSegunLista",
-                    data:{lista_precio:lista_precios_cliente},
-                    beforeSend: function(event){},
-                    success: function(data){
-                        data = JSON.parse(data);
+                        precio = 0;
                         
-                        precio = parseFloat(data).toFixed(2);
+                        if(lista_precios_cliente == 1)
+                        {
+                            precio = precio_1;
+                        }
+                        else if(lista_precios_cliente == 2)
+                        {
+                            precio = precio_2;
+                        }
+                        else if(lista_precios_cliente == 3)
+                        {
+                            precio = precio_3;
+                        }
                         
                         var html_code = $("#tabla-de-compra").html();
                         
@@ -420,16 +424,12 @@
                                         "</div>";
                         $("#tabla-de-compra").html(html_code);
                         
-                        //SACAR
-                        $("#paso3").removeAttr("hidden");
                         
-                        codigos_productos_agregados.push(id);
-                        actualizar_total();
-                        
-                    },
-                    error: function(event){alert("error");},
-                 });
+                        codigos_productos_agregados.push(id);     
             }     
+            
+            
+            actualizar_total();
         }
         
         function boton_pulsado(id)
@@ -487,7 +487,6 @@
 
                     var total_producto = precio * cantidad;
 
-
                     // obteniendo descuento
                     descuento = descuento / 100;
                     descuento = 1 - descuento;
@@ -510,7 +509,7 @@
 
 
             var total_producto = precio * cantidad;
-
+            
 
             // obteniendo descuento
             descuento = descuento / 100;
