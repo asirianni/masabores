@@ -378,9 +378,8 @@
                     beforeSend: function(event){},
                     success: function(data){
                         data = JSON.parse(data);
+                        
                         precio = parseFloat(data).toFixed(2);
-                        
-                        
                         
                         var html_code = $("#tabla-de-compra").html();
                         
@@ -430,7 +429,6 @@
                     },
                     error: function(event){alert("error");},
                  });
-         
             }     
         }
         

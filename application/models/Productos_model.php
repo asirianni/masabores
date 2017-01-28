@@ -28,7 +28,7 @@ class Productos_model extends CI_Model
     {
         $r = $this->db->query("select precio_$numero_lista from productos where codigo = 1 ");
         $r= $r->row_array();
-        return (int)$r["precio_$numero_lista"];
+        return (float)$r["precio_$numero_lista"];
     }
     
     public function buscarProductosPorCampo($texto,$campo,$lista_precio)
