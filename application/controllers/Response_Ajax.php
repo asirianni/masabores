@@ -62,6 +62,20 @@ class Response_Ajax extends CI_Controller
         }
     }
     
+    public function getPrecioProductoSegunLista()
+    {
+        if($this->input->is_ajax_request())
+        {
+            $this->load->model("Productos_model");
+            
+            $lista_precio= $this->input->post("lista_precio");
+            
+            $precio = $this->Productos_model->getPrecioProductoSegunLista($lista_precio);
+            
+            echo json_encode($precio);
+        }
+    }
+    
     public function registroPedidoPorVendedor()
     {
        if($this->input->is_ajax_request())

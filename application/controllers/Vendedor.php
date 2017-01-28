@@ -26,8 +26,10 @@ class Vendedor extends CI_Controller
         if($this->verificarAcceso())
         {
             $this->load->model("Cliente_model");
+            $this->load->model("Productos_model");
             
             $salida["clientes"]= $this->Cliente_model->getClientes();
+            $salida["productos"]= $this->Productos_model->getProductos();
             
             $this->load->view("vendedor/escritorio",$salida);
         }
