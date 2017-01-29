@@ -134,7 +134,7 @@
                         <?php 
                             foreach ($productos as $value) {
                                 echo "<li>
-                                        <p onClick='seleccionar_producto(".$value["codigo"].",&#39;".$value["descripcion"]."&#39;,".$value["precio_1"].",".$value["precio_2"].",".$value["precio_3"].")' style='color: #4fa7d9;font-weight: bold;font-size: 20px;'>".$value["descripcion"]."</p>
+                                        <p onClick='seleccionar_producto(".$value["codigo"].",&#39;".$value["descripcion"]."&#39;,".$value["precio_1"].",".$value["precio_2"].",".$value["precio_3"].")' style='color: #4fa7d9;font-weight: bold;font-size: 12px;'>".$value["descripcion"]."</p>
                                         <p>cod barra: ".$value["cod_barra"]."</p>
                                         <p>cod_prod: ".$value["cod_prod"]."</p>
                                         <p class='precio_1'>precio 1: $".$value["precio_1"]."</p>
