@@ -23,7 +23,7 @@
     <!-- CSS MARIO STYLES :D -->
 	<style>
 		.header{
-			background-color: #5ca319;
+			background-color: #3388cc;
 			border-radius: 20px;
 			color: #fff;
 		}
@@ -88,13 +88,13 @@
 		</div>
                 
                 <div class="ui-body-a ui-body">
-				<h3>Swatch "a"</h3>
+				<h3>Pasos: </h3>
 				<div data-role="navbar" class="ui-navbar" role="navigation">
 					<ul class="ui-grid-d">
 						<li class="ui-block-a"><a href="#" id="botonera1" data-icon="grid" class="ui-link ui-btn ui-icon-grid ui-btn-icon-top ui-btn-active" onclick="boton_pulsado(1)">1</a></li>
-						<li class="ui-block-b"><a href="#" id="botonera2" data-icon="star" class="ui-link ui-btn ui-icon-star ui-btn-icon-top" onclick="boton_pulsado(2)">2</a></li>
-						<li class="ui-block-c"><a href="#" id="botonera3" data-icon="gear" class="ui-link ui-btn ui-icon-gear ui-btn-icon-top" onclick="boton_pulsado(3)">3</a></li>
-						<li class="ui-block-d"><a href="#" id="botonera4" data-icon="arrow-l" class="ui-link ui-btn ui-icon-arrow-l ui-btn-icon-top" onclick="boton_pulsado(4)">4</a></li>
+						<li class="ui-block-b"><a href="#" id="botonera2" data-icon="plus" class="ui-link ui-btn ui-icon-plus ui-btn-icon-top" onclick="boton_pulsado(2)">2</a></li>
+						<li class="ui-block-c"><a href="#" id="botonera3" data-icon="check" class="ui-link ui-btn ui-icon-check ui-btn-icon-top" onclick="boton_pulsado(3)">3</a></li>
+						<!--<li class="ui-block-d"><a href="#" id="botonera4" data-icon="arrow-l" class="ui-link ui-btn ui-icon-arrow-l ui-btn-icon-top" onclick="boton_pulsado(4)">4</a></li>-->
 					</ul>
 				</div><!-- /navbar -->
 			</div>
@@ -354,6 +354,8 @@
                 
                 cantidad+=1;
                 
+                $("#cantidad_"+id).val(cantidad);
+                
                 var total = precio * cantidad;
                 
                 
@@ -364,7 +366,6 @@
                 total*= descuento;
                 
                 $("#subtotal_"+id).text(total);
-                $("#cantidad_"+id).val(cantidad);
                 
                 
             }
