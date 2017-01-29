@@ -445,12 +445,15 @@
             $("#botonera"+id).addClass("ui-btn-active");
             $("#paso"+id).removeAttr("hidden");
             
-            /*$("#paso2").attr("hidden","true");
-            $("#paso3").removeAttr("hidden");*/
-            /*if(id == 1 || id == 2)
+            if(id == 2 && cliente_seleccionado == 0)
             {
-                reiniciar_sistema();
-            } */
+                $("#botonera2").removeClass("ui-btn-active");
+                $("#paso"+id).attr("hidden","true");
+                
+                $("#botonera1").addClass("ui-btn-active");
+                $("#paso1").removeAttr("hidden");
+                
+            }
         }
         
         function eliminar_producto(id)
