@@ -97,7 +97,7 @@ class Welcome extends CI_Controller {
         
         public function buscar() {
             $output['productos']="";
-            if($this->input->post("busqueda")!==""){
+            if($this->input->post("busqueda")!=="" && $this->input->post("busqueda")!==null){
                 $output['productos']=  base_url()."index.php/welcome/get_listado_productos_by_busqueda/".$this->input->post("busqueda");
             }else{
                 $output['productos']=  base_url()."index.php/welcome/get_listado_productos/";

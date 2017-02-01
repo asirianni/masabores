@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Todo Positivo</title>
+        <title>Masabores</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="" />
@@ -159,9 +159,9 @@
 		<div class="header-two"><!-- header-two -->
 			<div class="container">
 				<div class="header-logo">
-					<h1><a href="<?php echo base_url(); ?>"><span>Todo</span>Positivo <i></i></a></h1>
-                                        <br>
-					<h6>Materiales Electricos</h6> 
+                                    <h1><a href="<?php echo base_url(); ?>"><span><img src='<?php echo base_url(); ?>assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
+                                    <br>
+					
 				</div>	
 				<div class="header-search">
                                     <?php
@@ -206,24 +206,24 @@
 		<div class="header-three"><!-- header-three -->
 			<div class="container">
 				<div class="menu">
-					<div class="cd-dropdown-wrapper">
+<!--					<div class="cd-dropdown-wrapper">
 						<a class="cd-dropdown-trigger" href="#0">Categorias</a>
 						<nav class="cd-dropdown"> 
 							<a href="#0" class="cd-close">Close</a>
 							<ul class="cd-dropdown-content">
                                                             <?php
-                                                                $salida="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/0'> <i class=''></i> TODOS LOS RUBROS</a></li>";
-                                                                foreach ($rubros as $r) {
-                                                                    $salida.="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/".$r["codigo"]."'>".strtoupper($r["descripcion"])."</a></li>";
-                                                                }
-                                                                echo $salida;
+//                                                                $salida="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/0'> <i class=''></i> TODOS LOS RUBROS</a></li>";
+//                                                                foreach ($rubros as $r) {
+//                                                                    $salida.="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/".$r["codigo"]."'>".strtoupper($r["descripcion"])."</a></li>";
+//                                                                }
+//                                                                echo $salida;
                                                             ?> 
-							</ul> <!-- .cd-dropdown-content -->
-						</nav> <!-- .cd-dropdown -->
-					</div> <!-- .cd-dropdown-wrapper -->	 
+							</ul>  .cd-dropdown-content 
+						</nav>  .cd-dropdown 
+					</div>  .cd-dropdown-wrapper 	 -->
 				</div>
 				<div class="move-text">
-					<div class="marquee"><a href="offers.html"> PRESUPUESTE ONLINE...  <span>LOS MATERIALES DE SU OBRA  </span> <span> HAGA SU CALCULO AHORA!!!</span></a></div>
+					<div class="marquee"><a href="<?php echo base_url(); ?>index.php/welcome/buscar"> VER CATALOGO  <span>VER CATALOGO </span> <span> CALCULE SU PEDIDO AHORA!!!</span></a></div>
 					<script type="text/javascript" src="<?php echo base_url(); ?>recursos/js/jquery.marquee.min.js"></script>
 					<script>
 					  $('.marquee').marquee({ pauseOnHover: true });
@@ -242,22 +242,22 @@
                 <div class="item active"><!-- First-Slide -->
                     <img src="<?php echo base_url(); ?>recursos/images/5.jpg" alt="" class="img-responsive" />
                     <div class="carousel-caption kb_caption kb_caption_right">
-                        <h3 data-animation="animated flipInX">Materiales <span></span> Electricos</h3>
+                        <h3 data-animation="animated flipInX">Soluciones <span></span> Gastronomicas</h3>
                         <h4 data-animation="animated flipInX">Venta mayorista y minorista</h4>
                     </div>
                 </div>  
                 <div class="item"> <!-- Second-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/8.jpg" alt="" class="img-responsive" />
+                    <img src="<?php echo base_url(); ?>recursos/images/supermercado.jpg" alt="" class="img-responsive" />
                     <div class="carousel-caption kb_caption kb_caption_right">
-                        <h3 data-animation="animated fadeInDown">Especialistas en obras</h3>
+                        <h3 data-animation="animated fadeInDown">Consulte nuestro catalogo online</h3>
                         <h4 data-animation="animated fadeInUp">Calcule su presupuesto</h4>
                     </div>
                 </div> 
                 <div class="item"><!-- Third-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/3.jpg" alt="" class="img-responsive"/>
+                    <img src="<?php echo base_url(); ?>recursos/images/comercio.jpg" alt="" class="img-responsive"/>
                     <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">La mejor luminaria</h3>
-                        <h4 data-animation="animated flipInX">para su proyecto</h4>
+                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                        <h4 data-animation="animated flipInX">para su comercio</h4>
                     </div>
                 </div> 
             </div> 
@@ -282,23 +282,23 @@
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class=" nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" >
-							<i class="fa fa-laptop" aria-hidden="true"></i> 
+							<i class="fa fa-tags" aria-hidden="true"></i> 
 							<h5><?php echo $tabla_destacado[0]["descripcion"]; ?></h5>
 						</a></li>
 						<li role="presentation"><a href="#carl" role="tab" id="carl-tab" data-toggle="tab"> 
-							<i class="fa fa-adjust" aria-hidden="true"></i>
+							<i class="fa fa-tags" aria-hidden="true"></i>
 							<h5><?php echo $tabla_destacado[1]["descripcion"]; ?></h5>
 						</a></li>
 						<li role="presentation"><a href="#james" role="tab" id="james-tab" data-toggle="tab"> 
-							<i class="fa fa-server" aria-hidden="true"></i>
+							<i class="fa fa-tags" aria-hidden="true"></i>
 							<h5><?php echo $tabla_destacado[2]["descripcion"]; ?></h5>
 						</a></li>
 						<li role="presentation"><a href="#decor" role="tab" id="decor-tab" data-toggle="tab"> 
-							<i class="fa fa-power-off" aria-hidden="true"></i>
+							<i class="fa fa-tags" aria-hidden="true"></i>
 							<h5><?php echo $tabla_destacado[3]["descripcion"]; ?></h5>
 						</a></li>
 						<li role="presentation"><a href="#sports" role="tab" id="sports-tab" data-toggle="tab"> 
-							<i class="fa fa-wrench" aria-hidden="true"></i>
+							<i class="fa fa-tags" aria-hidden="true"></i>
 							<h5><?php echo $tabla_destacado[4]["descripcion"]; ?></h5>
 						</a></li> 
 					</ul>
@@ -710,9 +710,9 @@
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h1><a href="<?php echo base_url(); ?>"><span>Todo</span>Positivo <i></i></a></h1>
+						<h1><a href="<?php echo base_url(); ?>"><span><img src='<?php echo base_url(); ?>assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
                                                 <br>
-                                                <h6>Materiales Electricos</h6> 
+                                                <h6></h6> 
 					</div>
 					<ul>
                                             <li><i class="fa fa-map-marker"></i> <?php echo strtoupper($direccion["descripcion"]); ?>, <?php echo strtoupper($localidad["descripcion"]); ?>.</li>
@@ -806,7 +806,7 @@
 	<!-- //footer -->		
 	<div class="copy-right"> 
 		<div class="container">
-			<p>2016 Desarrollado por <a href="https://www.facebook.com/Ordene-su-negocio-737763829635258/"> Adrian Sirianni.</a></p>
+			<p>2017 Desarrollado por <a href="https://www.facebook.com/Ordene-su-negocio-737763829635258/"> Adrian Sirianni.</a></p>
 		</div>
 	</div> 
 	<!-- cart-js -->

@@ -4,7 +4,7 @@
         var envio_seleccionado=0;       
     </script>
     <head>
-        <title>Todo Positivo</title>
+        <title>Masabores</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="" />
@@ -191,9 +191,9 @@
             <div class="header-two"><!-- header-two -->
 			<div class="container">
 				<div class="header-logo">
-                                    <h1><a href="<?php echo base_url(); ?>"><span>Todo</span>+<i></i></a></h1>
+                                    <h1><a href="<?php echo base_url(); ?>"><span><img src='<?php echo base_url(); ?>assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
                                         <br>
-					<h6>Materiales Electricos</h6> 
+					<h6></h6> 
 				</div>	
 				<div class="header-search">
                                     <?php
@@ -632,9 +632,9 @@
 			<div class="footer-info w3-agileits-info">
 				<div class="col-md-4 address-left agileinfo">
 					<div class="footer-logo header-logo">
-						<h1><a href="<?php echo base_url(); ?>"><span>Todo</span>Positivo <i></i></a></h1>
+						<h1><a href="<?php echo base_url(); ?>"><span><img src='<?php echo base_url(); ?>assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
                                                 <br>
-                                                <h6>Materiales Electricos</h6> 
+                                                <h6></h6> 
 					</div>
 					<ul>
                                             <li><i class="fa fa-map-marker"></i> <?php echo strtoupper($direccion["descripcion"]); ?>, <?php echo strtoupper($localidad["descripcion"]); ?>.</li>

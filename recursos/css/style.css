@@ -32,7 +32,7 @@ body a:hover{
 }
 /*-- header --*/
 .w3ls-header {
-    background: #464646;
+    background: #E53B3D;
     padding: 0.5em 2em;
 } 
 .w3ls-header-left {
@@ -256,7 +256,7 @@ ul.cd-dropdown-content li {
 /*-- header-three --*/ 
 .header-three {
     border-bottom: 1px solid #eaeaea; 
-    background: url(../images/bg.png)#08bce4 no-repeat;
+    background: url(../images/fondo_slider.png)#6CBE4F no-repeat;
     background-size: cover;  
 }
 /*-- //header-three --*/
@@ -953,7 +953,7 @@ p {
 /*-- footer --*/
 .footer {
     padding-top: 5em;
-    background: url(../images/bg.png)#42d406 no-repeat;
+    background: url(../images/fondo_slider.png)#6cbe4f no-repeat;
     background-size: cover;
 }
 .footer-logo.header-logo {
@@ -1029,7 +1029,7 @@ p {
 .copy-right {
     text-align: center;
     padding: 2em 0;
-    background: #222;
+    background: #e53b3d;
 }
 .copy-right p {
     font-size: 1em;

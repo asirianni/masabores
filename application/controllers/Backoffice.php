@@ -184,30 +184,33 @@ class Backoffice extends CI_Controller {
                 $this->Almacen_model->limpiar_tabla_productos();
                 $this->Almacen_model->limpiar_tabla_grupos();
                     //Cargar PHPExcel library
-                $this->load->library('excel');
-                $name   = $_FILES['uploaded']['name'];
-                $tname  = $_FILES['uploaded']['tmp_name'];
-                $obj_excel = PHPExcel_IOFactory::load($tname);
+//                $this->load->library('excel');
+//                $name   = $_FILES['uploaded']['name'];
+//                $tname  = $_FILES['uploaded']['tmp_name'];
+//                $obj_excel = PHPExcel_IOFactory::load($tname);
                 $codigos_grupos= array();
                 $descripcion_grupos=array();
+//                
+//                $sheetData = $obj_excel->getActiveSheet()->toArray(null,true,true,true);
                 
-                $sheetData = $obj_excel->getActiveSheet()->toArray(null,true,true,true);
+                $cardelimitador = ',';
+                $oa = fopen($_FILES['uploaded']['tmp_name'], 'r');
+                
                 $arr_datos = array();
-                $i=1;
-                foreach ($sheetData as $index => $value) {            
-                    if ( $index != 1 ){
-                                                
-                        $arr_datos = array(
+                $i=0;
+                while($a = fgetcsv($oa, 1000, $cardelimitador)){
+                    if($i!=0){
+                       $arr_datos = array(
                             'codigo'  => $i,
-                            'memo'  => $value['A'],
-                            'cod_prod'  => $value['B'],
-                            'descripcion'  => $value['C'],
-                            'cod_barra'  => $value['D'],
-                            'cod_grupo'  => $value['E'],
-                            'cod_proveedor'  => $value['G'],
-                            'precio_1'  => $value['I'],
-                            'precio_2'  => $value['J'],
-                            'precio_3'  => $value['K'],
+                            'memo'  => $a[0],
+                            'cod_prod'  => (string) $a[1],
+                            'descripcion'  => $a[2],
+                            'cod_barra'  => $a[3],
+                            'cod_grupo'  => $a[4],
+                            'cod_proveedor'  => $a[5],
+                            'precio_1'  => $a[8],
+                            'precio_2'  => $a[9],
+                            'precio_3'  => $a[10],
                             'iva'  => 21,
                             'sub_rubro'  => null,
                             'imagen'  => null,
@@ -216,18 +219,19 @@ class Backoffice extends CI_Controller {
                                                                   
                         );
                         
-                        if (!in_array($value['E'], $codigos_grupos)) {
-                            array_push($codigos_grupos, $value['E']);
-                            array_push($descripcion_grupos, $value['F']);
+                        if (!in_array($a[4], $codigos_grupos)) {
+                            array_push($codigos_grupos, $a[4]);
+                            array_push($descripcion_grupos, $a[5]);
                         }
                         
                         
                         foreach ($arr_datos as $llave => $valor) {
                                 $arr_datos[$llave] = $valor;
                         }
-                        $this->db->insert('productos',$arr_datos);
-                        $i++;
-                    } 
+                        $this->db->insert('productos',$arr_datos); 
+                    }
+                        
+                    $i++;
                 }
                 
                 for($i=0;$i < count($codigos_grupos); ++$i){
@@ -489,7 +493,8 @@ class Backoffice extends CI_Controller {
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();
 			$crud->set_table('productos_destacados');
-			$crud->set_relation('cod_producto','productos','descripcion');
+                        $crud->set_primary_key('cod_producto','productos');
+			//$crud->set_relation('cod_producto','productos','codigo');
                         $crud->set_relation('destacado','tabla_destacados','descripcion');
 			$crud->set_field_upload('imagen_1','assets/recursos/images/productos-destacados');
                         $crud->set_field_upload('imagen_2','assets/recursos/images/productos-destacados');
@@ -1085,6 +1090,10 @@ class Backoffice extends CI_Controller {
 		$this->load->view('back/loguin/ingreso', $output);
 	}
         
+        public function prueba() {
+            echo "hola";
+        }
+        
         public function generar_pedidos_texto() {
             
             header('Content-type: text/plain');
@@ -1094,7 +1103,7 @@ class Backoffice extends CI_Controller {
             
             foreach($pedido as $p){
                 $detalle=$this->Pedido_model->obtener_detalle_pedido($p["numero"]);
-                $datos_complementarios_cliente=$this->Cliente_model->get_Cliente($p["cliente"]);
+                $datos_complementarios_cliente=$this->Cliente_model->getCliente($p["cliente"]);
                 foreach ($detalle as $d) {
                     $cliente=$p["cliente"];
                     $articulo=$d["producto"];

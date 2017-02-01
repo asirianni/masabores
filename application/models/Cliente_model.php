@@ -217,4 +217,10 @@ class Cliente_model extends CI_Model {
         return (int)$r["lista_precios"];
     }
     
+    public function getCliente($cliente)
+    {
+        $r = $this->db->query("select * from cliente where codigo=$cliente");
+        return $r->row_array();
+    }
+    
 }

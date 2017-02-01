@@ -52,7 +52,7 @@ class Almacen_model extends CI_Model {
 	
 	
 	function obtener_rubros() {
-		$query = $this->db->query("SELECT * FROM rubros ");
+		$query = $this->db->query("SELECT codigo as codigo, grupo as descripcion FROM grupos ");
 		return $query->result_array();
 	}
 	
