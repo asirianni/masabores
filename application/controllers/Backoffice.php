@@ -1105,7 +1105,7 @@ class Backoffice extends CI_Controller {
                 $detalle=$this->Pedido_model->obtener_detalle_pedido($p["numero"]);
                 $datos_complementarios_cliente=$this->Cliente_model->getCliente($p["cliente"]);
                 foreach ($detalle as $d) {
-                    $cliente=$p["cliente"];
+                    $cliente=$datos_complementarios_cliente["codigo_masabores"];
                     $articulo=$d["producto"];
                     $cantidad=$d["cantidad"];
                     $descuento=$d["descuento"];;
