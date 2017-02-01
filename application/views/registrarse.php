@@ -20,6 +20,10 @@
         <!-- font-awesome icons -->
         <link href="<?php echo base_url(); ?>recursos/css/font-awesome.css" rel="stylesheet"> 
         <!-- //font-awesome icons -->
+        
+        <style>
+            .label-registro{font-weight: normal;color: #c8c8c8;};
+        </style>
         <!-- js -->
         <script src="<?php echo base_url(); ?>recursos/js/jquery-2.2.3.min.js"></script> 
         <!-- //js -->
@@ -117,18 +121,18 @@
                         <div class="form-group">
                             <span style="color: #f00;" id="mensaje_inicio_sesion_usuario"></span>
                         </div>
-                        <p><a href='<?php echo base_url()?>index.php/welcome/registrarse'>Registrarse</a></p>
+                        <!--<p><a href='".base_url()."index.php/welcome/registrarse'>Registrarse</a></p>-->
                     </div>
                 </div>
             </div>
 	</div>
 	<script>
             <?php 
-                if($this->session->userdata("ingresado")){
+                /*if($this->session->userdata("ingresado")){
 
                 }else{
                     echo "$('#myModal88').modal('show');";  
-                }
+                }*/
             ?> 
 	</script> 
 	<!-- header -->
@@ -235,312 +239,127 @@
 			</div>
 		</div>
 	</div>
-	<!-- //header -->	
-	<!-- banner -->
-	<div class="banner">
-		<div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover">
-			<!-- Wrapper-for-Slides -->
-            <div class="carousel-inner" role="listbox">  
-                <div class="item active"><!-- First-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/5.jpg" alt="" class="img-responsive" />
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h3 data-animation="animated flipInX">Soluciones <span></span> Gastronomicas</h3>
-                        <h4 data-animation="animated flipInX">Venta mayorista y minorista</h4>
-                    </div>
-                </div>  
-                <div class="item"> <!-- Second-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/supermercado.jpg" alt="" class="img-responsive" />
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h3 data-animation="animated fadeInDown">Consulte nuestro catalogo online</h3>
-                        <h4 data-animation="animated fadeInUp">Calcule su presupuesto</h4>
-                    </div>
-                </div> 
-                <div class="item"><!-- Third-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/comercio.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div> 
-            </div> 
-            <!-- Left-Button -->
-            <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">
-				<span class="fa fa-angle-left kb_icons" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a> 
-            <!-- Right-Button -->
-            <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next">
-                <span class="fa fa-angle-right kb_icons" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a> 
-        </div>
-		<script src="<?php echo base_url(); ?>recursos/js/custom.js"></script>
-	</div>
-	<!-- //banner -->  
-	<!-- welcome -->
-	<div class="welcome"> 
+	<!-- //header -->
+        <!-- sign up-page -->
+	<div class="login-page">
 		<div class="container"> 
-			<div class="welcome-info">
-				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<ul id="myTab" class=" nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" >
-							<i class="fa fa-tags" aria-hidden="true"></i> 
-							<h5><?php echo $tabla_destacado[0]["descripcion"]; ?></h5>
-						</a></li>
-						<li role="presentation"><a href="#carl" role="tab" id="carl-tab" data-toggle="tab"> 
-							<i class="fa fa-tags" aria-hidden="true"></i>
-							<h5><?php echo $tabla_destacado[1]["descripcion"]; ?></h5>
-						</a></li>
-						<li role="presentation"><a href="#james" role="tab" id="james-tab" data-toggle="tab"> 
-							<i class="fa fa-tags" aria-hidden="true"></i>
-							<h5><?php echo $tabla_destacado[2]["descripcion"]; ?></h5>
-						</a></li>
-						<li role="presentation"><a href="#decor" role="tab" id="decor-tab" data-toggle="tab"> 
-							<i class="fa fa-tags" aria-hidden="true"></i>
-							<h5><?php echo $tabla_destacado[3]["descripcion"]; ?></h5>
-						</a></li>
-						<li role="presentation"><a href="#sports" role="tab" id="sports-tab" data-toggle="tab"> 
-							<i class="fa fa-tags" aria-hidden="true"></i>
-							<h5><?php echo $tabla_destacado[4]["descripcion"]; ?></h5>
-						</a></li> 
-					</ul>
-					<div class="clearfix"> </div>
-					<h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
-					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-							<div class="tabcontent-grids">  
-								<div id="owl-demo" class="owl-carousel">
-                                                                    <?php 
-                                                                        foreach ($destacado_1 as $d_1) {
-                                                                            $mensaje="<div class='item'>
-                                                                                <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'></a>
-                                                                                    <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href=''>".$d_1["producto"]."</a></h4>
-                                                                                        <p>".$d_1["detalle"]."</p>
-                                                                                        <h5>$".$d_1["precio"]."</h5> 
-                                                                                         
-                                                                                    </div>   
-                                                                                </div>   
-                                                                            </div>";
-                                                                            echo $mensaje;
-                                                                        }
-                                                                    ?>
-								</div> 
-							</div>
+			<h3 class="w3ls-title w3ls-title1">Registrese en masabores</h3>  
+			<div class="login-body">
+				<form action="#" method="post">
+                                        <div class="form-group">
+                                            <label for="usuario" class="label-registro">Usuario</label>
+                                            <input type="text" class="user" name="usuario" id="usuario" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="correo" class="label-registro">Correo</label>
+                                            <input type="text" class="user" name="correo" id="correo" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password" class="label-registro">Contraseña</label>
+                                            <input type="password" class="user" name="pass" id="password"  required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nombre" class="label-registro">Nombre</label>
+                                            <input type="text" class="user" name="nombre" id="nombre" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apellido" class="label-registro">Apellido</label>
+                                            <input type="text" class="user" name="apellido" id="apellido"  required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="razon-social" class="label-registro">Razon social</label>
+                                            <input type="text" class="user" name="razon_social" id="razon-social" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nombre-comercial" class="label-registro">Nombre comercial</label>
+                                            <input type="text" class="user" name="nombre_comercial" id="nombre-comercial" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="direccion" class="label-registro">Direccion</label>
+                                            <input type="text" class="user" name="direccion" id="direccion" required="">
+                                        </div>
+                                        <div class="form-group">
+						<label for="provincia" class="label-registro">Provincia</label>
+                                                <select class="form-control" name="provincia" id="provincia" onChange="cambio_provincia()">
+                                                    <option value="seleccione-provincia" selected>Seleccione una provincia</option>
+                                                    <?php 
+                                                        foreach ($provincias as $value) {
+                                                            echo "<option value='".$value["id"]."'>".$value["provincia"]."</option>";
+                                                        }
+                                                    ?>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="localidad" class="label-registro">Localidad</label>
+						<select class="form-control" name="localidad" id="localidad">
+						</select>
+					</div>
+                                        <div class="form-group">
+                                            <label for="codigo-postal" class="label-registro">Codigo Postal</label>
+                                            <input type="text" class="user" name="cod_postal" id="codigo-postal" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pais" class="label-registro">Pais</label>
+                                            <input type="text" class="user" name="pais" id="pais" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="celular" class="label-registro">Celular</label>
+                                            <input type="text" class="user" name="celular" id="celular" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fijo" class="label-registro">Fijo</label>
+                                            <input type="text" class="user" name="fijo" id="fijo" required="">
+                                        </div>
+					<div class="form-group">
+						<label for="tipo_iva" class="label-registro">Tipo Iva</label>
+						<select class="form-control" name="tipo_iva" id="tipo_iva" required="">
+                                                     <?php 
+                                                        foreach($tipos_iva as $value)
+                                                        {
+                                                            echo "<option value='".$value["codigo"]."'>".$value["iva"]."</option>";
+                                                        }
+                                                    ?>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="vendedor" class="label-registro">Vendedor</label>
+						<select class="form-control" name="vendedor" id="vendedor" required="">
+                                                    <option value="0">No tengo vendedor</option>
+                                                    <?php 
+                                                        foreach($vendedores as $value)
+                                                        {
+                                                            echo "<option value='".$value["dni"]."'>".$value["nombre"]." ".$value["apellido"]."</option>";
+                                                        }
+                                                    ?>
+						</select>
+					</div>
+                                        <div class="form-group">
+                                            <label for="cuil-cuit-dni" class="label-registro">Fijo</label>
+                                            <input type="text" class="user" name="dni_cuil" id="cuil-cuit-dni" required="">
+                                        </div>
+					<input type="submit" id="boton_registro" value="Registrarme">
+					<!--<div class="forgot-grid">
+						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
+						<div class="forgot">
+							<a href="#">Forgot Password?</a>
 						</div>
-						<div role="tabpanel" class="tab-pane fade" id="carl" aria-labelledby="carl-tab">
-							<div class="tabcontent-grids">
-								<script>
-									$(document).ready(function() { 
-										$("#owl-demo1").owlCarousel({
-									 
-										  autoPlay: 3000, //Set AutoPlay to 3 seconds
-									 
-										  items :4,
-										  itemsDesktop : [640,5],
-										  itemsDesktopSmall : [414,4],
-										  navigation : true
-									 
-										});
-										
-									}); 
-								</script>
-								<div id="owl-demo1" class="owl-carousel">
-                                                                    <?php 
-                                                                        foreach ($destacado_2 as $d_2) {
-                                                                            $mensaje="<div class='item'>
-                                                                                <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_2["imagen_1"]."' alt='img'></a>
-                                                                                    <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href=''>".$d_2["producto"]."</a></h4>
-                                                                                        <p>".$d_2["descripcion"]."</p>
-                                                                                        <h5>".$d_2["precio"]."</h5> 
-                                                                                        <form action='#' method='post'>
-                                                                                                <input type='hidden' name='cmd' value='_cart' />
-                                                                                                <input type='hidden' name='add' value='1' /> 
-                                                                                                <input type='hidden' name='w3ls_item' value='Audio speaker' /> 
-                                                                                                <input type='hidden' name='amount' value='100.00' /> 
-                                                                                                <button type='submit' class='w3ls-cart' ><i class='fa fa-cart-plus' aria-hidden='true'></i> Agregar carrito</button>
-                                                                                        </form>  
-                                                                                    </div>   
-                                                                                </div>   
-                                                                            </div>";
-                                                                            echo $mensaje;
-                                                                        }
-                                                                    ?>
-								</div>   
-							</div>
-						</div> 
-						<div role="tabpanel" class="tab-pane fade" id="james" aria-labelledby="james-tab">
-							<div class="tabcontent-grids">
-								<script>
-									$(document).ready(function() { 
-										$("#owl-demo2").owlCarousel({
-									 
-										  autoPlay: 3000, //Set AutoPlay to 3 seconds
-									 
-										  items :4,
-										  itemsDesktop : [640,5],
-										  itemsDesktopSmall : [414,4],
-										  navigation : true
-									 
-										});
-										
-									}); 
-								</script>
-								<div id="owl-demo2" class="owl-carousel"> 
-									<?php 
-                                                                            foreach ($destacado_3 as $d_3) {
-                                                                                $mensaje="<div class='item'>
-                                                                                    <div class='glry-w3agile-grids agileits'> 
-                                                                                        <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_3["imagen_1"]."' alt='img'></a>
-                                                                                        <div class='view-caption agileits-w3layouts'>           
-                                                                                            <h4><a href=''>".$d_3["producto"]."</a></h4>
-                                                                                            <p>".$d_3["descripcion"]."</p>
-                                                                                            <h5>".$d_3["precio"]."</h5> 
-                                                                                            <form action='#' method='post'>
-                                                                                                    <input type='hidden' name='cmd' value='_cart' />
-                                                                                                    <input type='hidden' name='add' value='1' /> 
-                                                                                                    <input type='hidden' name='w3ls_item' value='Audio speaker' /> 
-                                                                                                    <input type='hidden' name='amount' value='100.00' /> 
-                                                                                                    <button type='submit' class='w3ls-cart' ><i class='fa fa-cart-plus' aria-hidden='true'></i> Agregar carrito</button>
-                                                                                            </form>  
-                                                                                        </div>   
-                                                                                    </div>   
-                                                                                </div>";
-                                                                                echo $mensaje;
-                                                                            }
-                                                                        ?>
-								</div>    
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="decor" aria-labelledby="decor-tab">
-							<div class="tabcontent-grids">
-								<script>
-									$(document).ready(function() { 
-										$("#owl-demo3").owlCarousel({
-									 
-										  autoPlay: 3000, //Set AutoPlay to 3 seconds
-									 
-										  items :4,
-										  itemsDesktop : [640,5],
-										  itemsDesktopSmall : [414,4],
-										  navigation : true
-									 
-										});
-										
-									}); 
-								</script>
-								<div id="owl-demo3" class="owl-carousel"> 
-                                                                    <?php 
-                                                                        foreach ($destacado_4 as $d_4) {
-                                                                            $mensaje="<div class='item'>
-                                                                                <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_4["imagen_1"]."' alt='img'></a>
-                                                                                    <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href=''>".$d_4["producto"]."</a></h4>
-                                                                                        <p>".$d_4["descripcion"]."</p>
-                                                                                        <h5>".$d_4["precio"]."</h5> 
-                                                                                        <form action='#' method='post'>
-                                                                                                <input type='hidden' name='cmd' value='_cart' />
-                                                                                                <input type='hidden' name='add' value='1' /> 
-                                                                                                <input type='hidden' name='w3ls_item' value='Audio speaker' /> 
-                                                                                                <input type='hidden' name='amount' value='100.00' /> 
-                                                                                                <button type='submit' class='w3ls-cart' ><i class='fa fa-cart-plus' aria-hidden='true'></i> Agregar carrito</button>
-                                                                                        </form>  
-                                                                                    </div>   
-                                                                                </div>   
-                                                                            </div>";
-                                                                            echo $mensaje;
-                                                                        }
-                                                                    ?> 
-								</div>    
-							</div>
-						</div>
-						<div role="tabpanel" class="tab-pane fade" id="sports" aria-labelledby="sports-tab">
-							<div class="tabcontent-grids">
-								<script>
-									$(document).ready(function() { 
-										$("#owl-demo4").owlCarousel({
-									 
-										  autoPlay: 3000, //Set AutoPlay to 3 seconds
-									 
-										  items :4,
-										  itemsDesktop : [640,5],
-										  itemsDesktopSmall : [414,4],
-										  navigation : true
-									 
-										}); 
-									}); 
-								</script>
-								<div id="owl-demo4" class="owl-carousel"> 
-                                                                    <?php 
-                                                                        foreach ($destacado_5 as $d_5) {
-                                                                            $mensaje="<div class='item'>
-                                                                                <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_5["imagen_1"]."' alt='img'></a>
-                                                                                    <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href=''>".$d_5["producto"]."</a></h4>
-                                                                                        <p>".$d_5["descripcion"]."</p>
-                                                                                        <h5>".$d_5["precio"]."</h5> 
-                                                                                        <form action='#' method='post'>
-                                                                                                <input type='hidden' name='cmd' value='_cart' />
-                                                                                                <input type='hidden' name='add' value='1' /> 
-                                                                                                <input type='hidden' name='w3ls_item' value='Audio speaker' /> 
-                                                                                                <input type='hidden' name='amount' value='100.00' /> 
-                                                                                                <button type='submit' class='w3ls-cart' ><i class='fa fa-cart-plus' aria-hidden='true'></i> Agregar carrito</button>
-                                                                                        </form>  
-                                                                                    </div>   
-                                                                                </div>   
-                                                                            </div>";
-                                                                            echo $mensaje;
-                                                                        }
-                                                                    ?>
-								</div>    
-							</div>
-						</div> 
-					</div>   
-				</div>  
-			</div>  	
-		</div>  	
-	</div> 
-	<!-- //welcome -->
-	<!-- add-products -->
-<!--	<div class="add-products"> 
-		<div class="container">  
-			<div class="add-products-row">
-				<div class="w3ls-add-grids">
-					<a href="products1.html"> 
-						<h4>TOP 10 TRENDS FOR YOU FLAT <span>20%</span> OFF</h4>
-						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
-					</a>
-				</div>
-				<div class="w3ls-add-grids w3ls-add-grids-mdl">
-					<a href="products1.html"> 
-						<h4>SUNDAY SPECIAL DISCOUNT FLAT <span>40%</span> OFF</h4>
-						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
-					</a>
-				</div>
-				<div class="w3ls-add-grids w3ls-add-grids-mdl1">
-					<a href="products.html"> 
-						<h4>LATEST DESIGNS FOR YOU <span> Hurry !</span></h4>
-						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
-					</a>
-				</div>
-				<div class="clerfix"> </div>
-			</div>  	
-		</div>  	
-	</div>-->
-	<!-- //add-products -->
+						<div class="clearfix"> </div>
+					</div>-->
+				</form>
+			</div>  
+                        <h6>Usted ya posee una cuenta? <a href="#" onclick="$('#myModal88').modal('show');">Inicie sesion</a> </h6>  
+		</div>
+	</div>
+	<!-- //sign up-page --> 
+	
 	<!-- coming soon -->
-	<div class="soon">
+	<!--<div class="soon">
 		<div class="container">
 			<h3></h3>
 			<h4>Genere su presupuesto</h4>  
-<!--			<div id="countdown1" class="ClassyCountdownDemo"></div>-->
+<!--			<div id="countdown1" class="ClassyCountdownDemo"></div>
 		</div> 
-	</div>
+	</div>-->
 	<!-- //coming soon -->
 	<!-- deals -->
 <!--	<div class="deals"> 
@@ -893,6 +712,49 @@
 	<script src="<?php echo base_url(); ?>recursos/js/main.js"></script> <!-- Resource jQuery -->
         
         <script>
+            
+            function boton_registro()
+            {
+                var provincia = $("#provincia").val();
+                var localidad = $("#localidad").val();
+                var vendedor = $("#vendedor").val();
+                var tipo_iva = $("#tipo_iva").val();
+                
+                var respuesta = false;
+                
+                if(!isNan(provincia) && provincia != 0 && !isNan(localidad) && localidad != 0 && !isNan(vendedor) && !isNan(tipo_iva))
+                {
+                    respuesta = true;
+                }
+                
+                return respuesta;
+            }
+            
+            function cambio_provincia()
+            {
+                alert($("#provincia").val());
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url()?>index.php/Response_Ajax/obtenerLocalidadesDeProvincia",
+                    data:{provincia:$("#provincia").val()},
+                    
+                    beforeSend: function(event){},
+                    success: function(data){
+                        
+                        data= JSON.parse(data);
+                        var html ="";
+                        
+                        for(var i=0; i < data.length;i++)
+                        {
+                            html+="<option value='"+data[i]["codigo"]+"'>"+data[i]["localidad"]+"</option>";
+                        }
+                        
+                        $("#localidad").html(html);
+                    },
+                    error: function(event){alert("error");},
+                });
+            }
+            
             function iniciarSesionCliente()
             {
                 var usuario = document.getElementById('usuario_ingresar').value;

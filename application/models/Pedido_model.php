@@ -217,13 +217,18 @@ class Pedido_model extends CI_Model {
             "cliente"=>$cliente,
             "total"=>$total,
             "f_entrega"=>Date("Y-m-d"),
+            "estado"=>"1",
         );
         
         return $this->db->insert("pedido",$datos);
     }
     
-    public function registroPedidoDetallePorVendedor($pedido,$arreglo)
+    public function registroPedidoDetallePorVendedor($arreglo)
     {
+        $r = $this->db->query("select max(numero) as numero from pedido");
+        $r = $r->row_array();
+        $pedido = $r["numero"];
+        
         for($i=0; $i < count($arreglo);$i++)
         {
             // obteniendo alfanumerico
@@ -238,7 +243,8 @@ class Pedido_model extends CI_Model {
                 "descuento"=>$arreglo[$i][3],
             );
             
-            $this->db->insert("pedido_detalle",$datos);
+            $prueba = $this->db->insert("pedido_detalle",$datos);
+            
         }
     }
     

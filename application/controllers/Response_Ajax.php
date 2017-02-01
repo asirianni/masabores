@@ -1,4 +1,4 @@
-<?php
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -97,13 +97,28 @@ class Response_Ajax extends CI_Controller
         {
             $this->load->model("Pedido_model");
             
-            $pedido= $this->Pedido_model->getUltimoIdPedido();
             $arreglo= $this->input->post("arreglo");
             
-            $respuesta = $this->Pedido_model->registroPedidoDetallePorVendedor($pedido,$arreglo);
+            $respuesta = $this->Pedido_model->registroPedidoDetallePorVendedor($arreglo);
             
             
             echo json_encode($respuesta);
         } 
     }
+    
+    public function obtenerLocalidadesDeProvincia($provincia)
+    {
+       if(!$this->input->is_ajax_request())
+        {
+            $this->load->model("Provincias_model");
+            
+            //$provincia= $this->input->post("provincia");
+            
+            $respuesta = $this->Provincias_model->getLocalidadesDeProvincia($provincia);
+            
+            echo json_encode($respuesta);
+        } 
+    }
+    
+    
 }

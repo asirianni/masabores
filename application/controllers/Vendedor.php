@@ -39,6 +39,35 @@ class Vendedor extends CI_Controller
         }
     }
     
+    public function agregar_cliente()
+    {
+        if($this->verificarAcceso())
+        {
+            if(!$this->input->post())
+            {
+                $this->load->model("Cliente_model");
+                $this->load->model("Provincias_model");
+                $this->load->model("Vendedor_model");
+                $this->load->model("Iva_model");
+
+                $salida["provincias"]= $this->Provincias_model->getProvincias();
+                $salida["vendedores"]=$this->Vendedor_model->getVendedores();
+                $salida["tipos_iva"]=$this->Iva_model->getTiposIva();
+
+                $this->load->view("vendedor/agregar_cliente",$salida);
+            }
+            else
+            {
+                $this->load->model("Cliente_model");
+                $respuesta = $this->Cliente_model->registrarClientePorPost($this->input->post());
+            }
+        }
+        else
+        {
+            redirect("Welcome/acceso");
+        }
+    }
+    
     private function verificarAcceso()
     {
         if($this->session->userdata("ingresado") == true &&

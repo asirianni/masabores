@@ -55,6 +55,64 @@ class Welcome extends CI_Controller {
             $this->load->view('entrada', $salida);
 	}
         
+        public function registrarse(){
+            
+            if($this->session->userdata("ingresado") == false && !$this->input->post())
+            {
+                $this->load->model("Provincias_model");
+                $this->load->model("Vendedor_model");
+                $this->load->model("Iva_model");
+                
+                $salida["rubros"]=  $this->Almacen_model->obtener_rubros();
+                $salida["correo"]= $this->Configuracion_model->obtener_config(1);
+                $salida["movil"]= $this->Configuracion_model->obtener_config(2);
+                $salida["telefono"]= $this->Configuracion_model->obtener_config(3);
+                $salida["direccion"]= $this->Configuracion_model->obtener_config(4);
+                $salida["horarios"]= $this->Configuracion_model->obtener_config(5);
+                $salida["localidad"]= $this->Configuracion_model->obtener_config(6);
+                
+                $salida["provincias"]= $this->Provincias_model->getProvincias();
+                $salida["vendedores"]=$this->Vendedor_model->getVendedores();
+                $salida["tipos_iva"]=$this->Iva_model->getTiposIva();
+                
+                $this->load->view('registrarse', $salida);
+            }
+            else
+            {
+                // REGISTRO DE CLIENTE AL VENIR POR POST 
+                
+                $this->load->model("Cliente_model");
+                
+                $respuesta = $this->Cliente_model->registrarClientePorPost($this->input->post());
+                
+                if($respuesta)
+                {
+                    $resultado = $this->Cliente_model->getClienteInicioSesion($this->input->post("usuario"),$this->input->post("pass"));
+                
+                    $datos = Array(
+                        "codigo"=>$resultado["codigo"],
+                        "usuario"=>$resultado["usuario"],
+                        "correo"=>$resultado["correo"],
+                        "pass"=>$resultado["pass"],
+                        "nombre"=>$resultado["nombre"],
+                        "apellido"=>$resultado["apellido"],
+                        "direccion"=>$resultado["direccion"],
+                        "celular"=>$resultado["celular"],
+                        "estado"=>$resultado["estado"],
+                        "lista_precios"=>$resultado["lista_precios"],
+                        "dni_cuil"=>$resultado["dni_cuil"],
+                        "localidad"=>$resultado["localidad"],
+                        "ingresado"=>true
+                    );
+                    
+                    $this->session->set_userdata($datos);
+                    
+                    redirect("Welcome");
+                    
+                }
+            }
+	}
+        
         public function acceso() {
             $output['salida_error']="";
             $this->load->view('back/loguin/ingreso', $output);

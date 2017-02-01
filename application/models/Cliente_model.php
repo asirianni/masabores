@@ -17,7 +17,7 @@ class Cliente_model extends CI_Model {
     }
     
     function getClienteInicioSesion($usuario, $password){
-        $resultado = $this->db->query("SELECT c.codigo as codigo, c.usuario as usuario, c.correo as correo, c.pass as pass, c.nombre as nombre, c.apellido as apellido, c.direccion as direccion, c.celular as celular, c.fijo as fijo, c.estado as estado, c.lista_precios as lista_precios, c.dni_cuil, l.localidad FROM cliente as c, localidades as l where c.localidad=l.codigo and c.usuario='$usuario' and c.pass='$password'");
+        $resultado = $this->db->query("SELECT cliente.codigo, cliente.usuario, cliente.correo, cliente.pass, cliente.nombre, cliente.apellido, cliente.direccion, cliente.celular, cliente.fijo, cliente.estado, cliente.lista_precios, cliente.dni_cuil, localidades.localidad FROM cliente INNER JOIN localidades on localidades.codigo = cliente.localidad where cliente.usuario = '$usuario' and cliente.pass = '$password'");
         return $resultado->row_array();
     }
     
@@ -221,6 +221,32 @@ class Cliente_model extends CI_Model {
     {
         $r = $this->db->query("select * from cliente where codigo=$cliente");
         return $r->row_array();
+    }
+    
+    public function registrarClientePorPost($datos)
+    {
+        /*$datos = Array(
+            "usuario"=>$usuario,
+            "correo"=>$correo,
+            "pass"=>$pass,
+            "nombre"=>$nombre,
+            "apellido"=>$apellido,
+            "razon_social"=>$razon_social,
+            "nombre_comercial"=>$nombre_comercial,
+            "direccion"=>$direccion,
+            "provincia"=>$provincia,
+            "localidad"=>$localidad,
+            "cod_postal"=>$cod_postal,
+            "pais"=>$celular,
+            "fijo"=>$fijo,
+            "tipo_iva"=>$tipo_iva,
+            "estado"=>$estado,
+            "lista_precios"=>$lista_precios,
+            "vendedor"=>$vendedor,
+            "dni_cuil"=>$dni_cuil,
+        );*/
+        
+        return $this->db->insert("cliente",$datos);
     }
     
 }

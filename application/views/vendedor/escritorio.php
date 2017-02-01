@@ -109,14 +109,18 @@
                     <h2 class="text-right">Total $<span id="total_venta">0</span></h2>
                     
                 </div>
-
+                
 		<div id="paso1">
+                    <div class="pull-right">
+                        <a href="<?php echo base_url()?>index.php/Vendedor/agregar_cliente" class="ui-btn ui-icon-plus ui-btn-icon-left">Agregar Cliente</a>
+                    </div>
+                    <div class="clearfix"></div>
                     <p class="explicacion-paso"><span class="numero-paso">Paso 1:</span> Buscar y seleccionar el cliente</p>
                     <ul data-role="listview" data-filter="true" data-filter-placeholder="Buscar clientes..." data-filter-theme="a" data-inset="true">
                         <?php 
                             foreach ($clientes as $value) {
                                 echo "<li>
-                                        <p onClick='seleccionar_usuario(".$value["codigo"].")' style='color: #4fa7d9;font-weight: bold;font-size: 20px;'>".$value["nombre"]." ".$value["apellido"]."</p>
+                                        <p  onClick='seleccionar_usuario(".$value["codigo"].")' style='color: #4fa7d9;font-weight: bold;font-size: 20px;'>".$value["nombre"]." ".$value["apellido"]."</p>
                                         <p>dni-cuil: ".$value["dni_cuil"]."</p>
                                         <p>direccion: ".$value["direccion"]."</p>
                                         <p>cel: ".$value["celular"]."</p>
@@ -134,7 +138,7 @@
                         <?php 
                             foreach ($productos as $value) {
                                 echo "<li>
-                                        <p onClick='seleccionar_producto(".$value["codigo"].",&#39;".$value["descripcion"]."&#39;,".$value["precio_1"].",".$value["precio_2"].",".$value["precio_3"].")' style='color: #4fa7d9;font-weight: bold;font-size: 12px;'>".$value["descripcion"]."</p>
+                                        <p id='producto-lista-".$value["codigo"]."' onClick='seleccionar_producto(".$value["codigo"].",&#39;".$value["descripcion"]."&#39;,".$value["precio_1"].",".$value["precio_2"].",".$value["precio_3"].")' style='color: #4fa7d9;font-weight: bold;font-size: 12px;'>".$value["descripcion"]."</p>
                                         <p>cod barra: ".$value["cod_barra"]."</p>
                                         <p>cod_prod: ".$value["cod_prod"]."</p>
                                         <p class='precio_1'>precio 1: $".$value["precio_1"]."</p>
@@ -204,6 +208,12 @@
             $(".precio_"+lista_precios_cliente).css("color","");
             $(".precio_"+lista_precios_cliente).css("font-size","");
             lista_precios_cliente = 0;
+            
+            for(var i=0; i< codigos_productos_agregados.length;i++)
+            {
+                $("#producto-lista-"+codigos_productos_agregados[i]).css("color","#4fa7d9");
+            }
+            
             codigos_productos_agregados = new Array();
             $("#tabla-de-compra").html("");
             $("#resultados-buscar-producto").html("");
@@ -346,32 +356,11 @@
         
         function seleccionar_producto(id,descripcion,precio_1,precio_2,precio_3)
         {
-            if(arrayBuscarElemento(codigos_productos_agregados,id) != null)// FIJARSE SI SE AGREGO
+            if(arrayBuscarElemento(codigos_productos_agregados,id) == null)
             {
-                var cantidad = parseInt($("#cantidad_"+id).val());
-                var precio = parseFloat($("#precio_"+id).val()).toFixed(2);
-                var descuento = parseFloat($("#descuento_"+id).val()).toFixed(2);
-                
-                cantidad+=1;
-                
-                $("#cantidad_"+id).val(cantidad);
-                
-                var total = precio * cantidad;
-                
-                
-                // obteniendo descuento
-                descuento = descuento / 100;
-                descuento = 1 - descuento;
-                
-                total*= descuento;
-                
-                $("#subtotal_"+id).text(total);
-                
-                
-            }
-            else
-            {
-                        precio = 0;
+                        $("#producto-lista-"+id).css("color","#F00");
+                        
+                        var precio = 0;
                         
                         if(lista_precios_cliente == 1)
                         {
@@ -388,16 +377,6 @@
                         
                         var html_code = $("#tabla-de-compra").html();
                         
-                        /*html_code+="<div data-role='collapsible' data-filtertext='"+descripcion+"' id='codigo_"+id+"'>"+
-                                            "<h3>"+descripcion+"</h3>"+
-                                            "<ul data-role='listview' data-inset='false'>"+
-                                                "<li>Cantidad: <input type='number' onChange='cambio_valor("+id+")' id='cantidad_"+id+"' value='1'/></li>"+
-                                                "<li>Precio: <input type='number' onChange='cambio_valor("+id+")' id='precio_"+id+"' value='"+precio+"'/></li>"+
-                                                "<li>Descuento: <input type='number'  onChange='cambio_valor("+id+")' id='descuento_"+id+"' value='0'/></li>"+
-                                                "<li>Subtotal: <span id='subtotal_"+id+"'>"+precio+"</span></li>"+
-                                            "</ul>"+
-                                        "</div>";*/
-                        
                         html_code += "<div id='codigo_"+id+"'>"+
                                             "<tr id='fila_1_"+id+"' class='fila_titulo_producto'>"+
                                                 "<td class='titulo_producto' colspan='2'>"+descripcion+"</td>"+
@@ -408,11 +387,11 @@
                                             "</tr>"+
                                             "<tr id='fila_3_"+id+"'>"+
                                                 "<td>Precio</td>"+
-                                                "<td><input type='number' onChange='cambio_valor("+id+")' id='precio_"+id+"' value='"+precio+"'/></td>"+
+                                                "<td><input type='number' onChange='cambio_valor("+id+")' id='precio_"+id+"' value='"+precio.toFixed(2)+"'/></td>"+
                                             "</tr>"+
                                             "<tr id='fila_4_"+id+"'>"+
                                                 "<td>Subtotal:</td>"+
-                                                "<td id='subtotal_"+id+"'>"+precio+"</td>"+
+                                                "<td id='subtotal_"+id+"'>"+precio.toFixed(2)+"</td>"+
                                             "</tr>"+
                                             "<tr id='fila_5_"+id+"'>"+
                                                 "<td>Descuento:</td>"+
@@ -426,11 +405,13 @@
                         $("#tabla-de-compra").html(html_code);
                         
                         
-                        codigos_productos_agregados.push(id);     
-            }     
-            
-            
-            actualizar_total();
+                        codigos_productos_agregados.push(id);  
+                        actualizar_total();
+            }
+            else
+            {
+                alert("El producto ya ha sido seleccionado");
+            }
         }
         
         function boton_pulsado(id)
@@ -521,7 +502,7 @@
 
             total_producto*= descuento;
             
-            $("#subtotal_"+id).text(total_producto);
+            $("#subtotal_"+id).text(total_producto.toFixed(2));
             actualizar_total();
         }
         
@@ -571,17 +552,20 @@
                 data:{arreglo:pedido_detalle},
                 beforeSend: function(event){},
                 success: function(data){
-                        
                     data = JSON.parse(data);
-                    location.href="<?php echo base_url()?>index.php/Vendedor";
+                    
+                    alert("Pedido registrado");
+                    $("#paso3").remove("hidden");
+                    reiniciar_sistema();
+                    boton_pulsado(1);
                 },
                 error: function(event){alert("error");},
             });
     
-            /*
-            for(var i=0; i < pedido_detalle.length;i++)
+            
+            /*for(var i=0; i < pedido_detalle.length;i++)
             {
-                alert(pedido_detalle[i][0] + " "+ pedido_detalle[i][1]+ " "+ pedido_detalle[i][2]);
+                alert(pedido_detalle[i][0] + " "+ pedido_detalle[i][1]+ " "+ pedido_detalle[i][2]+ " "+ pedido_detalle[i][3]);
             }*/
             
             
