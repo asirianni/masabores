@@ -20,6 +20,9 @@
         <!-- font-awesome icons -->
         <link href="<?php echo base_url(); ?>recursos/css/font-awesome.css" rel="stylesheet"> 
         <!-- //font-awesome icons -->
+        <!-- SELECT2-->
+        <link href="<?php echo base_url(); ?>recursos/select2/css/select2.min.css" rel="stylesheet"> 
+        
         
         <style>
             .label-registro{font-weight: normal;color: #c8c8c8;};
@@ -291,7 +294,7 @@
 					</div>
 					<div class="form-group">
 						<label for="localidad" class="label-registro">Localidad</label>
-						<select class="form-control" name="localidad" id="localidad">
+						<select class="form-control" name="localidad" id="localidad" readonly="readonly">
 						</select>
 					</div>
                                         <div class="form-group">
@@ -323,18 +326,18 @@
 					</div>
 					<div class="form-group">
 						<label for="vendedor" class="label-registro">Vendedor</label>
-						<select class="form-control" name="vendedor" id="vendedor" required="">
+						<select class="form-control js-example-basic-single" name="vendedor" id="vendedor" required="">
                                                     <option value="0">No tengo vendedor</option>
                                                     <?php 
                                                         foreach($vendedores as $value)
                                                         {
-                                                            echo "<option value='".$value["dni"]."'>".$value["nombre"]." ".$value["apellido"]."</option>";
+                                                            echo "<option value='".$value["dni"]."'>".$value["nombre"]." ".$value["apellido"]." - ".$value["dni"]."</option>";
                                                         }
                                                     ?>
 						</select>
 					</div>
                                         <div class="form-group">
-                                            <label for="cuil-cuit-dni" class="label-registro">Fijo</label>
+                                            <label for="cuil-cuit-dni" class="label-registro">Cuil - Dni</label>
                                             <input type="text" class="user" name="dni_cuil" id="cuil-cuit-dni" required="">
                                         </div>
 					<input type="submit" id="boton_registro" value="Registrarme">
@@ -710,6 +713,14 @@
 	<!-- menu js aim -->
 	<script src="<?php echo base_url(); ?>recursos/js/jquery.menu-aim.js"> </script>
 	<script src="<?php echo base_url(); ?>recursos/js/main.js"></script> <!-- Resource jQuery -->
+        <!-- SELECT2-->
+        <script src="<?php echo base_url(); ?>recursos/select2/js/select2.min.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+              $(".js-example-basic-single").select2();
+            });
+        </script>
         
         <script>
             
