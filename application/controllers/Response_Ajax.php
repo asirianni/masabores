@@ -106,15 +106,73 @@ class Response_Ajax extends CI_Controller
         } 
     }
     
-    public function obtenerLocalidadesDeProvincia($provincia)
+    public function obtenerLocalidadesDeProvincia()
     {
-       if(!$this->input->is_ajax_request())
+       if($this->input->is_ajax_request())
         {
             $this->load->model("Provincias_model");
             
-            //$provincia= $this->input->post("provincia");
+            $provincia= $this->input->post("provincia");
             
             $respuesta = $this->Provincias_model->getLocalidadesDeProvincia($provincia);
+            
+            echo json_encode($respuesta);
+        } 
+    }
+    
+    public function eliminarCliente()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Cliente_model");
+            
+            $cliente= $this->input->post("codigo");
+            
+            $respuesta = $this->Cliente_model->eliminar_cliente($cliente);
+            
+            echo json_encode($respuesta);
+        } 
+    }
+    
+    public function agregarCliente()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Cliente_model");
+            
+            
+            
+            $respuesta = $this->Cliente_model->registrarClientePorPost($this->input->post());
+            
+            echo json_encode($respuesta);
+        } 
+    }
+    
+    public function modificarCliente()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Cliente_model");
+            
+            
+            
+            $respuesta = $this->Cliente_model->modificarCliente($this->input->post("codigo"),$this->input->post("usuario"),$this->input->post("correo"),$this->input->post("pass"),$this->input->post("nombre"),$this->input->post("apellido"),$this->input->post("razon_social"),$this->input->post("nombre_comercial"),
+                                   $this->input->post("direccion"),$this->input->post("provincia"),$this->input->post("localidad"),$this->input->post("cod_postal"),$this->input->post("pais"),$this->input->post("celular"),$this->input->post("fijo"),$this->input->post("tipo_iva"),
+                                   $this->input->post("estado"),$this->input->post("lista_precios"),$this->input->post("vendedor"),$this->input->post("codigo_masabores"),$this->input->post("dni_cuil"));
+            
+            echo json_encode($respuesta);
+        } 
+    }
+    
+    public function getCliente()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Cliente_model");
+            
+            $cliente= $this->input->post("codigo");
+            
+            $respuesta = $this->Cliente_model->getCliente($cliente);
             
             echo json_encode($respuesta);
         } 

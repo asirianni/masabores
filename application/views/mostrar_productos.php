@@ -29,6 +29,34 @@
         <link href='http://www.fonts.googleapis.com/css?family=Lovers+Quarrel' rel='stylesheet' type='text/css'>
         <link href='http://www.fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
         <link href='http://www.fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+        <style type="text/css">
+		ul.menu {
+  clear: both;
+  float: left;
+  width: 100%;
+}
+ul.menu {
+  clear: both;
+  float: left;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.menu li {
+   float: left;
+}
+ul.menu li a {
+  padding: .3em;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  background: #F4F4F4;
+  border-top: 1px solid #7C7C7C;
+  border-right: 1px solid #7C7C7C;
+  border-bottom: 1px solid #9C9C9C;
+}
+	</style>
         <!-- web-fonts --> 
         <script src="<?php echo base_url(); ?>recursos/js/owl.carousel.js"></script> 
         <script src="<?php echo base_url(); ?>recursos/js/pedido-simple-web.js"></script>
@@ -202,7 +230,7 @@
 						<a class="cd-dropdown-trigger" href="#0">Categorias</a>
 						<nav class="cd-dropdown"> 
 							<a href="#0" class="cd-close">Close</a>
-							<ul class="cd-dropdown-content"> 
+							<ul class="menu"> 
                                                             <?php
                                                                 $salida="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/0'> <i class=''></i> TODOS LOS RUBROS</a></li>";
                                                                 foreach ($rubros as $r) {

@@ -609,15 +609,29 @@ class Backoffice extends CI_Controller {
 	
 	public function clientes(){
 		if ($this->verificar_acceso()) {
-			$crud = new grocery_CRUD();
+			/*$crud = new grocery_CRUD();
 			$crud->set_table('cliente');
 			//$crud->columns('codigo','correo','pass','apellido', 'direccion', 'cod_zona_entrega', 'celular', 'estado');
 			$crud->set_relation('localidad','localidades','localidad');
 			$crud->set_relation('lista_precios','listas_precios','descripcion_lista');
+                        $crud->set_relation('provincia','provincias','provincia');
+                        $crud->set_relation('tipo_iva','tipo_iva','iva');
+                        $crud->set_relation('provincia','provincias','provincia');
 			$crud->required_fields('usuario','correo','pass', 'nombre','apellido', 'celular','fijo',
                         'estado', 'lista_precios','localidad');
                         
-			$output = $crud->render();
+			$output = $crud->render();*/
+                    
+                        $this->load->model("Cliente_model");
+                        $this->load->model("Provincias_model");
+                        $this->load->model("Iva_model");
+                        $this->load->model("Vendedor_model");
+                        
+                        $output["clientes"]=$this->Cliente_model->getClientes();
+                        $output["provincias"]=$this->Provincias_model->getProvincias();
+                        $output["tipos_iva"]=$this->Iva_model->getTiposIva();
+                        $output["vendedores"]=$this->Vendedor_model->getVendedores();
+                        
 			$this->load->view('back/clientes.php', $output);
 		}else{
 			$output['salida_error']="";
@@ -667,6 +681,58 @@ class Backoffice extends CI_Controller {
 			
 			$output = $crud->render();
 			$this->load->view('back/config.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin', $output);
+		}
+		
+	}
+        
+        public function abm_vendedores(){
+		if ($this->verificar_acceso()) {
+			$crud = new grocery_CRUD();
+			$crud->set_table('vendedor');
+			
+			$output = $crud->render();
+			$this->load->view('back/config.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin', $output);
+		}
+		
+	}
+        
+        public function abm_empleados(){
+		if ($this->verificar_acceso()) {
+			$crud = new grocery_CRUD();
+			$crud->set_table('empleados');
+                        $crud->set_primary_key('dni','empleados');
+                        
+                        $crud->set_relation('tipo_usuario','tipo_usuario','descripcion');
+                        $crud->set_relation('cod_sucursal','locales','dire');
+                        $crud->set_relation('cod_localidad','localidades','localidad');
+                        $crud->set_field_upload('imagen','recursos/images/empleados/');
+
+                        $crud->required_fields('');
+                        //$crud->columns(array(''));
+			
+			$output = $crud->render();
+			$this->load->view('back/config.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin', $output);
+		}
+		
+	}
+        
+        public function abm_grupos(){
+		if ($this->verificar_acceso()) {
+			$crud = new grocery_CRUD();
+			$crud->set_table('grupos');
+                        $crud->set_primary_key('codigo','grupos');
+			
+			$output = $crud->render();
+			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
 			$this->load->view('back/loguin', $output);

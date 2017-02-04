@@ -249,4 +249,71 @@ class Cliente_model extends CI_Model {
         return $this->db->insert("cliente",$datos);
     }
     
+    public function modificarCliente($codigo,$usuario,$correo,$pass,$nombre,$apellido,$razon_social,$nombre_comercial,
+                                   $direccion,$provincia,$localidad,$cod_postal,$pais,$celular,$fijo,$tipo_iva,
+                                   $estado,$lista_precios,$vendedor,$codigo_masabores,$dni_cuil)
+    {
+        $datos = Array(
+            "usuario"=>$usuario,
+            "correo"=>$correo,
+            "pass"=>$pass,
+            "nombre"=>$nombre,
+            "apellido"=>$apellido,
+            "razon_social"=>$razon_social,
+            "nombre_comercial"=>$nombre_comercial,
+            "direccion"=>$direccion,
+            "provincia"=>$provincia,
+            "localidad"=>$localidad,
+            "cod_postal"=>$cod_postal,
+            "pais"=>$pais,
+            "celular"=>$celular,
+            "fijo"=>$fijo,
+            "tipo_iva"=>$tipo_iva,
+            "estado"=>$estado,
+            "lista_precios"=>$lista_precios,
+            "vendedor"=>$vendedor,
+            "codigo_masabores"=>$codigo_masabores,
+            "dni_cuil"=>$dni_cuil,
+        );
+        
+        $this->db->where("codigo",$codigo);
+        return $this->db->update("cliente",$datos);
+    }
+    
+    public function agregarCliente($usuario,$correo,$pass,$nombre,$apellido,$razon_social,$nombre_comercial,
+                                   $direccion,$provincia,$localidad,$cod_postal,$pais,$celular,$fijo,$tipo_iva,
+                                   $estado,$lista_precios,$vendedor,$codigo_masabores,$dni_cuil)
+    {
+        $datos = Array(
+            "usuario"=>$usuario,
+            "correo"=>$correo,
+            "pass"=>$pass,
+            "nombre"=>$nombre,
+            "apellido"=>$apellido,
+            "razon_social"=>$razon_social,
+            "nombre_comercial"=>$nombre_comercial,
+            "direccion"=>$direccion,
+            "provincia"=>$provincia,
+            "localidad"=>$localidad,
+            "cod_postal"=>$cod_postal,
+            "pais"=>$pais,
+            "celular"=>$celular,
+            "fijo"=>$fijo,
+            "tipo_iva"=>$tipo_iva,
+            "estado"=>$estado,
+            "lista_precios"=>$lista_precios,
+            "vendedor"=>$vendedor,
+            "codigo_masabores"=>$codigo_masabores,
+            "dni_cuil"=>$dni_cuil,
+        );
+        
+        return $this->db->insert("cliente",$datos);
+    }
+    
+    public function eliminar_cliente($codigo)
+    {
+        $this->db->where("codigo",$codigo);
+        return $this->db->delete("cliente");
+    }
+    
 }
