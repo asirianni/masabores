@@ -297,15 +297,7 @@ ul.menu li a {
 	</div>
 	<div class="products">	 
             <div class="row">
-                <?php foreach ($rubros as $value) {?>
-                    <div class="col-md-4">
-                        <div style="">
-                            <h3 class="text-center" syle="color: #000;">Fiambres y Embutidos</h3>
-                            <p style="margin-top: 20px;" class="text-center"><img class=img-responsive" src="<?php echo base_url()?>recursos/images/grupos/<?php echo $value["imagen"]?>" height="200"/></p>
-                            <p style="margin-top: 10px;" class="text-center"><a href="<?php echo base_url()?>index.php/Welcome/busqueda_rubro/<?php echo $value["codigo"]?>" class="btn btn-large btn-default">Ver rubros </a></p>
-                        </div>
-                    </div>
-                <?php }?>
+                CONTENIDO
             </div>
         </div>
 	<!-- footer -->

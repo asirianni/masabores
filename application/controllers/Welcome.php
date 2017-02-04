@@ -192,6 +192,32 @@ class Welcome extends CI_Controller {
 
         }
         
+        public function nosotros() {
+            
+            
+            $output["correo"]= $this->Configuracion_model->obtener_config(1);
+            $output["movil"]= $this->Configuracion_model->obtener_config(2);
+            $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+            $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+            $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+            $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            $this->load->view('nosotros', $output);
+
+        }
+        
+        public function contacto() {
+            
+            
+            $output["correo"]= $this->Configuracion_model->obtener_config(1);
+            $output["movil"]= $this->Configuracion_model->obtener_config(2);
+            $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+            $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+            $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+            $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            $this->load->view('contacto', $output);
+
+        }
+        
         public function lista_de_precios() {
             $output['productos']="";
             if($this->input->post("busqueda")!=="" && $this->input->post("busqueda")!==null){
