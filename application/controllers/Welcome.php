@@ -214,8 +214,42 @@ class Welcome extends CI_Controller {
             $output["direccion"]= $this->Configuracion_model->obtener_config(4);
             $output["horarios"]= $this->Configuracion_model->obtener_config(5);
             $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            $output["mensaje_error"]="";
             $this->load->view('contacto', $output);
 
+        }
+        
+        public function enviar_mensaje_contacto()
+        {
+            if($this->input->post())
+            {
+                $this->load->model("Mensaje_model");
+                
+                $respuesta = $this->Mensaje_model->agregarMensaje($this->input->post("nombre"),$this->input->post("correo"),$this->input->post("telefono"),$this->input->post("mensaje"));
+            
+                
+                $output["correo"]= $this->Configuracion_model->obtener_config(1);
+                $output["movil"]= $this->Configuracion_model->obtener_config(2);
+                $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+                $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+                $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+                $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+                
+                if($respuesta)
+                {
+                    $output["mensaje_error"]="Mensaje enviado correctamente";
+                }
+                else
+                {
+                    $output["mensaje_error"]="No se ha podido enviar el mensaje, verifique sus datos";
+                }
+                
+                $this->load->view('contacto', $output);
+            }
+            else
+            {
+                redirect("welcome/contacto");
+            }
         }
         
         public function lista_de_precios() {

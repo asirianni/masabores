@@ -297,7 +297,44 @@ ul.menu li a {
 	</div>
 	<div class="products">	 
             <div class="row">
-                CONTENIDO
+                <div class="col-md-12" style="margin-bottom: 30px;">
+                    <h1 class="text-center">Contactanos</h1>
+                </div>
+                <div class="col-md-offset-1 col-md-5">
+                    <h4 style="margin-bottom: 10px;color:#dd4448;"><?php echo $mensaje_error?></h4>
+                    <form action="<?php echo base_url()?>index.php/Welcome/enviar_mensaje_contacto" method="post">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre_contacto" name="nombre">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="correo">Correo</label>
+                            <input type="text" class="form-control" id="correo_contacto" name="correo">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefono">Telefono</label>
+                            <input type="text" class="form-control" id="telefono_contacto" name="telefono">
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje:</label>
+                            <textarea class="form-control" name="mensaje" id="mensaje_contacto"></textarea>
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <label for=""></label>
+                            <input type="submit" class="btn btn-primary" id="enviar_mensaje" value="Enviar mensaje" style="background-color: #dd4448;border-color: #dd4448;font-weight: bold;font-size: 16px;">
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="col-md-offset-1 col-md-5">
+                    Direccion <?php echo $direccion["descripcion"]?><br/>
+                    Correo <?php echo $correo["descripcion"]?><br/>
+                    Movil <?php echo $movil["descripcion"]?><br/>
+                    Telefono <?php echo $telefono["descripcion"]?><br/>
+                    Localidad <?php echo $localidad["descripcion"]?><br/>
+                </div>
             </div>
         </div>
 	<!-- footer -->
@@ -530,6 +567,49 @@ ul.menu li a {
                         
                         
 		</script>
+                
+        <script>
+            $("#enviar_mensaje").click(function(){
+                var nombre = $("#nombre_contacto").val();
+                var correo =$("#correo_contacto").val();
+                var telefono =$("#telefono_contacto").val();
+                var mensaje =$("#mensaje_contacto").val();
+                
+                var respuesta = false;
+                
+                if(nombre != "" && mensaje != "" && telefono != "")
+                {
+                    if(validarEmail(correo))
+                    {
+                      respuesta= true;
+                    }
+                    else
+                    {
+                        alert("Por favor ingrese un correo valido");
+                    }
+                }
+                else
+                {
+                    alert("Por favor complete todos los datos");
+                }
+                
+                return respuesta;
+            });
+            
+            function validarEmail( email ) 
+            {
+                var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                if ( !expr.test(email) )
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        </script>
+        
         <script>
  
             $(document).ready(function(){

@@ -14,3 +14,16 @@ and open the template in the editor.
     border-color: #6cbe4f;
 }
 
+.navbar-right li a{
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.navbar-right li a:hover{
+    color: #dd4448 !important;
+}
+.navbar-right li.active a{
+    background-color: #6cbe4f !important;
+}
+
