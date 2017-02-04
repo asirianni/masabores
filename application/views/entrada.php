@@ -19,6 +19,8 @@
         <!-- //Custom Theme files -->
         <!-- font-awesome icons -->
         <link href="<?php echo base_url(); ?>recursos/css/font-awesome.css" rel="stylesheet"> 
+        <!-- CSS MARIO -->
+        <link href="<?php echo base_url(); ?>recursos/css/agregado-estilos.css" rel="stylesheet"> 
         <!-- //font-awesome icons -->
         <!-- js -->
         <script src="<?php echo base_url(); ?>recursos/js/jquery-2.2.3.min.js"></script> 
@@ -224,14 +226,59 @@
 						</nav>  .cd-dropdown 
 					</div>  .cd-dropdown-wrapper 	 -->
 				</div>
-				<div class="move-text">
-					<div class="marquee"><a href="<?php echo base_url(); ?>index.php/welcome/buscar"> VER CATALOGO  <span>VER CATALOGO </span> <span> CALCULE SU PEDIDO AHORA!!!</span></a></div>
+				<!--<div class="move-text">
+					<div class="marquee">
+                                            
+                                            <a href="<?php echo base_url(); ?>index.php/welcome/buscar"> 
+                                                VER CATALOGO
+                                            </a>
+                                        </div>
 					<script type="text/javascript" src="<?php echo base_url(); ?>recursos/js/jquery.marquee.min.js"></script>
 					<script>
 					  $('.marquee').marquee({ pauseOnHover: true });
 					  //# sourceURL=pen.js
 					</script>
-				</div>
+				</div>-->
+                                <!-- Static navbar -->
+                            <nav class="navbar navbar-default navbar-verde">
+                              <div class="container-fluid">
+                                <div class="navbar-header">
+                                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                  </button>
+                                    <a class="navbar-brand" href="#"><span class="visible-xs">Menu</span></a>
+                                </div>
+                                <div id="navbar" class="navbar-collapse collapse">
+                                  <ul class="nav navbar-nav">
+                                    <!--<li class="active"><a href="#">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li class="dropdown-header">Nav header</li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                      </ul>
+                                    </li>-->
+                                  </ul>
+                                  <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a href="<?php echo base_url()?>">Principal<span class="sr-only">(current)</span></a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/nosotros">Nosotros</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/productos">Productos</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/lista_de_precios">Lista de precios</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/contacto">Contacto</a></li>
+                                  </ul>
+                                </div><!--/.nav-collapse -->
+                              </div><!--/.container-fluid -->
+                            </nav>
 			</div>
 		</div>
 	</div>

@@ -173,6 +173,45 @@ class Welcome extends CI_Controller {
 
         }
         
+        public function productos() {
+            $output['productos']="";
+            if($this->input->post("busqueda")!=="" && $this->input->post("busqueda")!==null){
+                $output['productos']=  base_url()."index.php/welcome/get_listado_productos_by_busqueda/".$this->input->post("busqueda");
+            }else{
+                $output['productos']=  base_url()."index.php/welcome/get_listado_productos/";
+            }
+            $output["rubros"]=  $this->Almacen_model->obtener_rubros();
+            
+            $output["correo"]= $this->Configuracion_model->obtener_config(1);
+            $output["movil"]= $this->Configuracion_model->obtener_config(2);
+            $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+            $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+            $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+            $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            $this->load->view('grupos', $output);
+
+        }
+        
+        public function lista_de_precios() {
+            $output['productos']="";
+            if($this->input->post("busqueda")!=="" && $this->input->post("busqueda")!==null){
+                $output['productos']=  base_url()."index.php/welcome/get_listado_productos_by_busqueda/".$this->input->post("busqueda");
+            }else{
+                $output['productos']=  base_url()."index.php/welcome/get_listado_productos/";
+            }
+            $output["rubros"]=  $this->Almacen_model->obtener_rubros();
+            $output['lista']=  $this->Almacen_model->obtener_lista_precios();
+            
+            $output["correo"]= $this->Configuracion_model->obtener_config(1);
+            $output["movil"]= $this->Configuracion_model->obtener_config(2);
+            $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+            $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+            $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+            $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            $this->load->view('mostrar_productos', $output);
+
+        }
+        
         public function busqueda_rubro($rubro) {
             $output['productos']="";
             if($rubro!=0){

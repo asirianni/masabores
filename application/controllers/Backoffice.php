@@ -730,6 +730,7 @@ class Backoffice extends CI_Controller {
 			$crud = new grocery_CRUD();
 			$crud->set_table('grupos');
                         $crud->set_primary_key('codigo','grupos');
+                         $crud->set_field_upload('imagen','recursos/images/grupos/');
 			
 			$output = $crud->render();
 			$this->load->view('back/productos.php', $output);

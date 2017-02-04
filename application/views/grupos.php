@@ -29,10 +29,34 @@
         <link href='http://www.fonts.googleapis.com/css?family=Lovers+Quarrel' rel='stylesheet' type='text/css'>
         <link href='http://www.fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
         <link href='http://www.fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
-        
-        <!-- CSS MARIO -->
-        <link href="<?php echo base_url(); ?>recursos/css/agregado-estilos.css" rel="stylesheet"> 
-        
+        <style type="text/css">
+		ul.menu {
+  clear: both;
+  float: left;
+  width: 100%;
+}
+ul.menu {
+  clear: both;
+  float: left;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul.menu li {
+   float: left;
+}
+ul.menu li a {
+  padding: .3em;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  background: #F4F4F4;
+  border-top: 1px solid #7C7C7C;
+  border-right: 1px solid #7C7C7C;
+  border-bottom: 1px solid #9C9C9C;
+}
+	</style>
         <!-- web-fonts --> 
         <script src="<?php echo base_url(); ?>recursos/js/owl.carousel.js"></script> 
         <script src="<?php echo base_url(); ?>recursos/js/pedido-simple-web.js"></script>
@@ -105,7 +129,7 @@
 	<div class="header">
 		<div class="w3ls-header"><!--header-one--> 
 			<div class="w3ls-header-left">
-				<p><a href="#">ESTA VIENDO LISTA DE PRECIOS: <?php echo $lista ?></a></p>
+				<p><a href="#">ESTA VIENDO LISTA DE PRECIOS: </a></p>
 			</div>
 			<div class="w3ls-header-right">
 				<ul>
@@ -202,103 +226,45 @@
                 <div class="header-three"><!-- header-three -->
 			<div class="container">
 				<div class="menu">
-					<!--<div class="cd-dropdown-wrapper">
+					<div class="cd-dropdown-wrapper">
 						<a class="cd-dropdown-trigger" href="#0">Categorias</a>
 						<nav class="cd-dropdown"> 
 							<a href="#0" class="cd-close">Close</a>
 							<ul class="menu"> 
-                                                            <?php/*
+                                                            <?php
                                                                 $salida="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/0'> <i class=''></i> TODOS LOS RUBROS</a></li>";
                                                                 foreach ($rubros as $r) {
                                                                     $salida.="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/".$r["codigo"]."'>".strtoupper($r["descripcion"])."</a></li>";
                                                                 }
-                                                                echo $salida;*/
+                                                                echo $salida;
                                                             ?> 
-							</ul>
-						</nav>
-					</div> cd-dropdown-wrapper -->	
-                                        
-                        
+							</ul> <!-- .cd-dropdown-content -->
+						</nav> <!-- .cd-dropdown -->
+					</div> <!-- .cd-dropdown-wrapper -->	 
 				</div>
-				<!--<div class="move-text">
+				<div class="move-text">
 					<div class="marquee"><a href="offers.html"> Desde aqui busque productos  <span>Compra Online </span> <span> HAGA SU CALCULO AHORA!!!</span></a></div>
 					<script type="text/javascript" src="<?php echo base_url(); ?>recursos/js/jquery.marquee.min.js"></script>
 					<script>
 					  $('.marquee').marquee({ pauseOnHover: true });
 					  //@ sourceURL=pen.js
 					</script>
-				</div>-->
-                                
-                                <nav class="navbar navbar-default navbar-verde">
-                              <div class="container-fluid">
-                                <div class="navbar-header">
-                                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                  </button>
-                                    <a class="navbar-brand" href="#"><span class="visible-xs">Menu</span></a>
-                                </div>
-                                <div id="navbar" class="navbar-collapse collapse">
-                                  <ul class="nav navbar-nav">
-                                    <!--<li class="active"><a href="#">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                    <li class="dropdown">
-                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                                      <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li class="dropdown-header">Nav header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
-                                      </ul>
-                                    </li>-->
-                                  </ul>
-                                  <ul class="nav navbar-nav navbar-right">
-                                    <li class="active"><a href="<?php echo base_url()?>">Principal<span class="sr-only">(current)</span></a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/nosotros">Nosotros</a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/productos">Productos</a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/lista_de_precios">Lista de precios</a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/contacto">Contacto</a></li>
-                                  </ul>
-                                </div><!--/.nav-collapse -->
-                              </div><!--/.container-fluid -->
-                            </nav>
+				</div>
 			</div>
 		</div>
 		
 	</div>
 	<div class="products">	 
-            <div class="container">
-                <div class="col-md-12 product-w3ls-center">
-                    <div class="box-content" style="display: block;">
-                        <table id="productos"
-                           data-toggle="table" 
-                           data-url="<?php echo $productos ?>"
-                           data-show-columns="true" 
-                           data-search="true"
-                           data-show-refresh="true" 
-                           data-show-toggle="false"
-                           data-pagination="true" 
-                           data-show-export="false"
-                           >
-                            <thead>
-                                <tr class="noExl">
-                                    <th data-field="codigo" data-visible="false">Codigo-Ecomerce</th>
-                                    <th data-field="cod_prod" data-visible="false">Codigo</th>
-                                    <th data-field="descripcion" data-sortable="true">Producto</th>
-                                    <th data-field="precio" data-sortable="true">$ Precio</th>
-
-                                    <th data-field="options" data-formatter='optionsFormatter'></th>
-                                </tr>
-                            </thead>
-                        </table>
+            <div class="row">
+                <?php foreach ($rubros as $value) {?>
+                    <div class="col-md-4">
+                        <div style="">
+                            <h3 class="text-center" syle="color: #000;">Fiambres y Embutidos</h3>
+                            <p style="margin-top: 20px;" class="text-center"><img class=img-responsive" src="<?php echo base_url()?>recursos/images/grupos/<?php echo $value["imagen"]?>" height="200"/></p>
+                            <p style="margin-top: 10px;" class="text-center"><input type="button" class="btn btn-large btn-default" value="ver rubro"/></p>
+                        </div>
                     </div>
-                </div>
+                <?php }?>
             </div>
         </div>
 	<!-- footer -->
