@@ -49,8 +49,9 @@ class Vendedor extends CI_Controller
                 $this->load->model("Provincias_model");
                 $this->load->model("Vendedor_model");
                 $this->load->model("Iva_model");
+                
 
-                $salida["provincias"]= $this->Provincias_model->getProvincias();
+                $salida["localidades"]= $this->Provincias_model->getLocalidades();
                 $salida["vendedores"]=$this->Vendedor_model->getVendedores();
                 $salida["tipos_iva"]=$this->Iva_model->getTiposIva();
 
@@ -58,8 +59,36 @@ class Vendedor extends CI_Controller
             }
             else
             {
+                // REGISTRO DE CLIENTE AL VENIR POR POST 
+                
                 $this->load->model("Cliente_model");
+                
                 $respuesta = $this->Cliente_model->registrarClientePorPost($this->input->post());
+                
+                if($respuesta)
+                {
+                    $resultado = $this->Cliente_model->getClienteInicioSesion($this->input->post("usuario"),$this->input->post("pass"));
+                
+                    $datos = Array(
+                        "codigo"=>$resultado["codigo"],
+                        "usuario"=>$resultado["usuario"],
+                        "correo"=>$resultado["correo"],
+                        "pass"=>$resultado["pass"],
+                        "nombre"=>$resultado["nombre"],
+                        "apellido"=>$resultado["apellido"],
+                        "direccion"=>$resultado["direccion"],
+                        "celular"=>$resultado["celular"],
+                        "estado"=>$resultado["estado"],
+                        "lista_precios"=>$resultado["lista_precios"],
+                        "dni_cuil"=>$resultado["dni_cuil"],
+                        "localidad"=>$resultado["localidad"],
+                        "ingresado"=>true
+                    );
+                    
+                    $this->session->set_userdata($datos);
+                    
+                    redirect("Welcome");
+                }
             }
         }
         else

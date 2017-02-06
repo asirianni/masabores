@@ -297,7 +297,10 @@ ul.menu li a {
 	</div>
 	<div class="products">	 
             <div class="row">
-                CONTENIDO
+                <div class="col-md-offset-1 col-md-10">
+                    <h2 class="text-center" style="margin-bottom: 30px;">Nosotros</h2>
+                    <p style="color: #000 !important;"><?php echo $nosotros["contenido"]?></p>
+                </div>
             </div>
         </div>
 	<!-- footer -->

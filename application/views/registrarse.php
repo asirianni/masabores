@@ -248,7 +248,7 @@
 		<div class="container"> 
 			<h3 class="w3ls-title w3ls-title1">Registrese en masabores</h3>  
 			<div class="login-body">
-				<form action="#" method="post">
+				<form action="<?php echo base_url()?>index.php/Vendedor/agregar_cliente" method="post">
                                         <div class="form-group">
                                             <label for="usuario" class="label-registro">Usuario</label>
                                             <input type="text" class="user" name="usuario" id="usuario" required="">
@@ -283,7 +283,7 @@
                                         </div>
                                         <div class="form-group">
 						<label for="provincia" class="label-registro">Provincia</label>
-                                                <select class="form-control" name="provincia" id="provincia" onChange="cambio_provincia()">
+                                                <select class="form-control"  onChange="cambio_provincia()">
                                                     <option value="seleccione-provincia" selected>Seleccione una provincia</option>
                                                     <?php 
                                                         foreach ($provincias as $value) {
@@ -743,7 +743,6 @@
             
             function cambio_provincia()
             {
-                alert($("#provincia").val());
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url()?>index.php/Response_Ajax/obtenerLocalidadesDeProvincia",
@@ -761,6 +760,7 @@
                         }
                         
                         $("#localidad").html(html);
+                        $("#localidad").removeAttr("readonly");
                     },
                     error: function(event){alert("error");},
                 });

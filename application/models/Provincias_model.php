@@ -30,4 +30,10 @@ class Provincias_model extends CI_Model{
         $r = $this->db->query("select * from localidades where id_provincia = $provincia ");
         return $r->result_array();
     }
+    
+    public function getLocalidades()
+    {
+        $r = $this->db->query("select * from localidades");
+        return $r->result_array();
+    }
 }

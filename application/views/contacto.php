@@ -329,11 +329,12 @@ ul.menu li a {
                 </div>
                 
                 <div class="col-md-offset-1 col-md-5">
-                    Direccion <?php echo $direccion["descripcion"]?><br/>
-                    Correo <?php echo $correo["descripcion"]?><br/>
-                    Movil <?php echo $movil["descripcion"]?><br/>
-                    Telefono <?php echo $telefono["descripcion"]?><br/>
-                    Localidad <?php echo $localidad["descripcion"]?><br/>
+                    <h3 style="margin-top: 30px;margin-bottom: 30px;">Nuestros datos: </h3>
+                    <p>Direccion <?php echo $direccion["descripcion"]?></p>
+                    <p>Correo <?php echo $correo["descripcion"]?></p>
+                    <p>Movil <?php echo $movil["descripcion"]?></p>
+                    <p>Telefono <?php echo $telefono["descripcion"]?></p>
+                    <p>Localidad <?php echo $localidad["descripcion"]?></p>
                 </div>
             </div>
         </div>

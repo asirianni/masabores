@@ -270,11 +270,11 @@
                                     </li>-->
                                   </ul>
                                   <ul class="nav navbar-nav navbar-right">
-                                    <li class="active"><a href="<?php echo base_url()?>">Principal<span class="sr-only">(current)</span></a></li>
+                                    <li class="active"><a href="<?php echo base_url()?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Principal</a></li>
                                     <li><a href="<?php echo base_url()?>index.php/welcome/nosotros">Nosotros</a></li>
                                     <li><a href="<?php echo base_url()?>index.php/welcome/productos">Productos</a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/lista_de_precios">Lista de precios</a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/contacto">Contacto</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/lista_de_precios"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Lista de precios</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/contacto"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contacto</a></li>
                                   </ul>
                                 </div><!--/.nav-collapse -->
                               </div><!--/.container-fluid -->

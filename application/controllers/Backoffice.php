@@ -368,7 +368,20 @@ class Backoffice extends CI_Controller {
 		}
 	}
 	
-	public function abm_locales(){
+	public function abm_secciones(){
+		if ($this->verificar_acceso()) {
+			$crud = new grocery_CRUD();
+			$crud->set_table('nosotros');
+//			$crud->columns('cod_fab', 'dire', 'denom');
+			$output = $crud->render();
+			$this->load->view('back/config.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin', $output);
+		}
+	}
+        
+        public function abm_locales(){
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();
 			$crud->set_table('locales');
