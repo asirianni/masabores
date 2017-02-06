@@ -20,6 +20,8 @@
         <!-- font-awesome icons -->
         <link href="<?php echo base_url(); ?>recursos/css/font-awesome.css" rel="stylesheet"> 
         <!-- //font-awesome icons -->
+        <!-- CSS MARIO -->
+        <link href="<?php echo base_url(); ?>recursos/css/agregado-estilos.css" rel="stylesheet"> 
         <!-- SELECT2-->
         <link href="<?php echo base_url(); ?>recursos/select2/css/select2.min.css" rel="stylesheet"> 
         
@@ -231,14 +233,46 @@
 						</nav>  .cd-dropdown 
 					</div>  .cd-dropdown-wrapper 	 -->
 				</div>
-				<div class="move-text">
-					<div class="marquee"><a href="<?php echo base_url(); ?>index.php/welcome/buscar"> VER CATALOGO  <span>VER CATALOGO </span> <span> CALCULE SU PEDIDO AHORA!!!</span></a></div>
-					<script type="text/javascript" src="<?php echo base_url(); ?>recursos/js/jquery.marquee.min.js"></script>
-					<script>
-					  $('.marquee').marquee({ pauseOnHover: true });
-					  //# sourceURL=pen.js
-					</script>
-				</div>
+                            <!-- Static navbar -->
+                            <nav class="navbar navbar-default navbar-verde">
+                              <div class="container-fluid">
+                                <div class="navbar-header">
+                                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                  </button>
+                                    <a class="navbar-brand" href="#"><span class="">Menu</span></a>
+                                </div>
+                                <div id="navbar" class="navbar-collapse collapse">
+                                  <ul class="nav navbar-nav">
+                                    <!--<li class="active"><a href="#">Home</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Contact</a></li>
+                                    <li class="dropdown">
+                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                                      <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li class="dropdown-header">Nav header</li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                      </ul>
+                                    </li>-->
+                                  </ul>
+                                  <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a href="<?php echo base_url()?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Principal</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/nosotros">Nosotros</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/productos">Productos</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/lista_de_precios"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Lista de precios</a></li>
+                                    <li><a href="<?php echo base_url()?>index.php/welcome/contacto"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Contacto</a></li>
+                                  </ul>
+                                </div><!--/.nav-collapse -->
+                              </div><!--/.container-fluid -->
+                            </nav>
 			</div>
 		</div>
 	</div>
@@ -247,40 +281,57 @@
 	<div class="login-page">
 		<div class="container"> 
 			<h3 class="w3ls-title w3ls-title1">Registrese en masabores</h3>  
-			<div class="login-body">
+			<div class="login-body" style="width: 100% !important;">
 				<form action="<?php echo base_url()?>index.php/Vendedor/agregar_cliente" method="post">
+                                    <div class="col-md-4">    
                                         <div class="form-group">
                                             <label for="usuario" class="label-registro">Usuario</label>
                                             <input type="text" class="user" name="usuario" id="usuario" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="correo" class="label-registro">Correo</label>
                                             <input type="text" class="user" name="correo" id="correo" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="password" class="label-registro">Contraseña</label>
                                             <input type="password" class="user" name="pass" id="password"  required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="nombre" class="label-registro">Nombre</label>
                                             <input type="text" class="user" name="nombre" id="nombre" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="apellido" class="label-registro">Apellido</label>
                                             <input type="text" class="user" name="apellido" id="apellido"  required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="razon-social" class="label-registro">Razon social</label>
                                             <input type="text" class="user" name="razon_social" id="razon-social" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="nombre-comercial" class="label-registro">Nombre comercial</label>
                                             <input type="text" class="user" name="nombre_comercial" id="nombre-comercial" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="direccion" class="label-registro">Direccion</label>
                                             <input type="text" class="user" name="direccion" id="direccion" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
 						<label for="provincia" class="label-registro">Provincia</label>
                                                 <select class="form-control"  onChange="cambio_provincia()">
@@ -292,27 +343,40 @@
                                                     ?>
 						</select>
 					</div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-4"> 
 					<div class="form-group">
 						<label for="localidad" class="label-registro">Localidad</label>
 						<select class="form-control" name="localidad" id="localidad" readonly="readonly">
 						</select>
 					</div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="codigo-postal" class="label-registro">Codigo Postal</label>
                                             <input type="text" class="user" name="cod_postal" id="codigo-postal" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="pais" class="label-registro">Pais</label>
                                             <input type="text" class="user" name="pais" id="pais" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="celular" class="label-registro">Celular</label>
                                             <input type="text" class="user" name="celular" id="celular" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="fijo" class="label-registro">Fijo</label>
                                             <input type="text" class="user" name="fijo" id="fijo" required="">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4"> 
 					<div class="form-group">
 						<label for="tipo_iva" class="label-registro">Tipo Iva</label>
 						<select class="form-control" name="tipo_iva" id="tipo_iva" required="">
@@ -324,6 +388,10 @@
                                                     ?>
 						</select>
 					</div>
+                                    </div>
+                                    
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-4"> 
 					<div class="form-group">
 						<label for="vendedor" class="label-registro">Vendedor</label>
 						<select class="form-control js-example-basic-single" name="vendedor" id="vendedor" required="">
@@ -336,10 +404,13 @@
                                                     ?>
 						</select>
 					</div>
+                                    </div>
+                                    <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="cuil-cuit-dni" class="label-registro">Cuil - Dni</label>
                                             <input type="text" class="user" name="dni_cuil" id="cuil-cuit-dni" required="">
                                         </div>
+                                    </div>
 					<input type="submit" id="boton_registro" value="Registrarme">
 					<!--<div class="forgot-grid">
 						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>

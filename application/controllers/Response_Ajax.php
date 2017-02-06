@@ -84,8 +84,9 @@ class Response_Ajax extends CI_Controller
             
             $cliente= $this->input->post("cliente");
             $total= $this->input->post("total");
+            $arreglo= $this->input->post("arreglo");
             
-            $respuesta = $this->Pedido_model->registroPedidoPorVendedor($cliente,$total);
+            $respuesta = $this->Pedido_model->registroPedidoPorVendedor($cliente,$total,$arreglo);
             
             echo json_encode($respuesta);
         } 

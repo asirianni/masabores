@@ -210,7 +210,7 @@ class Pedido_model extends CI_Model {
 	
 	}
         
-    public function registroPedidoPorVendedor($cliente,$total)
+    public function registroPedidoPorVendedor($cliente,$total,$arreglo)
     {
         $datos = Array(
             "fecha"=>Date("Y-m-d H:i:s"),
@@ -220,33 +220,36 @@ class Pedido_model extends CI_Model {
             "estado"=>"1",
         );
         
-        return $this->db->insert("pedido",$datos);
+        $respuesta = $this->db->insert("pedido",$datos);
+        
+        if($respuesta)
+        {
+            $r = $this->db->query("select max(numero) as numero from pedido");
+            $r = $r->row_array();
+            $pedido = $r["numero"];
+
+            
+            for($i=0; $i < count($arreglo);$i++)
+            {
+                // obteniendo alfanumerico
+
+                $producto = $this->db->query("Select cod_prod from productos where codigo=".$arreglo[$i][0]."");
+                $producto = $producto->row_array();
+                $datos = Array(
+                    "num_pedido"=>$pedido,
+                    "producto"=>$producto["cod_prod"],
+                    "cantidad"=>$arreglo[$i][1],
+                    "precio"=>$arreglo[$i][2],
+                    "descuento"=>$arreglo[$i][3],
+                );
+
+                $respuesta = $this->db->insert("pedido_detalle",$datos);
+            }
+        }
+        
+        return $respuesta;
     }
     
-    public function registroPedidoDetallePorVendedor($arreglo)
-    {
-        $r = $this->db->query("select max(numero) as numero from pedido");
-        $r = $r->row_array();
-        $pedido = $r["numero"];
-        
-        for($i=0; $i < count($arreglo);$i++)
-        {
-            // obteniendo alfanumerico
-            
-            $producto = $this->db->query("select cod_prod from productos where codigo = ".$arreglo[$i][0]."");
-            $producto = $producto->row_array();
-            $datos = Array(
-                "num_pedido"=>$pedido,
-                "producto"=>$producto["cod_prod"],
-                "cantidad"=>$arreglo[$i][1],
-                "precio"=>$arreglo[$i][2],
-                "descuento"=>$arreglo[$i][3],
-            );
-            
-            $prueba = $this->db->insert("pedido_detalle",$datos);
-            
-        }
-    }
     
     public function getUltimoIdPedido()
     {

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!<DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -106,8 +106,8 @@
                     <a href="#" id="botonera4" class="btn btn-large btn-danger" onclick="boton_pulsado(4)"><i class="fa fa-plus"></i>4</a>
 		</div>-->
                 <div>
+                    <p class="text-right">Cliente: <span id="cliente_seleccionado">No hay cliente seleccionado</span></p>
                     <h2 class="text-right">Total $<span id="total_venta">0</span></h2>
-                    
                 </div>
                 
 		<div id="paso1">
@@ -120,7 +120,7 @@
                         <?php 
                             foreach ($clientes as $value) {
                                 echo "<li>
-                                        <p  onClick='seleccionar_usuario(".$value["codigo"].")' style='color: #4fa7d9;font-weight: bold;font-size: 20px;'>".$value["nombre"]." ".$value["apellido"]."</p>
+                                        <p  onClick='seleccionar_usuario(".$value["codigo"].",&#39;".$value["nombre"]." ".$value["apellido"]."&#39;)' style='color: #4fa7d9;font-weight: bold;font-size: 20px;'>".$value["nombre"]." ".$value["apellido"]."</p>
                                         <p>dni-cuil: ".$value["dni_cuil"]."</p>
                                         <p>direccion: ".$value["direccion"]."</p>
                                         <p>cel: ".$value["celular"]."</p>
@@ -218,6 +218,7 @@
             $("#tabla-de-compra").html("");
             $("#resultados-buscar-producto").html("");
             $("#total_venta").text("0");
+            $("#cliente_seleccionado").text("Cliente: No hay cliente seleccionado");
         }
         
 	function buscar_cliente()
@@ -241,7 +242,7 @@
                             for(var i=0; i < data.length;i++)
                             {
                             html_code +="<div class='fila-resultado'>"+
-                                            "<h3 onclick='seleccionar_usuario("+data[i]["codigo"]+")'>"+data[i]["nombre"]+" "+data[i]["apellido"]+"</h3>"+
+                                            "<h3 onclick='seleccionar_usuario("+data[i]["codigo"]+","+data[i]["nombre"]+")'>"+data[i]["nombre"]+" "+data[i]["apellido"]+"</h3>"+
                                             "dni-cuil: "+data[i]["dni_cuil"]+"<br/>"+
                                             "Usuario: "+data[i]["usuario"]+"<br/>"+
                                             "correo: "+data[i]["correo"]+"<br/>"+
@@ -322,10 +323,12 @@
             }
         }
         
-	function seleccionar_usuario(id)
+	function seleccionar_usuario(id,nombre)
 	{
             reiniciar_sistema();
             cliente_seleccionado = id;
+            $("#cliente_seleccionado").text(nombre);
+            
                     
             $.ajax({
                 type: "POST",
@@ -511,22 +514,6 @@
             // DATOS PARA REGISTRAR EL PEDIDO
             cliente_seleccionado;
             
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url()?>index.php/Response_Ajax/registroPedidoPorVendedor",
-                data:{cliente:cliente_seleccionado,total:$("#total_venta").text()},
-                beforeSend: function(event){},
-                success: function(data){
-                        
-                    data = JSON.parse(data);
-                        
-                    
-                },
-                error: function(event){alert("error");},
-            });
-            
-            // REGISTRAR EL PEDIDO DETALLE
-            
             var pedido_detalle = new Array();
             
             for(var i=0; i < codigos_productos_agregados.length;i++)
@@ -548,19 +535,27 @@
             
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url()?>index.php/Response_Ajax/registroPedidoDetallePorVendedor",
-                data:{arreglo:pedido_detalle},
+                url: "<?php echo base_url()?>index.php/Response_Ajax/registroPedidoPorVendedor",
+                data:{cliente:cliente_seleccionado,total:$("#total_venta").text(),arreglo:pedido_detalle},
                 beforeSend: function(event){},
                 success: function(data){
+                        
                     data = JSON.parse(data);
                     
-                    alert("Pedido registrado");
-                    $("#paso3").remove("hidden");
-                    reiniciar_sistema();
-                    boton_pulsado(1);
+                    if(data)
+                    {
+                        alert("Pedido registrado");
+                        location.href="<?php echo base_url()?>index.php/Vendedor";
+                    }
+                    else
+                    {
+                        alert("No se ha podido registrar el pedido");
+                    }
+                    
                 },
                 error: function(event){alert("error");},
             });
+           
     
             
             /*for(var i=0; i < pedido_detalle.length;i++)

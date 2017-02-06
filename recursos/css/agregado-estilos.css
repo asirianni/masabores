@@ -27,3 +27,11 @@ and open the template in the editor.
     background-color: #6cbe4f !important;
 }
 
+.navbar-brand{
+    color: #fff !important;
+}
+
+.navbar-toggle{
+    color: #fff !important;
+}
+
