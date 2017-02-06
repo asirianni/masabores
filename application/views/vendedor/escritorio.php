@@ -153,7 +153,7 @@
                 <div id="paso3" hidden="true">
                     <p class="explicacion-paso"><span class="numero-paso">Paso 3:</span> Finalizar la venta</p>
                     <div class="pull-right">
-                        <input type="button" class="btn btn-primary" onClick="registrar_pedido()" value="Registrar"/>
+                        <div class="ui-btn ui-input-btn ui-corner-all" onclick="registrar_pedido()">Registrar</div>
                     </div>
                     <div >
                     
