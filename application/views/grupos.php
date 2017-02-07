@@ -179,52 +179,7 @@ ul.menu li a {
 			<div class="clearfix"> </div> 
                         
 		</div>
-		<div class="header-two"><!-- header-two -->
-			<div class="container">
-				<div class="header-logo">
-                                    <h1><a href="<?php echo base_url(); ?>"><span><img src='<?php echo base_url(); ?>assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
-                                        <br>
-					<h6></h6> 
-				</div>	
-				<div class="header-search">
-                                    <?php
-                                        $attributes = array('id' => 'busqueda_id', 'name' => 'form_buscar');
-                                        echo form_open('welcome/buscar', $attributes);
-                                    ?>
-                                            <input type="search" name="busqueda" placeholder="Buscar producto..."  >
-                                            <button type="submit" class="btn btn-default" aria-label="Left Align">
-                                                    <i class="fa fa-search" aria-hidden="true"> </i>
-                                            </button>
-                                    <?php echo form_close(); ?>
-				</div>
-				<div class="header-cart"> 
-<!--					<div class="my-account">
-						<a href="contact.html"><i class="fa fa-map-marker" aria-hidden="true"></i> CONTACTO</a>						
-					</div>-->
-					<div class="cart">
-                                            <a href="#" onclick='mostrarModal();'>
-                                                <h3> 
-                                                    <div class="total">
-                                                         <!-- <span class="simpleCart_total"></span>	(<span id="simpleCart_quantity" class="simpleCart_quantity"></span> )-->
-                                                       <i class="fa fa-cart-arrow-down" aria-hidden="true"></i> $ <span id="total_final_menu">0</span>
-                                                    </div>
-                                                </h3>
-                                            </a>
-<!--                                            <form action="#" method="post" class="last"> 
-                                                    <a href="#" onclick='mostrarModal();'></a>
-                                                    <button class="w3view-cart" type="submit" name="submit" value="">
-
-                                                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-                                                    </button>
-                                            </form>-->
-                                            
-                                             
-					</div>
-					<div class="clearfix"> </div> 
-				</div> 
-				<div class="clearfix"> </div>
-			</div>		
-		</div><!-- //header-two -->
+                <?php echo $parte_buscador?>
                 <div class="header-three"><!-- header-three -->
 			<div class="container">
 				<div class="menu">
@@ -244,45 +199,7 @@ ul.menu li a {
 						</nav>
 					</div> -->	 
 				</div>
-                            <nav class="navbar navbar-default navbar-verde">
-                              <div class="container-fluid">
-                                <div class="navbar-header">
-                                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                  </button>
-                                    <a class="navbar-brand" href="#"><span class="visible-xs">Menu</span></a>
-                                </div>
-                                <div id="navbar" class="navbar-collapse collapse">
-                                  <ul class="nav navbar-nav">
-                                    <!--<li class="active"><a href="#">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                    <li class="dropdown">
-                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                                      <ul class="dropdown-menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li class="dropdown-header">Nav header</li>
-                                        <li><a href="#">Separated link</a></li>
-                                        <li><a href="#">One more separated link</a></li>
-                                      </ul>
-                                    </li>-->
-                                  </ul>
-                                  <ul class="nav navbar-nav navbar-right">
-                                    <li class="active"><a href="<?php echo base_url()?>">Principal<span class="sr-only">(current)</span></a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/nosotros">Nosotros</a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/productos">Productos</a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/lista_de_precios">Lista de precios</a></li>
-                                    <li><a href="<?php echo base_url()?>index.php/welcome/contacto">Contacto</a></li>
-                                  </ul>
-                                </div><!--/.nav-collapse -->
-                              </div><!--/.container-fluid -->
-                            </nav>
+                            <?php echo $menu_principal?>
 				<!--div class="move-text">
 					<div class="marquee"><a href="offers.html"> Desde aqui busque productos  <span>Compra Online </span> <span> HAGA SU CALCULO AHORA!!!</span></a></div>
 					<script type="text/javascript" src="<?php echo base_url(); ?>recursos/js/jquery.marquee.min.js"></script>
@@ -408,29 +325,7 @@ ul.menu li a {
         	</div>
         <div class="agileits-modal modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
 		aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user" aria-hidden="true"></i> INGRESO DE USUARIO</h4>
-                    </div>
-                    <div class="modal-body modal-body-sub"> 
-                        <h5>Ingrese sus datos </h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="usuario" id="usuario_ingresar">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="pass" id="password_ingresar"  >
-                        </div>
-                        <div class="form-group">
-                            <button type="button"  class="btn btn-info form-control" id="btn_iniciar_sesion" onClick="iniciarSesionCliente()">Ingresar</button>
-                        </div>
-                        <div class="form-group">
-                            <span style="color: #f00;" id="mensaje_inicio_sesion_usuario"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php echo $modal_ingreso?>
 	</div>
         
         <div class="modal fade" id="modal_carga_producto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

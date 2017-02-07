@@ -18,6 +18,8 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
     
+        public $partes_web;
+        
         public function __construct(){
             parent::__construct();
             $this->output->set_header('Access-Control-Allow-Origin: *');
@@ -36,22 +38,32 @@ class Welcome extends CI_Controller {
             $this->load->model('Configuracion_model');
             $this->load->model('Pedido_model');
             
+            $this->load->library('Partes_Web');
+            $this->partes_web = new Partes_Web();
+            
 	}
         
 	public function index(){
             $salida["rubros"]=  $this->Almacen_model->obtener_rubros();
-            $salida["correo"]= $this->Configuracion_model->obtener_config(1);
+            /*$salida["correo"]= $this->Configuracion_model->obtener_config(1);
             $salida["movil"]= $this->Configuracion_model->obtener_config(2);
             $salida["telefono"]= $this->Configuracion_model->obtener_config(3);
-            $salida["direccion"]= $this->Configuracion_model->obtener_config(4);
+            $salida["direccion"]= $this->Configuracion_model->obtener_config(4);*/
+            //$salida["localidad"]= $this->Configuracion_model->obtener_config(6);
+            
             $salida["horarios"]= $this->Configuracion_model->obtener_config(5);
-            $salida["localidad"]= $this->Configuracion_model->obtener_config(6);
             $salida["tabla_destacado"]= $this->Almacen_model->tabla_destacados();
             $salida["destacado_1"]= $this->Almacen_model->productos_destacados(1);
             $salida["destacado_2"]= $this->Almacen_model->productos_destacados(2);
             $salida["destacado_3"]= $this->Almacen_model->productos_destacados(3);
             $salida["destacado_4"]= $this->Almacen_model->productos_destacados(4);
             $salida["destacado_5"]= $this->Almacen_model->productos_destacados(5);
+            
+            $salida["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $salida["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $salida["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $salida["parte_buscador"]= $this->partes_web->getParteBuscador();
+            
             $this->load->view('entrada', $salida);
 	}
         
@@ -74,6 +86,11 @@ class Welcome extends CI_Controller {
                 $salida["provincias"]= $this->Provincias_model->getProvincias();
                 $salida["vendedores"]=$this->Vendedor_model->getVendedores();
                 $salida["tipos_iva"]=$this->Iva_model->getTiposIva();
+                
+                $salida["modal_ingreso"]= $this->partes_web->getModalIngreso();
+                $salida["menu_principal"]= $this->partes_web->getMenuPrincipal();
+                $salida["menu_superior"]= $this->partes_web->getMenuSuperior();
+                $salida["parte_buscador"]= $this->partes_web->getParteBuscador();
                 
                 $this->load->view('registrarse', $salida);
             }
@@ -188,6 +205,12 @@ class Welcome extends CI_Controller {
             $output["direccion"]= $this->Configuracion_model->obtener_config(4);
             $output["horarios"]= $this->Configuracion_model->obtener_config(5);
             $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            
+            $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+            
             $this->load->view('grupos', $output);
 
         }
@@ -203,6 +226,11 @@ class Welcome extends CI_Controller {
             $output["horarios"]= $this->Configuracion_model->obtener_config(5);
             $output["localidad"]= $this->Configuracion_model->obtener_config(6);
             
+            $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+            
             $output["nosotros"]= $this->Nosotros_model->getNosotros();
             $this->load->view('nosotros', $output);
 
@@ -217,6 +245,13 @@ class Welcome extends CI_Controller {
             $output["direccion"]= $this->Configuracion_model->obtener_config(4);
             $output["horarios"]= $this->Configuracion_model->obtener_config(5);
             $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            
+            $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+            
+            
             $output["mensaje_error"]="";
             $this->load->view('contacto', $output);
 
@@ -271,6 +306,13 @@ class Welcome extends CI_Controller {
             $output["direccion"]= $this->Configuracion_model->obtener_config(4);
             $output["horarios"]= $this->Configuracion_model->obtener_config(5);
             $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            
+            $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+            
+            
             $this->load->view('mostrar_productos', $output);
 
         }

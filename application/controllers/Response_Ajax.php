@@ -114,7 +114,6 @@ class Response_Ajax extends CI_Controller
             $this->load->model("Provincias_model");
             
             $provincia= $this->input->post("provincia");
-            
             $respuesta = $this->Provincias_model->getLocalidadesDeProvincia($provincia);
             
             echo json_encode($respuesta);

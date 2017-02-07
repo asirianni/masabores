@@ -1,0 +1,333 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of Partes_Web
+ *
+ * @author mario
+ */
+class Partes_Web 
+{
+    //partes web
+    private $css_files;
+    private $js_files;
+    private $modal_ingreso;
+    private $menu_principal;
+    private $menu_superior;
+    private $parte_buscador;
+    private $footer;
+    
+    // CODEINGNITER
+    public $ci;
+    
+    // DATOS EMPRESA
+    private $dato_correo;
+    private $dato_movil;
+    private $dato_telefono;
+    private $dato_direccion;
+    private $dato_localidad;
+    
+    
+    public function __construct() {
+        
+        $this->ci = &get_instance();
+        //$this->ci->load->library("session");
+        $this->seteoCssFile();
+        $this->seteoModalIngreso();
+        $this->seteoMenuPrincipal();
+        $this->seteoMenuSuperior();
+        $this->seteoParteBuscador();
+        $this->seteoFooter();
+        
+        /*
+        $this->ci->load->model("Configuracion_model");
+        $this->datos_correo= $this->Configuracion_model->obtener_config(1);
+        $this->datos_correo= $this->datos_correo["descripcion"];
+        $this->datos_movil= $this->Configuracion_model->obtener_config(2);
+        $this->datos_movil= $this->datos_movil["descripcion"];
+        $this->datos_telefono= $this->Configuracion_model->obtener_config(3);
+        $this->datos_telefono= $this->datos_telefono["descripcion"];
+        $this->datos_direccion= $this->Configuracion_model->obtener_config(4);
+        $this->datos_direccion= $this->datos_direccion["descripcion"];
+        $this->datos_localidad= $this->Configuracion_model->obtener_config(6);
+        $this->datos_localidad= $this->datos_direccion["descripcion"];*/
+    }
+    
+    public function getCssFiles()
+    {
+        return $this->css_files;
+    }
+    
+    public function getJsFiles()
+    {
+        return $this->js_files;
+    }
+    
+    public function getModalIngreso()
+    {
+        return $this->modal_ingreso;
+    }
+    
+    public function getMenuPrincipal()
+    {
+        return $this->menu_principal;
+    }
+    
+    public function getMenuSuperior()
+    {
+        return $this->menu_superior;
+    }
+    
+    public function getParteBuscador()
+    {
+        return $this->parte_buscador;
+    }
+    
+    public function getFooter()
+    {
+        return $this->footer;
+    }
+    
+    private function seteoCssFile()
+    {
+        $this->css_files=
+        "<!-- Custom Theme files -->
+        <link href=".base_url()."recursos/css/bootstrap.css rel=stylesheet type=text/css media=all />
+        <link href=".base_url()."recursos/css/style.css rel=stylesheet type=text/css media=all /> 
+        <link href=".base_url()."recursos/css/menu.css rel=stylesheet type=text/css media=all /> <!-- menu style --> 
+        <link href=".base_url()."recursos/css/ken-burns.css rel=stylesheet type=text/css media=all /> <!-- banner slider --> 
+        <link href=".base_url()."recursos/css/animate.min.css rel=stylesheet type=text/css media=all /> 
+        <link href=".base_url()."recursos/css/owl.carousel.css rel=stylesheet type=text/css media=all> <!-- carousel slider --> 
+        <link rel=icon type=image/png href=".base_url()."recursos/images/t_.ico/>
+        <!-- //Custom Theme files -->
+        <!-- font-awesome icons -->
+        <link href=".base_url()."recursos/css/font-awesome.css rel=stylesheet> 
+        <!-- CSS MARIO -->
+        <link href=".base_url()."recursos/css/agregado-estilos.css rel=stylesheet> ";
+    }
+    
+    private function seteoModalIngreso()
+    {
+        $this->modal_ingreso=
+        "<div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>&times;</button>
+                        <h4 class='modal-title' id='myModalLabel'><i class='fa fa-user' aria-hidden='true'></i> INGRESO DE USUARIO</h4>
+                    </div>
+                    <div class='modal-body modal-body-sub'> 
+                        <h5>Ingrese sus datos </h5>
+                        <div class='form-group'>
+                            <input type='text' class='form-control' placeholder='usuario' id='usuario_ingresar'>
+                        </div>
+                        <div class='form-group'>
+                            <input type='password' class='form-control' placeholder='pass' id='password_ingresar'  >
+                        </div>
+                        <div class='form-group'>
+                            <button type='button'  class='btn btn-info form-control' id='btn_iniciar_sesion' onClick='iniciarSesionCliente()'>Ingresar</button>
+                        </div>
+                        <div class='form-group'>
+                            <span style='color: #f00;' id='mensaje_inicio_sesion_usuario'></span>
+                        </div>
+                        <p><a href='".base_url()."index.php/welcome/registrarse'>Registrarse</a></p>
+                    </div>
+                </div>
+            </div>";
+    }
+    
+    private function seteoMenuPrincipal()
+    {
+        $this->menu_principal=
+        "<nav class='navbar navbar-default navbar-verde'>
+                              <div class='container-fluid'>
+                                <div class='navbar-header'>
+                                  <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
+                                    <span class='sr-only'>Toggle navigation</span>
+                                    <span class='icon-bar'></span>
+                                    <span class='icon-bar'></span>
+                                    <span class='icon-bar'></span>
+                                  </button>
+                                    <a class='navbar-brand' href='#'><span class='visible-xs'>Menu</span></a>
+                                </div>
+                                <div id='navbar' class='navbar-collapse collapse'>
+                                  <ul class='nav navbar-nav'>
+                                    <!--<li class='active'><a href='#'>Home</a></li>
+                                    <li><a href='#'>About</a></li>
+                                    <li><a href='#'>Contact</a></li>
+                                    <li class='dropdown'>
+                                      <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Dropdown <span class='caret'></span></a>
+                                      <ul class='dropdown-menu'>
+                                        <li><a href='#'>Action</a></li>
+                                        <li><a href='#'>Another action</a></li>
+                                        <li><a href='#'>Something else here</a></li>
+                                        <li role='separator' class='divider'></li>
+                                        <li class='dropdown-header'>Nav header</li>
+                                        <li><a href='#'>Separated link</a></li>
+                                        <li><a href='#'>One more separated link</a></li>
+                                      </ul>
+                                    </li>-->
+                                  </ul>
+                                  <ul class='nav navbar-nav navbar-right'>
+                                    <li class='active'><a href='".base_url()."'><span class='glyphicon glyphicon-home' aria-hidden='true'></span> Principal</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/nosotros'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Nosotros</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/productos'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Productos</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-usd' aria-hidden='true'></span> Lista de precios</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/contacto'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> Contacto</a></li>
+                                  </ul>
+                                </div><!--/.nav-collapse -->
+                              </div><!--/.container-fluid -->
+                            </nav>";
+    }
+    
+    private function seteoMenuSuperior()
+    {
+        $this->menu_superior=
+        "<div class='w3ls-header'><!--header-one--> 
+			<div class='w3ls-header-left'>
+				<p><a href='#'>PARA ACTIVAR SU USUARIO LLAME AL - ".strtoupper("817251")."</a></p>
+			</div>
+			<div class='w3ls-header-right'>
+				<ul>
+                                    <li class='dropdown head-dpdn'>
+                                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user' aria-hidden='true'></i> Mi Cuenta<span class='caret'></span></a>
+                                            <ul class='dropdown-menu'>";
+                                                    if($this->ci->session->userdata('ingresado')){
+                                                            $this->menu_superior.="<li><a href='#'>Bienvenido ".$this->ci->session->userdata('nombre')."</a></li>
+//                                                                                  <li><a href='#'>Lista: ".$this->session->userdata('lista_precios')."</a></li>
+                                                                                    <li><a href='".base_url()."index.php/welcome/cerrar_sesion'>Salida</a></li>";
+                                                        }else{
+                                                            $this->menu_superior.="<li><a href='#' onclick='iniciar_session();' >Ingreso</a></li>
+                                                                                   <li><a href='".base_url()."index.php/welcome/registrarse' >Registrarse</a></li>";
+                                                        }
+                                                     
+                     $this->menu_superior.="</ul> 
+                                    </li> 
+				</ul>
+			</div>
+			<div class='clearfix'> </div> 
+		</div>";
+    }
+    
+    private function seteoParteBuscador()
+    {
+        $this->parte_buscador=
+        "<div class='header-two'><!-- header-two -->
+			<div class='container'>
+				<div class='header-logo'>
+                                    <h1><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
+                                    <br>
+					
+				</div>	
+				<div class='header-search'>";
+                                    
+                                        $attributes = array('id' => 'busqueda_id', 'name' => 'form_buscar');
+                                        $this->parte_buscador.=form_open('welcome/buscar', $attributes);
+                                    
+                                            $this->parte_buscador.="<input type='search' name='busqueda' placeholder='Buscar producto...'  >
+                                            <button type='submit' class='btn btn-default' aria-label='Left Align'>
+                                                    <i class='fa fa-search' aria-hidden='true'> </i>
+                                            </button>";
+                                        $this->parte_buscador.=form_close();
+    $this->parte_buscador.="</div>
+				<div class='header-cart'> 
+<!--					<div class='my-account'>
+						<a href='contact.html'><i class='fa fa-map-marker' aria-hidden='true'></i> CONTACTO</a>						
+					</div>-->
+					<div class='cart'>
+                                            <a href='#' onclick='mostrarModal();'>
+                                                <h3> 
+                                                    <div class='total'>
+                                                         <!-- <span class='simpleCart_total'></span>	(<span id='simpleCart_quantity' class='simpleCart_quantity'></span> )-->
+                                                       <i class='fa fa-cart-arrow-down' aria-hidden='true'></i> $ <span id='total_final_menu'>0</span>
+                                                    </div>
+                                                </h3>
+                                            </a>
+<!--                                            <form action='#' method='post' class='last'> 
+                                                    <a href='#' onclick='mostrarModal();'></a>
+                                                    <button class='w3view-cart' type='submit' name='submit' value=''>
+
+                                                        <i class='fa fa-cart-arrow-down' aria-hidden='true'></i>
+                                                    </button>
+                                            </form>-->
+                                            
+                                             
+					</div>
+					<div class='clearfix'> </div> 
+				</div> 
+				<div class='clearfix'> </div> 
+				
+			</div>		
+		</div><!-- //header-two -->";
+    }
+    
+    private function seteoFooter()
+    {
+        $this->footer=
+        "<!-- footer -->
+	<div class='footer'>
+		<div class='container'>
+			<div class='footer-info w3-agileits-info'>
+				<div class='col-md-4 address-left agileinfo'>
+					<div class='footer-logo header-logo'>
+						<h1><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
+                                                <br>
+                                                <h6></h6> 
+					</div>
+					<ul>
+                                            <li><i class='fa fa-map-marker'></i>".strtoupper($this->dato_direccion)." ".strtoupper($this->dato_localidad)."</li>
+                                            <li><i class='fa fa-mobile'></i>".strtoupper($this->dato_movil)."</li>
+                                            <li><i class='fa fa-phone'></i>".strtoupper($this->dato_telefono)."</li>
+                                            <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($this->dato_correo)."</a></li>
+					</ul> 
+				</div>
+<!--				<div class='col-md-8 address-right'>
+					<div class='col-md-4 footer-grids'>
+						<h3>Company</h3>
+						<ul>
+							<li><a href='about.html'>About Us</a></li>
+							<li><a href='marketplace.html'>Marketplace</a></li>  
+							<li><a href='values.html'>Core Values</a></li>  
+							<li><a href='privacy.html'>Privacy Policy</a></li>
+						</ul>
+					</div>
+					<div class='col-md-4 footer-grids'>
+						<h3>Services</h3>
+						<ul>
+							<li><a href='contact.html'>Contact Us</a></li>
+							<li><a href='login.html'>Returns</a></li> 
+							<li><a href='faq.html'>FAQ</a></li>
+							<li><a href='sitemap.html'>Site Map</a></li>
+							<li><a href='login.html'>Order Status</a></li>
+						</ul> 
+					</div>
+					<div class='col-md-4 footer-grids'>
+						<h3>Payment Methods</h3>
+						<ul>
+							<li><i class='fa fa-laptop' aria-hidden='true'></i> Net Banking</li>
+							<li><i class='fa fa-money' aria-hidden='true'></i> Cash On Delivery</li>
+							<li><i class='fa fa-pie-chart' aria-hidden='true'></i>EMI Conversion</li>
+							<li><i class='fa fa-gift' aria-hidden='true'></i> E-Gift Voucher</li>
+							<li><i class='fa fa-credit-card' aria-hidden='true'></i> Debit/Credit Card</li>
+						</ul>  
+					</div>
+					<div class='clearfix'></div>
+				</div>-->
+				<div class='clearfix'></div>
+			</div>
+		</div>
+	</div>
+	<!-- //footer -->		
+	<div class='copy-right'> 
+		<div class='container'>
+			<p>2017 Desarrollado por <a href='https://www.facebook.com/Ordene-su-negocio-737763829635258/'> Adrian Sirianni.</a></p>
+		</div>
+	</div> ";
+    }
+    
+    
+}
