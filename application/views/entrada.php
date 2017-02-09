@@ -158,10 +158,10 @@
 			<!-- Wrapper-for-Slides -->
             <div class="carousel-inner" role="listbox">  
                 <div class="item active"><!-- First-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/5.jpg" alt="" class="img-responsive" />
+                    <img src="<?php echo base_url(); ?>recursos/images/foto8.jpg" alt="" class="img-responsive" />
                     <div class="carousel-caption kb_caption kb_caption_right">
-                        <h3 data-animation="animated flipInX">Soluciones <span></span> Gastronomicas</h3>
-                        <h4 data-animation="animated flipInX">Venta mayorista y minorista</h4>
+                        <h3 data-animation="animated flipInX">Masabores <span>  </span> </h3>
+                        <h4 data-animation="animated flipInX">Bienvenido</h4>
                     </div>
                 </div>  
                 <div class="item"> <!-- Second-Slide -->
@@ -172,12 +172,76 @@
                     </div>
                 </div> 
                 <div class="item"><!-- Third-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/comercio.jpg" alt="" class="img-responsive"/>
+                    <img src="<?php echo base_url(); ?>recursos/images/foto7.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">Stock permanente </h3>
+                        <h4 data-animation="animated flipInX">de productos</h4>
+                    </div>
+                </div>
+                <div class="item"><!-- Third-Slide -->
+                    <img src="<?php echo base_url(); ?>recursos/images/foto3.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                        <h4 data-animation="animated flipInX">para su comercio</h4>
+                    </div>
+                </div>
+                <div class="item"><!-- Third-Slide -->
+                    <img src="<?php echo base_url(); ?>recursos/images/foto2.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">con marcas lideres </h3>
+                        <h4 data-animation="animated flipInX">en el mercado</h4>
+                    </div>
+                </div> 
+<!--                <div class="item"> Third-Slide 
+                    <img src="<?php echo base_url(); ?>recursos/images/foto3.jpg" alt="" class="img-responsive"/>
                     <div class="carousel-caption kb_caption kb_caption_center">
                         <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
                         <h4 data-animation="animated flipInX">para su comercio</h4>
                     </div>
                 </div> 
+                <div class="item"> Third-Slide 
+                    <img src="<?php echo base_url(); ?>recursos/images/foto4.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                        <h4 data-animation="animated flipInX">para su comercio</h4>
+                    </div>
+                </div> 
+                <div class="item"> Third-Slide 
+                    <img src="<?php echo base_url(); ?>recursos/images/foto5.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                        <h4 data-animation="animated flipInX">para su comercio</h4>
+                    </div>
+                </div> 
+                <div class="item"> Third-Slide 
+                    <img src="<?php echo base_url(); ?>recursos/images/foto6.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                        <h4 data-animation="animated flipInX">para su comercio</h4>
+                    </div>
+                </div> 
+                <div class="item"> Third-Slide 
+                    <img src="<?php echo base_url(); ?>recursos/images/foto7.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                        <h4 data-animation="animated flipInX">para su comercio</h4>
+                    </div>
+                </div> 
+                <div class="item"> Third-Slide 
+                    <img src="<?php echo base_url(); ?>recursos/images/foto8.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                        <h4 data-animation="animated flipInX">para su comercio</h4>
+                    </div>
+                </div> 
+                <div class="item"> Third-Slide 
+                    <img src="<?php echo base_url(); ?>recursos/images/foto9.jpg" alt="" class="img-responsive"/>
+                    <div class="carousel-caption kb_caption kb_caption_center">
+                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                        <h4 data-animation="animated flipInX">para su comercio</h4>
+                    </div>
+                </div> -->
+                
             </div> 
             <!-- Left-Button -->
             <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">

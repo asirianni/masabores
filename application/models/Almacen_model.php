@@ -250,6 +250,17 @@ class Almacen_model extends CI_Model {
             $this->db->query($limpiar_campo_tabla_pedido_detalle);
             $this->db->query($limpiar_campo_tabla_grupos);
         }
+        
+        public function consultar_grupo_padre($descripcion_producto) {
+            $exito=false;
+            
+            $query = $this->db->query("select * from grupos_padres where descripcion LIKE '%$descripcion_producto%'");
+            $valor_obtenido=$query->row_array();
+            if ($valor_obtenido!=null) {
+                $exito=true;
+            }
+            return $exito;
+        }
 	
 	
 }

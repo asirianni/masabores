@@ -195,9 +195,38 @@ class Backoffice extends CI_Controller {
                 
                 $cardelimitador = ',';
                 $oa = fopen($_FILES['uploaded']['tmp_name'], 'r');
+                $gr = fopen($_FILES['grupos']['tmp_name'], 'r');
                 
                 $arr_datos = array();
                 $i=0;
+                
+                while($g = fgetcsv($gr, 1000, $cardelimitador)){
+                    if($i!=0){
+                        $cadena_limpia_espacios=trim($g[0]);
+                        $cantidad_caracteres_cadena_grupos=strlen($cadena_limpia_espacios);
+                        if ($cantidad_caracteres_cadena_grupos<=2) {
+                            if(!$this->Almacen_model->consultar_grupo_padre($g[1])){
+                          
+                           $arr_datos = array(
+                            'codigo'  => $g[0],
+                            'descripcion'  => $g[1],
+                            'imagen'  => "",
+                            'mostrar'  => "no"
+                            );
+
+                            foreach ($arr_datos as $llave => $valor) {
+                                    $arr_datos[$llave] = $valor;
+                            }
+                            $this->db->insert('grupos_padres',$arr_datos); 
+                           }
+                        }
+                    }
+                        
+                    $i++;
+                }
+                
+                $i=0;
+                
                 while($a = fgetcsv($oa, 1000, $cardelimitador)){
                     if($i!=0){
                        $arr_datos = array(
@@ -235,9 +264,16 @@ class Backoffice extends CI_Controller {
                 }
                 
                 for($i=0;$i < count($codigos_grupos); ++$i){
+                    $codigo_grupo_seleccionado=$codigos_grupos[$i];
+                    $grupo_padre="";
+                    if($codigo_grupo_seleccionado!=""){
+                        $grupo_padre=$codigo_grupo_seleccionado[0].$codigo_grupo_seleccionado[1];
+                    }
+                   
                     $grupos_seleccionado = array(
                         'codigo'  => $codigos_grupos[$i],
-                        'grupo'  => $descripcion_grupos[$i]                                      
+                        'grupo'  => $descripcion_grupos[$i],
+                        'grupo_padre'  =>$grupo_padre
                     );
                     $this->db->insert('grupos',$grupos_seleccionado);
                 }
@@ -253,6 +289,8 @@ class Backoffice extends CI_Controller {
             }
 
 	}
+        
+        
 
 	public function escritorio(){
 		if ($this->verificar_acceso()) {
@@ -739,19 +777,33 @@ class Backoffice extends CI_Controller {
 	}
         
         public function abm_grupos(){
-		if ($this->verificar_acceso()) {
-			$crud = new grocery_CRUD();
-			$crud->set_table('grupos');
-                        $crud->set_primary_key('codigo','grupos');
-                         $crud->set_field_upload('imagen','recursos/images/grupos/');
-			
-			$output = $crud->render();
-			$this->load->view('back/productos.php', $output);
-		}else{
-			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
-		}
-		
+            if ($this->verificar_acceso()) {
+                $crud = new grocery_CRUD();
+                $crud->set_table('grupos');
+                $crud->set_primary_key('codigo','grupos');
+                $crud->set_relation('grupo_padre','grupos_padres','descripcion');
+
+                $output = $crud->render();
+                $this->load->view('back/productos.php', $output);
+            }else{
+                $output['salida_error']="";
+                $this->load->view('back/loguin', $output);
+            }
+	}
+        
+        public function abm_grupos_padres(){
+            if ($this->verificar_acceso()) {
+                $crud = new grocery_CRUD();
+                $crud->set_table('grupos_padres');
+                $crud->set_primary_key('codigo','grupos');
+                 $crud->set_field_upload('imagen','recursos/images/grupos/');
+
+                $output = $crud->render();
+                $this->load->view('back/productos.php', $output);
+            }else{
+                $output['salida_error']="";
+                $this->load->view('back/loguin', $output);
+            }
 	}
         
         public function generacion_etiquetas() {

@@ -148,7 +148,8 @@
 	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/talles')?>'> ABM Talles </a> |
 	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/colores')?>'> ABM Colores </a> |
 	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/cantidades')?>'> ABM Cantidades </a> |-->
-	        <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos')?>'> ABM Grupos </a>   
+	        <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos')?>'> ABM Grupos </a> |
+                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos_padres')?>'> ABM Grupos Padres </a>   
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">

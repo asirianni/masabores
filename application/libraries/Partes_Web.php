@@ -32,11 +32,51 @@ class Partes_Web
     private $dato_direccion;
     private $dato_localidad;
     
-    
+    function getDato_correo() {
+        return $this->dato_correo;
+    }
+
+    function getDato_movil() {
+        return $this->dato_movil;
+    }
+
+    function getDato_telefono() {
+        return $this->dato_telefono;
+    }
+
+    function getDato_direccion() {
+        return $this->dato_direccion;
+    }
+
+    function getDato_localidad() {
+        return $this->dato_localidad;
+    }
+
+    function setDato_correo($dato_correo) {
+        $this->dato_correo = $dato_correo;
+    }
+
+    function setDato_movil($dato_movil) {
+        $this->dato_movil = $dato_movil;
+    }
+
+    function setDato_telefono($dato_telefono) {
+        $this->dato_telefono = $dato_telefono;
+    }
+
+    function setDato_direccion($dato_direccion) {
+        $this->dato_direccion = $dato_direccion;
+    }
+
+    function setDato_localidad($dato_localidad) {
+        $this->dato_localidad = $dato_localidad;
+    }
+
+        
     public function __construct() {
         
         $this->ci = &get_instance();
-        //$this->ci->load->library("session");
+        $this->ci->load->library("session");
         $this->seteoCssFile();
         $this->seteoModalIngreso();
         $this->seteoMenuPrincipal();
@@ -44,18 +84,18 @@ class Partes_Web
         $this->seteoParteBuscador();
         $this->seteoFooter();
         
-        /*
+        
         $this->ci->load->model("Configuracion_model");
-        $this->datos_correo= $this->Configuracion_model->obtener_config(1);
-        $this->datos_correo= $this->datos_correo["descripcion"];
-        $this->datos_movil= $this->Configuracion_model->obtener_config(2);
-        $this->datos_movil= $this->datos_movil["descripcion"];
-        $this->datos_telefono= $this->Configuracion_model->obtener_config(3);
-        $this->datos_telefono= $this->datos_telefono["descripcion"];
-        $this->datos_direccion= $this->Configuracion_model->obtener_config(4);
-        $this->datos_direccion= $this->datos_direccion["descripcion"];
-        $this->datos_localidad= $this->Configuracion_model->obtener_config(6);
-        $this->datos_localidad= $this->datos_direccion["descripcion"];*/
+//        $datos_correo= $this->ci->Configuracion_model->obtener_config(1);
+//        $this->setDato_correo($datos_correo["descripcion"]);
+//        $datos_movil= $this->ci->Configuracion_model->obtener_config(2);
+//        $this->setDato_movil($datos_movil["descripcion"]);
+//        $datos_telefono= $this->ci->Configuracion_model->obtener_config(3);
+//        $this->setDato_telefono($datos_telefono["descripcion"]);
+//        $datos_direccion= $this->ci->Configuracion_model->obtener_config(4);
+//        $this->setDato_direccion($datos_direccion["descripcion"]);
+//        $datos_localidad= $this->ci->Configuracion_model->obtener_config(6);
+//        $this->setDato_localidad($datos_localidad["descripcion"]);
     }
     
     public function getCssFiles()
@@ -186,10 +226,16 @@ class Partes_Web
     
     private function seteoMenuSuperior()
     {
+//        $this->ci->load->model("Configuracion_model");
+        
+        $datos_telefono= $this->ci->Configuracion_model->obtener_config(3);
+//        $this->setDato_telefono($datos_telefono["descripcion"]);
+        
+        
         $this->menu_superior=
         "<div class='w3ls-header'><!--header-one--> 
 			<div class='w3ls-header-left'>
-				<p><a href='#'>PARA ACTIVAR SU USUARIO LLAME AL - ".strtoupper("817251")."</a></p>
+				<p><a href='#'>PARA ACTIVAR SU USUARIO LLAME AL - ".strtoupper($datos_telefono["descripcion"])."</a></p>
 			</div>
 			<div class='w3ls-header-right'>
 				<ul>
@@ -198,7 +244,7 @@ class Partes_Web
                                             <ul class='dropdown-menu'>";
                                                     if($this->ci->session->userdata('ingresado')){
                                                             $this->menu_superior.="<li><a href='#'>Bienvenido ".$this->ci->session->userdata('nombre')."</a></li>
-//                                                                                  <li><a href='#'>Lista: ".$this->session->userdata('lista_precios')."</a></li>
+                                                                                   <li><a href='#'>Lista: ".$this->ci->session->userdata('lista_precios')."</a></li>
                                                                                     <li><a href='".base_url()."index.php/welcome/cerrar_sesion'>Salida</a></li>";
                                                         }else{
                                                             $this->menu_superior.="<li><a href='#' onclick='iniciar_session();' >Ingreso</a></li>
@@ -219,7 +265,7 @@ class Partes_Web
         "<div class='header-two'><!-- header-two -->
 			<div class='container'>
 				<div class='header-logo'>
-                                    <h1><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
+                                    <h1><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas.png' alt='img'></span></a></h1>
                                     <br>
 					
 				</div>	
@@ -267,6 +313,17 @@ class Partes_Web
     
     private function seteoFooter()
     {
+        $datos_correo= $this->ci->Configuracion_model->obtener_config(1);
+        $this->setDato_correo($datos_correo["descripcion"]);
+        $datos_movil= $this->ci->Configuracion_model->obtener_config(2);
+        $this->setDato_movil($datos_movil["descripcion"]);
+        $datos_telefono= $this->ci->Configuracion_model->obtener_config(3);
+        $this->setDato_telefono($datos_telefono["descripcion"]);
+        $datos_direccion= $this->ci->Configuracion_model->obtener_config(4);
+        $this->setDato_direccion($datos_direccion["descripcion"]);
+        $datos_localidad= $this->ci->Configuracion_model->obtener_config(6);
+        $this->setDato_localidad($datos_localidad["descripcion"]);
+        
         $this->footer=
         "<!-- footer -->
 	<div class='footer'>

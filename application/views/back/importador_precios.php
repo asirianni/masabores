@@ -135,7 +135,7 @@
             <div class="row">
                <br><br><br>
                <div class='col-md-6'>
-                   <div class='form-group'>
+                   <div class=''>
                       
                         <?php
                             if ($error) {echo "<div class='resumen'> Error en el archivo ingrese un formato valido</div><br>";}
@@ -143,8 +143,15 @@
                             $attributes = array('id' => 'importar_id', 'enctype' => 'multipart/form-data', 'name' => 'formulario_importar');
                             echo form_open('backoffice/importar', $attributes);
                         ?>
-                            <label class='form-control'>Ingrese un archivo con formato .xls</label>
-                            <input type="file" name="uploaded" class='form-control' required='required'>
+                            <label class='form-control'>Ingrese un archivo con formato .csv</label>
+                            <div class="form-group">
+                                <label class='form-control'>Lista</label>
+                                <input type="file" name="uploaded" class='form-control' required='required'>
+                            </div>
+                            <div class="form-group">
+                                <label class='form-control'>Grupos</label>
+                                <input type="file" name="grupos" class='form-control' required='required'>
+                            </div>
                             <input type="submit" value="Importar archivo" class='form-control'>
                    
                         <?php echo form_close(); ?>
