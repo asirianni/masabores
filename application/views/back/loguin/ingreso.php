@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Todo Positivo - ADMINISTRADOR</title>
+        <title>Masabores - ADMINISTRADOR</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="" />
@@ -143,7 +143,7 @@
 	<!-- //footer -->		
 	<div class="copy-right"> 
 		<div class="container">
-			<p>2016 Desarrollado por <a href="https://www.facebook.com/Ordene-su-negocio-737763829635258/"> Adrian Sirianni.</a></p>
+			<p>2017 Desarrollado por <a href="https://www.facebook.com/Ordene-su-negocio-737763829635258/"> Adrian Sirianni.</a></p>
 		</div>
 	</div> 
 	<!-- cart-js -->

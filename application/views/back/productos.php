@@ -140,7 +140,7 @@
                     <h1 class="page-header">Productos</h1>
                 </div>
                 <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/productos')?>'> ABM Productos </a> |
-                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/rubros')?>'> ABM Rubros </a> |
+<!--                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/rubros')?>'> ABM Rubros </a> |-->
                 <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/imagenes')?>'> ABM Imagenes </a> |
                 <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/tabla_destacados')?>'> ABM Tabla Destacados </a> |
                 <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/productos_destacados')?>'> ABM Productos Destacados </a> |

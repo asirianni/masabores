@@ -155,7 +155,7 @@ class Cliente_model extends CI_Model {
     }
     public function obtener_clientes_nuevos() {
             $clientes_nuevos=0;
-            $query = $this->db->query("SELECT COUNT( codigo ) AS cantidad FROM cliente WHERE estado ='confirmado'");
+            $query = $this->db->query("SELECT COUNT( codigo ) AS cantidad FROM cliente WHERE estado ='pendiente'");
             $valor_obtenido=$query->row_array();
             if ($valor_obtenido!=null) {
                     $clientes_nuevos=$valor_obtenido['cantidad'];

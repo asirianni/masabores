@@ -140,7 +140,7 @@
                 </div>
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/config')?>'> ABM General </a> |    
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_locales')?>'> ABM Locales </a> |
-                <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_vendedores')?>'> ABM Vendedores </a> |
+<!--                <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_vendedores')?>'> ABM Vendedores </a> |-->
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_empleados')?>'> ABM Empleados </a> |
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_secciones')?>'> ABM Secciones </a> |
                 <!-- /.col-lg-12 -->

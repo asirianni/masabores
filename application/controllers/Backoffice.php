@@ -493,7 +493,8 @@ class Backoffice extends CI_Controller {
 			$crud = new grocery_CRUD();
 			$crud->set_table('imagenes');
 			//$crud->columns('codigo','sub_rubro','descripcion','imagen', 'precio');
-			$crud->set_relation('cod_producto','productos','descripcion');
+//                        $crud->set_primary_key('cod_prod', 'productos');
+			$crud->set_relation('cod_prod','productos','descripcion');
 			$crud->set_field_upload('imagen','assets/img/productos');
                         //$crud->set_field_upload('frente','assets/recursos/images/product-almacen');
                         //$crud->set_field_upload('perfil','assets/recursos/images/product-almacen');
@@ -729,7 +730,9 @@ class Backoffice extends CI_Controller {
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();
 			$crud->set_table('configuracion');
-			
+                        $crud->unset_edit_fields('codigo','funcionalidad');
+			$crud->unset_add();
+                        $crud->unset_delete();
 			$output = $crud->render();
 			$this->load->view('back/config.php', $output);
 		}else{
@@ -763,7 +766,7 @@ class Backoffice extends CI_Controller {
                         $crud->set_relation('cod_sucursal','locales','dire');
                         $crud->set_relation('cod_localidad','localidades','localidad');
                         $crud->set_field_upload('imagen','recursos/images/empleados/');
-
+                        $crud->columns('usuario', 'pass', 'nombre', 'apellido', 'tipo_usuario', 'cod_masabores');
                         $crud->required_fields('');
                         //$crud->columns(array(''));
 			

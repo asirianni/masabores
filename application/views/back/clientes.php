@@ -141,7 +141,7 @@
                 </div>
                 <!-- /.navbar-static-side<i class="fa fa-arrow-circle-right"> </i><a href='<?php //echo site_url('backoffice/nuevos_clientes')?>'> Nuevos Clientes </a> | -->
                 <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/clientes')?>'> ABM Clientes </a> |
-	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/localidades')?>'> ABM Localidades </a> |
+<!--	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/localidades')?>'> ABM Localidades </a> |-->
 	            
                 <!-- /.col-lg-12 -->
             </div>
