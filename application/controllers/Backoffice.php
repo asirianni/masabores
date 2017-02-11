@@ -1148,6 +1148,7 @@ class Backoffice extends CI_Controller {
 	                                            <th>Producto</th>
 	                                            <th>Cant</th>
                                                     <th>Pre</th>
+                                                    <th>Desc</th>
 	                                        </tr>
                                             </thead>
                                    	<tbody >";
@@ -1158,6 +1159,7 @@ class Backoffice extends CI_Controller {
                                                     <td>".$d['producto']."</td>
                                                     <td>".$d['cantidad']."</td>
                                                     <td>".$d['precio']."</td>
+                                                    <td>".$d['descuento']."</td>    
 												
 	                                        </tr>";
                            	}  

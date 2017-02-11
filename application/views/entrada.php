@@ -514,13 +514,13 @@
 	</div>-->
 	<!-- //add-products -->
 	<!-- coming soon -->
-	<div class="soon">
+<!--	<div class="soon">
 		<div class="container">
 			<h3></h3>
 			<h4>Genere su presupuesto</h4>  
-<!--			<div id="countdown1" class="ClassyCountdownDemo"></div>-->
+			<div id="countdown1" class="ClassyCountdownDemo"></div>
 		</div> 
-	</div>
+	</div>-->
 	<!-- //coming soon -->
 	<!-- deals -->
 <!--	<div class="deals"> 

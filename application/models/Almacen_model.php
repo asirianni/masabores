@@ -204,13 +204,13 @@ class Almacen_model extends CI_Model {
         
         function todos_productos($busqueda) {
             $lista=  $this->obtener_lista_precios();
-            $query = $this->db->query("select codigo, cod_prod, descripcion, round($lista, 2) as precio from productos where descripcion LIKE '%$busqueda%'");
+            $query = $this->db->query("select codigo, cod_prod, descripcion, round($lista+($lista*iva/100), 2) as precio from productos where descripcion LIKE '%$busqueda%'");
             return $query->result_array();
 	}
         
         function todos_productos_by_rubro($rubro){
             $lista=  $this->obtener_lista_precios();
-            $query = $this->db->query("select codigo, cod_prod, descripcion, round($lista*1.21, 2) as precio from productos where sub_rubro=$rubro");
+            $query = $this->db->query("select p.codigo, p.cod_prod, p.descripcion, round(p.$lista+(p.$lista*iva/100), 2) as precio from productos as p, grupos_padres as gp, grupos as g where p.cod_grupo=g.codigo and g.grupo_padre=gp.codigo and gp.codigo=$rubro");
             return $query->result_array();
 	}
         

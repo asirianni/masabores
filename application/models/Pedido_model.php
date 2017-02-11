@@ -148,7 +148,7 @@ class Pedido_model extends CI_Model {
 	public function obtener_pedido_detalle($numero){
                 $limpiar_campo_tabla_detalle_pedido="UPDATE pedido_detalle SET producto = TRIM(producto);";
                 $limpiar_campo_tabla_productos="UPDATE productos SET cod_prod = TRIM(cod_prod);";
-		$consulta="SELECT p.producto as codigo, pr.cod_prod as cod_prod, pr.descripcion as producto, p.precio as precio, p.cantidad as cantidad
+		$consulta="SELECT p.producto as codigo, pr.cod_prod as cod_prod, pr.descripcion as producto, p.precio as precio, p.cantidad as cantidad , p.descuento as descuento
 					FROM  pedido_detalle as p, productos as pr
 					WHERE p.producto=pr.cod_prod
 					AND p.num_pedido= $numero";

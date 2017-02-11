@@ -92,7 +92,7 @@ class Welcome extends CI_Controller {
                 $salida["menu_principal"]= $this->partes_web->getMenuPrincipal();
                 $salida["menu_superior"]= $this->partes_web->getMenuSuperior();
                 $salida["parte_buscador"]= $this->partes_web->getParteBuscador();
-                
+                $salida["footer"]= $this->partes_web->getFooter();
                 $this->load->view('registrarse', $salida);
             }
             else
@@ -192,7 +192,7 @@ class Welcome extends CI_Controller {
             $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
-            
+            $output["footer"]= $this->partes_web->getFooter();
             $this->load->view('mostrar_productos', $output);
 
         }
@@ -217,7 +217,7 @@ class Welcome extends CI_Controller {
             $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
-            
+            $output["footer"]= $this->partes_web->getFooter();
             $this->load->view('grupos', $output);
 
         }
@@ -237,7 +237,7 @@ class Welcome extends CI_Controller {
             $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
-            
+            $output["footer"]= $this->partes_web->getFooter();
             $output["nosotros"]= $this->Nosotros_model->getNosotros();
             $this->load->view('nosotros', $output);
 
@@ -257,7 +257,7 @@ class Welcome extends CI_Controller {
             $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
-            
+            $output["footer"]= $this->partes_web->getFooter();
             
             $output["mensaje_error"]="";
             $this->load->view('contacto', $output);
@@ -318,7 +318,7 @@ class Welcome extends CI_Controller {
             $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
-            
+            $output["footer"]= $this->partes_web->getFooter();
             
             $this->load->view('mostrar_productos', $output);
 
@@ -340,6 +340,12 @@ class Welcome extends CI_Controller {
             $output["direccion"]= $this->Configuracion_model->obtener_config(4);
             $output["horarios"]= $this->Configuracion_model->obtener_config(5);
             $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            
+            $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+            $output["footer"]= $this->partes_web->getFooter();
             $this->load->view('mostrar_productos', $output);
 
         }
@@ -476,6 +482,7 @@ class Welcome extends CI_Controller {
             $output["direccion"]= $this->Configuracion_model->obtener_config(4);
             $output["horarios"]= $this->Configuracion_model->obtener_config(5);
             $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            $output["footer"]= $this->partes_web->getFooter();
             $this->load->view('finalizar_pedido', $output);
 	}
         
@@ -502,6 +509,7 @@ class Welcome extends CI_Controller {
             $salida["direccion"]= $this->Configuracion_model->obtener_config(4);
             $salida["horarios"]= $this->Configuracion_model->obtener_config(5);
             $salida["localidad"]= $this->Configuracion_model->obtener_config(6);
+            $salida["footer"]= $this->partes_web->getFooter();
             
             $this->load->view('checkout', $salida);
         }

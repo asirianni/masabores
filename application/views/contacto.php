@@ -256,58 +256,7 @@ ul.menu li a {
             </div>
         </div>
 	<!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="footer-info w3-agileits-info">
-				<div class="col-md-4 address-left agileinfo">
-					<div class="footer-logo header-logo">
-						<h1><a href="<?php echo base_url(); ?>"><span><img src='<?php echo base_url(); ?>assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
-                                                <br>
-                                                <h6></h6> 
-					</div>
-					<ul>
-                                            <li><i class="fa fa-map-marker"></i> <?php echo strtoupper($direccion["descripcion"]); ?>, <?php echo strtoupper($localidad["descripcion"]); ?>.</li>
-                                            <li><i class="fa fa-mobile"></i> <?php echo strtoupper($movil["descripcion"]); ?> </li>
-                                            <li><i class="fa fa-phone"></i> <?php echo strtoupper($telefono["descripcion"]); ?> </li>
-                                            <li><i class="fa fa-envelope-o"></i> <a href=""><?php echo strtoupper($correo["descripcion"]); ?></a></li>
-					</ul> 
-				</div>
-<!--				<div class="col-md-8 address-right">
-					<div class="col-md-4 footer-grids">
-						<h3>Company</h3>
-						<ul>
-							<li><a href="about.html">About Us</a></li>
-							<li><a href="marketplace.html">Marketplace</a></li>  
-							<li><a href="values.html">Core Values</a></li>  
-							<li><a href="privacy.html">Privacy Policy</a></li>
-						</ul>
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Services</h3>
-						<ul>
-							<li><a href="contact.html">Contact Us</a></li>
-							<li><a href="login.html">Returns</a></li> 
-							<li><a href="faq.html">FAQ</a></li>
-							<li><a href="sitemap.html">Site Map</a></li>
-							<li><a href="login.html">Order Status</a></li>
-						</ul> 
-					</div>
-					<div class="col-md-4 footer-grids">
-						<h3>Payment Methods</h3>
-						<ul>
-							<li><i class="fa fa-laptop" aria-hidden="true"></i> Net Banking</li>
-							<li><i class="fa fa-money" aria-hidden="true"></i> Cash On Delivery</li>
-							<li><i class="fa fa-pie-chart" aria-hidden="true"></i>EMI Conversion</li>
-							<li><i class="fa fa-gift" aria-hidden="true"></i> E-Gift Voucher</li>
-							<li><i class="fa fa-credit-card" aria-hidden="true"></i> Debit/Credit Card</li>
-						</ul>  
-					</div>
-					<div class="clearfix"></div>
-				</div>-->
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
+	<?php echo $footer?>
         <div class="modal fade" id="modalCarrito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
@@ -367,11 +316,7 @@ ul.menu li a {
         
         
 	<!-- //footer -->		
-	<div class="copy-right"> 
-		<div class="container">
-			<p>2016 Desarrollado por <a href="https://www.facebook.com/Ordene-su-negocio-737763829635258/"> Adrian Sirianni.</a></p>
-		</div>
-	</div> 
+	
 	<!-- cart-js -->
 	<script src="<?php echo base_url(); ?>recursos/js/minicart.js"></script>
 	<script>

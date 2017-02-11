@@ -331,7 +331,7 @@ class Partes_Web
 			<div class='footer-info w3-agileits-info'>
 				<div class='col-md-4 address-left agileinfo'>
 					<div class='footer-logo header-logo'>
-						<h1><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_1.png' alt='img'></span></a></h1>
+						<h1><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas.png' alt='img'></span></a></h1>
                                                 <br>
                                                 <h6></h6> 
 					</div>
