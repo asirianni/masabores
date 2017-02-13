@@ -225,18 +225,29 @@
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
+                                            <label for="pais" class="label-registro">Pais</label>
+                                            <select class="form-control" name="pais" id="pais" required="" onchange="cambio_pais()">
+                                                <option value="0" selected>Seleccione un pais</option>
+                                                <?php 
+                                                    foreach($paises as $v)
+                                                    {
+                                                        echo "<option value='".$v["codigo"]."'>".$v["descripcion"]."</option>";
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="clearfix"></div>
+                                    <div class="col-md-4"> 
+                                        <div class="form-group">
 						<label for="provincia" class="label-registro">Provincia</label>
-                                                <select class="form-control"  name="provincia" id="provincia" onChange="cambio_provincia()">
+                                                <select class="form-control"  name="provincia" id="provincia" onChange="cambio_provincia()" readonly="readonly">
                                                     <option value="seleccione-provincia" selected>Seleccione una provincia</option>
-                                                    <?php 
-                                                        foreach ($provincias as $value) {
-                                                            echo "<option value='".$value["id"]."'>".$value["provincia"]."</option>";
-                                                        }
-                                                    ?>
+                                                    
 						</select>
 					</div>
                                     </div>
-                                    <div class="clearfix"></div>
                                     <div class="col-md-4"> 
 					<div class="form-group">
 						<label for="localidad" class="label-registro">Localidad</label>
@@ -250,12 +261,8 @@
                                             <input type="text" class="user" name="cod_postal" id="codigo-postal" required="">
                                         </div>
                                     </div>
-                                    <div class="col-md-4"> 
-                                        <div class="form-group">
-                                            <label for="pais" class="label-registro">Pais</label>
-                                            <input type="text" class="user" name="pais" id="pais" required="">
-                                        </div>
-                                    </div>
+                                    
+                                    <div class="clearfix"></div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="celular" class="label-registro">Celular</label>
@@ -303,7 +310,7 @@
                                             <input type="text" class="user" name="dni_cuil" id="cuil-cuit-dni" required="">
                                         </div>
                                     </div>
-					<input type="submit" id="boton_registro" value="Registrarme">
+                                    <input type="submit" id="boton_registro" onClick="boton_registro()" value="Registrarme">
 					<!--<div class="forgot-grid">
 						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
 						<div class="forgot">
@@ -633,14 +640,15 @@
             
             function boton_registro()
             {
-                var provincia = $("#provincia").val();
-                var localidad = $("#localidad").val();
+                var provincia = parseInt($("#provincia").val());
+                var localidad = parseInt($("#localidad").val());
+                var pais = parseInt($("#pais").val());
                 var vendedor = $("#vendedor").val();
                 var tipo_iva = $("#tipo_iva").val();
                 
                 var respuesta = false;
                 
-                if(!isNan(provincia) && provincia != 0 && !isNan(localidad) && localidad != 0 && !isNan(vendedor) && !isNan(tipo_iva))
+                if(!isNan(provincia) && pais != 0 && provincia != 0 && !isNan(localidad) && localidad != 0 && !isNan(vendedor) && !isNan(tipo_iva))
                 {
                     respuesta = true;
                 }
@@ -668,6 +676,33 @@
                         
                         $("#localidad").html(html);
                         $("#localidad").removeAttr("readonly");
+                    },
+                    error: function(event){alert("error");},
+                });
+            }
+            
+            function cambio_pais()
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url()?>index.php/Response_Ajax/obtenerProvinciasDePais",
+                    data:{pais:$("#pais").val()},
+                    
+                    beforeSend: function(event){},
+                    success: function(data){
+                        
+                        data= JSON.parse(data);
+                        var html ="<option value='0'>Seleccione una provincia</option>";
+                        
+                        for(var i=0; i < data.length;i++)
+                        {
+                            html+="<option value='"+data[i]["id"]+"'>"+data[i]["provincia"]+"</option>";
+                        }
+                        
+                        $("#provincia").html(html);
+                        $("#localidad").html("<option value='0'>Seleccione una localidad</option>");
+                        $("#localidad").attr("readonly","");
+                        $("#provincia").removeAttr("readonly");
                     },
                     error: function(event){alert("error");},
                 });

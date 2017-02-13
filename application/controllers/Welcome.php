@@ -75,7 +75,9 @@ class Welcome extends CI_Controller {
                 $this->load->model("Provincias_model");
                 $this->load->model("Vendedor_model");
                 $this->load->model("Iva_model");
+                $this->load->model("Paises_model");
                 
+                $salida["paises"]=  $this->Paises_model->getPaises();
                 $salida["rubros"]=  $this->Almacen_model->obtener_rubros();
                 $salida["correo"]= $this->Configuracion_model->obtener_config(1);
                 $salida["movil"]= $this->Configuracion_model->obtener_config(2);
@@ -84,7 +86,6 @@ class Welcome extends CI_Controller {
                 $salida["horarios"]= $this->Configuracion_model->obtener_config(5);
                 $salida["localidad"]= $this->Configuracion_model->obtener_config(6);
                 
-                $salida["provincias"]= $this->Provincias_model->getProvincias();
                 $salida["vendedores"]=$this->Vendedor_model->getVendedores();
                 $salida["tipos_iva"]=$this->Iva_model->getTiposIva();
                 
@@ -101,7 +102,9 @@ class Welcome extends CI_Controller {
                 
                 $this->load->model("Cliente_model");
                 
-                $respuesta = $this->Cliente_model->registrarClientePorPost($this->input->post());
+                $datos= $this->input->post();
+                $datos["estado"]="pendiente";
+                $respuesta = $this->Cliente_model->registrarClientePorPost($datos);
                 
                 if($respuesta)
                 {

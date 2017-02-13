@@ -475,13 +475,13 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="provincia_modificar">Provincia</label>
-                            <select class="form-control" id="provincia_modificar" onChange="cambio_provincia(2)">
-                                <option value='0'>seleccionar provincia</option>
-                                <?php 
-                                    foreach($provincias as $value)
+                            <label for="pais_modificar">Pais</label>
+                            <select class="form-control" id="pais_modificar" onCLick="cambio_pais('_modificar')">
+                                <option value='0'>seleccionar pais</option>
+                                <?php
+                                    foreach($paises as $v)
                                     {
-                                        echo "<option value='".$value["id"]."'>".$value["provincia"]."</option>";
+                                        echo "<option value='".$v["codigo"]."'>".$v["descripcion"]."</option>";
                                     }
                                 ?>
                             </select>
@@ -489,9 +489,19 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" id="localidad_fixed_modificar" hidden="true">;
+                            <label for="provincia_modificar">Provincia</label>
+                            <select class="form-control" id="provincia_modificar" onChange="cambio_provincia(2)" readonly="">
+                                <option value='0'>seleccionar provincia</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" id="localidad_fixed_modificar" hidden="true">
                             <label for="localidad_modificar">Localidad</label>
                             <select class="form-control" id="localidad_modificar">
+                                <option value='0'>Seleccione localidad</option>
                             </select>
                         </div>
                     </div>
@@ -501,12 +511,7 @@
                             <input type="text" class="form-control" id="cod_postal_modificar">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="pais_modificar">Pais</label>
-                            <input type="text" class="form-control" id="pais_modificar">
-                        </div>
-                    </div>
+                    
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="celular_modificar">Celular</label>
@@ -643,6 +648,45 @@
     </script>
         
     <script>
+        
+        function cambio_pais(seccion)
+        {
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url()?>index.php/Response_Ajax/obtenerProvinciasDePais",
+                data:{pais:$("#pais"+seccion).val()},
+                    
+                beforeSend: function(event){},
+                success: function(data){
+                        
+                    data= JSON.parse(data);
+                    
+                    if(data.length > 0)
+                    {
+                        var html ="";
+
+                        for(var i=0; i < data.length;i++)
+                        {
+                            html+="<option value='"+data[i]["id"]+"'>"+data[i]["provincia"]+"</option>";
+                        }
+                        
+                        $("#provincia"+seccion).html(html);
+                    }
+                    else
+                    {
+                         $("#provincia"+seccion).html("<option value='0'>Seleccione provincia</option>");
+                    }
+                        
+                    
+                    $("#provincia"+seccion).removeAttr("readonly");
+                    $("#localidad"+seccion).html("<option value='0'>Seleccione localidad</option>");
+                    $("#localidad"+seccion).attr("readonly","");
+                   
+                },
+                error: function(event){alert("error");},
+            });
+        }
+        
         function abrir_modal_eliminar_cliente(codigo)
         {
             $("#codigo_eliminar_cliente").val(codigo);
@@ -747,9 +791,8 @@
                     $("#razon_social_modificar").val(data["razon_social"]);
                     $("#nombre_comercial_modificar").val(data["nombre_comercial"]);
                     $("#direccion_modificar").val(data["direccion"]);
-                    $("#provincia_modificar").val(data["provincia"]);
-                    cambio_provincia(2);
-                    $("#localidad_fixed_modificar").val(data["localidad"]);
+                    $("#pais_modificar").val(data["pais"]);
+                    carga_selects_valores(data["provincia"],data["localidad"]);
                     $("#cod_postal_modificar").val(data["cod_postal"]);
                     $("#pais_modificar").val(data["pais"]);
                     $("#celular_modificar").val(data["celular"]);
@@ -766,6 +809,80 @@
                 },
                 error: function(event){alert("error");},
             });  
+        }
+        
+        function carga_selects_valores(provincia,localidad)
+        {
+            // CARGANDO PROVINCIAS Y SELECCIONANDO
+            
+            var pais_select = $("#pais_modificar").val();
+            
+            
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url()?>index.php/Response_Ajax/obtenerProvinciasDePais",
+                data:{pais:pais_select},
+                    
+                beforeSend: function(event){},
+                success: function(data){
+                        
+                    data= JSON.parse(data);
+                    
+                        var html ="";
+                        
+                        
+                        $("#provincia_modificar").removeAttr("readonly");
+                        
+                        for(var i=0; i < data.length;i++)
+                        {
+                            if(data[i]["id"] == provincia )
+                            {
+                                alert(true);
+                                html+="<option value='"+data[i]["id"]+"' selected>"+data[i]["provincia"]+"</option>";
+                            }
+                            else
+                            {
+                                html+="<option value='"+data[i]["id"]+"'>"+data[i]["provincia"]+"</option>";
+                            }
+                        }
+                        
+                        
+                        $("#provincia_modificar").html(html);
+                   
+                },
+                error: function(event){alert("error");},
+            });
+    
+            // CARGANDO LOCALIDADES Y SELECCIONANDO
+            
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url()?>index.php/Response_Ajax/obtenerLocalidadesDeProvincia",
+                data:{provincia:provincia},
+
+                beforeSend: function(event){},
+                success: function(data){
+                    data = JSON.parse(data);
+                    
+                    var html = "";
+                    
+                    for(var i=0; i < data.length;i++)
+                    {
+                            if(localidad == data[i]["codigo"])
+                            {
+                                html+="<option value='"+data[i]["codigo"]+"' selected>"+data[i]["localidad"]+"</option>";
+                            }
+                            else
+                            {
+                                html+="<option value='"+data[i]["codigo"]+"'>"+data[i]["localidad"]+"</option>";
+                            }
+                    }
+                        
+                        $("#localidad_modificar").removeAttr("readonly");
+                        $("#localidad_modificar").html(html);
+                 },
+                error: function(event){alert("error fd");},
+            });    
         }
         
         function modificar_cliente()
@@ -830,6 +947,7 @@
             
             var numero_provincia = $("#provincia"+seccion).val();
             
+            
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url()?>index.php/Response_Ajax/obtenerLocalidadesDeProvincia",
@@ -857,6 +975,8 @@
                                 html+="<option value='"+data[i]["codigo"]+"'>"+data[i]["localidad"]+"</option>";
                             }
                         }
+                        
+                        $("#localidad_modificar").removeAttr("readonly");
                     }
                     else
                     {
@@ -873,7 +993,7 @@
                     $("#localidad"+seccion).html(html);
                     
                 },
-                error: function(event){alert("error");},
+                error: function(event){alert("error fd");},
             });  
         }
         

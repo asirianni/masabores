@@ -120,6 +120,19 @@ class Response_Ajax extends CI_Controller
         } 
     }
     
+    public function obtenerProvinciasDePais()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Provincias_model");
+            
+            $pais= $this->input->post("pais");
+            $respuesta = $this->Provincias_model->getProvinciasPorPais($pais);
+            
+            echo json_encode($respuesta);
+        } 
+    }
+    
     public function eliminarCliente()
     {
        if($this->input->is_ajax_request())

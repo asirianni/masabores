@@ -25,6 +25,12 @@ class Provincias_model extends CI_Model{
         return $r->result_array();
     }
     
+    public function getProvinciasPorPais($pais)
+    {
+        $r = $this->db->query("select * from provincias where pais = $pais order by provincia");
+        return $r->result_array();
+    }
+    
     public function getLocalidadesDeProvincia($provincia)
     {
         $r = $this->db->query("select * from localidades where id_provincia = $provincia ");

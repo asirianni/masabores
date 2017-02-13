@@ -675,12 +675,12 @@ class Backoffice extends CI_Controller {
 			$output = $crud->render();*/
                     
                         $this->load->model("Cliente_model");
-                        $this->load->model("Provincias_model");
                         $this->load->model("Iva_model");
                         $this->load->model("Vendedor_model");
-                        
+                        $this->load->model("Paises_model");
+                
+                        $output["paises"]=  $this->Paises_model->getPaises();
                         $output["clientes"]=$this->Cliente_model->getClientes();
-                        $output["provincias"]=$this->Provincias_model->getProvincias();
                         $output["tipos_iva"]=$this->Iva_model->getTiposIva();
                         $output["vendedores"]=$this->Vendedor_model->getVendedores();
                         
