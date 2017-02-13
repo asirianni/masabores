@@ -477,6 +477,7 @@
                         <div class="form-group">
                             <label for="provincia_modificar">Provincia</label>
                             <select class="form-control" id="provincia_modificar" onChange="cambio_provincia(2)">
+                                <option value='0'>seleccionar provincia</option>
                                 <?php 
                                     foreach($provincias as $value)
                                     {
@@ -488,8 +489,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <input type="text" id="localidad_fixed_modificar" hidden="true">;
                             <label for="localidad_modificar">Localidad</label>
-                            <select class="form-control disabled" id="localidad_modificar">
+                            <select class="form-control" id="localidad_modificar">
                             </select>
                         </div>
                     </div>
@@ -746,7 +748,8 @@
                     $("#nombre_comercial_modificar").val(data["nombre_comercial"]);
                     $("#direccion_modificar").val(data["direccion"]);
                     $("#provincia_modificar").val(data["provincia"]);
-                    $("#localidad_modificar").val(data["localidad"]);
+                    cambio_provincia(2);
+                    $("#localidad_fixed_modificar").val(data["localidad"]);
                     $("#cod_postal_modificar").val(data["cod_postal"]);
                     $("#pais_modificar").val(data["pais"]);
                     $("#celular_modificar").val(data["celular"]);
@@ -759,6 +762,7 @@
                     $("#dni_cuil_modificar").val(data["dni_cuil"]);
                     
                     $("#modal-modificar-cliente").modal("show");
+                    
                 },
                 error: function(event){alert("error");},
             });  
@@ -789,6 +793,7 @@
                 var vendedor = $("#vendedor_modificar").val();
                 var codigo_masabores = $("#codigo_masabores_modificar").val();
                 var dni_cuil = $("#dni_cuil_modificar").val();
+                
                 
                 $.ajax({
                     type: "POST",
@@ -836,9 +841,33 @@
                     
                     var html = "";
                     
-                    for(var i=0; i < data.length;i++)
+                    if(tipo_campos == 2)
                     {
-                        html+="<option value='"+data[i]["codigo"]+"'>"+data[i]["localidad"]+"</option>";
+                        html="<option value='0'>seleccionar localidad</option>";
+                        var select = $("#localidad_fixed"+seccion).val();
+
+                        for(var i=0; i < data.length;i++)
+                        {
+                            if(select == data[i]["codigo"])
+                            {
+                                html+="<option value='"+data[i]["codigo"]+"' selected>"+data[i]["localidad"]+"</option>";
+                            }
+                            else
+                            {
+                                html+="<option value='"+data[i]["codigo"]+"'>"+data[i]["localidad"]+"</option>";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        html="<option value='0'>seleccionar provincia</option>";
+                        
+
+                        for(var i=0; i < data.length;i++)
+                        {
+                            html+="<option value='"+data[i]["codigo"]+"'>"+data[i]["localidad"]+"</option>";
+                            
+                        }
                     }
                     
                     $("#localidad"+seccion).html(html);

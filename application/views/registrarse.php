@@ -174,7 +174,7 @@
 		<div class="container"> 
 			<h3 class="w3ls-title w3ls-title1">Registrese en masabores</h3>  
 			<div class="login-body" style="width: 100% !important;">
-				<form action="<?php echo base_url()?>index.php/Vendedor/agregar_cliente" method="post">
+				<form action="<?php echo base_url()?>index.php/Welcome/registrarse" method="post">
                                     <div class="col-md-4">    
                                         <div class="form-group">
                                             <label for="usuario" class="label-registro">Usuario</label>
