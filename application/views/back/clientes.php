@@ -307,8 +307,22 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label for="pais_agregar">Pais</label>
+                            <select class="form-control" id="pais_agregar" onchange="cambio_pais('_agregar')">
+                                <option value='0'>Seleccionar pais</option>
+                                <?php
+                                    foreach($paises as $v)
+                                    {
+                                        echo "<option value='".$v["codigo"]."'>".$v["descripcion"]."</option>";
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
                             <label for="provincia_agregar">Provincia</label>
-                            <select class="form-control" id="provincia_agregar" onChange="cambio_provincia(1)">
+                            <select class="form-control" id="provincia_agregar" onChange="cambio_provincia(1)" readonly="">
                                 <option value="0">Seleccione una provincia</option>
                                 <?php 
                                     foreach($provincias as $value)
@@ -322,7 +336,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="localidad_agregar">Localidad</label>
-                            <select class="form-control" id="localidad_agregar">
+                            <select class="form-control" id="localidad_agregar" readonly="">
                                 <option value="0">Seleccione una localidad</option>
                             </select>
                         </div>
@@ -333,12 +347,7 @@
                             <input type="text" class="form-control" id="cod_postal_agregar">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="pais_agregar">Pais</label>
-                            <input type="text" class="form-control" id="pais_agregar">
-                        </div>
-                    </div>
+                    
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="celular_agregar">Celular</label>
@@ -499,7 +508,6 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" id="localidad_fixed_modificar" hidden="true">
-                            <label for="localidad_modificar">Localidad</label>
                             <select class="form-control" id="localidad_modificar">
                                 <option value='0'>Seleccione localidad</option>
                             </select>
@@ -988,6 +996,8 @@
                             html+="<option value='"+data[i]["codigo"]+"'>"+data[i]["localidad"]+"</option>";
                             
                         }
+                        
+                        $("#localidad_agregar").removeAttr("readonly");
                     }
                     
                     $("#localidad"+seccion).html(html);
