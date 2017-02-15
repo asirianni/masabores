@@ -617,20 +617,40 @@
 	</div> -->
 	<!-- //deals --> 
 	<!-- footer-top -->
+        <!-- Start WOWSlider.com HEAD section -->
+	<link rel="stylesheet" type="text/css" href="engine1/style.css" />
+	<style type="text/css">a#vlb{display:none}</style>
+	<script type="text/javascript" src="engine1/jquery.js"></script>
+	<script type="text/javascript" src="engine1/wowslider.js"></script>
+        <div id="wowslider-container1">
+            <div class="ws_images">
+                <span><img src="http://www.digacor.com/marcas_slider/data1/images/2.jpg" alt="2" title="2" id="wows0"/></span>
+                <span><img src="http://www.digacor.com/marcas_slider/data1/images/3.jpg" alt="3" title="3" id="wows1"/></span>
+                <span><img src="http://www.digacor.com/marcas_slider/data1/images/4.jpg" alt="4" title="4" id="wows2"/></span>
+            </div>
+            <div class="ws_bullets"><div>
+            <a href="#wows0" title="2"><img src="http://www.digacor.com/marcas_slider/data1/tooltips/2.jpg" alt="2"/>1</a>
+            <a href="#wows1" title="3"><img src="http://www.digacor.com/marcas_slider/data1/tooltips/3.jpg" alt="3"/>2</a>
+            <a href="#wows2" title="4"><img src="http://www.digacor.com/marcas_slider/data1/tooltips/4.jpg" alt="4"/>3</a>
+            </div></div>
+            <a style="display:none" href="http://wowslider.com">jQuery Slider Arrows by WOWSlider.com v2.0</a>
+	</div>
+	<script type="text/javascript" src="http://www.digacor.com/marcas_slider/engine1/script.js"></script>
+        
 	<div class="w3agile-ftr-top">
 		<div class="container">
 			<div class="ftr-toprow">
-				<div class="col-md-4 ftr-top-grids">
-					<div class="ftr-top-left">
+				<div onclick="location.href='<?php echo base_url()?>index.php/welcome/zonas_de_cobertura';" class="col-md-4 ftr-top-gridson" >
+					<div class="ftr-top-left" >
 						<i class="fa fa-truck" aria-hidden="true"></i>
 					</div> 
 					<div class="ftr-top-right">
 						<h4>ENTREGAS</h4>
-						<p>Consulte por nuestras entregas en obra </p>
+						<p>Consulte nuestras zonas de cobertura</p>
 					</div> 
 					<div class="clearfix"> </div>
 				</div> 
-				<div class="col-md-4 ftr-top-grids">
+				<div onClick='generar_clave_cliente()' class="col-md-4 ftr-top-grids">
 					<div class="ftr-top-left">
 						<i class="fa fa-user" aria-hidden="true"></i>
 					</div> 
@@ -655,37 +675,8 @@
 		</div>
 	</div>
 	<!-- //footer-top --> 
-	<!-- subscribe -->
-	<div class="subscribe"> 
-		<div class="container">
-			<div class="col-md-6 social-icons w3-agile-icons">
-				<h4>SIGANOS EN </h4>  
-				<ul>
-					<li><a href="#" class="fa fa-facebook icon facebook"> </a></li>
-					<li><a href="#" class="fa fa-twitter icon twitter"> </a></li>
-					<li><a href="#" class="fa fa-google-plus icon googleplus"> </a></li>
-<!--					<li><a href="#" class="fa fa-dribbble icon dribbble"> </a></li>
-					<li><a href="#" class="fa fa-rss icon rss"> </a></li> -->
-				</ul> 
-<!--				<ul class="apps"> 
-					<li><h4>Download Our app : </h4> </li>
-					<li><a href="#" class="fa fa-apple"></a></li>
-					<li><a href="#" class="fa fa-windows"></a></li>
-					<li><a href="#" class="fa fa-android"></a></li>
-				</ul> -->
-			</div> 
-			<div class="col-md-6 subscribe-right">
-<!--				<h4>Sign up for email and get 25%off!</h4>  
-				<form action="#" method="post"> 
-					<input type="text" name="email" placeholder="Enter your Email..." required="">
-					<input type="submit" value="Subscribe">
-				</form>
-				<div class="clearfix"> </div> -->
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-	<!-- //subscribe --> 
+        <?php echo $siganos_en?>
+	
         <div class="modal fade" id="modalCarrito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
@@ -815,6 +806,22 @@
 	<script src="<?php echo base_url(); ?>recursos/js/main.js"></script> <!-- Resource jQuery -->
         
         <script>
+            
+            function generar_clave_cliente()
+            {
+                var inicio_sesion = JSON.parse(<?php echo json_encode($this->session->userdata('ingresado'))?>);
+                
+                if(inicio_sesion)
+                {
+                    alert("ya se encuentra registrado");
+                }
+                else
+                {
+                    location.href="<?php echo base_url()?>index.php/welcome/registrarse";
+                }
+                
+            }
+            
             function iniciarSesionCliente()
             {
                 var usuario = document.getElementById('usuario_ingresar').value;

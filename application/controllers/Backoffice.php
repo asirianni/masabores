@@ -17,6 +17,9 @@ class Backoffice extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+    
+        public $partes_backoffice;
+        
 	public function __construct()
 	{
 		parent::__construct();
@@ -44,6 +47,8 @@ class Backoffice extends CI_Controller {
 		$this->load->library('grocery_CRUD');
                 $this->load->helper('file');
 		$this->load->database();
+                $this->load->library("Partes_Backoffice");
+                $this->partes_backoffice = new Partes_Backoffice();
 	}
 	
 	public function validar_administrador()
@@ -175,6 +180,7 @@ class Backoffice extends CI_Controller {
         public function abm_precios_administrador(){
            $output["error"]=false;
            $output["importacion"]=false; 
+           $output["menu_lateral"]=$this->partes_backoffice->getMenuLateralAdministrador();
            $this->load->view('back/importador_precios.php', $output);
 	}
         
@@ -432,6 +438,32 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/loguin', $output);
 		}
 	}
+        
+        public function abm_slider_marcas(){
+		if ($this->verificar_acceso()) {
+			$crud = new grocery_CRUD();
+			$crud->set_table('slider_marcas');
+                        $crud->set_field_upload('imagen','recursos/images/slider_marcas/');
+			$output = $crud->render();
+			$this->load->view('back/config.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin', $output);
+		}
+	}
+        
+        public function abm_zonas_cobertura(){
+		if ($this->verificar_acceso()) {
+			$crud = new grocery_CRUD();
+			$crud->set_table('zonas_cobertura');
+                        $crud->set_field_upload('imagen','recursos/images/zonas_coberturas/');
+			$output = $crud->render();
+			$this->load->view('back/config.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin', $output);
+		}
+	}
 	
 	public function abm_costo_envio(){
 		if ($this->verificar_acceso()) {
@@ -448,7 +480,8 @@ class Backoffice extends CI_Controller {
 	
 	
 	public function pedidos($tipo){
-		$output['output']=$this->renderizar_listado_pedidos_nuevos($tipo);						
+		$output['output']=$this->renderizar_listado_pedidos_nuevos($tipo);	
+                $output["menu_lateral"]=$this->partes_backoffice->getMenuLateralAdministrador();
 		$this->load->view('back/pedidos.php', $output);
 	}
 	public function pedidos_historico(){
@@ -520,6 +553,7 @@ class Backoffice extends CI_Controller {
 //                        $crud->set_field_upload('perfil','assets/recursos/images/product-almacen');
 			//$crud->callback_after_insert(array($this, 'insertar_en_listado_precio'));
 			$output = $crud->render();
+                        
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
@@ -683,6 +717,7 @@ class Backoffice extends CI_Controller {
                         $output["clientes"]=$this->Cliente_model->getClientes();
                         $output["tipos_iva"]=$this->Iva_model->getTiposIva();
                         $output["vendedores"]=$this->Vendedor_model->getVendedores();
+                        $output["menu_lateral"]=$this->partes_backoffice->getMenuLateralAdministrador();
                         
 			$this->load->view('back/clientes.php', $output);
 		}else{
@@ -827,6 +862,7 @@ class Backoffice extends CI_Controller {
             $output['pedidos']=$this->Pedido_model->obtener_pedidos_descarga();
             $output['delivery']=$delivery;
             $output['retiro']=$retiro;
+            $output["menu_lateral"]=$this->partes_backoffice->getMenuLateralAdministrador();
             return $output;
 	}
 	

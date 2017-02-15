@@ -64,6 +64,7 @@ class Welcome extends CI_Controller {
             $salida["menu_superior"]= $this->partes_web->getMenuSuperior();
             $salida["parte_buscador"]= $this->partes_web->getParteBuscador();
             $salida["footer"]= $this->partes_web->getFooter();
+            $salida["siganos_en"]= $this->partes_web->getSiganosEn();
             
             $this->load->view('entrada', $salida);
 	}
@@ -94,6 +95,7 @@ class Welcome extends CI_Controller {
                 $salida["menu_superior"]= $this->partes_web->getMenuSuperior();
                 $salida["parte_buscador"]= $this->partes_web->getParteBuscador();
                 $salida["footer"]= $this->partes_web->getFooter();
+                $salida["siganos_en"]= $this->partes_web->getSiganosEn();
                 $this->load->view('registrarse', $salida);
             }
             else
@@ -222,6 +224,28 @@ class Welcome extends CI_Controller {
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
             $this->load->view('grupos', $output);
+
+        }
+        
+        public function zonas_de_cobertura(){
+           
+            $this->load->model("Zonas_cobertura_model");
+            
+            $output["zonas_coberturas"]=  $this->Zonas_cobertura_model->getZonasCoberturas();
+            
+            $output["correo"]= $this->Configuracion_model->obtener_config(1);
+            $output["movil"]= $this->Configuracion_model->obtener_config(2);
+            $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+            $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+            $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+            $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            
+            $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+            $output["footer"]= $this->partes_web->getFooter();
+            $this->load->view('zonas_de_cobertura', $output);
 
         }
         

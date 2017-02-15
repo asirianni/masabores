@@ -82,55 +82,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <!-- 
-                        	<li class="sidebar-search">
-                            	<div class="input-group custom-search-form">
-	                                <input type="text" class="form-control" placeholder="Buscar...">
-	                                <span class="input-group-btn">
-	                                	<button class="btn btn-default" type="button">
-	                                    	<i class="fa fa-search"></i>
-	                                	</button>
-	                            	</span>
-                            	</div>
-                            
-                        	</li><!-- /input-group -->	
-                        <li>
-                            <a href='<?php echo site_url('backoffice/escritorio')?>'><i class="fa fa-dashboard fa-fw"></i> Escritorio</a>
-                        </li>
-<!--                        <li>
-                            <a href='<?php echo site_url('backoffice/abm_rubros')?>'><i class="fa fa-table fa-fw"></i> Home</a>
-                        </li>
-                        
-                        -->
-                        <li>
-                            <a href='<?php echo site_url('backoffice/pedidos/0')?>'><i class="fa fa-table fa-fw"></i> Pedidos</a>
-                        </li>
-                        <li>
-                            <a href='<?php echo site_url('backoffice/productos')?>'><i class="fa fa-table fa-fw"></i> Productos</a>
-                        </li>
-                        <li>
-                            <a href='<?php echo site_url('backoffice/clientes')?>'><i class="fa fa-table fa-fw"></i> Clientes</a>
-                        </li>
-                        <li>
-                            <a href='<?php echo site_url('backoffice/abm_precios_administrador')?>'><i class="fa fa-table fa-fw"></i> Precios</a>
-                        </li>
-<!--                        <li>
-                            <a href='<?php echo site_url('backoffice/usuarios')?>'><i class="fa fa-table fa-fw"></i> Usuarios</a>
-                        </li>
-                        <li>
-                            <a href='<?php echo site_url('backoffice/config')?>'><i class="fa fa-wrench fa-fw"></i> Configuracion</a>-->
-                        <!--</li>-->
-                        <li>
-                            <a href='<?php echo site_url('backoffice/config')?>'><i class="fa fa-wrench fa-fw"></i> Configuracion</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
+            <?php echo $this->partes_backoffice->getMenuLateralAdministrador();?>
         </nav>
 
         <div id="page-wrapper">
@@ -143,6 +95,8 @@
 <!--                <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_vendedores')?>'> ABM Vendedores </a> |-->
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_empleados')?>'> ABM Empleados </a> |
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_secciones')?>'> ABM Secciones </a> |
+                <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_slider_marcas')?>'> ABM Slider Marcas </a> |
+                <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_zonas_cobertura')?>'> ABM Zonas Cobertura </a> |
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">

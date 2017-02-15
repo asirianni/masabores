@@ -191,5 +191,19 @@ class Response_Ajax extends CI_Controller
         } 
     }
     
+    public function getZonasCobertura()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Zonas_cobertura_model");
+            
+            $cliente= $this->input->post("codigo");
+            
+            $respuesta = $this->Zonas_cobertura_model->getZonasCoberturas();
+            
+            echo json_encode($respuesta);
+        } 
+    }
+    
     
 }

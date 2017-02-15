@@ -83,54 +83,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <!-- 
-                        	<li class="sidebar-search">
-                            	<div class="input-group custom-search-form">
-	                                <input type="text" class="form-control" placeholder="Buscar...">
-	                                <span class="input-group-btn">
-	                                	<button class="btn btn-default" type="button">
-	                                    	<i class="fa fa-search"></i>
-	                                	</button>
-	                            	</span>
-                            	</div>
-                            
-                        	</li><!-- /input-group -->	
-                        <li>
-                            <a href='<?php echo site_url('backoffice/escritorio')?>'><i class="fa fa-dashboard fa-fw"></i> Escritorio</a>
-                        </li>
-<!--                        <li>
-                            <a href='<?php echo site_url('backoffice/abm_rubros')?>'><i class="fa fa-table fa-fw"></i> Home</a>
-                        </li>
-                        
-                        -->
-                        <li>
-                            <a href='<?php echo site_url('backoffice/pedidos/0')?>'><i class="fa fa-table fa-fw"></i> Pedidos</a>
-                        </li>
-                        <li>
-                            <a href='<?php echo site_url('backoffice/productos')?>'><i class="fa fa-table fa-fw"></i> Productos</a>
-                        </li>
-                        <li>
-                            <a href='<?php echo site_url('backoffice/clientes')?>'><i class="fa fa-table fa-fw"></i> Clientes</a>
-                        </li>
-                        <li>
-                            <a href='<?php echo site_url('backoffice/abm_precios_administrador')?>'><i class="fa fa-table fa-fw"></i> Precios</a>
-                        </li>
-<!--                        <li>
-                            <a href='<?php echo site_url('backoffice/usuarios')?>'><i class="fa fa-table fa-fw"></i> Usuarios</a>
-                        </li>
-                        <li>
-                            <a href='<?php echo site_url('backoffice/config')?>'><i class="fa fa-wrench fa-fw"></i> Configuracion</a>-->
-                        <!--</li>-->
-                        <li>
-                            <a href='<?php echo site_url('backoffice/config')?>'><i class="fa fa-wrench fa-fw"></i> Configuracion</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
+            <?php echo $menu_lateral?>
             
         </nav>
 
@@ -730,7 +683,7 @@
         
         function agregar_cliente()
         {
-            if(validarCampos(1))
+            if(verificar_campos_cliente("_agregar"))
             {
                 var usuario = $("#usuario_agregar").val();
                 var correo = $("#correo_agregar").val();
@@ -777,6 +730,67 @@
             {
                 alert("Complete correctamente los campos");
             }
+        }
+        
+        function verificar_campos_cliente(seccion)
+        {
+            var usuario = $("#usuario"+seccion).val();
+                var correo = $("#correo"+seccion).val();
+                var pass = $("#pass"+seccion).val();
+                var nombre = $("#nombre"+seccion).val();
+                var apellido = $("#apellido"+seccion).val();
+                var razon_social = $("#razon_social"+seccion).val();
+                var nombre_comercial = $("#nombre_comercial"+seccion).val();
+                var direccion = $("#direccion"+seccion).val();
+                var provincia = $("#provincia"+seccion).val();
+                var localidad = $("#localidad"+seccion).val();
+                var cod_postal = $("#cod_postal"+seccion).val();
+                var pais = $("#pais"+seccion).val();
+                var celular = $("#celular"+seccion).val();
+                var fijo = $("#fijo"+seccion).val();
+                var tipo_iva = $("#tipo_iva"+seccion).val();
+                var estado = $("#estado"+seccion).val();
+                var lista_precios = $("#lista_precios"+seccion).val();
+                var vendedor = $("#vendedor"+seccion).val();
+                var codigo_masabores = $("#codigo_masabores"+seccion).val();
+                var dni_cuil = $("#dni_cuil"+seccion).val();  
+                
+            var respuesta = true;
+            
+            if(usuario == ""){ respuesta = false;marcar_error_input("#usuario"+seccion);}else{desmarcar_error_input("#usuario"+seccion);};
+            if(correo == ""){ respuesta = false;marcar_error_input("#correo"+seccion);}else{desmarcar_error_input("#correo"+seccion);};
+            if(pass == ""){ respuesta = false;marcar_error_input("#pass"+seccion);}else{desmarcar_error_input("#pass"+seccion);};
+            if(nombre == ""){ respuesta = false;marcar_error_input("#nombre"+seccion);}else{desmarcar_error_input("#nombre"+seccion);};
+            if(apellido == ""){ respuesta = false;marcar_error_input("#apellido"+seccion);}else{desmarcar_error_input("#apellido"+seccion);};
+            if(razon_social == ""){ respuesta = false;marcar_error_input("#razon_social"+seccion);}else{desmarcar_error_input("#razon_social"+seccion);};
+            if(nombre_comercial == ""){ respuesta = false;marcar_error_input("#nombre_comercial"+seccion);}else{desmarcar_error_input("#nombre_comercial"+seccion);};
+            if(direccion == ""){ respuesta = false;marcar_error_input("#direccion"+seccion);}else{desmarcar_error_input("#provincia"+seccion);};
+            if(provincia == ""){ respuesta = false;marcar_error_input("#provincia"+seccion);}else{desmarcar_error_input("#correo"+seccion);};
+            if(localidad == ""){ respuesta = false;marcar_error_input("#localidad"+seccion);}else{desmarcar_error_input("#localidad"+seccion);};
+            if(cod_postal == ""){ respuesta = false;marcar_error_input("#cod_postal"+seccion);}else{desmarcar_error_input("#cod_postal"+seccion);};
+            if(parseInt(pais) == 0){ respuesta = false;marcar_error_input("#pais"+seccion);}else{desmarcar_error_input("#pais"+seccion);};
+            if(celular == ""){ respuesta = false;marcar_error_input("#celular"+seccion);}else{desmarcar_error_input("#celular"+seccion);};
+            if(fijo == ""){ respuesta = false;marcar_error_input("#fijo"+seccion);}else{desmarcar_error_input("#fijo"+seccion);};
+            if(parseInt(tipo_iva) == 0){ respuesta = false;marcar_error_input("#tipo_iva"+seccion);}else{desmarcar_error_input("#tipo_iva"+seccion);};
+            if(parseInt(estado) == 0){ respuesta = false;marcar_error_input("#estado"+seccion);}else{desmarcar_error_input("#estado"+seccion);};
+            if(lista_precios  == ""){ respuesta = false;marcar_error_input("#lista_precios"+seccion);}else{desmarcar_error_input("#lista_precios"+seccion);};
+            if(parseInt(vendedor) == 0){ respuesta = false;marcar_error_input("#vendedor"+seccion);}else{desmarcar_error_input("#vendedor"+seccion);};
+            if(codigo_masabores == ""){ respuesta = false;marcar_error_input("#codigo_masabores"+seccion);}else{desmarcar_error_input("#codigo_masabores"+seccion);};
+            if(dni_cuil ==""){ respuesta = false;marcar_error_input("#dni_cuil"+seccion);}else{desmarcar_error_input("#dni_cuil"+seccion);};
+            
+            return respuesta;
+        }
+        
+        function marcar_error_input(id)
+        {
+            $(id).css("border-color","#F00");
+            $(id).css("border-width","1px");
+            $(id).css("border-style","solid");
+        }
+        
+        function desmarcar_error_input(id)
+        {
+            $(id).css("border-width","0px");
         }
         
         function abrir_modal_modificar_cliente(codigo)
@@ -895,7 +909,7 @@
         
         function modificar_cliente()
         {
-            if(validarCampos(2))
+            if(verificar_campos_cliente("_modificar"))
             {
                 var codigo = $("#codigo_modificar_cliente").val();
                 var usuario = $("#usuario_modificar").val();

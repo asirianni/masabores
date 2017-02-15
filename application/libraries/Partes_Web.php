@@ -20,6 +20,7 @@ class Partes_Web
     private $menu_principal;
     private $menu_superior;
     private $parte_buscador;
+    private $siganos_en;
     private $footer;
     
     // CODEINGNITER
@@ -31,6 +32,9 @@ class Partes_Web
     private $dato_telefono;
     private $dato_direccion;
     private $dato_localidad;
+    private $dato_twitter;
+    private $dato_facebook;
+    private $dato_google;
     
     function getDato_correo() {
         return $this->dato_correo;
@@ -71,6 +75,18 @@ class Partes_Web
     function setDato_localidad($dato_localidad) {
         $this->dato_localidad = $dato_localidad;
     }
+    
+    function setDato_twitter($dato_twitter) {
+        $this->dato_twitter = $dato_twitter;
+    }
+    
+    function setDato_facebook($dato_facebook) {
+        $this->dato_facebook = $dato_facebook;
+    }
+    
+    function setDato_google($dato_google) {
+        $this->dato_google = $dato_google;
+    }
 
         
     public function __construct() {
@@ -82,6 +98,7 @@ class Partes_Web
         $this->seteoMenuPrincipal();
         $this->seteoMenuSuperior();
         $this->seteoParteBuscador();
+        $this->seteoSiganosEn();
         $this->seteoFooter();
         
         
@@ -131,6 +148,11 @@ class Partes_Web
     public function getFooter()
     {
         return $this->footer;
+    }
+    
+    public function getSiganosEn()
+    {
+        return $this->siganos_en;
     }
     
     private function seteoCssFile()
@@ -237,10 +259,14 @@ class Partes_Web
 			<div class='w3ls-header-left'>
 				<p><a href='#'>PARA ACTIVAR SU USUARIO LLAME AL - ".strtoupper($datos_telefono["descripcion"])."</a></p>
 			</div>
+                        
 			<div class='w3ls-header-right'>
 				<ul>
-                                    <li class='dropdown head-dpdn'>
-                                            <a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user' aria-hidden='true'></i> Mi Cuenta<span class='caret'></span></a>
+                                    <li class='dropdown head-dpdn'>";
+                                            if($this->ci->session->userdata('ingresado')){
+                                                $this->menu_superior.="<span style='color:#fff;font-size: 20px;font-weight: bold;'>Bienvenido ".$this->ci->session->userdata('nombre')."</span>&nbsp;&nbsp;&nbsp;&nbsp;";
+                                            }
+                                            $this->menu_superior.="<a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user' aria-hidden='true'></i> Mi Cuenta<span class='caret'></span></a>
                                             <ul class='dropdown-menu'>";
                                                     if($this->ci->session->userdata('ingresado')){
                                                             $this->menu_superior.="<li><a href='#'>Bienvenido ".$this->ci->session->userdata('nombre')."</a></li>
@@ -311,6 +337,50 @@ class Partes_Web
 		</div><!-- //header-two -->";
     }
     
+    private function seteoSiganosEn()
+    {
+        $datos_facebook= $this->ci->Configuracion_model->obtener_config(7);
+        $this->setDato_facebook($datos_facebook["descripcion"]);
+        
+        $datos_google= $this->ci->Configuracion_model->obtener_config(8);
+        $this->setDato_google($datos_google["descripcion"]);
+        
+        $datos_localidad= $this->ci->Configuracion_model->obtener_config(9);
+        $this->setDato_twitter($datos_localidad["descripcion"]);
+        
+        $this->siganos_en=
+        "<!-- subscribe -->
+	<div class='subscribe'> 
+		<div class='container'>
+			<div class='col-md-6 social-icons w3-agile-icons'>
+				<h4>SIGANOS EN </h4>  
+				<ul>
+					<li><a href='".strtoupper($this->dato_facebook)."' class='fa fa-facebook icon facebook'> </a></li>
+					<li><a href='".strtoupper($this->dato_twitter)."' class='fa fa-twitter icon twitter'> </a></li>
+					<li><a href='".strtoupper($this->dato_google)."' class='fa fa-google-plus icon googleplus'> </a></li>
+<!--					<li><a href='#' class='fa fa-dribbble icon dribbble'> </a></li>
+					<li><a href='#' class='fa fa-rss icon rss'> </a></li> -->
+				</ul> 
+<!--				<ul class='apps'> 
+					<li><h4>Download Our app : </h4> </li>
+					<li><a href='#' class='fa fa-apple'></a></li>
+					<li><a href='#' class='fa fa-windows'></a></li>
+					<li><a href='#' class='fa fa-android'></a></li>
+				</ul> -->
+			</div> 
+			<div class='col-md-6 subscribe-right'>
+<!--				<h4>Sign up for email and get 25%off!</h4>  
+				<form action='#' method='post'> 
+					<input type='text' name='email' placeholder='Enter your Email...' required=''>
+					<input type='submit' value='Subscribe'>
+				</form>
+				<div class='clearfix'> </div> -->
+			</div>
+			<div class='clearfix'> </div>
+		</div>
+	</div>
+	<!-- //subscribe --> ";
+    }
     private function seteoFooter()
     {
         $datos_correo= $this->ci->Configuracion_model->obtener_config(1);
@@ -323,6 +393,8 @@ class Partes_Web
         $this->setDato_direccion($datos_direccion["descripcion"]);
         $datos_localidad= $this->ci->Configuracion_model->obtener_config(6);
         $this->setDato_localidad($datos_localidad["descripcion"]);
+        
+       
         
         $this->footer=
         "<!-- footer -->
