@@ -291,9 +291,8 @@ class Partes_Web
         "<div class='header-two'><!-- header-two -->
 			<div class='container'>
 				<div class='header-logo'>
-                                    <h1><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas.png' alt='img'></span></a></h1>
-                                    <br>
-					
+                                    <h1 class='hidden-xs'><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas.png' alt='img'></span></a></h1>
+                                    <h1 class='visible-xs'><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas-movil.png' alt='img'></span></a></h1>
 				</div>	
 				<div class='header-search'>";
                                     
