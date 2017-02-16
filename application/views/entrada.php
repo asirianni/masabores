@@ -21,6 +21,8 @@
         <link href="<?php echo base_url(); ?>recursos/css/font-awesome.css" rel="stylesheet"> 
         <!-- CSS MARIO -->
         <link href="<?php echo base_url(); ?>recursos/css/agregado-estilos.css" rel="stylesheet"> 
+         <!-- CSS MARIO -->
+        <link href="<?php echo base_url(); ?>recursos/bxslider/jquery.bxslider.css" rel="stylesheet"> 
         <!-- //font-awesome icons -->
         <!-- js -->
         <script src="<?php echo base_url(); ?>recursos/js/jquery-2.2.3.min.js"></script> 
@@ -33,6 +35,7 @@
         <!-- web-fonts --> 
         <script src="<?php echo base_url(); ?>recursos/js/owl.carousel.js"></script>
         <script src="<?php echo base_url(); ?>recursos/js/pedido-simple-web.js"></script>
+        <script src="<?php echo base_url(); ?>recursos/bxslider/jquery.bxslider.min.js"></script> 
         <script>
         $(document).ready(function() { 
                 $("#owl-demo").owlCarousel({ 
@@ -617,25 +620,99 @@
 	</div> -->
 	<!-- //deals --> 
 	<!-- footer-top -->
-        <!-- Start WOWSlider.com HEAD section -->
-	<link rel="stylesheet" type="text/css" href="engine1/style.css" />
-	<style type="text/css">a#vlb{display:none}</style>
-	<script type="text/javascript" src="engine1/jquery.js"></script>
-	<script type="text/javascript" src="engine1/wowslider.js"></script>
-        <div id="wowslider-container1">
-            <div class="ws_images">
-                <span><img src="http://www.digacor.com/marcas_slider/data1/images/2.jpg" alt="2" title="2" id="wows0"/></span>
-                <span><img src="http://www.digacor.com/marcas_slider/data1/images/3.jpg" alt="3" title="3" id="wows1"/></span>
-                <span><img src="http://www.digacor.com/marcas_slider/data1/images/4.jpg" alt="4" title="4" id="wows2"/></span>
-            </div>
-            <div class="ws_bullets"><div>
-            <a href="#wows0" title="2"><img src="http://www.digacor.com/marcas_slider/data1/tooltips/2.jpg" alt="2"/>1</a>
-            <a href="#wows1" title="3"><img src="http://www.digacor.com/marcas_slider/data1/tooltips/3.jpg" alt="3"/>2</a>
-            <a href="#wows2" title="4"><img src="http://www.digacor.com/marcas_slider/data1/tooltips/4.jpg" alt="4"/>3</a>
-            </div></div>
-            <a style="display:none" href="http://wowslider.com">jQuery Slider Arrows by WOWSlider.com v2.0</a>
-	</div>
-	<script type="text/javascript" src="http://www.digacor.com/marcas_slider/engine1/script.js"></script>
+        <div class="hidden-sm hidden-xs">
+            <ul class="bxslider" style="text-align: center;">
+                <?php 
+
+                    $iconos = count($marcas);
+
+                    $indice = 0;
+
+                    while ($indice < $iconos)
+                    {
+                        $contador = 0;
+
+                        echo "<li>";
+
+                        while ($contador < 6)
+                        {
+                            if($indice < $iconos)
+                            {
+                             echo "<img style='display: inline-block !important;margin-bottom: 0px;padding-bottom:0px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
+                            }
+                            $contador++;
+                            $indice++;
+                        }
+
+                        $contador =0;
+                        echo "</li>";
+                    }
+
+                ?>
+             </ul>
+        </div>
+        <div class="visible-sm">
+            <ul class="bxslider " style="text-align: center;">
+                <?php 
+
+                    $iconos = count($marcas);
+
+                    $indice = 0;
+
+                    while ($indice < $iconos)
+                    {
+                        $contador = 0;
+
+                        echo "<li>";
+
+                        while ($contador < 3)
+                        {
+                            if($indice < $iconos)
+                            {
+                             echo "<img class='img-responsive' style='display: inline-block !important;margin-bottom: 0px;padding-bottom:0px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
+                            }
+                            $contador++;
+                            $indice++;
+                        }
+
+                        $contador =0;
+                        echo "</li>";
+                    }
+
+                ?>
+             </ul>
+        </div>
+        <div class="visible-xs">
+            <ul class="bxslider " style="text-align: center;">
+                <?php 
+
+                    $iconos = count($marcas);
+
+                    $indice = 0;
+
+                    while ($indice < $iconos)
+                    {
+                        $contador = 0;
+
+                        echo "<li>";
+
+                        while ($contador < 2)
+                        {
+                            if($indice < $iconos)
+                            {
+                             echo "<img class='img-responsive' style='display: inline-block !important;margin-bottom: 0px;padding-bottom:0px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
+                            }
+                            $contador++;
+                            $indice++;
+                        }
+
+                        $contador =0;
+                        echo "</li>";
+                    }
+
+                ?>
+             </ul>
+        </div>
         
 	<div class="w3agile-ftr-top">
 		<div class="container">
@@ -749,6 +826,13 @@
 	<script src="<?php echo base_url(); ?>recursos/js/jquery.classycountdown.js"></script>
 		<script>
 			$(document).ready(function() {
+                            
+                                $('.bxslider').bxSlider({
+                                        auto: true,
+                                        autoControls: true,
+                                        default: 'horizontal',
+                                });
+                                
 				$('#countdown1').ClassyCountdown({
 					end: '1388268325',
 					now: '1387999995',

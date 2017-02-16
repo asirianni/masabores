@@ -44,6 +44,9 @@ class Welcome extends CI_Controller {
 	}
         
 	public function index(){
+            
+            $this->load->model("Slider_marcas");
+            
             $salida["rubros"]=  $this->Almacen_model->obtener_rubros();
             /*$salida["correo"]= $this->Configuracion_model->obtener_config(1);
             $salida["movil"]= $this->Configuracion_model->obtener_config(2);
@@ -58,6 +61,7 @@ class Welcome extends CI_Controller {
             $salida["destacado_3"]= $this->Almacen_model->productos_destacados(3);
             $salida["destacado_4"]= $this->Almacen_model->productos_destacados(4);
             $salida["destacado_5"]= $this->Almacen_model->productos_destacados(5);
+            $salida["marcas"]=$this->Slider_marcas->getSliderMarcas();
             
             $salida["modal_ingreso"]= $this->partes_web->getModalIngreso();
             $salida["menu_principal"]= $this->partes_web->getMenuPrincipal();
