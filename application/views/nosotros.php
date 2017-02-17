@@ -130,84 +130,15 @@ ul.menu li a {
 	<!-- header -->
 	<div class="header">
 		<div class="w3ls-header"><!--header-one--> 
-			<div class="w3ls-header-left">
-				<p><a href="#">ESTA VIENDO LISTA DE PRECIOS: </a></p>
-			</div>
-			<div class="w3ls-header-right">
-				<ul>
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> Mi Cuenta<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-                                                    <?php 
-                                                        if($this->session->userdata("ingresado")){
-                                                            echo "<li><a href='#'>Bienvenido ".$this->session->userdata("nombre")."</a></li>";
-//                                                          echo "<li><a href='#'>Lista: ".$this->session->userdata("lista_precios")."</a></li>";
-                                                            echo "<li><a href='".base_url()."index.php/welcome/cerrar_sesion'>Salida</a></li>";
-                                                        }else{
-                                                            echo "<li><a href='#' onclick='iniciar_session();' >Ingreso</a></li>";    
-                                                        }
-                                                    ?> 
-                                                </ul> 
-					</li> 
-<!--					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-percent" aria-hidden="true"></i> Today's Deals<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="offers.html">Cash Back Offers</a></li> 
-							<li><a href="offers.html">Product Discounts</a></li>
-							<li><a href="offers.html">Special Offers</a></li> 
-						</ul> 
-					</li> 
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gift" aria-hidden="true"></i> Gift Cards<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="offers.html">Product Gift card</a></li> 
-							<li><a href="offers.html">Occasions Register</a></li>
-							<li><a href="offers.html">View Balance</a></li> 
-						</ul> 
-					</li> 
-					<li class="dropdown head-dpdn">
-						<a href="contact.html" class="dropdown-toggle"><i class="fa fa-map-marker" aria-hidden="true"></i> Store Finder</a>
-					</li> 
-					<li class="dropdown head-dpdn">
-						<a href="card.html" class="dropdown-toggle"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Credit Card</a>
-					</li> 
-					<li class="dropdown head-dpdn">
-						<a href="help.html" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
-					</li>-->
-				</ul>
-			</div>
-			<div class="clearfix"> </div> 
+                        <?php echo $menu_superior?>
                         
 		</div>
                 <?php echo $parte_buscador?>
                 <div class="header-three"><!-- header-three -->
 			<div class="container">
 				<div class="menu">
-					<!--<div class="cd-dropdown-wrapper">
-						<a class="cd-dropdown-trigger" href="#0">Categorias</a>
-						<nav class="cd-dropdown"> 
-							<a href="#0" class="cd-close">Close</a>
-							<ul class="menu"> 
-                                                            <?php /*
-                                                                $salida="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/0'> <i class=''></i> TODOS LOS RUBROS</a></li>";
-                                                                foreach ($rubros as $r) {
-                                                                    $salida.="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/".$r["codigo"]."'>".strtoupper($r["descripcion"])."</a></li>";
-                                                                }
-                                                                echo $salida;*/
-                                                            ?> 
-							</ul> 
-						</nav>
-					</div> -->	 
 				</div>
                             <?php echo $menu_principal?>
-				<!--div class="move-text">
-					<div class="marquee"><a href="offers.html"> Desde aqui busque productos  <span>Compra Online </span> <span> HAGA SU CALCULO AHORA!!!</span></a></div>
-					<script type="text/javascript" src="<?php echo base_url(); ?>recursos/js/jquery.marquee.min.js"></script>
-					<script>
-					  $('.marquee').marquee({ pauseOnHover: true });
-					  //@ sourceURL=pen.js
-					</script>
-				</div>-->
 			</div>
 		</div>
 		

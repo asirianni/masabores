@@ -120,49 +120,12 @@
 	<!-- header -->
 	<div class="header">
 		<div class="w3ls-header"><!--header-one--> 
-			<div class="w3ls-header-left">
-				<p><a href="#">PARA ACTIVAR SU USUARIO LLAME AL - <?php echo strtoupper($telefono["descripcion"])?></a></p>
-			</div>
-			<div class="w3ls-header-right">
-				<ul>
-                                    <li class="dropdown head-dpdn">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> Mi Cuenta<span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                    <?php 
-                                                        if($this->session->userdata("ingresado")){
-                                                            echo "<li><a href='#'>Bienvenido ".$this->session->userdata("nombre")."</a></li>";
-//                                                          echo "<li><a href='#'>Lista: ".$this->session->userdata("lista_precios")."</a></li>";
-                                                            echo "<li><a href='".base_url()."index.php/welcome/cerrar_sesion'>Salida</a></li>";
-                                                        }else{
-                                                            echo "<li><a href='#' onclick='iniciar_session();' >Ingreso</a></li>";
-                                                            echo "<li><a href='".base_url()."index.php/welcome/registrarse' >Registrarse</a></li>";
-                                                        }
-                                                    ?> 
-                                            </ul> 
-                                    </li> 
-				</ul>
-			</div>
-			<div class="clearfix"> </div> 
+                    <?php echo $menu_superior?>
 		</div>
 		<?php echo $parte_buscador?>
 		<div class="header-three"><!-- header-three -->
 			<div class="container">
 				<div class="menu">
-<!--					<div class="cd-dropdown-wrapper">
-						<a class="cd-dropdown-trigger" href="#0">Categorias</a>
-						<nav class="cd-dropdown"> 
-							<a href="#0" class="cd-close">Close</a>
-							<ul class="cd-dropdown-content">
-                                                            <?php
-//                                                                $salida="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/0'> <i class=''></i> TODOS LOS RUBROS</a></li>";
-//                                                                foreach ($rubros as $r) {
-//                                                                    $salida.="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/".$r["codigo"]."'>".strtoupper($r["descripcion"])."</a></li>";
-//                                                                }
-//                                                                echo $salida;
-                                                            ?> 
-							</ul>  .cd-dropdown-content 
-						</nav>  .cd-dropdown 
-					</div>  .cd-dropdown-wrapper 	 -->
 				</div>
                             <?php echo $menu_principal?>
 			</div>

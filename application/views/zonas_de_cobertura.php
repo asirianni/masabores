@@ -183,36 +183,14 @@ ul.menu li a {
                 <div class="header-three"><!-- header-three -->
 			<div class="container">
 				<div class="menu">
-					<!--<div class="cd-dropdown-wrapper">
-						<a class="cd-dropdown-trigger" href="#0">Categorias</a>
-						<nav class="cd-dropdown"> 
-							<a href="#0" class="cd-close">Close</a>
-							<ul class="menu"> 
-                                                            <?php /*
-                                                                $salida="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/0'> <i class=''></i> TODOS LOS RUBROS</a></li>";
-                                                                foreach ($rubros as $r) {
-                                                                    $salida.="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/".$r["codigo"]."'>".strtoupper($r["descripcion"])."</a></li>";
-                                                                }
-                                                                echo $salida;*/
-                                                            ?> 
-							</ul> 
-						</nav>
-					</div> -->	 
 				</div>
                             <?php echo $menu_principal?>
-				<!--div class="move-text">
-					<div class="marquee"><a href="offers.html"> Desde aqui busque productos  <span>Compra Online </span> <span> HAGA SU CALCULO AHORA!!!</span></a></div>
-					<script type="text/javascript" src="<?php echo base_url(); ?>recursos/js/jquery.marquee.min.js"></script>
-					<script>
-					  $('.marquee').marquee({ pauseOnHover: true });
-					  //@ sourceURL=pen.js
-					</script>
-				</div>-->
 			</div>
 		</div>
 		
 	</div>
-	<div class="products">	 
+	<div class="products">	
+            <h2 style='padding-left: 10px;margin-bottom: 10px;'>ZONAS DE ENTREGA</h2>
             <div class="row">
                 <?php
                     $line=1;

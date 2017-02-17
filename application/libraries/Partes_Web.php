@@ -93,6 +93,19 @@ class Partes_Web
         
         $this->ci = &get_instance();
         $this->ci->load->library("session");
+        
+        $this->ci->load->model("Configuracion_model");
+        $datos_correo= $this->ci->Configuracion_model->obtener_config(1);
+        $this->setDato_correo($datos_correo["descripcion"]);
+        $datos_movil= $this->ci->Configuracion_model->obtener_config(2);
+        $this->setDato_movil($datos_movil["descripcion"]);
+        $datos_telefono= $this->ci->Configuracion_model->obtener_config(3);
+        $this->setDato_telefono($datos_telefono["descripcion"]);
+        $datos_direccion= $this->ci->Configuracion_model->obtener_config(4);
+        $this->setDato_direccion($datos_direccion["descripcion"]);
+        $datos_localidad= $this->ci->Configuracion_model->obtener_config(6);
+        $this->setDato_localidad($datos_localidad["descripcion"]);
+        
         $this->seteoCssFile();
         $this->seteoModalIngreso();
         $this->seteoMenuPrincipal();
@@ -102,17 +115,7 @@ class Partes_Web
         $this->seteoFooter();
         
         
-        $this->ci->load->model("Configuracion_model");
-//        $datos_correo= $this->ci->Configuracion_model->obtener_config(1);
-//        $this->setDato_correo($datos_correo["descripcion"]);
-//        $datos_movil= $this->ci->Configuracion_model->obtener_config(2);
-//        $this->setDato_movil($datos_movil["descripcion"]);
-//        $datos_telefono= $this->ci->Configuracion_model->obtener_config(3);
-//        $this->setDato_telefono($datos_telefono["descripcion"]);
-//        $datos_direccion= $this->ci->Configuracion_model->obtener_config(4);
-//        $this->setDato_direccion($datos_direccion["descripcion"]);
-//        $datos_localidad= $this->ci->Configuracion_model->obtener_config(6);
-//        $this->setDato_localidad($datos_localidad["descripcion"]);
+        
     }
     
     public function getCssFiles()
@@ -255,17 +258,24 @@ class Partes_Web
         
         
         $this->menu_superior=
-        "<div class='w3ls-header'><!--header-one--> 
-			<div class='w3ls-header-left'>
-				<p><a href='#'>PARA ACTIVAR SU USUARIO LLAME AL - ".strtoupper($datos_telefono["descripcion"])."</a></p>
-			</div>
+        "<div class='w3ls-header-left'>";
+            if($this->ci->session->userdata('ingresado'))
+            {
+                $this->menu_superior.="<p><a href='#'>ESTA VIENDO LISTA DE PRECIOS: ".$this->ci->session->userdata('lista_precios')."</a></p>";
+            }
+            else
+            {
+                $this->menu_superior.="<p><a href='#'>PARA ACTIVAR SU USUARIO LLAME AL - ".strtoupper($this->dato_telefono)."</a></p>";
+            }
+	$this->menu_superior.="</div>
                         
 			<div class='w3ls-header-right'>
-				<ul>
-                                    <li class='dropdown head-dpdn'>";
-                                            if($this->ci->session->userdata('ingresado')){
+				<ul>";
+                                if($this->ci->session->userdata('ingresado')){
                                                 $this->menu_superior.="<span style='color:#fff;font-size: 20px;font-weight: bold;'>Bienvenido ".$this->ci->session->userdata('nombre')."</span>&nbsp;&nbsp;&nbsp;&nbsp;";
                                             }
+                                    $this->menu_superior.="<li class='dropdown head-dpdn'>";
+                                            
                                             $this->menu_superior.="<a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user' aria-hidden='true'></i> Mi Cuenta<span class='caret'></span></a>
                                             <ul class='dropdown-menu'>";
                                                     if($this->ci->session->userdata('ingresado')){
@@ -281,8 +291,7 @@ class Partes_Web
                                     </li> 
 				</ul>
 			</div>
-			<div class='clearfix'> </div> 
-		</div>";
+			<div class='clearfix'> </div>";
     }
     
     private function seteoParteBuscador()

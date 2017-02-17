@@ -337,7 +337,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="lista_precios_agregar">Lista precios</label>
-                            <input type="text" class="form-control" id="lista_precios_agregar">
+                            <select class="form-control" id="lista_precios_agregar">
+                                <option value='1'>Lista de precios 1</option>
+                                <option value='2'>Lista de precios 2</option>
+                                <option value='3'>Lista de precios 3</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -461,6 +465,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <input type="text" id="localidad_fixed_modificar" hidden="true">
+                            <label for="localidad_modificar">Localidad</label>
                             <select class="form-control" id="localidad_modificar">
                                 <option value='0'>Seleccione localidad</option>
                             </select>
@@ -509,7 +514,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="lista_precios_modificar">Lista precios</label>
-                            <input type="text" class="form-control" id="lista_precios_modificar">
+                            <select class="form-control" id="lista_precios_modificar">
+                                <option value='1'>Lista de precios 1</option>
+                                <option value='2'>Lista de precios 2</option>
+                                <option value='3'>Lista de precios 3</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -859,7 +868,6 @@
                         {
                             if(data[i]["id"] == provincia )
                             {
-                                alert(true);
                                 html+="<option value='"+data[i]["id"]+"' selected>"+data[i]["provincia"]+"</option>";
                             }
                             else

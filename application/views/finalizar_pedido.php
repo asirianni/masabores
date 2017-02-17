@@ -102,29 +102,7 @@
     <body>
         <div class="agileits-modal modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
 		aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user" aria-hidden="true"></i> INGRESO DE USUARIO</h4>
-                    </div>
-                    <div class="modal-body modal-body-sub"> 
-                        <h5>Ingrese sus datos </h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="usuario" id="usuario_ingresar">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="pass" id="password_ingresar"  >
-                        </div>
-                        <div class="form-group">
-                            <button type="button"  class="btn btn-info form-control" id="btn_iniciar_sesion" onClick="iniciarSesionCliente()">Ingresar</button>
-                        </div>
-                        <div class="form-group">
-                            <span style="color: #f00;" id="mensaje_inicio_sesion_usuario"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php echo $modal_ingreso?>
 	</div>
 	<script>
             <?php 
@@ -233,29 +211,7 @@
         	</div>
         <div class="agileits-modal modal fade" id="myModal88" tabindex="-1" role="dialog" aria-labelledby="myModal88"
 		aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-user" aria-hidden="true"></i> INGRESO DE USUARIO</h4>
-                    </div>
-                    <div class="modal-body modal-body-sub"> 
-                        <h5>Ingrese sus datos </h5>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="usuario" id="usuario_ingresar">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="pass" id="password_ingresar"  >
-                        </div>
-                        <div class="form-group">
-                            <button type="button"  class="btn btn-info form-control" id="btn_iniciar_sesion" onClick="iniciarSesionCliente()">Ingresar</button>
-                        </div>
-                        <div class="form-group">
-                            <span style="color: #f00;" id="mensaje_inicio_sesion_usuario"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php echo $modal_ingreso?>
 	</div>
         
         <div class="modal fade" id="modal_carga_producto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

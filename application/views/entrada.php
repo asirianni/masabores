@@ -115,41 +115,14 @@
 	</script> 
 	<!-- header -->
 	<div class="header">
+            <div class="w3ls-header"><!--header-one--> 
 		<?php echo $menu_superior?>
+            </div>
 		<?php echo $parte_buscador?>
 		<div class="header-three"><!-- header-three -->
 			<div class="container">
 				<div class="menu">
-<!--					<div class="cd-dropdown-wrapper">
-						<a class="cd-dropdown-trigger" href="#0">Categorias</a>
-						<nav class="cd-dropdown"> 
-							<a href="#0" class="cd-close">Close</a>
-							<ul class="cd-dropdown-content">
-                                                            <?php
-//                                                                $salida="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/0'> <i class=''></i> TODOS LOS RUBROS</a></li>";
-//                                                                foreach ($rubros as $r) {
-//                                                                    $salida.="<li><a href='".base_url()."index.php/welcome/busqueda_rubro/".$r["codigo"]."'>".strtoupper($r["descripcion"])."</a></li>";
-//                                                                }
-//                                                                echo $salida;
-                                                            ?> 
-							</ul>  .cd-dropdown-content 
-						</nav>  .cd-dropdown 
-					</div>  .cd-dropdown-wrapper 	 -->
 				</div>
-				<!--<div class="move-text">
-					<div class="marquee">
-                                            
-                                            <a href="<?php echo base_url(); ?>index.php/welcome/buscar"> 
-                                                VER CATALOGO
-                                            </a>
-                                        </div>
-					<script type="text/javascript" src="<?php echo base_url(); ?>recursos/js/jquery.marquee.min.js"></script>
-					<script>
-					  $('.marquee').marquee({ pauseOnHover: true });
-					  //# sourceURL=pen.js
-					</script>
-				</div>-->
-                                <!-- Static navbar -->
                             <?php echo $menu_principal?>
 			</div>
 		</div>
@@ -717,7 +690,7 @@
 	<div class="w3agile-ftr-top">
 		<div class="container">
 			<div class="ftr-toprow">
-				<div onclick="location.href='<?php echo base_url()?>index.php/welcome/zonas_de_cobertura';" class="col-md-4 ftr-top-gridson" >
+				<div style="cursor: pointer ;" onclick="location.href='<?php echo base_url()?>index.php/welcome/zonas_de_cobertura';" class="col-md-4 ftr-top-gridson" >
 					<div class="ftr-top-left" >
 						<i class="fa fa-truck" aria-hidden="true"></i>
 					</div> 
@@ -727,7 +700,7 @@
 					</div> 
 					<div class="clearfix"> </div>
 				</div> 
-				<div onClick='generar_clave_cliente()' class="col-md-4 ftr-top-grids">
+				<div style="cursor: pointer ;" onClick='generar_clave_cliente()' class="col-md-4 ftr-top-grids">
 					<div class="ftr-top-left">
 						<i class="fa fa-user" aria-hidden="true"></i>
 					</div> 
@@ -737,7 +710,7 @@
 					</div> 
 					<div class="clearfix"> </div>
 				</div>
-				<div class="col-md-4 ftr-top-grids">
+				<div style="cursor: pointer ;" class="col-md-4 ftr-top-grids">
 					<div class="ftr-top-left">
 						<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
 					</div> 
@@ -829,8 +802,10 @@
                             
                                 $('.bxslider').bxSlider({
                                         auto: true,
-                                        autoControls: true,
+                                        autoControls: false,
                                         default: 'horizontal',
+                                        responsive: true,
+                                        speed: 200,
                                 });
                                 
 				$('#countdown1').ClassyCountdown({

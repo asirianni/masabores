@@ -540,6 +540,11 @@ class Welcome extends CI_Controller {
             $salida["direccion"]= $this->Configuracion_model->obtener_config(4);
             $salida["horarios"]= $this->Configuracion_model->obtener_config(5);
             $salida["localidad"]= $this->Configuracion_model->obtener_config(6);
+            
+            $salida["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $salida["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $salida["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $salida["parte_buscador"]= $this->partes_web->getParteBuscador();
             $salida["footer"]= $this->partes_web->getFooter();
             
             $this->load->view('checkout', $salida);
