@@ -1271,18 +1271,21 @@ class Backoffice extends CI_Controller {
             
             header('Content-type: text/plain');
             header("Content-Disposition: attachment; filename=\"pedidos.odb\"");
+            $this->load->model("Vendedor_model");
             $pedido_numero=1;
+            
             $pedido=$this->Pedido_model->obtener_pedidos_pendientes();
             
             foreach($pedido as $p){
                 $detalle=$this->Pedido_model->obtener_detalle_pedido($p["numero"]);
                 $datos_complementarios_cliente=$this->Cliente_model->getCliente($p["cliente"]);
+                $vendedor_cod_masabores=$this->Vendedor_model->getVendedorMasabores($datos_complementarios_cliente["vendedor"]);
                 foreach ($detalle as $d) {
                     $cliente=$datos_complementarios_cliente["codigo_masabores"];
                     $articulo=$d["producto"];
                     $cantidad=$d["cantidad"];
                     $descuento=$d["descuento"];;
-                    $vendedor=$datos_complementarios_cliente["vendedor"];
+                    $vendedor=$vendedor_cod_masabores["cod_masabores"];
                     echo "\"".$pedido_numero."\",\"".$cliente."\",\"".$articulo."\",\"".$cantidad."\",\"".$descuento."\",\"".$vendedor."\"\r\n";
                 }
                 $this->Pedido_model->actualizar_pedido($p["numero"], 2);

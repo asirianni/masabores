@@ -692,7 +692,7 @@ class Welcome extends CI_Controller {
 						<h1 style='font-family:Helvetica Neue, Helvetica, Arial, sans-serif; font-weight:300; margin:0; padding:0; font-size:32px; line-height:40px; color:#000000; text-align:center' align='center'>".$nombre_cliente.", gracias por tu presupuesto !!!</h1>
 						<h3 style='font-family:Helvetica Neue, Helvetica, Arial, sans-serif; font-weight:300; margin:0; padding:0; font-size:20px; line-height:40px; color:#000000; text-align:center' align='center'>
 							Su nro. de pedido es: ".$pedido."<br>
-							Cualquier consulta podra hacerla a: ".$correo["descripcion"]."</h3>
+							Cualquier consulta podra hacerla a: ".$correo["envioripcion"]."</h3>
 							<h3 style='font-family:Helvetica Neue, Helvetica, Arial, sans-serif; font-weight:300; margin:0; padding:0; font-size:20px; line-height:40px; color:#000000; text-align:center' align='center'>O llamando al ".$telefono["descripcion"]."<br>
 				  			Horario: ".$horario["descripcion"]."<br>
 				  			<br>

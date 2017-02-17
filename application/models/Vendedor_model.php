@@ -23,4 +23,9 @@ class Vendedor_model extends CI_Model{
         $r = $this->db->query("select * from empleados where tipo_usuario = 2");
         return $r->result_array();
     }
+    public function getVendedorMasabores($dni)
+    {
+        $r = $this->db->query("select * from empleados where dni = $dni");
+        return $r->row_array();
+    }
 }
