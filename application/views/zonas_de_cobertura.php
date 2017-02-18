@@ -131,7 +131,7 @@ ul.menu li a {
 	<div class="header">
 		<div class="w3ls-header"><!--header-one--> 
 			<div class="w3ls-header-left">
-				<p><a href="#">ESTA VIENDO LISTA DE PRECIOS: </a></p>
+				<!--<p><a href="#">ESTA VIENDO LISTA DE PRECIOS: </a></p>-->
 			</div>
 			<div class="w3ls-header-right">
 				<ul>

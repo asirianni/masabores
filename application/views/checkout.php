@@ -122,14 +122,16 @@
             </div>
             <?php echo $parte_buscador?>
             <div class="header-three">
-			<div class="container">
-				<div class="menu"> 
-				</div>
-				<?php echo $menu_principal?>
-			</div>
+                <div class="container">
+                    <div class="menu" >
+
+                    </div>
+
+                </div>
 		
+            </div>
 	</div>
-	
+        <br>
         
         <div class="container">
             <h2 class="light text-center">CONFIRME SU PRESUPUESTO</h2>

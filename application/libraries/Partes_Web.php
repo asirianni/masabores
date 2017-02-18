@@ -261,7 +261,8 @@ class Partes_Web
         "<div class='w3ls-header-left'>";
             if($this->ci->session->userdata('ingresado'))
             {
-                $this->menu_superior.="<p><a href='#'>ESTA VIENDO LISTA DE PRECIOS: ".$this->ci->session->userdata('lista_precios')."</a></p>";
+                $this->menu_superior.="<p><a href='#'>PARA ACTIVAR SU USUARIO LLAME AL - ".strtoupper($this->dato_telefono)."</a></p>";
+//                $this->menu_superior.="<p><a href='#'>ESTA VIENDO LISTA DE PRECIOS: ".$this->ci->session->userdata('lista_precios')."</a></p>";
             }
             else
             {
@@ -280,7 +281,7 @@ class Partes_Web
                                             <ul class='dropdown-menu'>";
                                                     if($this->ci->session->userdata('ingresado')){
                                                             $this->menu_superior.="<li><a href='#'>Bienvenido ".$this->ci->session->userdata('nombre')."</a></li>
-                                                                                   <li><a href='#'>Lista: ".$this->ci->session->userdata('lista_precios')."</a></li>
+                                                                                   
                                                                                     <li><a href='".base_url()."index.php/welcome/cerrar_sesion'>Salida</a></li>";
                                                         }else{
                                                             $this->menu_superior.="<li><a href='#' onclick='iniciar_session();' >Ingreso</a></li>
