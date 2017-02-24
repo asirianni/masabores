@@ -193,17 +193,9 @@
                                                             //echo "			<input type='text' name='hora' class='form-control' required='required' placeholder='Hora' id ='datepicker_delivery_hora'>";
                                                             echo "			<select name='hora' class='form-control' required='required' id='delivery_hora'>";
                                                             echo " 				<option value='nada'>Seleccione Horario </option>";
-                                                            echo "				<option value='10 a 11'> 10 hs a 11 hs </option>";
-                                                            echo "				<option value='11 a 12'> 11 hs a 12 hs </option>";
-                                                            echo "				<option value='12 a 13'> 12 hs a 13 hs </option>";
-                                                            echo "				<option value='13 a 14'> 13 hs a 14 hs </option>";
-                                                            echo "				<option value='14 a 15'> 14 hs a 15 hs </option>";
-                                                            echo "				<option value='15 a 16'> 15 hs a 16 hs </option>";
-                                                            echo "				<option value='16 a 17'> 16 hs a 17 hs </option>";
-                                                            echo "				<option value='17 a 18'> 17 hs a 18 hs </option>";
-                                                            echo "				<option value='18 a 19'> 18 hs a 19 hs </option>";
-                                                            echo "				<option value='19 a 20'> 19 hs a 20 hs </option>";
-                                                            echo "				<option value='20 a 21'> 20 hs a 21 hs </option>";
+                                                            echo "				<option value='POR LA MANIANA'> POR LA MANIANA </option>";
+                                                            echo "				<option value='POR LA TARDE'> POR LA TARDE </option>";
+                                                            
                                                             echo "			</select>";
                                                             echo "		</div>";
                                                             echo "		<label>DETALLE DE ENTREGA</label>";
@@ -247,8 +239,8 @@
                                                             echo "	</div>";
                                                             echo "</div>";
                                                             echo "<br>";
-                                                            echo "<label>FORMA DE PAGO</label>";
-                                                            echo "<select id='forma_pago' name='pago' class='form-group'>";
+                                                            echo "<label style='display:none;'>FORMA DE PAGO</label>";
+                                                            echo "<select id='forma_pago' name='pago' class='form-group' style='display:none;'>";
                                                             echo "	<option value='contado'>Contado</option>";
                                                             echo "	<option value='cuenta_corriente'>Cuenta Corriente</option>";
                                                             echo "	<option value='transferencia'>Trasferencia</option>";
