@@ -186,7 +186,7 @@ class Partes_Web
                         <h4 class='modal-title' id='myModalLabel'><i class='fa fa-user' aria-hidden='true'></i> INGRESO DE USUARIO</h4>
                     </div>
                     <div class='modal-body modal-body-sub'> 
-                        <h5>Ingrese sus datos </h5>
+                        <h5>Ingrese sus datos si los posee</h5>
                         <div class='form-group'>
                             <input type='text' class='form-control' placeholder='usuario' id='usuario_ingresar'>
                         </div>
@@ -240,8 +240,8 @@ class Partes_Web
                                   <ul class='nav navbar-nav navbar-right'>
                                     <li class='active'><a href='".base_url()."'><span class='glyphicon glyphicon-home' aria-hidden='true'></span> Principal</a></li>
                                     <li><a href='".base_url()."index.php/welcome/nosotros'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Nosotros</a></li>
-                                    <li><a href='".base_url()."index.php/welcome/productos'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Productos</a></li>
-                                    <li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-usd' aria-hidden='true'></span> Lista de precios</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/productos'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Categorias</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Todos</a></li>
                                     <li><a href='".base_url()."index.php/welcome/contacto'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> Contacto</a></li>
                                   </ul>
                                 </div><!--/.nav-collapse -->
@@ -403,7 +403,9 @@ class Partes_Web
         $datos_localidad= $this->ci->Configuracion_model->obtener_config(6);
         $this->setDato_localidad($datos_localidad["descripcion"]);
         
+       $this->ci->load->model("Locales_model");
        
+       $locales = $this->ci->Locales_model->getLocales();
         
         $this->footer=
         "<!-- footer -->
@@ -417,10 +419,58 @@ class Partes_Web
                                                 <h6></h6> 
 					</div>
 					<ul>
-                                            <li><i class='fa fa-map-marker'></i>".strtoupper($this->dato_direccion)." ".strtoupper($this->dato_localidad)."</li>
-                                            <li><i class='fa fa-mobile'></i>".strtoupper($this->dato_movil)."</li>
-                                            <li><i class='fa fa-phone'></i>".strtoupper($this->dato_telefono)."</li>
-                                            <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($this->dato_correo)."</a></li>
+                                            <li><i class='fa fa-map-marker'></i>".strtoupper($locales[0]["dire"])." ".strtoupper($locales[0]["desc_localidad"])."</li>
+                                            <!--<li><i class='fa fa-mobile'></i></li>-->
+                                            <li><i class='fa fa-phone'></i>".strtoupper($locales[0]["telefono"])."</li>
+                                            <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[0]["correo"])."</a></li>
+                                            <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[0]["horario"])."</a></li>
+					</ul> 
+				</div>
+<!--				<div class='col-md-8 address-right'>
+					<div class='col-md-4 footer-grids'>
+						<h3>Company</h3>
+						<ul>
+							<li><a href='about.html'>About Us</a></li>
+							<li><a href='marketplace.html'>Marketplace</a></li>  
+							<li><a href='values.html'>Core Values</a></li>  
+							<li><a href='privacy.html'>Privacy Policy</a></li>
+						</ul>
+					</div>
+					<div class='col-md-4 footer-grids'>
+						<h3>Services</h3>
+						<ul>
+							<li><a href='contact.html'>Contact Us</a></li>
+							<li><a href='login.html'>Returns</a></li> 
+							<li><a href='faq.html'>FAQ</a></li>
+							<li><a href='sitemap.html'>Site Map</a></li>
+							<li><a href='login.html'>Order Status</a></li>
+						</ul> 
+					</div>
+					<div class='col-md-4 footer-grids'>
+						<h3>Payment Methods</h3>
+						<ul>
+							<li><i class='fa fa-laptop' aria-hidden='true'></i> Net Banking</li>
+							<li><i class='fa fa-money' aria-hidden='true'></i> Cash On Delivery</li>
+							<li><i class='fa fa-pie-chart' aria-hidden='true'></i>EMI Conversion</li>
+							<li><i class='fa fa-gift' aria-hidden='true'></i> E-Gift Voucher</li>
+							<li><i class='fa fa-credit-card' aria-hidden='true'></i> Debit/Credit Card</li>
+						</ul>  
+					</div>
+				</div>-->
+			</div>
+                        <div class='footer-info w3-agileits-info'>
+				<div class='col-md-offset-1 col-md-4 address-left agileinfo'>
+					<div class='footer-logo header-logo'>
+						<h1><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas.png' alt='img'></span></a></h1>
+                                                <br>
+                                                <h6></h6> 
+					</div>
+					<ul>
+                                            <li><i class='fa fa-map-marker'></i>".strtoupper($locales[1]["dire"])." ".strtoupper($locales[0]["desc_localidad"])."</li>
+                                            <!--<li><i class='fa fa-mobile'></i></li>-->
+                                            <li><i class='fa fa-phone'></i>".strtoupper($locales[1]["telefono"])."</li>
+                                            <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[1]["correo"])."</a></li>
+                                            <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[1]["horario"])."</a></li>
 					</ul> 
 				</div>
 <!--				<div class='col-md-8 address-right'>

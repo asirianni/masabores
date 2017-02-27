@@ -200,7 +200,7 @@
         
         <div class="modal fade" id="modal_carga_producto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">	    
-                <div id="datos_carga" class="modal-content">	      
+                <div id="datos_carga" class="modal-content" style="text-align: center;">	      
                 </div>
             </div>
         </div>
@@ -453,7 +453,7 @@
             
             function ver_imagen(cod){            
                 if(cod !== null){
-                    var url = '<?php echo base_url(); ?>index.php/welcome/ver_imagen_producto/';
+                    var url = '<?php echo base_url(); ?>index.php/welcome/ver_imagen_producto_con_memo/';
                     var codigo = cod;
 
                     $.ajax({
@@ -468,12 +468,11 @@
 
                         success: function (data) {
                                       //event.preventDefault();
-
                                 $('#datos_carga').empty().append(data);
                         },
 
                         error: function (event){
-
+                            alert(event.responseText);
                         },
                     });
 

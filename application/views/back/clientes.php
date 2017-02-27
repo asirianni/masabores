@@ -208,8 +208,9 @@
                     <h4 class="modal-title">Agregar cliente: </h4>
                 </div>
                 <div class="modal-body">
-                    <p style="font-size: 16px;font-weight: bold;color: #F00;" id="mensaje_error_agregar_comprador"></p>
-                    
+                    <div class="col-md-12">
+                        <p style="font-size: 16px;font-weight: bold;color: #F00;" id="mensaje_error_agregar_comprador"></p>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="usuario_agregar">Usuario</label>
@@ -767,7 +768,7 @@
             var respuesta = true;
             
             if(usuario == ""){ respuesta = false;marcar_error_input("#usuario"+seccion);}else{desmarcar_error_input("#usuario"+seccion);};
-            if(correo == ""){ respuesta = false;marcar_error_input("#correo"+seccion);}else{desmarcar_error_input("#correo"+seccion);};
+            if(!validarEmail(correo) || correo == ""){ respuesta = false;marcar_error_input("#correo"+seccion);}else{desmarcar_error_input("#correo"+seccion);};
             if(pass == ""){ respuesta = false;marcar_error_input("#pass"+seccion);}else{desmarcar_error_input("#pass"+seccion);};
             if(nombre == ""){ respuesta = false;marcar_error_input("#nombre"+seccion);}else{desmarcar_error_input("#nombre"+seccion);};
             if(apellido == ""){ respuesta = false;marcar_error_input("#apellido"+seccion);}else{desmarcar_error_input("#apellido"+seccion);};
@@ -778,8 +779,6 @@
             if(localidad == ""){ respuesta = false;marcar_error_input("#localidad"+seccion);}else{desmarcar_error_input("#localidad"+seccion);};
             if(cod_postal == ""){ respuesta = false;marcar_error_input("#cod_postal"+seccion);}else{desmarcar_error_input("#cod_postal"+seccion);};
             if(parseInt(pais) == 0){ respuesta = false;marcar_error_input("#pais"+seccion);}else{desmarcar_error_input("#pais"+seccion);};
-            if(celular == ""){ respuesta = false;marcar_error_input("#celular"+seccion);}else{desmarcar_error_input("#celular"+seccion);};
-            if(fijo == ""){ respuesta = false;marcar_error_input("#fijo"+seccion);}else{desmarcar_error_input("#fijo"+seccion);};
             if(parseInt(tipo_iva) == 0){ respuesta = false;marcar_error_input("#tipo_iva"+seccion);}else{desmarcar_error_input("#tipo_iva"+seccion);};
             if(parseInt(estado) == 0){ respuesta = false;marcar_error_input("#estado"+seccion);}else{desmarcar_error_input("#estado"+seccion);};
             if(lista_precios  == ""){ respuesta = false;marcar_error_input("#lista_precios"+seccion);}else{desmarcar_error_input("#lista_precios"+seccion);};
@@ -790,6 +789,19 @@
             return respuesta;
         }
         
+        function validarEmail( email ) 
+        {
+            var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if ( !expr.test(email) )
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         function marcar_error_input(id)
         {
             $(id).css("border-color","#F00");

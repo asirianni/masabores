@@ -611,7 +611,7 @@
                         {
                             if($indice < $iconos)
                             {
-                             echo "<img style='display: inline-block !important;margin-bottom: 0px;padding-bottom:0px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
+                             echo "<img style='display: inline-block !important;margin-bottom: 0px;padding-bottom:10px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
                             }
                             $contador++;
                             $indice++;
@@ -642,7 +642,7 @@
                         {
                             if($indice < $iconos)
                             {
-                             echo "<img class='img-responsive' style='display: inline-block !important;margin-bottom: 0px;padding-bottom:0px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
+                             echo "<img class='img-responsive' style='display: inline-block !important;margin-bottom: 10px;padding-bottom:0px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
                             }
                             $contador++;
                             $indice++;
@@ -673,7 +673,7 @@
                         {
                             if($indice < $iconos)
                             {
-                             echo "<img class='img-responsive' style='display: inline-block !important;margin-bottom: 0px;padding-bottom:0px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
+                             echo "<img class='img-responsive' style='display: inline-block !important;margin-bottom: 10px;padding-bottom:0px;' src='".base_url()."recursos/images/slider_marcas/".$marcas[$indice]["imagen"]."'>";
                             }
                             $contador++;
                             $indice++;

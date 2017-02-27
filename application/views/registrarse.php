@@ -147,7 +147,7 @@
                                     <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="correo" class="label-registro">Correo</label>
-                                            <input type="text" class="user" name="correo" id="correo" required="">
+                                            <input type="email" class="user form-control" name="correo" id="correo" required="" style="border-radius: 0px;height: 45px;">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
@@ -591,6 +591,14 @@
                 return respuesta;
             }
             
+            function validarEmail(valor) {
+                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(valor)){
+                 return true;
+                } else {
+                 return false;
+                }
+            }
+
             function cambio_provincia()
             {
                 $.ajax({

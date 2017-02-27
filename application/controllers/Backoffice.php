@@ -456,6 +456,7 @@ class Backoffice extends CI_Controller {
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();
 			$crud->set_table('zonas_cobertura');
+                        $crud->set_relation("cod_dia", "dias_semanas", "descripcion");
                         $crud->set_field_upload('imagen','recursos/images/zonas_coberturas/');
 			$output = $crud->render();
 			$this->load->view('back/config.php', $output);
@@ -520,6 +521,45 @@ class Backoffice extends CI_Controller {
 		$output['output']=$this->renderizar_pedido($pedido);
 		$this->load->view('back/ver_pedido.php', $output);
 	}
+        
+        public function imprimir_pedido($numero)
+        {
+            // obtener datos del cliente a partir del numero pedido.
+            $datos_cliente=$this->Pedido_model->obtener_cliente($numero);
+	
+            // el pedido se retira?, devuelve true o false.
+            $se_retira=$this->Pedido_model->el_pedido_se_retira($numero);
+		
+            // obtener datos del pedido a partir del numero pedido.
+            $pedido=$this->Pedido_model->obtener_pedido($numero);
+            $tipo_entrega="retiro";
+            $fecha_entrega=$pedido['f_retiro'];
+            
+            if($pedido['f_retiro']==null){
+                $tipo_entrega="entrega";
+		$fecha_entrega=$pedido['f_entrega'];
+            }
+	
+            // obtener detalle a partir del numero de numero pedido.
+            $detalle=$this->Pedido_model->obtener_pedido_detalle($numero);
+            $datos_local="";
+            
+            //obtener datos del local a partir del numero de pedido.
+            if ($pedido['local']!=null){
+		$datos_local=$this->Pedido_model->obtener_local($numero);
+            }
+            //obtener los estados posibles del pedido para listarlos en pantalla
+            $estados=$this->Pedido_model->obtener_estados();
+            
+            $this->load->library("Exportar_pedido");
+            
+            $obj = new Exportar_pedido();
+            
+            $obj->setHtml($datos_cliente,$pedido,$tipo_entrega,$fecha_entrega,$datos_local,$detalle);
+            
+           // var_dump($pedido);
+            $obj->getPdf();
+        }
         
         public function imagenes(){
 		if ($this->verificar_acceso()) {
@@ -1153,7 +1193,7 @@ class Backoffice extends CI_Controller {
                            				$salida.="<option value='".$e['codigo']."' ".$selected.">".$e['estado']."</option>";
                            			}
                                         	
-                            $salida.=   "</select></div><div class='form-group'><button type='submi' class='btn btn-default'>Actualizar</button>";
+                            $salida.=   "</select></div><div class='form-group'><button type='submit' class='btn btn-default'>Actualizar</button> <a target='_blank' href='".base_url()."index.php/backoffice/imprimir_pedido/".$pedido['numero']."' class='btn btn-default'>Imprimir</a>";
                             $salida.= form_close();
                             $salida.= "
                                         

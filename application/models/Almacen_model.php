@@ -187,6 +187,14 @@ class Almacen_model extends CI_Model {
 		return $imagen;
 	}
         
+        function obtener_imagen_productos_con_memo($codigo){
+		$imagen=null;
+		$query = $this->db->query("SELECT imagenes.imagen, productos.memo FROM imagenes INNER JOIN productos on productos.cod_prod = imagenes.cod_producto WHERE imagenes.cod_producto = '$codigo'");
+		$valor_obtenido=$query->row_array();
+		
+		return $valor_obtenido;
+	}
+        
 	function actualizar_fecha_lista($lista, $fecha) {
 		$query = $this->db->query("update configuracion set descripcion = '$fecha' where funcionalidad = '$lista'");;
 	}
