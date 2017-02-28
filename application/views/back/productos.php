@@ -103,7 +103,8 @@
 	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/colores')?>'> ABM Colores </a> |
 	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/cantidades')?>'> ABM Cantidades </a> |-->
 	        <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos')?>'> ABM Grupos </a> |
-                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos_padres')?>'> ABM Grupos Padres </a>   
+                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos_padres')?>'> ABM Grupos Padres </a> |
+                <i class="fa fa-table fa-fw"></i><a href='#' onclick="$('#modal-actualizar-imagenes').modal('show');"> Cargar imagenes </a>  
                 <!-- /.col-lg-12 -->
             </div>
             <div class="row">
@@ -144,6 +145,23 @@
 		<script src="<?php echo $file; ?>"></script>
 	<?php endforeach; ?>
 
+   <div class="modal modal-warning" id="modal-actualizar-imagenes">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Cargar imagenes:</h4>
+                  </div>
+                  <div class="modal-body">
+                        <p style="color: #fff;font-size: 16px;text-align:center;">¿Está seguro de cargar las imagenes?</p>
+                        <div class="form-group">
+                            <input class="btn btn-outline pull-left" value="Cancelar" type="button" onClick="$('#modal-actualizar-imagenes').modal('hide');">
+                            <a href="<?php echo base_url()?>index.php/backoffice/cargar_imagenes_server" class="btn btn-outline pull-right">Confirmar</a>
+                        </div>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+    </div>
 </body>
 
 </html>

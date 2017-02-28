@@ -1335,6 +1335,44 @@ class Backoffice extends CI_Controller {
             
             
         }
+    
+    public function cargar_imagenes_server()
+    {
+        $tabla_imagenes = Array();
+        
+        $directorio = opendir("assets/img/productos"); //ruta actual
+        
+        while ($archivo = readdir($directorio)) //obtenemos un archivo y luego otro sucesivamente
+        {
+            if (!is_dir($archivo))//verificamos si es o no un directorio
+            {
+                $i_final = 0;
+                $posicion = 0;
+                
+                while ($i_final < strlen($archivo))
+                {
+                    if(substr($archivo, $i_final, 1) == "-")
+                    {
+                        $posicion_separador=$i_final;
+                        $i_final = strlen($archivo);
+                    }
+                    $i_final++;
+                }
+                
+                // MOSTRANDO CODIGO Y MOSTRANDO NOMBRE DE PRODUCTO
+                
+                $codigo = substr($archivo, 0, $posicion_separador);
+                $imagen = substr($archivo, ($posicion_separador+1), strlen($archivo));
+                
+                $tabla_imagenes[]= Array("codigo"=>$codigo,"imagen"=>$imagen);
+            }
+        }
+        
+        $this->load->model("Imagenes_model");
+        $this->Imagenes_model->actualizacion_imagenes($tabla_imagenes);
+        
+        redirect("backoffice/productos");
+    }
 
 	
 }
