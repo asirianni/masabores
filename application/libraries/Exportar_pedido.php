@@ -150,7 +150,7 @@ $this->html.="</table>";
         $this->SetKeywords('');
  
         // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config_alt.php de libraries/config
-        $this->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, "Cristales Santa Rosa", "Exportacion de obra", array(0, 64, 255), array(0, 64, 128));
+        $this->SetHeaderData(null, 0, "Masabores", "Exportacion de pedido", array(0, 0, 0), array(0, 64, 128));
         $this->setFooterData($tc = array(0, 64, 0), $lc = array(0, 64, 128));
  
         // datos por defecto de cabecera, se pueden modificar en el archivo tcpdf_config.php de libraries/config

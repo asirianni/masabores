@@ -193,18 +193,39 @@ ul.menu li a {
             <h2 style='padding-left: 10px;margin-bottom: 10px;'>ZONAS DE ENTREGA</h2>
             <div class="row">
                 <?php
-                    $line=1;
-                    foreach ($zonas_coberturas as $value) {?>
-                        <div class="col-md-4">
-                            <div style="margin-bottom: 40px;">
-                                <p style="margin-top: 20px;" class="text-center"><img class=img-responsive" src="<?php echo base_url()?>recursos/images/zonas_coberturas/<?php echo $value["imagen"]?>" height="200"/></p>
-                                <h3 class="text-center" syle="color: #000;"><?php echo $value["descripcion"]?></h3>
-                                
-                                <!--<p style="margin-top: 10px;" class="text-center"><a href="<?php echo base_url()?>index.php/welcome/busqueda_rubro/<?php echo $value["codigo"]?>" class="btn btn-large btn-default">Ver Productos </a></p>-->
-                            </div>
-                        </div>
+                    $i=0; 
                     
-                <?php if($line==3){echo"</div><div class='row'>"; $line=0;}$line++;}?>
+                    while($i < count($zonas_coberturas))
+                    {
+                        $nombre_dia = $zonas_coberturas[$i]["desc_dia"];
+                        
+                        echo "<div class='clearfix'></div>"
+                                . "<div class='col-md-offset-1 col-md-10'><h3>".strtoupper($nombre_dia)."</h3>";
+                        
+                        while(($i < count($zonas_coberturas)) && ($nombre_dia == $zonas_coberturas[$i]["desc_dia"]))
+                        {
+                            echo "<div class='col-md-4'>
+                                <div style='margin-bottom: 40px;'>
+                                    <p style='margin-top: 20px;' class='text-center'><img class='img-responsive' src='".base_url()."recursos/images/zonas_coberturas/".$zonas_coberturas[$i]["imagen"]."' height='200'/></p>
+                                    <h3 class='text-center' style='color: #000;'>".$zonas_coberturas[$i]["descripcion"]."</h3>";
+                                    $costo = (int)$zonas_coberturas[$i]["costo"];
+                            
+                                    if($costo > 0 && $zonas_coberturas[$i]["mostrar_precio"] == "si")
+                                    {
+                                        echo "<p class='text-center' style='color: #000;font-size: 20px;'>$".$zonas_coberturas[$i]["costo"]."</p>";
+                                    }
+                                    else
+                                    {
+                                        echo "<p></p>";
+                                    }
+                                echo "</div>
+                            </div>";
+                            $i++;
+                        }
+                        
+                        echo "</div>";
+                    }
+                   ?>  
             </div>
         </div>
 	<!-- footer -->

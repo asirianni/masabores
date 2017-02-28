@@ -1351,7 +1351,7 @@ class Backoffice extends CI_Controller {
                 
                 while ($i_final < strlen($archivo))
                 {
-                    if(substr($archivo, $i_final, 1) == "-")
+                    if(substr($archivo, $i_final, 1) == "-" || substr($archivo, $i_final, 1) == "_")
                     {
                         $posicion_separador=$i_final;
                         $i_final = strlen($archivo);

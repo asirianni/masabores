@@ -240,6 +240,7 @@ class Partes_Web
                                   <ul class='nav navbar-nav navbar-right'>
                                     <li class='active'><a href='".base_url()."'><span class='glyphicon glyphicon-home' aria-hidden='true'></span> Principal</a></li>
                                     <li><a href='".base_url()."index.php/welcome/nosotros'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Nosotros</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/zonas_de_cobertura'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Entregas</a></li>
                                     <li><a href='".base_url()."index.php/welcome/productos'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Categorias</a></li>
                                     <li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Todos</a></li>
                                     <li><a href='".base_url()."index.php/welcome/contacto'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> Contacto</a></li>
@@ -407,6 +408,27 @@ class Partes_Web
        
        $locales = $this->ci->Locales_model->getLocales();
         
+       
+       $dir_uno = strtoupper($locales[0]["dire"])." ".strtoupper($locales[0]["desc_localidad"]);
+       $dir_dos = strtoupper($locales[1]["dire"])." ".strtoupper($locales[1]["desc_localidad"]);
+       
+       /*
+       if(strlen($dir_uno) > strlen($dir_dos))
+       {
+           for($i= strlen($dir_dos); $i <strlen($dir_uno);$i++)
+           {
+               $dir_dos.="  ";
+           }
+       }
+       else
+       {
+           for($i= strlen($dir_uno); $i <strlen($dir_dos);$i++)
+           {
+               $dir_uno.="  ";
+           }
+       }
+       */
+       
         $this->footer=
         "<!-- footer -->
 	<div class='footer'>
@@ -419,44 +441,14 @@ class Partes_Web
                                                 <h6></h6> 
 					</div>
 					<ul>
-                                            <li><i class='fa fa-map-marker'></i>".strtoupper($locales[0]["dire"])." ".strtoupper($locales[0]["desc_localidad"])."</li>
+                                            <li><i class='fa fa-map-marker'></i>".$dir_uno."</li>
                                             <!--<li><i class='fa fa-mobile'></i></li>-->
                                             <li><i class='fa fa-phone'></i>".strtoupper($locales[0]["telefono"])."</li>
                                             <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[0]["correo"])."</a></li>
                                             <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[0]["horario"])."</a></li>
 					</ul> 
 				</div>
-<!--				<div class='col-md-8 address-right'>
-					<div class='col-md-4 footer-grids'>
-						<h3>Company</h3>
-						<ul>
-							<li><a href='about.html'>About Us</a></li>
-							<li><a href='marketplace.html'>Marketplace</a></li>  
-							<li><a href='values.html'>Core Values</a></li>  
-							<li><a href='privacy.html'>Privacy Policy</a></li>
-						</ul>
-					</div>
-					<div class='col-md-4 footer-grids'>
-						<h3>Services</h3>
-						<ul>
-							<li><a href='contact.html'>Contact Us</a></li>
-							<li><a href='login.html'>Returns</a></li> 
-							<li><a href='faq.html'>FAQ</a></li>
-							<li><a href='sitemap.html'>Site Map</a></li>
-							<li><a href='login.html'>Order Status</a></li>
-						</ul> 
-					</div>
-					<div class='col-md-4 footer-grids'>
-						<h3>Payment Methods</h3>
-						<ul>
-							<li><i class='fa fa-laptop' aria-hidden='true'></i> Net Banking</li>
-							<li><i class='fa fa-money' aria-hidden='true'></i> Cash On Delivery</li>
-							<li><i class='fa fa-pie-chart' aria-hidden='true'></i>EMI Conversion</li>
-							<li><i class='fa fa-gift' aria-hidden='true'></i> E-Gift Voucher</li>
-							<li><i class='fa fa-credit-card' aria-hidden='true'></i> Debit/Credit Card</li>
-						</ul>  
-					</div>
-				</div>-->
+                                <br/>
 			</div>
                         <div class='footer-info w3-agileits-info'>
 				<div class='col-md-offset-1 col-md-4 address-left agileinfo'>
@@ -466,46 +458,13 @@ class Partes_Web
                                                 <h6></h6> 
 					</div>
 					<ul>
-                                            <li><i class='fa fa-map-marker'></i>".strtoupper($locales[1]["dire"])." ".strtoupper($locales[0]["desc_localidad"])."</li>
+                                            <li><i class='fa fa-map-marker'></i>".$dir_dos."</li>
                                             <!--<li><i class='fa fa-mobile'></i></li>-->
                                             <li><i class='fa fa-phone'></i>".strtoupper($locales[1]["telefono"])."</li>
                                             <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[1]["correo"])."</a></li>
                                             <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[1]["horario"])."</a></li>
 					</ul> 
 				</div>
-<!--				<div class='col-md-8 address-right'>
-					<div class='col-md-4 footer-grids'>
-						<h3>Company</h3>
-						<ul>
-							<li><a href='about.html'>About Us</a></li>
-							<li><a href='marketplace.html'>Marketplace</a></li>  
-							<li><a href='values.html'>Core Values</a></li>  
-							<li><a href='privacy.html'>Privacy Policy</a></li>
-						</ul>
-					</div>
-					<div class='col-md-4 footer-grids'>
-						<h3>Services</h3>
-						<ul>
-							<li><a href='contact.html'>Contact Us</a></li>
-							<li><a href='login.html'>Returns</a></li> 
-							<li><a href='faq.html'>FAQ</a></li>
-							<li><a href='sitemap.html'>Site Map</a></li>
-							<li><a href='login.html'>Order Status</a></li>
-						</ul> 
-					</div>
-					<div class='col-md-4 footer-grids'>
-						<h3>Payment Methods</h3>
-						<ul>
-							<li><i class='fa fa-laptop' aria-hidden='true'></i> Net Banking</li>
-							<li><i class='fa fa-money' aria-hidden='true'></i> Cash On Delivery</li>
-							<li><i class='fa fa-pie-chart' aria-hidden='true'></i>EMI Conversion</li>
-							<li><i class='fa fa-gift' aria-hidden='true'></i> E-Gift Voucher</li>
-							<li><i class='fa fa-credit-card' aria-hidden='true'></i> Debit/Credit Card</li>
-						</ul>  
-					</div>
-					<div class='clearfix'></div>
-				</div>-->
-				<div class='clearfix'></div>
 			</div>
 		</div>
 	</div>
