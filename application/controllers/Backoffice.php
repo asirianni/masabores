@@ -425,6 +425,19 @@ class Backoffice extends CI_Controller {
 		}
 	}
         
+        public function abm_home_seccion()
+        {
+            if ($this->verificar_acceso()) {
+		$crud = new grocery_CRUD();
+		$crud->set_table('home_seccion');
+		$output = $crud->render();
+		$this->load->view('back/config.php', $output);
+            }else{
+		$output['salida_error']="";
+		$this->load->view('back/loguin', $output);
+            }
+	}
+        
         public function abm_locales(){
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();
@@ -1349,6 +1362,7 @@ class Backoffice extends CI_Controller {
                 $i_final = 0;
                 $posicion = 0;
                 $posicion_separador =0;
+                
                 while ($i_final < strlen($archivo))
                 {
                     if(substr($archivo, $i_final, 1) == "-" || substr($archivo, $i_final, 1) == "_")
@@ -1363,17 +1377,15 @@ class Backoffice extends CI_Controller {
                 
                 $codigo = substr($archivo, 0, $posicion_separador);
                 $imagen = substr($archivo, ($posicion_separador+1), strlen($archivo));
-                $datos = explode(".", $imagen);
-//                echo $datos[0];
-//                echo $imagen;
-                $tabla_imagenes[]= Array("codigo"=>$datos[0],"imagen"=>$imagen);
+                
+                $tabla_imagenes[]= Array("codigo"=>$codigo,"imagen"=>$imagen);
             }
         }
         
         $this->load->model("Imagenes_model");
         $this->Imagenes_model->actualizacion_imagenes($tabla_imagenes);
         
-//        redirect("backoffice/productos");
+        redirect("backoffice/productos");
     }
 
 	

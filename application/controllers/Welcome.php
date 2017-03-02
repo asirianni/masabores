@@ -70,6 +70,9 @@ class Welcome extends CI_Controller {
             $salida["footer"]= $this->partes_web->getFooter();
             $salida["siganos_en"]= $this->partes_web->getSiganosEn();
             
+            $this->load->model("Home_seccion_model");
+            $salida["secciones_activas"]= $this->Home_seccion_model->getHomeSecciones();
+            
             $this->load->view('entrada', $salida);
 	}
         

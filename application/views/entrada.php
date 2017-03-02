@@ -123,113 +123,118 @@
 			<div class="container">
 				<div class="menu">
 				</div>
-                            <?php echo $menu_principal?>
+                            
+                            <?php if($secciones_activas[0]["mostrar"] == "si"){echo $menu_principal;}?>
 			</div>
 		</div>
 	</div>
 	<!-- //header -->	
 	<!-- banner -->
 	<div class="banner">
+                <!-- INICIO CARRUSEL - SLIDER-->
+                <?php if($secciones_activas[1]["mostrar"] == "si"){?>
 		<div id="kb" class="carousel kb_elastic animate_text kb_wrapper" data-ride="carousel" data-interval="6000" data-pause="hover">
 			<!-- Wrapper-for-Slides -->
-            <div class="carousel-inner" role="listbox">  
-                <div class="item active"><!-- First-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/foto8.jpg" alt="" class="img-responsive" />
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h3 data-animation="animated flipInX">Masabores <span>  </span> </h3>
-                        <h4 data-animation="animated flipInX">Bienvenido</h4>
-                    </div>
-                </div>  
-                <div class="item"> <!-- Second-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/supermercado.jpg" alt="" class="img-responsive" />
-                    <div class="carousel-caption kb_caption kb_caption_right">
-                        <h3 data-animation="animated fadeInDown">Consulte nuestro catalogo online</h3>
-                        <h4 data-animation="animated fadeInUp">Calcule su presupuesto</h4>
-                    </div>
-                </div> 
-                <div class="item"><!-- Third-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/foto7.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Stock permanente </h3>
-                        <h4 data-animation="animated flipInX">de productos</h4>
-                    </div>
+                        <div class="carousel-inner" role="listbox">  
+                            <div class="item active"><!-- First-Slide -->
+                                <img src="<?php echo base_url(); ?>recursos/images/foto8.jpg" alt="" class="img-responsive" />
+                                <div class="carousel-caption kb_caption kb_caption_right">
+                                    <h3 data-animation="animated flipInX">Masabores <span>  </span> </h3>
+                                    <h4 data-animation="animated flipInX">Bienvenido</h4>
+                                </div>
+                            </div>  
+                            <div class="item"> <!-- Second-Slide -->
+                                <img src="<?php echo base_url(); ?>recursos/images/supermercado.jpg" alt="" class="img-responsive" />
+                                <div class="carousel-caption kb_caption kb_caption_right">
+                                    <h3 data-animation="animated fadeInDown">Consulte nuestro catalogo online</h3>
+                                    <h4 data-animation="animated fadeInUp">Calcule su presupuesto</h4>
+                                </div>
+                            </div> 
+                            <div class="item"><!-- Third-Slide -->
+                                <img src="<?php echo base_url(); ?>recursos/images/foto7.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Stock permanente </h3>
+                                    <h4 data-animation="animated flipInX">de productos</h4>
+                                </div>
+                            </div>
+                            <div class="item"><!-- Third-Slide -->
+                                <img src="<?php echo base_url(); ?>recursos/images/foto3.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                </div>
+                            </div>
+                            <div class="item"><!-- Third-Slide -->
+                                <img src="<?php echo base_url(); ?>recursos/images/foto2.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">con marcas lideres </h3>
+                                    <h4 data-animation="animated flipInX">en el mercado</h4>
+                                </div>
+                            </div> 
+            <!--                <div class="item"> Third-Slide 
+                                <img src="<?php echo base_url(); ?>recursos/images/foto3.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                </div>
+                            </div> 
+                            <div class="item"> Third-Slide 
+                                <img src="<?php echo base_url(); ?>recursos/images/foto4.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                </div>
+                            </div> 
+                            <div class="item"> Third-Slide 
+                                <img src="<?php echo base_url(); ?>recursos/images/foto5.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                </div>
+                            </div> 
+                            <div class="item"> Third-Slide 
+                                <img src="<?php echo base_url(); ?>recursos/images/foto6.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                </div>
+                            </div> 
+                            <div class="item"> Third-Slide 
+                                <img src="<?php echo base_url(); ?>recursos/images/foto7.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                </div>
+                            </div> 
+                            <div class="item"> Third-Slide 
+                                <img src="<?php echo base_url(); ?>recursos/images/foto8.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                </div>
+                            </div> 
+                            <div class="item"> Third-Slide 
+                                <img src="<?php echo base_url(); ?>recursos/images/foto9.jpg" alt="" class="img-responsive"/>
+                                <div class="carousel-caption kb_caption kb_caption_center">
+                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
+                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                </div>
+                            </div> -->
+
+                        </div> 
+                        <!-- Left-Button -->
+                        <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">
+                                            <span class="fa fa-angle-left kb_icons" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a> 
+                        <!-- Right-Button -->
+                        <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next">
+                            <span class="fa fa-angle-right kb_icons" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a> 
                 </div>
-                <div class="item"><!-- Third-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/foto3.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div>
-                <div class="item"><!-- Third-Slide -->
-                    <img src="<?php echo base_url(); ?>recursos/images/foto2.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">con marcas lideres </h3>
-                        <h4 data-animation="animated flipInX">en el mercado</h4>
-                    </div>
-                </div> 
-<!--                <div class="item"> Third-Slide 
-                    <img src="<?php echo base_url(); ?>recursos/images/foto3.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div> 
-                <div class="item"> Third-Slide 
-                    <img src="<?php echo base_url(); ?>recursos/images/foto4.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div> 
-                <div class="item"> Third-Slide 
-                    <img src="<?php echo base_url(); ?>recursos/images/foto5.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div> 
-                <div class="item"> Third-Slide 
-                    <img src="<?php echo base_url(); ?>recursos/images/foto6.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div> 
-                <div class="item"> Third-Slide 
-                    <img src="<?php echo base_url(); ?>recursos/images/foto7.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div> 
-                <div class="item"> Third-Slide 
-                    <img src="<?php echo base_url(); ?>recursos/images/foto8.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div> 
-                <div class="item"> Third-Slide 
-                    <img src="<?php echo base_url(); ?>recursos/images/foto9.jpg" alt="" class="img-responsive"/>
-                    <div class="carousel-caption kb_caption kb_caption_center">
-                        <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                        <h4 data-animation="animated flipInX">para su comercio</h4>
-                    </div>
-                </div> -->
-                
-            </div> 
-            <!-- Left-Button -->
-            <a class="left carousel-control kb_control_left" href="#kb" role="button" data-slide="prev">
-				<span class="fa fa-angle-left kb_icons" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a> 
-            <!-- Right-Button -->
-            <a class="right carousel-control kb_control_right" href="#kb" role="button" data-slide="next">
-                <span class="fa fa-angle-right kb_icons" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a> 
-        </div>
+                <!-- FIN CARRUSEL -->
+                <?php }?>
 		<script src="<?php echo base_url(); ?>recursos/js/custom.js"></script>
 	</div>
 	<!-- //banner -->  
@@ -261,6 +266,8 @@
 						</a></li> 
 					</ul>
 					<div class="clearfix"> </div>
+                                        <!-- INICIO PRODUCTOS DESTACADOS-->
+                                        <?php if ($secciones_activas[2]["mostrar"] == "si"){?>
 					<h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
 					<div id="myTabContent" class="tab-content">
 						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
@@ -456,143 +463,15 @@
 								</div>    
 							</div>
 						</div> 
-					</div>   
+					</div> 
+                                        <!-- FIN PRODUCTOS DESTACADOS-->
+                                        <?}?>
 				</div>  
 			</div>  	
 		</div>  	
 	</div> 
-	<!-- //welcome -->
-	<!-- add-products -->
-<!--	<div class="add-products"> 
-		<div class="container">  
-			<div class="add-products-row">
-				<div class="w3ls-add-grids">
-					<a href="products1.html"> 
-						<h4>TOP 10 TRENDS FOR YOU FLAT <span>20%</span> OFF</h4>
-						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
-					</a>
-				</div>
-				<div class="w3ls-add-grids w3ls-add-grids-mdl">
-					<a href="products1.html"> 
-						<h4>SUNDAY SPECIAL DISCOUNT FLAT <span>40%</span> OFF</h4>
-						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
-					</a>
-				</div>
-				<div class="w3ls-add-grids w3ls-add-grids-mdl1">
-					<a href="products.html"> 
-						<h4>LATEST DESIGNS FOR YOU <span> Hurry !</span></h4>
-						<h6>Shop now <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></h6>
-					</a>
-				</div>
-				<div class="clerfix"> </div>
-			</div>  	
-		</div>  	
-	</div>-->
-	<!-- //add-products -->
-	<!-- coming soon -->
-<!--	<div class="soon">
-		<div class="container">
-			<h3></h3>
-			<h4>Genere su presupuesto</h4>  
-			<div id="countdown1" class="ClassyCountdownDemo"></div>
-		</div> 
-	</div>-->
-	<!-- //coming soon -->
-	<!-- deals -->
-<!--	<div class="deals"> 
-		<div class="container"> 
-			<h3 class="w3ls-title">ESPECIALISTAS EN LOS SIGUIENTES RUBROS </h3>
-			<div class="deals-row">
-				<div class="col-md-3 focus-grid"> 
-					<a href="products.html" class="wthree-btn"> 
-						<div class="focus-image"><i class="fa fa-mobile"></i></div>
-						<h4 class="clrchg">Mobiles</h4> 
-					</a>
-				</div>
-				<div class="col-md-3 focus-grid"> 
-					<a href="products.html" class="wthree-btn wthree1"> 
-						<div class="focus-image"><i class="fa fa-laptop"></i></div>
-						<h4 class="clrchg"> Electronics & Appliances</h4> 
-					</a>
-				</div> 
-				<div class="col-md-3 focus-grid"> 
-					<a href="products4.html" class="wthree-btn wthree2"> 
-						<div class="focus-image"><i class="fa fa-wheelchair"></i></div>
-						<h4 class="clrchg">Furnitures</h4>
-					</a>
-				</div> 
-				<div class="col-md-3 focus-grid"> 
-					<a href="products3.html" class="wthree-btn wthree3"> 
-						<div class="focus-image"><i class="fa fa-home"></i></div>
-						<h4 class="clrchg">Home Decor</h4>
-					</a>
-				</div> 
-				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products9.html" class="wthree-btn wthree3"> 
-						<div class="focus-image"><i class="fa fa-book"></i></div>
-						<h4 class="clrchg">Books & Music</h4> 
-					</a>
-				</div>
-				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products1.html" class="wthree-btn wthree4"> 
-						<div class="focus-image"><i class="fa fa-asterisk"></i></div>
-						<h4 class="clrchg">Fashion</h4>
-					</a>
-				</div>
-				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products2.html" class="wthree-btn wthree2"> 
-						<div class="focus-image"><i class="fa fa-gamepad"></i></div>
-						<h4 class="clrchg">Kids</h4>
-					</a>
-				</div> 
-				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products5.html" class="wthree-btn wthree"> 
-						<div class="focus-image"><i class="fa fa-shopping-basket"></i></div>
-						<h4 class="clrchg">Groceries</h4>
-					</a>
-				</div> 
-				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products7.html" class="wthree-btn wthree5"> 
-						<div class="focus-image"><i class="fa fa-medkit"></i></div>
-						<h4 class="clrchg">Health</h4> 
-					</a>
-				</div> 
-				<div class="col-md-2 focus-grid w3focus-grid-mdl"> 
-					<a href="products8.html" class="wthree-btn wthree1"> 
-						<div class="focus-image"><i class="fa fa-car"></i></div>
-						<h4 class="clrchg">Automotive</h4> 
-					</a>
-				</div>
-				<div class="col-md-3 focus-grid"> 
-					<a href="products5.html" class="wthree-btn wthree2"> 
-						<div class="focus-image"><i class="fa fa-cutlery"></i></div>
-						<h4 class="clrchg">Food</h4> 
-					</a>
-				</div>
-				<div class="col-md-3 focus-grid"> 
-					<a href="products4.html" class="wthree-btn wthree5"> 
-						<div class="focus-image"><i class="fa fa-futbol-o"></i></div>
-						<h4 class="clrchg">Sports</h4> 
-					</a>
-				</div> 
-				<div class="col-md-3 focus-grid"> 
-					<a href="products2.html" class="wthree-btn wthree3"> 
-						<div class="focus-image"><i class="fa fa-gamepad"></i></div>
-						<h4 class="clrchg">Games & Toys</h4> 
-					</a>
-				</div> 
-				<div class="col-md-3 focus-grid"> 
-					<a href="products6.html" class="wthree-btn "> 
-						<div class="focus-image"><i class="fa fa-gift"></i></div>
-						<h4 class="clrchg">Gifts</h4> 
-					</a>
-				</div> 
-				<div class="clearfix"> </div>
-			</div>  	
-		</div>  	
-	</div> -->
-	<!-- //deals --> 
 	<!-- footer-top -->
+        <?php if( $secciones_activas[3]["mostrar"] == "si"){?>
         <div class="hidden-sm hidden-xs">
             <ul class="bxslider" style="text-align: center;">
                 <?php 
@@ -686,7 +565,7 @@
                 ?>
              </ul>
         </div>
-        
+        <?php }?>
 	<div class="w3agile-ftr-top">
 		<div class="container">
 			<div class="ftr-toprow">
@@ -725,7 +604,8 @@
 		</div>
 	</div>
 	<!-- //footer-top --> 
-        <?php echo $siganos_en?>
+        <?php if( $secciones_activas[4]["mostrar"] == "si"){
+        echo $siganos_en;}?>
 	
         <div class="modal fade" id="modalCarrito" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
