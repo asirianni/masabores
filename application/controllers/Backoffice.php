@@ -567,7 +567,7 @@ class Backoffice extends CI_Controller {
 			$crud->set_table('imagenes');
 			//$crud->columns('codigo','sub_rubro','descripcion','imagen', 'precio');
 //                        $crud->set_primary_key('cod_prod', 'productos');
-			$crud->set_relation('cod_prod','productos','descripcion');
+//			$crud->set_relation('cod_prod','productos','descripcion');
 			$crud->set_field_upload('imagen','assets/img/productos');
                         //$crud->set_field_upload('frente','assets/recursos/images/product-almacen');
                         //$crud->set_field_upload('perfil','assets/recursos/images/product-almacen');
@@ -1348,7 +1348,7 @@ class Backoffice extends CI_Controller {
             {
                 $i_final = 0;
                 $posicion = 0;
-                
+                $posicion_separador =0;
                 while ($i_final < strlen($archivo))
                 {
                     if(substr($archivo, $i_final, 1) == "-" || substr($archivo, $i_final, 1) == "_")
@@ -1363,15 +1363,17 @@ class Backoffice extends CI_Controller {
                 
                 $codigo = substr($archivo, 0, $posicion_separador);
                 $imagen = substr($archivo, ($posicion_separador+1), strlen($archivo));
-                
-                $tabla_imagenes[]= Array("codigo"=>$codigo,"imagen"=>$imagen);
+                $datos = explode(".", $imagen);
+//                echo $datos[0];
+//                echo $imagen;
+                $tabla_imagenes[]= Array("codigo"=>$datos[0],"imagen"=>$imagen);
             }
         }
         
         $this->load->model("Imagenes_model");
         $this->Imagenes_model->actualizacion_imagenes($tabla_imagenes);
         
-        redirect("backoffice/productos");
+//        redirect("backoffice/productos");
     }
 
 	
