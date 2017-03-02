@@ -1365,7 +1365,7 @@ class Backoffice extends CI_Controller {
                 
                 while ($i_final < strlen($archivo))
                 {
-                    if(substr($archivo, $i_final, 1) == "-" || substr($archivo, $i_final, 1) == "_")
+                    if(substr($archivo, $i_final, 1) == "." || substr($archivo, $i_final, 1) == ".")
                     {
                         $posicion_separador=$i_final;
                         $i_final = strlen($archivo);
@@ -1375,10 +1375,10 @@ class Backoffice extends CI_Controller {
                 
                 // MOSTRANDO CODIGO Y MOSTRANDO NOMBRE DE PRODUCTO
                 
-                $codigo = substr($archivo, 0, $posicion_separador);
-                $imagen = substr($archivo, ($posicion_separador+1), strlen($archivo));
+                echo $codigo = substr($archivo, 0, $posicion_separador);
+                echo $tipo_imagen = substr($archivo, ($posicion_separador+1), strlen($archivo)).".";
                 
-                $tabla_imagenes[]= Array("codigo"=>$codigo,"imagen"=>$imagen);
+                $tabla_imagenes[]= Array("codigo"=>$codigo,"imagen"=>$archivo);
             }
         }
         

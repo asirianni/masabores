@@ -448,7 +448,6 @@ class Partes_Web
                                             <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[0]["horario"])."</a></li>
 					</ul> 
 				</div>
-                                <br/>
 			</div>
                         <div class='footer-info w3-agileits-info'>
 				<div class='col-md-offset-1 col-md-4 address-left agileinfo'>
@@ -458,7 +457,7 @@ class Partes_Web
                                                 <h6></h6> 
 					</div>
 					<ul>
-                                            <li><i class='fa fa-map-marker'></i>".$dir_dos."</li>
+                                            <li><i class='fa fa-map-marker'></i>".$dir_dos."<br/><br/></li>
                                             <!--<li><i class='fa fa-mobile'></i></li>-->
                                             <li><i class='fa fa-phone'></i>".strtoupper($locales[1]["telefono"])."</li>
                                             <li><i class='fa fa-envelope-o'></i> <a href=''>".strtoupper($locales[1]["correo"])."</a></li>
