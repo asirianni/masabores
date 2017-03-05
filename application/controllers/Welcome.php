@@ -432,21 +432,23 @@ class Welcome extends CI_Controller {
         }
         
         public function ver_imagen_producto() {
-            $codigo_producto=$this->input->post("codigo");
-            $imagen= $this->Almacen_model->obtener_imagen_productos($codigo_producto);
-            if ($imagen != null) {
-                 echo "<img src='".base_url()."assets/img/productos/".$imagen."' class=''/>";
-             }  else {
-                 echo "no hay imagen para mostrar";
-             }
+            echo $codigo_producto=$this->input->post("codigo");
+//            $imagen= $this->Almacen_model->obtener_imagen_productos($codigo_producto);
+//            if ($imagen != null) {
+//                 echo "<img src='".base_url()."assets/img/productos/".$imagen."' class=''/>";
+//             }  else {
+//                 echo "no hay imagen para mostrar";
+//             }
         }
         
         public function ver_imagen_producto_con_memo() {
-            $codigo_producto=$this->input->post("codigo");
-            $arreglo= $this->Almacen_model->obtener_imagen_productos_con_memo($codigo_producto);
-            if ($arreglo) {
-                 echo "<img src='".base_url()."assets/img/productos/".$arreglo["imagen"]."' class=''/>"
-                    . "<p>".$arreglo["memo"]."</p>";
+            $codigo_web=$this->input->post("codigo");
+            $codigo_producto= $this->Almacen_model->obtener_producto($codigo_web);
+            $imagen= $this->Almacen_model->obtener_imagen_productos($codigo_producto["cod_prod"]);
+            if ($imagen!=null) {
+                
+                 echo "<img src='".base_url()."assets/img/productos/".$imagen."' class=''/>";
+                 echo "<p>".$codigo_producto["memo"]."</p>";
              }  else {
                  echo "no hay imagen para mostrar";
              }
