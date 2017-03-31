@@ -210,9 +210,18 @@ class Almacen_model extends CI_Model {
 		
 	}
         
-        function todos_productos($busqueda) {
+        function todos_productos($palabras) {
+             // ARMANDO EL SQL
+            
             $lista=  $this->obtener_lista_precios();
-            $query = $this->db->query("select codigo, cod_prod, descripcion, round($lista+($lista*iva/100), 2) as precio from productos where descripcion LIKE '%$busqueda%'");
+            $sql = "select codigo, cod_prod, descripcion, round($lista+($lista*iva/100), 2) as precio from productos where descripcion LIKE '%$palabras[0]%'";
+            
+            for($i=1; $i < count($palabras);$i++)
+            {
+                $sql.= " and descripcion LIKE '%$palabras[$i]%'";
+            }
+            //$lista=  $this->obtener_lista_precios();
+            $query = $this->db->query($sql);
             return $query->result_array();
 	}
         
@@ -235,7 +244,7 @@ class Almacen_model extends CI_Model {
             
             
             
-            $query = $this->db->query("Select pd.cod_producto as cod_producto, "
+            $query = $this->db->query("Select pd.cod_producto as cod_producto, p.codigo as codigo, "
                     . "p.descripcion as producto, pd.detalle as detalle, pd.imagen_1 as imagen_1, "
                     . "pd.precio as precio from productos_destacados as pd, productos as p "
                     . "where pd.cod_producto=p.cod_prod "

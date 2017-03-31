@@ -206,6 +206,8 @@ class Welcome extends CI_Controller {
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
             $this->load->view('mostrar_productos', $output);
+            
+            
 
         }
         
@@ -389,7 +391,33 @@ class Welcome extends CI_Controller {
 	}
         
         function get_listado_productos_by_busqueda($busqueda) {
-            echo json_encode($this->Almacen_model->todos_productos($busqueda));
+            $palabras = Array();
+            $cant_palabras = 0;
+            $palabras[0]="";
+            $aux_busqueda = "";
+            
+            $indice =0;
+            $palabras[]="";
+            
+            while($indice < strlen($busqueda))
+            {
+                $letra = substr($busqueda, $indice, 1);
+                
+                if($letra != "%")
+                {
+                    $palabras[$cant_palabras].=$letra;
+                }
+                else
+                {
+                   $indice+=2;
+                   $palabras[]="";
+                   $cant_palabras++;
+                }
+                
+                $indice++;
+            }
+            
+            echo json_encode($this->Almacen_model->todos_productos($palabras));
 	}
         
         function get_listado_productos() {

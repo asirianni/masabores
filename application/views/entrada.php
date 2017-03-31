@@ -274,14 +274,19 @@
 							<div class="tabcontent-grids">  
 								<div id="owl-demo" class="owl-carousel">
                                                                     <?php 
+                                                                    
                                                                         foreach ($destacado_1 as $d_1) {
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'></a>
+                                                                                    <a href=''><img height='300' src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'></a>
                                                                                     <div class='view-caption agileits-w3layouts'>           
                                                                                         <h4><a href=''>".$d_1["producto"]."</a></h4>
                                                                                         <p>".$d_1["detalle"]."</p>
-                                                                                        <h5>$".$d_1["precio"]."</h5> 
+                                                                                        <h5>$".$d_1["precio"]."</h5>
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_1["codigo"]." , &#34;".$d_1["cod_producto"]."&#34;, &#34;".$d_1["detalle"]."&#34;, 1,  ".$d_1["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
+                                                                                        </a></p>
+                                                                                       
                                                                                          
                                                                                     </div>   
                                                                                 </div>   
@@ -796,6 +801,8 @@
             }
             
         </script>
+        
+        <script src="http://localhost/masabores/recursos/js/pedido-simple-web.js"></script>
         <script>
  
             $(document).ready(function(){
@@ -833,6 +840,7 @@
             
             
             function agregar_producto_tabla(codigo, cod_prod, producto, cantidad, precio, total){
+                alert(codigo);/*
                 var index_tab=1;
                 var tabla = document.getElementById("table_body");		    
                 var hilera = document.createElement("tr");
@@ -908,7 +916,7 @@
 
                 tabla.appendChild(hilera);
 
-                verificar_productos();
+                verificar_productos();*/
             }
 
         </script>
