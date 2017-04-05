@@ -1375,8 +1375,8 @@ class Backoffice extends CI_Controller {
                 
                 // MOSTRANDO CODIGO Y MOSTRANDO NOMBRE DE PRODUCTO
                 
-                echo $codigo = substr($archivo, 0, $posicion_separador);
-                echo $tipo_imagen = substr($archivo, ($posicion_separador+1), strlen($archivo)).".";
+                $codigo = substr($archivo, 0, $posicion_separador);
+                $tipo_imagen = substr($archivo, ($posicion_separador+1), strlen($archivo)).".";
                 
                 $tabla_imagenes[]= Array("codigo"=>$codigo,"imagen"=>$archivo);
             }
