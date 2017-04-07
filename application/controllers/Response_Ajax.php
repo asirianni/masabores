@@ -205,5 +205,33 @@ class Response_Ajax extends CI_Controller
         } 
     }
     
+    public function getErrorRegistro()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Usuario_model");
+            
+            $usuario= $this->input->post("usuario");
+            $correo= $this->input->post("correo");
+            
+            $error_user = $this->Usuario_model->obtenerUsuarioPorUsuario($usuario);
+            $error_correo = $this->Usuario_model->obtenerUsuarioPorCorreo($correo);
+            
+            $errores = Array("usuario_existente"=>false,"correo_existente"=>false);
+            
+            if($error_user)
+            {
+                $errores["usuario_existente"]=true;
+            }
+            
+            if($error_correo)
+            {
+                $errores["correo_existente"]=true;
+            }
+            
+            echo json_encode($errores);
+        } 
+    }
+    
     
 }

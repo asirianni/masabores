@@ -109,4 +109,16 @@ class Usuario_model extends CI_Model{
         // Si no quiso cambiar la imagen
         if($imagen == ""){}
     }
+    
+    public function obtenerUsuarioPorUsuario($usuario)
+    {
+        $r = $this->db->query("select * from cliente where usuario = '$usuario'");
+        return $r->row_array();
+    }
+    
+    public function obtenerUsuarioPorCorreo($correo)
+    {
+        $r = $this->db->query("select * from cliente where correo = '$correo'");
+        return $r->row_array();
+    }
 }

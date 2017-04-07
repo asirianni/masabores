@@ -137,7 +137,7 @@
 		<div class="container"> 
 			<h3 class="w3ls-title w3ls-title1">Registrese en masabores</h3>  
 			<div class="login-body" style="width: 100% !important;">
-				<form action="<?php echo base_url()?>index.php/Welcome/registrarse" method="post">
+				<form action="<?php echo base_url()?>index.php/Welcome/registrarse" method="post" id="formulario_registro" >
                                     <div class="col-md-4">    
                                         <div class="form-group">
                                             <label for="usuario" class="label-registro">Usuario</label>
@@ -147,13 +147,19 @@
                                     <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="correo" class="label-registro">Correo</label>
-                                            <input type="email" class="user form-control" name="correo" id="correo" required="" style="border-radius: 0px;height: 45px;">
+                                            <input type="text" class="user" name="correo" id="correo" required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="password" class="label-registro">Contraseña</label>
                                             <input type="password" class="user" name="pass" id="password"  required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"> 
+                                        <div class="form-group">
+                                            <label for="password" class="label-registro">Repetir contraseña</label>
+                                            <input type="password" class="user" name="pass" id="password_2"  required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
@@ -201,7 +207,6 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="clearfix"></div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
 						<label for="provincia" class="label-registro">Provincia</label>
@@ -218,6 +223,8 @@
 						</select>
 					</div>
                                     </div>
+                                    
+                                    <div class="clearfix"></div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="codigo-postal" class="label-registro">Codigo Postal</label>
@@ -225,7 +232,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="clearfix"></div>
+                                    
                                     <div class="col-md-4"> 
                                         <div class="form-group">
                                             <label for="celular" class="label-registro">Celular</label>
@@ -252,7 +259,6 @@
 					</div>
                                     </div>
                                     
-                                    <div class="clearfix"></div>
                                     <div class="col-md-4"> 
 					<div class="form-group">
 						<label for="vendedor" class="label-registro">Vendedor</label>
@@ -273,7 +279,10 @@
                                             <input type="text" class="user" name="dni_cuil" id="cuil-cuit-dni" required="">
                                         </div>
                                     </div>
-                                    <input type="submit" id="boton_registro" onClick="boton_registro()" value="Registrarme">
+                                    <div class="col-md-12">
+                                        <p style="color: #f00;font-size: 18px;" id="mensaje_error"></p>
+                                    </div>
+                                    <input type="button"  onClick="boton_registro()" value="Registrarme">
 					<!--<div class="forgot-grid">
 						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
 						<div class="forgot">
@@ -572,23 +581,173 @@
         </script>
         
         <script>
+            var mensaje_error = "";
             
             function boton_registro()
             {
+                var correo = $("#correo").val();
+                var usuario = $("#usuario").val();
+                var codigo_postal = $("#codigo-postal").val();
+                var nombre = $("#nombre").val();
+                var celular = $("#celular").val();
+                var fijo = $("#fijo").val();
+                var cuil_cuit_dni = $("#cuil-cuit-dni").val();
+                var razon_social = $("#razon-social").val();
+                var nombre_comercial = $("#nombre-comercial").val();
+                var apellido = $("#apellido").val();
+                var direccion = $("#direccion").val();
+                
                 var provincia = parseInt($("#provincia").val());
                 var localidad = parseInt($("#localidad").val());
                 var pais = parseInt($("#pais").val());
                 var vendedor = $("#vendedor").val();
                 var tipo_iva = $("#tipo_iva").val();
                 
-                var respuesta = false;
+                var password = $("#password").val();
+                var password_2 = $("#password_2").val();
                 
-                if(!isNan(provincia) && pais != 0 && provincia != 0 && !isNan(localidad) && localidad != 0 && !isNan(vendedor) && !isNan(tipo_iva))
+                
+                mensaje_error="";
+                
+                var elementos= new Array();
+                
+                elementos.push(["usuario","* Agregar un usuario<br/>"]);
+                elementos.push(["correo","* Agregar un correo<br/>"]);
+                elementos.push(["codigo_postal","* Agregar un codigo postal<br/>"]);
+                elementos.push(["nombre","* Agregar un nombre<br/>"]);
+                elementos.push(["celular","* Agregar un celular<br/>"]);
+                elementos.push(["fijo","* Agregar un fijo<br/>"]);
+                elementos.push(["cuil_cuit_dni","* Agregar un cuil/cuit/dni<br/>"]);
+                elementos.push(["razon_social","* Agregar una razon social<br/>"]);
+                elementos.push(["nombre_comercial","* Agregar un nombre comercial<br/>"]);
+                elementos.push(["apellido","* Agregar un apellido<br/>"]);
+                elementos.push(["direccion","* Agregar un direccion<br/>"]);
+                elementos.push(["password","* Agregar un contraseña<br/>"]);
+                
+                encuentra_marca_errores(elementos);
+                
+                var elementos= new Array();
+                
+                elementos.push(["provincia","* Agregar una provincia<br/>"]);
+                elementos.push(["localidad","* Agregar una localidad<br/>"]);
+                elementos.push(["pais","* Agregar un pais<br/>"]);
+                elementos.push(["tipo_iva","* Agregar un tipo iva<br/>"]);
+                
+                encuentra_marca_errores_tipo_enteros(elementos);
+                
+                if(password == password_2)
                 {
-                    respuesta = true;
+                    mensaje_error= "* Las contraseñas no coinciden";
                 }
                 
-                return respuesta;
+                if(validarEmail(correo) && correo != "")
+                {
+                    mensaje_error= "* Ingrese un correo valido";
+                    mensaje_error+="* Usuario existente<br/>"
+                    marcar_error("correo");
+                }
+                else
+                {
+                    desmarcar_error("correo");
+                }
+                // BUSCANDO ERRORES DE DATABASE
+                
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url()?>index.php/Response_Ajax/getErrorRegistro",
+                    data: {usuario:usuario,correo:correo},
+
+                    beforeSend: function(event){},
+                    success: function(data)
+                    {
+                        alert(data);
+                        data = JSON.parse(data);
+                            
+                        if(data["usuario_existente"])
+                        {
+                            mensaje_error+="* Usuario existente<br/>"
+                            marcar_error("usuario");
+                        }
+                        else
+                        {
+                            desmarcar_error("usuario");
+                        }
+                        
+                        if(data["correo_existente"])
+                        {
+                            mensaje_error+="* Correo existente<br/>"
+                            marcar_error("correo");
+                        }
+                        else
+                        {
+                            desmarcar_error("correo");
+                        }
+                        
+                        
+                        $("#mensaje_error").html(mensaje_error);
+                        
+                    },
+                        error: function(event){alert(event.responseText);},
+                  });
+
+                
+                
+                
+                if(mensaje_error == "")
+                {
+                    $("#formulario_registro").submit();
+                }
+                
+            }
+            
+            function encuentra_marca_errores_tipo_enteros(elementos)
+            {
+                for(var i=0; i < elementos.length;i++)
+                {
+                    var id = elementos[i][0];
+                    var valor= parseInt($("#"+id).val());
+                    
+                    if(valor == "" || isNaN(valor))
+                    {
+                        marcar_error(id);
+                        mensaje_error+= elementos[i][1];
+                    }
+                    else
+                    {
+                        desmarcar_error(id);
+                    }
+                }
+            }
+            
+            function encuentra_marca_errores(elementos)
+            {
+                for(var i=0; i < elementos.length;i++)
+                {
+                    var id = elementos[i][0];
+                    var valor= $("#"+id).val();
+                    
+                    if(valor == "")
+                    {
+                        marcar_error(id);
+                        mensaje_error+= elementos[i][1];
+                    }
+                    else
+                    {
+                        desmarcar_error(id);
+                    }
+                }
+            }
+            
+            function marcar_error(id)
+            {
+                $("#"+id).css("border-width","1px");
+                $("#"+id).css("border-style","solid");
+                $("#"+id).css("border-color","#f00");
+            }
+            
+            function desmarcar_error(id)
+            {
+                $("#"+id).css("border-color","#ccc");
             }
             
             function validarEmail(valor) {
