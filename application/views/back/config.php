@@ -97,7 +97,8 @@
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_secciones')?>'> ABM Secciones </a> |
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_slider_marcas')?>'> ABM Slider Marcas </a> |
                 <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_zonas_cobertura')?>'> ABM Zonas Cobertura </a> |
-                <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_home_seccion')?>'> ABM Home Seccion </a> 
+                <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_home_seccion')?>'> ABM Home Seccion </a> |
+                <i class="fa fa-arrow-circle-right"></i><a href='<?php echo site_url('backoffice/abm_meta_datos')?>'> ABM Meta datos </a> 
                 
                 <!-- /.col-lg-12 -->
             </div>

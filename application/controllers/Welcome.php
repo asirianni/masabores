@@ -37,6 +37,7 @@ class Welcome extends CI_Controller {
             $this->load->model('Local_model');
             $this->load->model('Configuracion_model');
             $this->load->model('Pedido_model');
+            $this->load->model('Metadatos_model');
             
             $this->load->library('Partes_Web');
             $this->partes_web = new Partes_Web();
@@ -45,6 +46,13 @@ class Welcome extends CI_Controller {
         
 	public function index(){
             
+            // CARGANDO METADATOS
+            $vista = "home";
+            $salida["description"]= $this->Metadatos_model->getDescription($vista);
+            $salida["title"]= $this->Metadatos_model->getTitle($vista);
+            $salida["keywords"]= $this->Metadatos_model->getKeywords($vista);
+            
+            // FIN
             $this->load->model("Slider_marcas");
             
             $salida["rubros"]=  $this->Almacen_model->obtener_rubros();
@@ -262,6 +270,13 @@ class Welcome extends CI_Controller {
             
             $this->load->model("Nosotros_model");
             
+            // CARGANDO METADATOS
+            $vista = "quienes somos";
+            $output["description"]= $this->Metadatos_model->getDescription($vista);
+            $output["title"]= $this->Metadatos_model->getTitle($vista);
+            $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+            // FIN
+            
             $output["correo"]= $this->Configuracion_model->obtener_config(1);
             $output["movil"]= $this->Configuracion_model->obtener_config(2);
             $output["telefono"]= $this->Configuracion_model->obtener_config(3);
@@ -281,6 +296,13 @@ class Welcome extends CI_Controller {
         
         public function contacto() {
             
+            
+            // CARGANDO METADATOS
+            $vista = "contacto";
+            $output["description"]= $this->Metadatos_model->getDescription($vista);
+            $output["title"]= $this->Metadatos_model->getTitle($vista);
+            $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+            // FIN
             
             $output["correo"]= $this->Configuracion_model->obtener_config(1);
             $output["movil"]= $this->Configuracion_model->obtener_config(2);
@@ -308,13 +330,25 @@ class Welcome extends CI_Controller {
                 
                 $respuesta = $this->Mensaje_model->agregarMensaje($this->input->post("nombre"),$this->input->post("correo"),$this->input->post("telefono"),$this->input->post("mensaje"));
             
-                
+                // CARGANDO METADATOS
+                $vista = "contacto";
+                $output["description"]= $this->Metadatos_model->getDescription($vista);
+                $output["title"]= $this->Metadatos_model->getTitle($vista);
+                $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+                // FIN
+
                 $output["correo"]= $this->Configuracion_model->obtener_config(1);
                 $output["movil"]= $this->Configuracion_model->obtener_config(2);
                 $output["telefono"]= $this->Configuracion_model->obtener_config(3);
                 $output["direccion"]= $this->Configuracion_model->obtener_config(4);
                 $output["horarios"]= $this->Configuracion_model->obtener_config(5);
                 $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+
+                $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+                $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+                $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+                $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+                $output["footer"]= $this->partes_web->getFooter();
                 
                 if($respuesta)
                 {
@@ -334,6 +368,13 @@ class Welcome extends CI_Controller {
         }
         
         public function lista_de_precios() {
+            // CARGANDO METADATOS
+            $vista = "productos";
+            $output["description"]= $this->Metadatos_model->getDescription($vista);
+            $output["title"]= $this->Metadatos_model->getTitle($vista);
+            $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+            
+            // FIN
             $output['productos']="";
             if($this->input->post("busqueda")!=="" && $this->input->post("busqueda")!==null){
                 $output['productos']=  base_url()."index.php/welcome/get_listado_productos_by_busqueda/".$this->input->post("busqueda");
