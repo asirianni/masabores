@@ -213,6 +213,12 @@ class Welcome extends CI_Controller {
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
+            
+            $vista = "home";
+            $output["description"]= $this->Metadatos_model->getDescription($vista);
+            $output["title"]= $this->Metadatos_model->getTitle($vista);
+            $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+            
             $this->load->view('mostrar_productos', $output);
             
             
