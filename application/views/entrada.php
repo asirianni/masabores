@@ -846,7 +846,7 @@
             
             
             function agregar_producto_tabla(codigo, cod_prod, producto, cantidad, precio, total){
-                alert(codigo);/*
+                /*
                 var index_tab=1;
                 var tabla = document.getElementById("table_body");		    
                 var hilera = document.createElement("tr");

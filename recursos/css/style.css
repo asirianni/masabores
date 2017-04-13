@@ -1508,7 +1508,7 @@ input#amount {
 .login-page input[type="text"]:focus, .login-page input[type="password"]:focus{
 	border-color:#0280e1;	
 }
-.login-page input[type="submit"] {
+.login-page input[type="submit"] , .btn_submit {
     border: none;
     outline: none;
     cursor: pointer;

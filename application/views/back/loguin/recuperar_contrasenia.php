@@ -95,7 +95,7 @@
     <body>
 	<div class="login-page">
 		<div class="container"> 
-			<h3 class="w3ls-title w3ls-title1">INGRESO DE USUARIO</h3>  
+			<h3 class="w3ls-title w3ls-title1">Recuperar datos de la cuenta</h3>  
 			<div class="login-body">
 <!--				<form action="#" method="post">
 					<input type="text" class="user" name="email" placeholder="Enter your email" required="">
@@ -109,28 +109,28 @@
 						<div class="clearfix"> </div>
 					</div>
 				</form>-->
-                                <label><?php echo $salida_error; ?></label>
                                 
                                 <!-- LOGIN USUARIO -->
                                 
-                                <?php $atributes="id='loguin'";
-                                echo form_open('welcome/validar_usuario', $atributes);?>
+                                <?php $atributes="id='formulario_recuperar_password'";
+                                echo form_open('welcome/recuperar_password', $atributes);?>
+                                    <div class="form-group">
+                                        <p>Por favor ingrese su correo electronico para recibir los datos de acceso de su cuenta</p>
+                                    </div>
+                                    
                                     <div class="form-group">
                                         
-                                        <input type="text" name="usuario" placeholder="usuario..." 
-                                               class="user" id="form-username" required='required'>
+                                        <input type="text" name="correo" placeholder="Correo..." 
+                                               class="user" id="form-correo" required='required'>
                                     </div>
-                                    <div class="form-group">
-                                        
-                                        <input type="password" name="pass" placeholder="pass..." 
-                                               class="lock" id="form-password" required='required'>
-                                    </div>
-                                    <input type="submit" value="Ingresar!">
+                                    <label id="salida_error"><?php echo $salida_error; ?></label>
+                                    
+                                    <input onClick="validarEmail($('#form-correo').val())" class="btn_submit" type="button" value="Recibir datos">
                                     
                                 <?php echo form_close();?>
                             
 			</div>  
-			<h6> No recuerdas tu contraseña? <a href="<?php echo base_url()?>index.php/Welcome/recuperar_password">Recuperar contraseña »</a> </h6> 
+			<h6> Ya posee los datos de su cuenta? <a href="<?php echo base_url()?>index.php/Welcome/acceso">Inicie Sesion »</a> </h6> 
 			<!--<div class="login-page-bottom social-icons">
 				<h5>Recover your social account</h5>
 				<ul>
@@ -230,9 +230,28 @@
 	<!-- menu js aim -->
 	<script src="<?php echo base_url(); ?>recursos/js/jquery.menu-aim.js"> </script>
 	<script src="<?php echo base_url(); ?>recursos/js/main.js"></script> <!-- Resource jQuery -->
-	<!-- //menu js aim --> 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster --> 
+	<script>
+            function validarEmail( email ) 
+        {
+            for(var i=0; i < email.length;i++)
+            {
+                if(email.substr(i,1) == "ñ" || email.substr(i,1) == "Ñ" )
+                {
+                    email= email.substr(0,i)+email.substr(i+1,email.length);
+                }
+            }
+            
+           
+            var expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if ( !expr.test(email) )
+            {
+                $("#salida_error").text("Por favor ingrese un correo valido");
+            }
+            else
+            {
+                $("#formulario_recuperar_password").submit();
+            }
+        }
+        </script>
 </body>
 </html>

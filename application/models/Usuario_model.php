@@ -48,6 +48,12 @@ class Usuario_model extends CI_Model{
         return $usuario;
     }
     
+    public function getUsuarioPorCorreo($correo)
+    {
+        $query = $this->db->query("select * from empleados where correo = '$correo'");
+        return $query->row_array();
+    }
+    
     public function existe_usuario($correo) {
         $validacion=false;
         $query = $this->db->query("select correo from empleados where correo = '$correo' ");

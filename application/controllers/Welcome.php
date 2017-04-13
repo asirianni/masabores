@@ -140,7 +140,8 @@ class Welcome extends CI_Controller {
                         "lista_precios"=>$resultado["lista_precios"],
                         "dni_cuil"=>$resultado["dni_cuil"],
                         "localidad"=>$resultado["localidad"],
-                        "ingresado"=>true
+                        "ingresado"=>true,
+                        "cod_masabores"=>$datos["codigo_masabores"],
                     );
                     
                     $this->session->set_userdata($datos);
@@ -154,6 +155,49 @@ class Welcome extends CI_Controller {
         public function acceso() {
             $output['salida_error']="";
             $this->load->view('back/loguin/ingreso', $output);
+        }
+        
+        public function recuperar_password() {
+            
+            if($this->input->post())
+            {
+                $this->load->model("Usuario_model");
+                $correo = $this->input->post("correo");
+                
+                $usuario= $this->Usuario_model->getUsuarioPorCorreo($correo);
+                
+                if($usuario)
+                {
+                    $this->load->model("Configuracion_model");
+                    $nuestro_correo= $this->Configuracion_model->obtener_config(1);
+                    $nuestro_correo= $nuestro_correo["descripcion"];
+                    
+                    $mail = "Los datos de su cuenta son los siguientes:<br/>Usuario:".$usuario["usuario"]."<br/>/>Contraseña:".$usuario["pass"]."<br/>";
+                    $titulo = "Datos de acceso al Sistema";
+                    $headers = "MIME-Version: 1.0\r\n"; 
+                    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+                    $headers .= "From: Masabores < $nuestro_correo >\r\n";
+                    $bool = mail($correo,$titulo,$mail,$headers);
+                    
+                    if($bool){
+                        $output['salida_error']="Los datos de su cuenta han sido enviados a su correo";
+                        $this->load->view('back/loguin/ingreso', $output);
+                    }else{
+                        $output['salida_error']="Ha ocurrido un error al intentar mandar los datos";
+                        $this->load->view('back/loguin/recuperar_contrasenia', $output);
+                    }
+                }
+                else
+                {
+                    $output['salida_error']="No se ha encontrado ninguna cuenta con el correo ingresado";
+                    $this->load->view('back/loguin/recuperar_contrasenia', $output);
+                }
+            }
+            else
+            {
+                $output['salida_error']="";
+                $this->load->view('back/loguin/recuperar_contrasenia', $output);
+            }
         }
         
         public function validar_usuario(){
@@ -470,6 +514,11 @@ class Welcome extends CI_Controller {
         function get_listado_productos() {
             echo json_encode($this->Almacen_model->todos_productos(""));
 	}
+        
+        function prueba()
+        {
+            var_dump($this->Almacen_model->obtener_lista_precios());
+        }
         
         function iniciar_sesion_cliente() {
             

@@ -140,61 +140,62 @@
 				<form action="<?php echo base_url()?>index.php/Welcome/registrarse" method="post" id="formulario_registro" >
                                     <div class="col-md-4">    
                                         <div class="form-group">
-                                            <label for="usuario" class="label-registro">Usuario</label>
+                                            <label for="usuario" class="label-registro">Usuario*</label>
                                             <input type="text" class="user" name="usuario" id="usuario" required="">
                                         </div>
                                     </div>
+                                    
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="correo" class="label-registro">Correo</label>
-                                            <input type="text" class="user" name="correo" id="correo" required="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4"> 
-                                        <div class="form-group">
-                                            <label for="password" class="label-registro">Contraseña</label>
+                                            <label for="password" class="label-registro">Contraseña*</label>
                                             <input type="password" class="user" name="pass" id="password"  required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="password" class="label-registro">Repetir contraseña</label>
+                                            <label for="password" class="label-registro">Repetir contraseña*</label>
                                             <input type="password" class="user" name="pass" id="password_2"  required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="nombre" class="label-registro">Nombre</label>
+                                            <label for="correo" class="label-registro">Correo*</label>
+                                            <input type="text" class="user" name="correo" id="correo" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"> 
+                                        <div class="form-group">
+                                            <label for="nombre" class="label-registro">Nombre*</label>
                                             <input type="text" class="user" name="nombre" id="nombre" required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="apellido" class="label-registro">Apellido</label>
+                                            <label for="apellido" class="label-registro">Apellido*</label>
                                             <input type="text" class="user" name="apellido" id="apellido"  required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="razon-social" class="label-registro">Razon social</label>
+                                            <label for="razon-social" class="label-registro">Razon social*</label>
                                             <input type="text" class="user" name="razon_social" id="razon-social" required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="nombre-comercial" class="label-registro">Nombre comercial</label>
+                                            <label for="nombre-comercial" class="label-registro">Nombre comercial*</label>
                                             <input type="text" class="user" name="nombre_comercial" id="nombre-comercial" required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="direccion" class="label-registro">Direccion</label>
+                                            <label for="direccion" class="label-registro">Direccion*</label>
                                             <input type="text" class="user" name="direccion" id="direccion" required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="pais" class="label-registro">Pais</label>
+                                            <label for="pais" class="label-registro">Pais*</label>
                                             <select class="form-control" name="pais" id="pais" required="" onchange="cambio_pais()">
                                                 <option value="0" selected>Seleccione un pais</option>
                                                 <?php 
@@ -209,7 +210,7 @@
                                     
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-						<label for="provincia" class="label-registro">Provincia</label>
+						<label for="provincia" class="label-registro">Provincia*</label>
                                                 <select class="form-control"  name="provincia" id="provincia" onChange="cambio_provincia()" readonly="readonly">
                                                     <option value="seleccione-provincia" selected>Seleccione una provincia</option>
                                                     
@@ -218,7 +219,7 @@
                                     </div>
                                     <div class="col-md-4"> 
 					<div class="form-group">
-						<label for="localidad" class="label-registro">Localidad</label>
+						<label for="localidad" class="label-registro">Localidad*</label>
 						<select class="form-control" name="localidad" id="localidad" readonly="readonly">
 						</select>
 					</div>
@@ -227,7 +228,7 @@
                                     <div class="clearfix"></div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="codigo-postal" class="label-registro">Codigo Postal</label>
+                                            <label for="codigo-postal" class="label-registro">Codigo Postal*</label>
                                             <input type="text" class="user" name="cod_postal" id="codigo-postal" required="">
                                         </div>
                                     </div>
@@ -235,19 +236,19 @@
                                     
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="celular" class="label-registro">Celular</label>
+                                            <label for="celular" class="label-registro">Celular*</label>
                                             <input type="text" class="user" name="celular" id="celular" required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="fijo" class="label-registro">Fijo</label>
+                                            <label for="fijo" class="label-registro">Fijo*</label>
                                             <input type="text" class="user" name="fijo" id="fijo" required="">
                                         </div>
                                     </div>
                                     <div class="col-md-4"> 
 					<div class="form-group">
-						<label for="tipo_iva" class="label-registro">Tipo Iva</label>
+						<label for="tipo_iva" class="label-registro">Tipo Iva*</label>
 						<select class="form-control" name="tipo_iva" id="tipo_iva" required="">
                                                      <?php 
                                                         foreach($tipos_iva as $value)
@@ -275,14 +276,20 @@
                                     </div>
                                     <div class="col-md-4"> 
                                         <div class="form-group">
-                                            <label for="cuil-cuit-dni" class="label-registro">Cuil - Dni</label>
+                                            <label for="cuil-cuit-dni" class="label-registro">Cuil - Dni*</label>
                                             <input type="text" class="user" name="dni_cuil" id="cuil-cuit-dni" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"> 
+                                        <div class="form-group">
+                                            <label for="codigo-masabores" class="label-registro">Codigo Masabores</label>
+                                            <input type="text" class="user" name="codigo_masabores" id="masabores">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <p style="color: #f00;font-size: 18px;" id="mensaje_error"></p>
                                     </div>
-                                    <input type="button"  onClick="boton_registro()" value="Registrarme">
+                                    <input type="button" class="btn_submit" onClick="boton_registro()" value="Registrarme">
 					<!--<div class="forgot-grid">
 						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
 						<div class="forgot">
@@ -660,7 +667,6 @@
                     beforeSend: function(event){},
                     success: function(data)
                     {
-                        alert(data);
                         data = JSON.parse(data);
                             
                         if(data["usuario_existente"])

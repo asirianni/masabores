@@ -214,12 +214,25 @@ class Almacen_model extends CI_Model {
              // ARMANDO EL SQL
             
             $lista=  $this->obtener_lista_precios();
-            $sql = "select codigo, cod_prod, descripcion, round($lista+($lista*iva/100), 2) as precio from productos where descripcion LIKE '%$palabras[0]%'";
+            $sql="";
             
-            for($i=1; $i < count($palabras);$i++)
+            if(gettype($palabras) == "string")
             {
-                $sql.= " and descripcion LIKE '%$palabras[$i]%'";
+               $sql = "select codigo, cod_prod, descripcion, round($lista+($lista*iva/100), 2) as precio from productos where descripcion LIKE '%$palabras%' order by descripcion desc;";
             }
+            else
+            {
+               $sql = "select codigo, cod_prod, descripcion, round($lista+($lista*iva/100), 2) as precio from productos where descripcion LIKE '%$palabras[0]%'";
+            
+               for($i=1; $i < count($palabras);$i++)
+               {
+                   $sql.= " and descripcion LIKE '%$palabras[$i]%'";
+               } 
+               
+               $sql .="order by descripcion desc;";
+            }
+            
+            
             //$lista=  $this->obtener_lista_precios();
             $query = $this->db->query($sql);
             return $query->result_array();
