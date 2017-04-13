@@ -200,6 +200,7 @@ class Partes_Web
                             <span style='color: #f00;' id='mensaje_inicio_sesion_usuario'></span>
                         </div>
                         <p><a href='".base_url()."index.php/welcome/registrarse'>Registrarse</a></p>
+                        <p><a href='".base_url()."index.php/welcome/recuperar_password'>Recuperar datos de mi cuenta</a></p>
                     </div>
                 </div>
             </div>";
