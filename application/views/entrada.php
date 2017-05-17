@@ -143,7 +143,7 @@
 			<!-- Wrapper-for-Slides -->
                         <div class="carousel-inner" role="listbox">  
                             <div class="item active"><!-- First-Slide -->
-                                <img src="<?php echo base_url(); ?>recursos/images/foto8.jpg" alt="" class="img-responsive" />
+                                <img src="<?php echo base_url(); ?>recursos/images/masabores_img_frente.JPG" alt="" class="img-responsive" />
                                 <div class="carousel-caption kb_caption kb_caption_right">
                                     <h3 data-animation="animated flipInX">Masabores <span>  </span> </h3>
                                     <h4 data-animation="animated flipInX">Bienvenido</h4>
@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                             <div class="item"><!-- Third-Slide -->
-                                <img src="<?php echo base_url(); ?>recursos/images/foto3.jpg" alt="" class="img-responsive"/>
+                                <img src="<?php echo base_url(); ?>recursos/images/masabores_img_frente.JPG" alt="" class="img-responsive"/>
                                 <div class="carousel-caption kb_caption kb_caption_center">
                                     <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
                                     <h4 data-animation="animated flipInX">para su comercio</h4>
@@ -282,14 +282,18 @@
                                                                     <?php 
                                                                     
                                                                         foreach ($destacado_1 as $d_1) {
+                                                                            $detalle_seleccionado=$d_1["detalle"];
+                                                                            $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                            $detalle=str_replace("</p>", "", $detalle);
+                                                                            $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img height='300' src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'></a>
+                                                                                    <a href='#'><img height='300' src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'></a>
                                                                                     <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href=''>".$d_1["producto"]."</a></h4>
+                                                                                        <h4><a href='#'>".$d_1["producto"]."</a></h4>
                                                                                         <p>".$d_1["detalle"]."</p>
                                                                                         <h5>$".$d_1["precio"]."</h5>
-                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_1["codigo"]." , &#34;".$d_1["cod_producto"]."&#34;, &#34;".$d_1["detalle"]."&#34;, 1,  ".$d_1["precio"].")'>
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_1["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 1,  ".$d_1["precio"].")'>
                                                                                             <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
                                                                                         </a></p>
                                                                                        
@@ -325,18 +329,14 @@
                                                                         foreach ($destacado_2 as $d_2) {
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_2["imagen_1"]."' alt='img'></a>
+                                                                                    <a href='#'><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_2["imagen_1"]."' alt='img'></a>
                                                                                     <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href=''>".$d_2["producto"]."</a></h4>
+                                                                                        <h4><a href='#'>".$d_2["producto"]."</a></h4>
                                                                                         <p>".$d_2["descripcion"]."</p>
                                                                                         <h5>".$d_2["precio"]."</h5> 
-                                                                                        <form action='#' method='post'>
-                                                                                                <input type='hidden' name='cmd' value='_cart' />
-                                                                                                <input type='hidden' name='add' value='1' /> 
-                                                                                                <input type='hidden' name='w3ls_item' value='Audio speaker' /> 
-                                                                                                <input type='hidden' name='amount' value='100.00' /> 
-                                                                                                <button type='submit' class='w3ls-cart' ><i class='fa fa-cart-plus' aria-hidden='true'></i> Agregar carrito</button>
-                                                                                        </form>  
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_2["codigo"]." , &#34; &#34;, &#34;".$d_2["detalle"]."&#34;, 1,  ".$d_2["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
+                                                                                        </a></p> 
                                                                                     </div>   
                                                                                 </div>   
                                                                             </div>";
@@ -368,18 +368,14 @@
                                                                             foreach ($destacado_3 as $d_3) {
                                                                                 $mensaje="<div class='item'>
                                                                                     <div class='glry-w3agile-grids agileits'> 
-                                                                                        <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_3["imagen_1"]."' alt='img'></a>
+                                                                                        <a href='#'><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_3["imagen_1"]."' alt='img'></a>
                                                                                         <div class='view-caption agileits-w3layouts'>           
-                                                                                            <h4><a href=''>".$d_3["producto"]."</a></h4>
+                                                                                            <h4><a href='#'>".$d_3["producto"]."</a></h4>
                                                                                             <p>".$d_3["descripcion"]."</p>
                                                                                             <h5>".$d_3["precio"]."</h5> 
-                                                                                            <form action='#' method='post'>
-                                                                                                    <input type='hidden' name='cmd' value='_cart' />
-                                                                                                    <input type='hidden' name='add' value='1' /> 
-                                                                                                    <input type='hidden' name='w3ls_item' value='Audio speaker' /> 
-                                                                                                    <input type='hidden' name='amount' value='100.00' /> 
-                                                                                                    <button type='submit' class='w3ls-cart' ><i class='fa fa-cart-plus' aria-hidden='true'></i> Agregar carrito</button>
-                                                                                            </form>  
+                                                                                            <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_3["codigo"]." , &#34; &#34;, &#34;".$d_3["detalle"]."&#34;, 1,  ".$d_3["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
+                                                                                        </a></p> 
                                                                                         </div>   
                                                                                     </div>   
                                                                                 </div>";
@@ -411,18 +407,14 @@
                                                                         foreach ($destacado_4 as $d_4) {
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_4["imagen_1"]."' alt='img'></a>
+                                                                                    <a href='#'><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_4["imagen_1"]."' alt='img'></a>
                                                                                     <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href=''>".$d_4["producto"]."</a></h4>
+                                                                                        <h4><a href='#'>".$d_4["producto"]."</a></h4>
                                                                                         <p>".$d_4["descripcion"]."</p>
                                                                                         <h5>".$d_4["precio"]."</h5> 
-                                                                                        <form action='#' method='post'>
-                                                                                                <input type='hidden' name='cmd' value='_cart' />
-                                                                                                <input type='hidden' name='add' value='1' /> 
-                                                                                                <input type='hidden' name='w3ls_item' value='Audio speaker' /> 
-                                                                                                <input type='hidden' name='amount' value='100.00' /> 
-                                                                                                <button type='submit' class='w3ls-cart' ><i class='fa fa-cart-plus' aria-hidden='true'></i> Agregar carrito</button>
-                                                                                        </form>  
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_4["codigo"]." , &#34; &#34;, &#34;".$d_4["detalle"]."&#34;, 1,  ".$d_4["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
+                                                                                        </a></p> 
                                                                                     </div>   
                                                                                 </div>   
                                                                             </div>";
@@ -453,18 +445,14 @@
                                                                         foreach ($destacado_5 as $d_5) {
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href=''><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_5["imagen_1"]."' alt='img'></a>
+                                                                                    <a href='#'><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_5["imagen_1"]."' alt='img'></a>
                                                                                     <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href=''>".$d_5["producto"]."</a></h4>
+                                                                                        <h4><a href='#'>".$d_5["producto"]."</a></h4>
                                                                                         <p>".$d_5["descripcion"]."</p>
                                                                                         <h5>".$d_5["precio"]."</h5> 
-                                                                                        <form action='#' method='post'>
-                                                                                                <input type='hidden' name='cmd' value='_cart' />
-                                                                                                <input type='hidden' name='add' value='1' /> 
-                                                                                                <input type='hidden' name='w3ls_item' value='Audio speaker' /> 
-                                                                                                <input type='hidden' name='amount' value='100.00' /> 
-                                                                                                <button type='submit' class='w3ls-cart' ><i class='fa fa-cart-plus' aria-hidden='true'></i> Agregar carrito</button>
-                                                                                        </form>  
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_5["codigo"]." , &#34; &#34;, &#34;".$d_5["detalle"]."&#34;, 1,  ".$d_5["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
+                                                                                        </a></p>  
                                                                                     </div>   
                                                                                 </div>   
                                                                             </div>";
@@ -846,7 +834,7 @@
             
             
             function agregar_producto_tabla(codigo, cod_prod, producto, cantidad, precio, total){
-                /*
+                
                 var index_tab=1;
                 var tabla = document.getElementById("table_body");		    
                 var hilera = document.createElement("tr");
@@ -922,7 +910,7 @@
 
                 tabla.appendChild(hilera);
 
-                verificar_productos();*/
+                verificar_productos();
             }
 
         </script>
