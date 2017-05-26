@@ -245,9 +245,11 @@
 	</div>
 	<!-- //banner -->  
 	<!-- welcome -->
+        
 	<div class="welcome"> 
 		<div class="container"> 
 			<div class="welcome-info">
+                            <h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class=" nav-tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" >
@@ -274,7 +276,7 @@
 					<div class="clearfix"> </div>
                                         <!-- INICIO PRODUCTOS DESTACADOS-->
                                         <?php if ($secciones_activas[2]["mostrar"] == "si"){?>
-					<h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
+					
 					<div id="myTabContent" class="tab-content">
 						<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 							<div class="tabcontent-grids">  
@@ -287,14 +289,14 @@
                                                                             $detalle=str_replace("</p>", "", $detalle);
                                                                             $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
-                                                                                <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href='#'><img height='300' src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'></a>
-                                                                                    <div class='view-caption agileits-w3layouts'>           
+                                                                                <div class='glry-w3agile-grids'> 
+                                                                                    <img width='100%' height='300'  src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'>
+                                                                                    <div class=''>           
                                                                                         <h4><a href='#'>".$d_1["producto"]."</a></h4>
                                                                                         <p>".$d_1["detalle"]."</p>
-                                                                                        <h5>$".$d_1["precio"]."</h5>
+                                                                                        <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_1["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 1,  ".$d_1["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_1["precio"]."</i>
                                                                                         </a></p>
                                                                                        
                                                                                          
@@ -326,17 +328,24 @@
 								</script>
 								<div id="owl-demo1" class="owl-carousel">
                                                                     <?php 
+                                                                    
                                                                         foreach ($destacado_2 as $d_2) {
+                                                                            $detalle_seleccionado=$d_2["detalle"];
+                                                                            $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                            $detalle=str_replace("</p>", "", $detalle);
+                                                                            $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
-                                                                                <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href='#'><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_2["imagen_1"]."' alt='img'></a>
-                                                                                    <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href='#'>".$d_2["producto"]."</a></h4>
-                                                                                        <p>".$d_2["descripcion"]."</p>
-                                                                                        <h5>".$d_2["precio"]."</h5> 
-                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_2["codigo"]." , &#34; &#34;, &#34;".$d_2["detalle"]."&#34;, 1,  ".$d_2["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
-                                                                                        </a></p> 
+                                                                                <div class='glry-w2agile-grids'> 
+                                                                                    <img height='200'  src='".base_url()."assets/recursos/images/productos-destacados/".$d_2["imagen_1"]."' alt='img'>
+                                                                                    <div class=''>           
+                                                                                        <h2><a href='#'>".$d_2["producto"]."</a></h2>
+                                                                                        <p>".$d_2["detalle"]."</p>
+                                                                                        <p></p>
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_2["codigo"]." , &#29;&#29;, &#29;".$detalle."&#29;, 2,  ".$d_2["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_2["precio"]."</i>
+                                                                                        </a></p>
+                                                                                       
+                                                                                         
                                                                                     </div>   
                                                                                 </div>   
                                                                             </div>";
@@ -365,23 +374,30 @@
 								</script>
 								<div id="owl-demo2" class="owl-carousel"> 
 									<?php 
-                                                                            foreach ($destacado_3 as $d_3) {
-                                                                                $mensaje="<div class='item'>
-                                                                                    <div class='glry-w3agile-grids agileits'> 
-                                                                                        <a href='#'><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_3["imagen_1"]."' alt='img'></a>
-                                                                                        <div class='view-caption agileits-w3layouts'>           
-                                                                                            <h4><a href='#'>".$d_3["producto"]."</a></h4>
-                                                                                            <p>".$d_3["descripcion"]."</p>
-                                                                                            <h5>".$d_3["precio"]."</h5> 
-                                                                                            <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_3["codigo"]." , &#34; &#34;, &#34;".$d_3["detalle"]."&#34;, 1,  ".$d_3["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
-                                                                                        </a></p> 
-                                                                                        </div>   
+                                                                    
+                                                                        foreach ($destacado_3 as $d_3) {
+                                                                            $detalle_seleccionado=$d_3["detalle"];
+                                                                            $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                            $detalle=str_replace("</p>", "", $detalle);
+                                                                            $detalle=  trim($detalle);
+                                                                            $mensaje="<div class='item'>
+                                                                                <div class='glry-w3agile-grids'> 
+                                                                                    <img height='300' src='".base_url()."assets/recursos/images/productos-destacados/".$d_3["imagen_1"]."' alt='img'>
+                                                                                    <div class=''>           
+                                                                                        <h3><a href='#'>".$d_3["producto"]."</a></h3>
+                                                                                        <p>".$d_3["detalle"]."</p>
+                                                                                        <p></p>
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_3["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 3,  ".$d_3["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_3["precio"]."</i>
+                                                                                        </a></p>
+                                                                                       
+                                                                                         
                                                                                     </div>   
-                                                                                </div>";
-                                                                                echo $mensaje;
-                                                                            }
-                                                                        ?>
+                                                                                </div>   
+                                                                            </div>";
+                                                                            echo $mensaje;
+                                                                        }
+                                                                    ?>
 								</div>    
 							</div>
 						</div>
@@ -404,23 +420,30 @@
 								</script>
 								<div id="owl-demo3" class="owl-carousel"> 
                                                                     <?php 
+                                                                    
                                                                         foreach ($destacado_4 as $d_4) {
+                                                                            $detalle_seleccionado=$d_4["detalle"];
+                                                                            $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                            $detalle=str_replace("</p>", "", $detalle);
+                                                                            $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
-                                                                                <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href='#'><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_4["imagen_1"]."' alt='img'></a>
-                                                                                    <div class='view-caption agileits-w3layouts'>           
+                                                                                <div class='glry-w4agile-grids'> 
+                                                                                    <img height='400' src='".base_url()."assets/recursos/images/productos-destacados/".$d_4["imagen_1"]."' alt='img'>
+                                                                                    <div class=''>           
                                                                                         <h4><a href='#'>".$d_4["producto"]."</a></h4>
-                                                                                        <p>".$d_4["descripcion"]."</p>
-                                                                                        <h5>".$d_4["precio"]."</h5> 
-                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_4["codigo"]." , &#34; &#34;, &#34;".$d_4["detalle"]."&#34;, 1,  ".$d_4["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
-                                                                                        </a></p> 
+                                                                                        <p>".$d_4["detalle"]."</p>
+                                                                                        <p></p>
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_4["codigo"]." , &#49;&#49;, &#49;".$detalle."&#49;, 4,  ".$d_4["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_4["precio"]."</i>
+                                                                                        </a></p>
+                                                                                       
+                                                                                         
                                                                                     </div>   
                                                                                 </div>   
                                                                             </div>";
                                                                             echo $mensaje;
                                                                         }
-                                                                    ?> 
+                                                                    ?>
 								</div>    
 							</div>
 						</div>
@@ -442,17 +465,24 @@
 								</script>
 								<div id="owl-demo4" class="owl-carousel"> 
                                                                     <?php 
+                                                                    
                                                                         foreach ($destacado_5 as $d_5) {
+                                                                            $detalle_seleccionado=$d_5["detalle"];
+                                                                            $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                            $detalle=str_replace("</p>", "", $detalle);
+                                                                            $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
-                                                                                <div class='glry-w3agile-grids agileits'> 
-                                                                                    <a href='#'><img src='".base_url()."assets/recursos/images/productos-destacados/".$d_5["imagen_1"]."' alt='img'></a>
-                                                                                    <div class='view-caption agileits-w3layouts'>           
-                                                                                        <h4><a href='#'>".$d_5["producto"]."</a></h4>
-                                                                                        <p>".$d_5["descripcion"]."</p>
-                                                                                        <h5>".$d_5["precio"]."</h5> 
-                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_5["codigo"]." , &#34; &#34;, &#34;".$d_5["detalle"]."&#34;, 1,  ".$d_5["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> + </i>
-                                                                                        </a></p>  
+                                                                                <div class='glry-w5agile-grids'> 
+                                                                                    <img height='500' src='".base_url()."assets/recursos/images/productos-destacados/".$d_5["imagen_1"]."' alt='img'>
+                                                                                    <div class=''>           
+                                                                                        <h5><a href='#'>".$d_5["producto"]."</a></h5>
+                                                                                        <p>".$d_5["detalle"]."</p>
+                                                                                        <p></p>
+                                                                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_5["codigo"]." , &#59;&#59;, &#59;".$detalle."&#59;, 5,  ".$d_5["precio"].")'>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_5["precio"]."</i>
+                                                                                        </a></p>
+                                                                                       
+                                                                                         
                                                                                     </div>   
                                                                                 </div>   
                                                                             </div>";
