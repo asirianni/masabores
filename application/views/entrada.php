@@ -290,7 +290,7 @@
                                                                             $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w3agile-grids'> 
-                                                                                    <img width='100%' height='300'  src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'>
+                                                                                    <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'>
                                                                                     <div class=''>           
                                                                                         <h4><a href='#'>".$d_1["producto"]."</a></h4>
                                                                                         <p>".$d_1["detalle"]."</p>
@@ -336,9 +336,9 @@
                                                                             $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w2agile-grids'> 
-                                                                                    <img height='200'  src='".base_url()."assets/recursos/images/productos-destacados/".$d_2["imagen_1"]."' alt='img'>
+                                                                                    <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_2["imagen_1"]."' alt='img'>
                                                                                     <div class=''>           
-                                                                                        <h2><a href='#'>".$d_2["producto"]."</a></h2>
+                                                                                        <h4><a href='#'>".$d_2["producto"]."</a></h4>
                                                                                         <p>".$d_2["detalle"]."</p>
                                                                                         <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_2["codigo"]." , &#29;&#29;, &#29;".$detalle."&#29;, 2,  ".$d_2["precio"].")'>
@@ -382,9 +382,9 @@
                                                                             $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w3agile-grids'> 
-                                                                                    <img height='300' src='".base_url()."assets/recursos/images/productos-destacados/".$d_3["imagen_1"]."' alt='img'>
+                                                                                    <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_3["imagen_1"]."' alt='img'>
                                                                                     <div class=''>           
-                                                                                        <h3><a href='#'>".$d_3["producto"]."</a></h3>
+                                                                                        <h4><a href='#'>".$d_3["producto"]."</a></h4>
                                                                                         <p>".$d_3["detalle"]."</p>
                                                                                         <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_3["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 3,  ".$d_3["precio"].")'>
@@ -428,7 +428,7 @@
                                                                             $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w4agile-grids'> 
-                                                                                    <img height='400' src='".base_url()."assets/recursos/images/productos-destacados/".$d_4["imagen_1"]."' alt='img'>
+                                                                                    <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_4["imagen_1"]."' alt='img'>
                                                                                     <div class=''>           
                                                                                         <h4><a href='#'>".$d_4["producto"]."</a></h4>
                                                                                         <p>".$d_4["detalle"]."</p>
@@ -473,9 +473,9 @@
                                                                             $detalle=  trim($detalle);
                                                                             $mensaje="<div class='item'>
                                                                                 <div class='glry-w5agile-grids'> 
-                                                                                    <img height='500' src='".base_url()."assets/recursos/images/productos-destacados/".$d_5["imagen_1"]."' alt='img'>
+                                                                                    <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_5["imagen_1"]."' alt='img'>
                                                                                     <div class=''>           
-                                                                                        <h5><a href='#'>".$d_5["producto"]."</a></h5>
+                                                                                        <h4><a href='#'>".$d_5["producto"]."</a></h4>
                                                                                         <p>".$d_5["detalle"]."</p>
                                                                                         <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_5["codigo"]." , &#59;&#59;, &#59;".$detalle."&#59;, 5,  ".$d_5["precio"].")'>
