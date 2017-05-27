@@ -2331,7 +2331,7 @@ p.sbmincart-empty-text {
 }
 .agileits-modal input[type="text"] {
     width: 100%;
-    color: #999;  
+    color: #000;  
     outline: none;
     font-size: 1em;
     padding: .7em 1em;
@@ -2339,7 +2339,10 @@ p.sbmincart-empty-text {
     border: solid 1px #ccc;
     -webkit-appearance: none;
     display:block;
+    
 }
+
+
 .agileits-modal .close2 {
     background: #0280e1;
     border: none;

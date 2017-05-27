@@ -642,14 +642,14 @@
                 
                 encuentra_marca_errores_tipo_enteros(elementos);
                 
-                if(password == password_2)
+                if(password != password_2)
                 {
                     mensaje_error= "* Las contraseñas no coinciden";
                 }
                 
                 if(validarEmail(correo) && correo != "")
                 {
-                    mensaje_error= "* Ingrese un correo valido";
+                    mensaje_error+= "* Ingrese un correo valido";
                     mensaje_error+="* Usuario existente<br/>"
                     marcar_error("correo");
                 }
