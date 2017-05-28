@@ -27,7 +27,7 @@
         
         
         <style>
-            .label-registro{font-weight: normal;color: #c8c8c8;};
+            .label-registro{font-weight: normal;color: #000000;};
         </style>
         <!-- js -->
         <script src="<?php echo base_url(); ?>recursos/js/jquery-2.2.3.min.js"></script> 

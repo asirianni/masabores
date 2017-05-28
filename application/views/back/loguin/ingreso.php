@@ -130,7 +130,7 @@
                                 <?php echo form_close();?>
                             
 			</div>  
-			<h6> No recuerdas tu contraseña? <a href="<?php echo base_url()?>index.php/Welcome/recuperar_password">Recuperar contraseña »</a> </h6> 
+			<!--<h6> No recuerdas tu contraseña? <a href="<?php echo base_url()?>index.php/Welcome/recuperar_password">Recuperar contraseña »</a> </h6>--> 
 			<!--<div class="login-page-bottom social-icons">
 				<h5>Recover your social account</h5>
 				<ul>

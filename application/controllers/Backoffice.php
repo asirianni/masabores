@@ -64,7 +64,7 @@ class Backoffice extends CI_Controller {
 	
 		if ($this->form_validation->run() == FALSE){
 			$output['salida_error']="";
-			$this->load->view('back/loguin.php', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}else{
 			$usuario = $this->input->post("usuario");
 			$pass = $this->input->post("pass");
@@ -79,11 +79,11 @@ class Backoffice extends CI_Controller {
 					
 				}else{
 					$output['salida_error']="Pass ingresada incorrecta";
-					$this->load->view('back/loguin.php', $output);
+					$this->load->view('back/loguin/ingreso.php', $output);
 				}
 			}else{
 				$output['salida_error']="Usuario ingresado incorrecto";
-				$this->load->view('back/loguin.php', $output);
+				$this->load->view('back/loguin/ingreso.php', $output);
 			}
 		}
 	}
@@ -94,7 +94,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/panel_actualizacion_precios.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -129,7 +129,7 @@ class Backoffice extends CI_Controller {
                 $this->load->view('back/panel_actualizacion_precios.php', $output);
             }else{
                 $output['salida_error']="";
-                $this->load->view('back/loguin', $output);
+                $this->load->view('back/loguin/ingreso.php', $output);
             }
 	}
         
@@ -145,7 +145,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/panel_actualizacion_precios.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -158,7 +158,7 @@ class Backoffice extends CI_Controller {
                 $this->load->view('back/panel_actualizacion_precios.php', $output);
             }else{
                 $output['salida_error']="";
-                $this->load->view('back/loguin', $output);
+                $this->load->view('back/loguin/ingreso.php', $output);
             }
 	}
         
@@ -173,7 +173,7 @@ class Backoffice extends CI_Controller {
                 $this->load->view('back/panel_actualizacion_precios.php', $output);
             }else{
                 $output['salida_error']="";
-                $this->load->view('back/loguin', $output);
+                $this->load->view('back/loguin/ingreso.php', $output);
             }
 	}
         
@@ -303,7 +303,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/escritorio.php', $this->cargar_datos_escritorio());
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -316,7 +316,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -330,7 +330,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/home.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -344,7 +344,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/home.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -361,7 +361,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/home.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -378,7 +378,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/home.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -394,7 +394,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/home.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -408,7 +408,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/config.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -421,7 +421,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/config.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -434,7 +434,7 @@ class Backoffice extends CI_Controller {
 		$this->load->view('back/config.php', $output);
             }else{
 		$output['salida_error']="";
-		$this->load->view('back/loguin', $output);
+		$this->load->view('back/loguin/ingreso.php', $output);
             }
 	}
         
@@ -447,7 +447,7 @@ class Backoffice extends CI_Controller {
 		$this->load->view('back/config.php', $output);
             }else{
 		$output['salida_error']="";
-		$this->load->view('back/loguin', $output);
+		$this->load->view('back/loguin/ingreso.php', $output);
             }
 	}
         
@@ -461,7 +461,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/config.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -474,7 +474,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/config.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -488,7 +488,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/config.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -501,7 +501,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/config.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -602,7 +602,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -623,7 +623,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -637,7 +637,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -656,7 +656,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -675,7 +675,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
         
@@ -688,7 +688,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	
@@ -701,7 +701,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	public function talles(){
@@ -713,7 +713,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	public function cantidades(){
@@ -725,7 +725,7 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/productos.php', $output);
 		}else{
 			$output['salida_error']="";
-			$this->load->view('back/loguin', $output);
+			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
 	

@@ -130,7 +130,7 @@
                                 <?php echo form_close();?>
                             
 			</div>  
-			<h6> Ya posee los datos de su cuenta? <a href="<?php echo base_url()?>index.php/Welcome/acceso">Inicie Sesion »</a> </h6> 
+			<h6> Ya posee los datos de su cuenta? <a href="<?php echo base_url()?>">Inicie Sesion »</a> </h6> 
 			<!--<div class="login-page-bottom social-icons">
 				<h5>Recover your social account</h5>
 				<ul>

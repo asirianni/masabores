@@ -158,7 +158,7 @@ class Welcome extends CI_Controller {
         }
         
         public function recuperar_password() {
-            
+                        
             if($this->input->post())
             {
                 $this->load->model("Usuario_model");
