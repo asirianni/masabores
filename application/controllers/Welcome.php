@@ -452,6 +452,11 @@ class Welcome extends CI_Controller {
         }
         
         public function busqueda_rubro($rubro) {
+            $vista = "productos";
+            $output["description"]= $this->Metadatos_model->getDescription($vista);
+            $output["title"]= $this->Metadatos_model->getTitle($vista);
+            $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+            
             $output['productos']="";
             if($rubro!=0){
                 $output['productos']=  base_url()."index.php/welcome/get_listado_productos_by_rubro/".$rubro;

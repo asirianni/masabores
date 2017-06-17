@@ -234,6 +234,8 @@ class Backoffice extends CI_Controller {
                 $i=0;
                 
                 while($a = fgetcsv($oa, 1000, $cardelimitador)){
+//                   var_dump($a);
+//                   echo "<br>";
                     if($i!=0){
                        $arr_datos = array(
                             'codigo'  => $i,
@@ -241,11 +243,11 @@ class Backoffice extends CI_Controller {
                             'cod_prod'  => (string) $a[1],
                             'descripcion'  => $a[2],
                             'cod_barra'  => $a[3],
-                            'cod_grupo'  => $a[4],
-                            'cod_proveedor'  => $a[5],
-                            'precio_1'  => $a[8],
-                            'precio_2'  => $a[9],
-                            'precio_3'  => $a[10],
+                            'cod_grupo'  => $a[6],
+                            'cod_proveedor'  => $a[8],
+                            'precio_1'  => $a[14],
+                            'precio_2'  => $a[16],
+                            'precio_3'  => $a[18],
                             'iva'  => 21,
                             'sub_rubro'  => null,
                             'imagen'  => null,
@@ -254,9 +256,9 @@ class Backoffice extends CI_Controller {
                                                                   
                         );
                         
-                        if (!in_array($a[4], $codigos_grupos)) {
-                            array_push($codigos_grupos, $a[4]);
-                            array_push($descripcion_grupos, $a[5]);
+                        if (!in_array($a[6], $codigos_grupos)) {
+                            array_push($codigos_grupos, $a[6]);
+                            array_push($descripcion_grupos, $a[7]);
                         }
                         
                         
@@ -271,6 +273,7 @@ class Backoffice extends CI_Controller {
                 
                 for($i=0;$i < count($codigos_grupos); ++$i){
                     $codigo_grupo_seleccionado=$codigos_grupos[$i];
+                    $codigo_grupo_seleccionado;
                     $grupo_padre="";
                     if($codigo_grupo_seleccionado!=""){
                         $grupo_padre=$codigo_grupo_seleccionado[0].$codigo_grupo_seleccionado[1];
@@ -285,12 +288,14 @@ class Backoffice extends CI_Controller {
                 }
                 $this->Almacen_model->limpiar_espacios();
                 $output["error"]=false;
-                $output["importacion"]=true; 
+                $output["importacion"]=true;
+                $output["menu_lateral"]=$this->partes_backoffice->getMenuLateralAdministrador();
                 $this->load->view('back/importador_precios.php', $output);
             
             } catch (Exception $exc) {
                 $output["error"]=true;
-                $output["importacion"]=false; 
+                $output["importacion"]=false;
+                $output["menu_lateral"]=$this->partes_backoffice->getMenuLateralAdministrador();
                 $this->load->view('back/importador_precios.php', $output);
             }
 
