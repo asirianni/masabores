@@ -387,6 +387,13 @@
                                   </tr>
                         </tfoot>
                       </table>
+                    <div id="mostrar_mensaje_por_minimo_entrega" style="display: none;">
+                        <p style="color: #F00;">SE APLICARA EL SIGUIENTE CARGO DE FLETE SEGUN SU LOCALIDAD</p>
+                        <p>SELECCIONE LOCALIDAD PARA VER EL CARGO</p>
+                        <select>
+                            
+                        </select>
+                    </div>
                   </div>
                 </div>
 
@@ -685,7 +692,29 @@
                         //alert(e);
                     storage = {};
                 }
+                
+                //
+                
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url()?>index.php/Response_ajax/get_minimo_entrega",
+                    data: {},
 
+                    beforeSend: function(event){},
+                    success: function(data)
+                    {
+                        data = JSON.parse(data);
+                            
+                        var total_pedido = parseFloat($("#total_final").text()).toFixed(2);
+                        
+                        if(total_pedido < data)
+                        {
+                            $("#mostrar_mensaje_por_minimo_entrega").css("display","block");
+                        }
+                        
+                    },
+                    error: function(event){alert(event.responseText);},
+                });
             });
 
             function agregar_texto_total(total){

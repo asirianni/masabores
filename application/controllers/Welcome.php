@@ -297,8 +297,10 @@ class Welcome extends CI_Controller {
         public function zonas_de_cobertura(){
            
             $this->load->model("Zonas_cobertura_model");
+            $this->load->model("Configuracion_model");
             
             $output["zonas_coberturas"]=  $this->Zonas_cobertura_model->getZonasCoberturas();
+            $output["minimo_de_entrega"]= $this->Configuracion_model->obtener_config(10);
             
             $output["correo"]= $this->Configuracion_model->obtener_config(1);
             $output["movil"]= $this->Configuracion_model->obtener_config(2);
@@ -669,6 +671,8 @@ class Welcome extends CI_Controller {
         }
         
         private function ejecutar_checkout($nuevo_cliente, $error_usuario, $error_pass) {
+            $this->load->model("Zonas_cobertura_model");
+            
             $salida["rubros"]=  $this->Almacen_model->obtener_rubros();
             $salida['lista']=  $this->Almacen_model->obtener_lista_precios();
             $salida['nuevo_cliente'] = $nuevo_cliente;
@@ -685,6 +689,9 @@ class Welcome extends CI_Controller {
             $salida["direccion"]= $this->Configuracion_model->obtener_config(4);
             $salida["horarios"]= $this->Configuracion_model->obtener_config(5);
             $salida["localidad"]= $this->Configuracion_model->obtener_config(6);
+            $salida["minimo_de_entrega"]= $this->Configuracion_model->obtener_config(10);
+            
+            $salida["zonas_de_cobertura"]= $this->Zonas_cobertura_model->getZonasCoberturas();
             
             $salida["modal_ingreso"]= $this->partes_web->getModalIngreso();
             $salida["menu_principal"]= $this->partes_web->getMenuPrincipal();

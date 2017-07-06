@@ -233,5 +233,18 @@ class Response_Ajax extends CI_Controller
         } 
     }
     
+    public function get_minimo_entrega()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Configuracion_model");
+            
+            $respuesta = $this->Configuracion_model->obtener_config(10);
+            
+            $respuesta = (float)$respuesta["funcionalidad"];
+            echo json_encode($respuesta);
+        } 
+    }
+    
     
 }

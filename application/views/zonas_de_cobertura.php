@@ -190,7 +190,9 @@ ul.menu li a {
 		
 	</div>
 	<div class="products">	
-            <h2 style='padding-left: 10px;margin-bottom: 10px;'>ZONAS DE ENTREGA</h2>
+            <h2 style='padding-left: 10px;margin-bottom: 20px;'>ZONAS DE ENTREGA</h2>
+            <h4 style='padding-left: 10px;margin-bottom: 10px;'>SI EL PEDIDO NO SUPERA LOS $<?php echo $minimo_de_entrega["funcionalidad"]?> SE APLICARAN CARGOS DE ENVIO</h4>
+            <br/>
             <div class="row">
                 <?php
                     $i=0; 
@@ -256,7 +258,7 @@ ul.menu li a {
 																                                      
 									</tbody>
 								</table>
-							</div>
+					</div>
 			            </div>
 				      	<div class="modal-footer">				
 	                        <div class="form-group">
@@ -409,7 +411,9 @@ ul.menu li a {
                 if(carrito==0){
                     alert("Su carrito esta sin productos.");
                 }else{
+                     
                     $('#modalCarrito').modal('show');
+                        
                 }
             }
             
