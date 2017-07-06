@@ -2,23 +2,7 @@
 
 class Backoffice extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-    
-        public $partes_backoffice;
+	public $partes_backoffice;
         
 	public function __construct()
 	{
@@ -487,6 +471,7 @@ class Backoffice extends CI_Controller {
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();
 			$crud->set_table('zonas_cobertura');
+                        $crud->set_relation("zona", "localidades", "localidad");
                         $crud->set_relation("cod_dia", "dias_semanas", "descripcion");
                         $crud->set_field_upload('imagen','recursos/images/zonas_coberturas/');
 			$output = $crud->render();

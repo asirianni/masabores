@@ -20,7 +20,7 @@ class Zonas_cobertura_model extends CI_Model{
     
     public function getZonasCoberturas()
     {
-        $r = $this->db->query("select zonas_cobertura.*, dias_semanas.descripcion as desc_dia from zonas_cobertura INNER JOIN dias_semanas on dias_semanas.dia = zonas_cobertura.cod_dia order by cod_dia");
+        $r = $this->db->query("select zonas_cobertura.*,localidades.localidad as descripcion, dias_semanas.descripcion as desc_dia from zonas_cobertura INNER JOIN localidades on localidades.codigo = zonas_cobertura.zona INNER JOIN dias_semanas on dias_semanas.dia = zonas_cobertura.cod_dia order by cod_dia");
         return $r->result_array();
     }
 }
