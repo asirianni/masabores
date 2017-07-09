@@ -20,4 +20,5 @@ class Configuracion_model extends CI_Model {
         $query = $this->db->query("SELECT * FROM configuracion where codigo = $dato ");
         return $query->row_array();
     }
+    
 }

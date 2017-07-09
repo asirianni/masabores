@@ -262,7 +262,7 @@
                                     
                                     <div class="col-md-4"> 
 					<div class="form-group">
-						<label for="vendedor" class="label-registro">Vendedor</label>
+                                            <p><label for="vendedor" class="label-registro">Vendedor</label></p>
 						<select class="form-control js-example-basic-single" name="vendedor" id="vendedor" required="">
                                                     <option value="0">No tengo vendedor</option>
                                                     <?php 
@@ -286,6 +286,18 @@
                                             <input type="text" class="user" name="codigo_masabores" id="masabores">
                                         </div>
                                     </div>
+                                    
+                                    <div class="col-md-12" style="text-align:center;">
+                                        <div class="col-md-offset-3 col-md-6">
+                                            <?php echo $cap['image'];?>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="col-md-offset-3 col-md-6">
+                                            <p class="label-registro">Codigo Captcha<p>
+                                            <input type="text" name="captcha" id="captcha" style="width: 50%" />
+                                        </div>
+                                    </div>
+                                    
                                     <div class="col-md-12">
                                         <p style="color: #f00;font-size: 18px;" id="mensaje_error"></p>
                                     </div>
@@ -592,118 +604,137 @@
             
             function boton_registro()
             {
-                var correo = $("#correo").val();
-                var usuario = $("#usuario").val();
-                var codigo_postal = $("#codigo-postal").val();
-                var nombre = $("#nombre").val();
-                var celular = $("#celular").val();
-                var fijo = $("#fijo").val();
-                var cuil_cuit_dni = $("#cuil-cuit-dni").val();
-                var razon_social = $("#razon-social").val();
-                var nombre_comercial = $("#nombre-comercial").val();
-                var apellido = $("#apellido").val();
-                var direccion = $("#direccion").val();
-                
-                var provincia = parseInt($("#provincia").val());
-                var localidad = parseInt($("#localidad").val());
-                var pais = parseInt($("#pais").val());
-                var vendedor = $("#vendedor").val();
-                var tipo_iva = $("#tipo_iva").val();
-                
-                var password = $("#password").val();
-                var password_2 = $("#password_2").val();
-                
-                
-                mensaje_error="";
-                
-                var elementos= new Array();
-                
-                elementos.push(["usuario","* Agregar un usuario<br/>"]);
-                elementos.push(["correo","* Agregar un correo<br/>"]);
-                elementos.push(["codigo_postal","* Agregar un codigo postal<br/>"]);
-                elementos.push(["nombre","* Agregar un nombre<br/>"]);
-                elementos.push(["celular","* Agregar un celular<br/>"]);
-                elementos.push(["fijo","* Agregar un fijo<br/>"]);
-                elementos.push(["cuil_cuit_dni","* Agregar un cuil/cuit/dni<br/>"]);
-                elementos.push(["razon_social","* Agregar una razon social<br/>"]);
-                elementos.push(["nombre_comercial","* Agregar un nombre comercial<br/>"]);
-                elementos.push(["apellido","* Agregar un apellido<br/>"]);
-                elementos.push(["direccion","* Agregar un direccion<br/>"]);
-                elementos.push(["password","* Agregar un contraseña<br/>"]);
-                
-                encuentra_marca_errores(elementos);
-                
-                var elementos= new Array();
-                
-                elementos.push(["provincia","* Agregar una provincia<br/>"]);
-                elementos.push(["localidad","* Agregar una localidad<br/>"]);
-                elementos.push(["pais","* Agregar un pais<br/>"]);
-                elementos.push(["tipo_iva","* Agregar un tipo iva<br/>"]);
-                
-                encuentra_marca_errores_tipo_enteros(elementos);
-                
-                if(password != password_2)
-                {
-                    mensaje_error= "* Las contraseñas no coinciden";
-                }
-                
-                if(validarEmail(correo) && correo != "")
-                {
-                    mensaje_error+= "* Ingrese un correo valido";
-                    mensaje_error+="* Usuario existente<br/>"
-                    marcar_error("correo");
-                }
-                else
-                {
-                    desmarcar_error("correo");
-                }
-                // BUSCANDO ERRORES DE DATABASE
+                var captcha= $("#captcha").val();
                 
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url()?>index.php/Response_Ajax/getErrorRegistro",
-                    data: {usuario:usuario,correo:correo},
+                    url: "<?php echo base_url()?>index.php/Response_ajax/validar_captcha_registro",
+                    data: {captcha:captcha},
 
                     beforeSend: function(event){},
                     success: function(data)
                     {
                         data = JSON.parse(data);
-                            
-                        if(data["usuario_existente"])
-                        {
-                            mensaje_error+="* Usuario existente<br/>"
-                            marcar_error("usuario");
-                        }
-                        else
-                        {
-                            desmarcar_error("usuario");
-                        }
-                        
-                        if(data["correo_existente"])
-                        {
-                            mensaje_error+="* Correo existente<br/>"
-                            marcar_error("correo");
-                        }
-                        else
-                        {
-                            desmarcar_error("correo");
-                        }
                         
                         
-                        $("#mensaje_error").html(mensaje_error);
+                            var correo = $("#correo").val();
+                            var usuario = $("#usuario").val();
+                            var codigo_postal = $("#codigo-postal").val();
+                            var nombre = $("#nombre").val();
+                            var celular = $("#celular").val();
+                            var fijo = $("#fijo").val();
+                            var cuil_cuit_dni = $("#cuil-cuit-dni").val();
+                            var razon_social = $("#razon-social").val();
+                            var nombre_comercial = $("#nombre-comercial").val();
+                            var apellido = $("#apellido").val();
+                            var direccion = $("#direccion").val();
+
+                            var provincia = parseInt($("#provincia").val());
+                            var localidad = parseInt($("#localidad").val());
+                            var pais = parseInt($("#pais").val());
+                            var vendedor = $("#vendedor").val();
+                            var tipo_iva = $("#tipo_iva").val();
+
+                            var password = $("#password").val();
+                            var password_2 = $("#password_2").val();
+
+
+                            mensaje_error="";
+
+                            if(data == false)
+                            {
+                                mensaje_error="* Codigo captcha incorrecto<br/>";
+                            }
+                                
+                            var elementos= new Array();
+
+                            elementos.push(["usuario","* Agregar un usuario<br/>"]);
+                            elementos.push(["correo","* Agregar un correo<br/>"]);
+                            elementos.push(["codigo_postal","* Agregar un codigo postal<br/>"]);
+                            elementos.push(["nombre","* Agregar un nombre<br/>"]);
+                            elementos.push(["celular","* Agregar un celular<br/>"]);
+                            elementos.push(["fijo","* Agregar un fijo<br/>"]);
+                            elementos.push(["cuil_cuit_dni","* Agregar un cuil/cuit/dni<br/>"]);
+                            elementos.push(["razon_social","* Agregar una razon social<br/>"]);
+                            elementos.push(["nombre_comercial","* Agregar un nombre comercial<br/>"]);
+                            elementos.push(["apellido","* Agregar un apellido<br/>"]);
+                            elementos.push(["direccion","* Agregar un direccion<br/>"]);
+                            elementos.push(["password","* Agregar un contraseña<br/>"]);
+
+                            encuentra_marca_errores(elementos);
+
+                            var elementos= new Array();
+
+                            elementos.push(["provincia","* Agregar una provincia<br/>"]);
+                            elementos.push(["localidad","* Agregar una localidad<br/>"]);
+                            elementos.push(["pais","* Agregar un pais<br/>"]);
+                            elementos.push(["tipo_iva","* Agregar un tipo iva<br/>"]);
+
+                            encuentra_marca_errores_tipo_enteros(elementos);
+
+                            if(password != password_2)
+                            {
+                                mensaje_error= "* Las contraseñas no coinciden";
+                            }
+
+                            if(validarEmail(correo) && correo != "")
+                            {
+                                mensaje_error+= "* Ingrese un correo valido";
+                                mensaje_error+="* Usuario existente<br/>"
+                                marcar_error("correo");
+                            }
+                            else
+                            {
+                                desmarcar_error("correo");
+                            }
+                            // BUSCANDO ERRORES DE DATABASE
+
+                            $.ajax({
+                                type: "POST",
+                                url: "<?php echo base_url()?>index.php/Response_Ajax/getErrorRegistro",
+                                data: {usuario:usuario,correo:correo},
+
+                                beforeSend: function(event){},
+                                success: function(data)
+                                {
+                                    data = JSON.parse(data);
+
+                                    if(data["usuario_existente"])
+                                    {
+                                        mensaje_error+="* Usuario existente<br/>"
+                                        marcar_error("usuario");
+                                    }
+                                    else
+                                    {
+                                        desmarcar_error("usuario");
+                                    }
+
+                                    if(data["correo_existente"])
+                                    {
+                                        mensaje_error+="* Correo existente<br/>"
+                                        marcar_error("correo");
+                                    }
+                                    else
+                                    {
+                                        desmarcar_error("correo");
+                                    }
+
+
+                                    $("#mensaje_error").html(mensaje_error);
+
+                                },
+                                    error: function(event){alert(event.responseText);},
+                              });
+
+
+                            if(mensaje_error == "")
+                            {
+                                $("#formulario_registro").submit();
+                            }
                         
                     },
                         error: function(event){alert(event.responseText);},
                   });
-
-                
-                
-                
-                if(mensaje_error == "")
-                {
-                    $("#formulario_registro").submit();
-                }
-                
             }
             
             function encuentra_marca_errores_tipo_enteros(elementos)

@@ -472,6 +472,7 @@ class Backoffice extends CI_Controller {
 			$crud = new grocery_CRUD();
 			$crud->set_table('zonas_cobertura');
                         $crud->set_relation("zona", "localidades", "localidad");
+                        $crud->set_relation("cod_masabores_entrega", "masabores_entrega", "descripcion");
                         $crud->set_relation("cod_dia", "dias_semanas", "descripcion");
                         $crud->set_field_upload('imagen','recursos/images/zonas_coberturas/');
 			$output = $crud->render();

@@ -153,7 +153,10 @@ ul.menu li a {
                             <div style="margin-bottom: 40px;">
                                 <h3 class="text-center" syle="color: #000;"><?php echo $value["descripcion"]?></h3>
                                 <p style="margin-top: 20px;" class="text-center"><img class=img-responsive" src="<?php echo base_url()?>recursos/images/grupos/<?php echo $value["imagen"]?>" height="200"/></p>
+                                <?php if($this->session->userdata("ingresado") == true)
+                                { ?>
                                 <p style="margin-top: 10px;" class="text-center"><a href="<?php echo base_url()?>index.php/welcome/busqueda_rubro/<?php echo $value["codigo"]?>" class="btn btn-large btn-default">Ver Productos </a></p>
+                                <?php }?>
                             </div>
                         </div>
                     

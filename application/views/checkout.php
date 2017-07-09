@@ -159,8 +159,8 @@
                                                             echo "<h5>Definir la forma de entrega.</h5>";
                                                             echo "<br>";
                                                             echo "<div class='toggle'>";
-                                                            echo "	<h3 class='toggle-heading' >Entrega - Reparto</h3>";
-                                                            echo "	<div class='toggle-content' style='display: none;' >";
+                                                            echo "	<h3 class='toggle-heading' onClick='tipo_de_retiro(&#34;reparto&#34;)'>Entrega - Reparto</h3>";
+                                                            echo "	<div class='toggle-content' style='display: none;' id='parte_entrega'>";
                                                             echo "      <label id='direccion'> DESTINO:</label>";
                                                             echo "		<div class='row'>";
                                                             echo "			<div class='col-md-6'>";
@@ -205,8 +205,8 @@
                                                             echo "	</div>";
                                                             echo "</div>";
                                                             echo "<div class='toggle'>";
-                                                            echo "	<h3 class='toggle-heading' >Retira de Local</h3>";
-                                                            echo "	<div class='toggle-content' style='display: none;'>";
+                                                            echo "	<h3 class='toggle-heading' onClick='tipo_de_retiro(&#34;local&#34;)'>Retira de Local</h3>";
+                                                            echo "	<div class='toggle-content' style='display: none;' id='parte_local'>";
                                                             echo "		<label>DEFINIR LOCAL</label>";
                                                             echo "		<br>";
                                                             echo "		<select name='local' class='form-group' id='local_id_2'>";
@@ -263,6 +263,8 @@
                                                                     echo "<input id='pago_reg_id' type='hidden' name='pago' value='contado'>";
                                                                     echo "<input id='pedido_reg_id' type='hidden' name='pedido' value='pedido'>";
                                                                     echo "<input id='detalle_envio_reg_id' type='hidden' name='detenvio'>";
+                                                                    echo "<input id='tipo_de_retiro_form' type='hidden' name='tipo_de_retiro' value='total'>";
+                                                                    echo "<input id='localidad_cargo_form' type='hidden' name='localidad_cargo' value='total'>";
                                                                     echo "<button type='button' class='btn btn-medium btn-default btn-square' 
                                                                             onclick='validar_form_registrar();'>Proceder a la compra</button>";
                                                             echo form_close();
@@ -390,9 +392,20 @@
                     <div id="mostrar_mensaje_por_minimo_entrega" style="display: none;">
                         <p style="color: #F00;">SE APLICARA EL SIGUIENTE CARGO DE FLETE SEGUN SU LOCALIDAD</p>
                         <p>SELECCIONE LOCALIDAD PARA VER EL CARGO</p>
-                        <select>
-                            
+                        <select id="localidad_cargo" class="form-control" onchange="mostrar_pecio_recargo()">
+                            <option value='0'>Seleccionar localidad</option>
+                        <?php
+                            for($i=0; $i < count($zonas_de_cobertura);$i++)
+                            {
+                                echo "<option value='".$zonas_de_cobertura[$i]["id"]."'>".$zonas_de_cobertura[$i]["descripcion"]."</option>";
+                            }
+                        ?>
                         </select>
+                        <p id="precio_recargo_muestra" style="color: #F00;font-weight: bold;"></p>
+                        
+                    </div>
+                    <div id="mostrar_mensaje_por_minimo_entrega_flete_incluido" style="display: none;">
+                        <p id="" style="color: #F00;font-weight: bold;">Flete incluido</p>
                     </div>
                   </div>
                 </div>
@@ -670,8 +683,88 @@
                             ].join('');
                         }
                         
+                        var tipo_de_entrega = "";
+                        var recarga_es_mayor_a_pedido = false;
+                        
+                        function tipo_de_retiro(tipo)
+                        {
+                            if(tipo == "local")
+                            {
+                                $("#parte_entrega").css("display","none");
+                                $("#mostrar_mensaje_por_minimo_entrega").css("display","none");
+                                $("#mostrar_mensaje_por_minimo_entrega_flete_incluido").css("display","none");
+                                $("#tipo_de_retiro_form").val("local");
+                            }
+                            else if(tipo == "reparto")
+                            {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "<?php echo base_url()?>index.php/Response_ajax/get_minimo_entrega",
+                                    data: {},
+
+                                    beforeSend: function(event){},
+                                    success: function(data)
+                                    {
+                                        data = JSON.parse(data);
+                                        
+                                        $("#tipo_de_retiro_form").val("reparto");
+                                        
+                                        var total_pedido = parseFloat($("#total_final").text()).toFixed(2);
+
+                                        if(total_pedido < data)
+                                        {
+                                            recarga_es_mayor_a_pedido= true;
+                                            $("#mostrar_mensaje_por_minimo_entrega").css("display","block");
+                                             $("#mostrar_mensaje_por_minimo_entrega_flete_incluido").css("display","none");
+                                        }
+                                        else
+                                        {
+                                            recarga_es_mayor_a_pedido= false;
+                                            $("#mostrar_mensaje_por_minimo_entrega_flete_incluido").css("display","block");
+                                        }
+                                        $("#parte_local").css("display","none");
+                                    },
+                                    error: function(event){alert(event.responseText);},
+                                });
+                            }
+                        }
                         
                         
+                        function mostrar_pecio_recargo()
+                        {
+                            //precio_recargo_muestra
+                            //RECARGO DE: $0
+                            var id_zona = parseInt($("#localidad_cargo").val());
+                            
+                            $("#localidad_cargo_form").val(id_zona);
+                            
+                            if(id_zona == 0)
+                            {
+                                $("#precio_recargo_muestra").css("disaplay","none");
+                                $("#precio_recargo_muestra").text("");
+                            }
+                            else
+                            {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "<?php echo base_url()?>index.php/Response_ajax/get_zona_de_cobertura",
+                                    data: {zona:id_zona},
+
+                                    beforeSend: function(event){},
+                                    success: function(data)
+                                    {
+                                        data = JSON.parse(data);
+                                        var costo = data["costo"];
+                                        var codigo_entrega = data["codigo_entrega"];
+                                        $("#precio_recargo_muestra").text("RECARGO DE: $"+costo);
+                                        $("#precio_recargo_muestra").css("disaplay","block");
+
+                                    },
+                                    error: function(event){alert(event.responseText);},
+                                });
+                                
+                            }
+                        }
                         
 		</script>
         <script>
@@ -695,26 +788,7 @@
                 
                 //
                 
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url()?>index.php/Response_ajax/get_minimo_entrega",
-                    data: {},
-
-                    beforeSend: function(event){},
-                    success: function(data)
-                    {
-                        data = JSON.parse(data);
-                            
-                        var total_pedido = parseFloat($("#total_final").text()).toFixed(2);
-                        
-                        if(total_pedido < data)
-                        {
-                            $("#mostrar_mensaje_por_minimo_entrega").css("display","block");
-                        }
-                        
-                    },
-                    error: function(event){alert(event.responseText);},
-                });
+                
             });
 
             function agregar_texto_total(total){
@@ -891,7 +965,23 @@
            function validar_form_registrar() {	
                 if(envio_seleccionado!=0){
                         if(envio_seleccionado==1){
+                            var seguir = true;
+                                                
+                                                
+                                                if(recarga_es_mayor_a_pedido)
+                                                {
+                                                    var localidad_select = parseInt($("#localidad_cargo").val());
+                                                    if(localidad_select == 0)
+                                                    {
+                                                        alert("seleccione una localidad de recargo");
+                                                        seguir =false;
+                                                    }
+                                                }
+                                                
+                                                if(seguir)
+                                                {
                                 if(document.getElementById('datepicker_delivery').value!=""){
+                                    
                                         if(document.getElementById('delivery_hora').value!="nada"){
                                                 document.getElementById('direccion_reg_id').value=$('#lista_direccion_detalle option:selected').text();
                                                 document.getElementById('localidad_reg_id').value=document.getElementById('lista_direccion_detalle').value;
@@ -903,16 +993,19 @@
                                                 document.getElementById('envio_reg_id').value=envio_seleccionado;//document.getElementById('envio_id_1').value;
                                                 enviar_formulario_registracion_pedido();
                                         }else{alert("Complete el campo hora de entrega");}
-                                }else{alert("Complete el campo fecha de entrega");}				
+                                }else{alert("Complete el campo fecha de entrega");}
+                                                }///
                         }else{
                                 if(document.getElementById('datepicker_retiro').value!=""){
                                         if(document.getElementById('retiro_hora').value!="nada"){
-                                                document.getElementById('local_reg_id').value=document.getElementById('local_id_2').value;
-                                                fecha=document.getElementById('datepicker_retiro').value;
-                                                hora=document.getElementById('retiro_hora').value;
-                                                dia=fecha+" "+hora;
-                                                document.getElementById('fecha_reg_id').value=dia;
-                                                enviar_formulario_registracion_pedido();
+                                                
+                                                    document.getElementById('local_reg_id').value=document.getElementById('local_id_2').value;
+                                                    fecha=document.getElementById('datepicker_retiro').value;
+                                                    hora=document.getElementById('retiro_hora').value;
+                                                    dia=fecha+" "+hora;
+                                                    document.getElementById('fecha_reg_id').value=dia;
+                                                    enviar_formulario_registracion_pedido();
+                                                
                                         }else{alert("Complete el campo hora de retiro");}
                                 }else{alert("Complete el campo fecha de retiro");}
                         }

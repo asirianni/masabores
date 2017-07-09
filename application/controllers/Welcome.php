@@ -88,6 +88,49 @@ class Welcome extends CI_Controller {
             
             if($this->session->userdata("ingresado") == false && !$this->input->post())
             {
+                $this->load->helper('captcha');
+                
+                // THE CAPTCHA CODE
+                
+                $caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"; 
+                $numerodeletras=5; 
+                $cadena = ""; 
+                
+                for($i=0;$i<$numerodeletras;$i++)
+                {
+                    $cadena .= substr($caracteres,rand(0,strlen($caracteres)),1); 
+                }
+
+                $vals = array(
+                        'word'          => $cadena,
+                        'img_path'      => './captcha/',
+                        'img_url'       => base_url().'captcha/',
+                        'font_path'     => './fonts/AlfaSlabOne-Regular.ttf',
+                        'img_width'     => '200',
+                        'img_height'    => 70,
+                        'expiration'    => 7200,
+                        'word_length'   => 8,
+                        'font_size'     => 16,
+                        'img_id'        => 'Imageid',
+                        'pool'          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+
+                        // White background and border, black text and red grid
+                        'colors'        => array(
+                                'background' => array(255, 255, 255),
+                                'border' => array(255, 255, 255),
+                                'text' => array(0, 0, 0),
+                                'grid' => array(255, 40, 40)
+                        )
+                );
+
+                $this->session->set_userdata('captcha',$vals['word']);
+                
+                $cap = create_captcha($vals);
+                $salida["cap"]=$cap;
+
+                // END
+                
+                
                 $this->load->model("Provincias_model");
                 $this->load->model("Vendedor_model");
                 $this->load->model("Iva_model");
@@ -127,6 +170,27 @@ class Welcome extends CI_Controller {
                 {
                     $resultado = $this->Cliente_model->getClienteInicioSesion($this->input->post("usuario"),$this->input->post("pass"));
                 
+                    
+                    // ENVIO DE CORREOS
+                    $this->load->library("Correo");
+                    $this->load->model("Configuracion_model");
+                    
+                    $correo_cliente= $resultado["correo"];
+                    $correo_server = $this->Configuracion_model->obtener_config(11);
+                    $correo_server = $correo_server["descripcion"];
+                    $correo_empresa = $this->Configuracion_model->obtener_config(1);
+                    $correo_empresa=$correo_empresa["descripcion"];
+                    
+                    $mensaje_para_cliente= $this->get_mensaje_cliente_registrado_para_cliente($resultado);
+                    
+                    Correo::enviar_correo($mensaje_para_cliente, "Bienvenido a Masabores", $correo_server, $correo_cliente);
+                    
+                    $mensaje_para_masabores= $this->get_mensaje_cliente_registrado_para_masabores($resultado);
+                    
+                    Correo::enviar_correo($mensaje_para_masabores, "Un nuevo cliente registrado - Masabores", $correo_server, $correo_empresa);
+                    
+                    // FIN ENVIO DE CORREOS
+                    
                     $datos = Array(
                         "codigo"=>$resultado["codigo"],
                         "usuario"=>$resultado["usuario"],
@@ -152,7 +216,37 @@ class Welcome extends CI_Controller {
             }
 	}
         
-        public function acceso() {
+    public function get_mensaje_cliente_registrado_para_cliente($resultado)
+    {
+        $mensaje=
+        "   <p><img src='".base_url()."assets/recursos/images/logo_mas.png'></p>
+            <h3>Bienvenido a Masabores ".$resultado["nombre"]." ".$resultado["apellido"]."</h3>
+            <p>Se ha registrado en nuestra <a href='".base_url()."'>página web</a> correctamente</p>
+            <h5>Los datos de ingreso son:</h5>
+            <p>Usuario: ".$resultado["usuario"]."</p>
+            <p>Contraseña: ".$resultado["pass"]."</p>
+            <p><a href='".base_url()."'>Inicie sesion</a></p>
+        ";
+        return $mensaje;
+    }
+    
+    public function get_mensaje_cliente_registrado_para_masabores($resultado)
+    {
+        $mensaje=
+        "   <p><img src='".base_url()."assets/recursos/images/logo_mas.png'></p>
+            <h3>".$resultado["nombre"]." ".$resultado["apellido"]." nuevo cliente!</h3>
+            <p>Se ha registrado en nuestra <a href='".base_url()."'>página web</a> correctamente</p>
+            <h5>Los datos principales ingresados son:</h5>
+            <p>N° de indentificacion en el sistema: ".$resultado["codigo"]."</p>
+            <p>Usuario: ".$resultado["usuario"]."</p>
+            <p>Contraseña: ".$resultado["pass"]."</p>
+            <p>Correo: ".$resultado["correo"]."</p>
+            <p>Celular: ".$resultado["celular"]."</p>
+            <p><a href='".base_url()."'>Inicie sesion</a></p>
+        ";
+        return $mensaje;
+    }
+         public function acceso() {
             $output['salida_error']="";
             $this->load->view('back/loguin/ingreso', $output);
         }
@@ -236,37 +330,41 @@ class Welcome extends CI_Controller {
 	}
         
         public function buscar() {
-            $output['productos']="";
-            if($this->input->post("busqueda")!=="" && $this->input->post("busqueda")!==null){
-                $output['productos']=  base_url()."index.php/welcome/get_listado_productos_by_busqueda/".$this->input->post("busqueda");
-            }else{
-                $output['productos']=  base_url()."index.php/welcome/get_listado_productos/";
-            }
-            $output["rubros"]=  $this->Almacen_model->obtener_rubros();
-            $output['lista']=  $this->Almacen_model->obtener_lista_precios();
-            
-            $output["correo"]= $this->Configuracion_model->obtener_config(1);
-            $output["movil"]= $this->Configuracion_model->obtener_config(2);
-            $output["telefono"]= $this->Configuracion_model->obtener_config(3);
-            $output["direccion"]= $this->Configuracion_model->obtener_config(4);
-            $output["horarios"]= $this->Configuracion_model->obtener_config(5);
-            $output["localidad"]= $this->Configuracion_model->obtener_config(6);
-            
-            $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
-            $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
-            $output["menu_superior"]= $this->partes_web->getMenuSuperior();
-            $output["parte_buscador"]= $this->partes_web->getParteBuscador();
-            $output["footer"]= $this->partes_web->getFooter();
-            
-            $vista = "home";
-            $output["description"]= $this->Metadatos_model->getDescription($vista);
-            $output["title"]= $this->Metadatos_model->getTitle($vista);
-            $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
-            
-            $this->load->view('mostrar_productos', $output);
-            
-            
+            if($this->session->userdata("ingresado") == true)
+            {
+                $output['productos']="";
+                if($this->input->post("busqueda")!=="" && $this->input->post("busqueda")!==null){
+                    $output['productos']=  base_url()."index.php/welcome/get_listado_productos_by_busqueda/".$this->input->post("busqueda");
+                }else{
+                    $output['productos']=  base_url()."index.php/welcome/get_listado_productos/";
+                }
+                $output["rubros"]=  $this->Almacen_model->obtener_rubros();
+                $output['lista']=  $this->Almacen_model->obtener_lista_precios();
 
+                $output["correo"]= $this->Configuracion_model->obtener_config(1);
+                $output["movil"]= $this->Configuracion_model->obtener_config(2);
+                $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+                $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+                $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+                $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+
+                $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+                $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+                $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+                $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+                $output["footer"]= $this->partes_web->getFooter();
+
+                $vista = "home";
+                $output["description"]= $this->Metadatos_model->getDescription($vista);
+                $output["title"]= $this->Metadatos_model->getTitle($vista);
+                $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+
+                $this->load->view('mostrar_productos', $output);
+            }
+            else
+            {
+                redirect("Welcome");
+            }
         }
         
         public function productos() {
@@ -591,11 +689,29 @@ class Welcome extends CI_Controller {
         
         public function registrar_pedido() {
             //datos traidos del form registrar pedido del checkout
+            $codigo_masabores = "";
+            $precio_reparto = "";
+            if($this->input->post("tipo_de_retiro") == "reparto")
+            {
+                $zona = $this->input->post("localidad_cargo");
+                
+                $this->load->model("Zonas_cobertura_model");
+                $zona = $this->Zonas_cobertura_model->getZonaCoberturaCheckoutPedido($zona);
+                $codigo_masabores= $zona["codigo_entrega"];
+                $precio_reparto= $zona["costo"];
+                
+            }
+            
             $cliente=$this->input->post("cliente");
             $cod_direccion=$this->input->post("cod_direccion");
             $localidad_entrega=$this->input->post("localidad");
             $cod_local_retiro=$this->input->post("cod_local_retiro");
-            $total=$this->input->post("total");
+            $total=(float)$this->input->post("total");
+            
+            if($codigo_masabores != "")
+            {
+                $total+= (float)$precio_reparto;
+            }
             $estado=$this->input->post("estado");
             $fecha=$this->input->post("fecha");
             $envio=$this->input->post("envio");
@@ -638,8 +754,10 @@ class Welcome extends CI_Controller {
             $pedido->direccion_entrega=$direccion;
             $pedido->localidad=$localidad;
 
-            $this->Pedido_model->insertarPedido($pedido);
+            $registrado = $this->Pedido_model->insertarPedido($pedido);
             // se persiste el detalle del pedido en la tabla pedido_detalle
+            
+            
             if ($pedido_detalle!=null) {
                 foreach($pedido_detalle as $p){
                     //verificamos la insercion, si falla sale con un break del bucle
@@ -651,6 +769,11 @@ class Welcome extends CI_Controller {
                     }
                 }
             }
+            
+            if($codigo_masabores != "")
+            {
+                $this->Pedido_model->insertarPedidoDetalle($consulta, $codigo_masabores, $precio_reparto, 1);
+            }
 
             //$this->enviar_pedido($this->session->userdata('correo'), $this->session->userdata('nombre'), $consulta, $fecha);
 
@@ -661,8 +784,140 @@ class Welcome extends CI_Controller {
             $output["horarios"]= $this->Configuracion_model->obtener_config(5);
             $output["localidad"]= $this->Configuracion_model->obtener_config(6);
             $output["footer"]= $this->partes_web->getFooter();
+            
+            if($registrado)
+            {
+                $this->enviar_correo_pedido_registrado_cliente($pedido->numero,$pedido->cliente,$total);
+                $this->enviar_correo_pedido_registrado_empresa($pedido->numero,$pedido->cliente,$total);
+            }
+            
             $this->load->view('finalizar_pedido', $output);
+            
+            
+            
 	}
+        
+        private function enviar_correo_pedido_registrado_cliente($numero_pedido,$cliente,$total)
+        {
+            $detalle_pedido = $this->Pedido_model->get_detalle_pedido($numero_pedido);
+            
+            // ENVIO DE CORREOS
+            $this->load->library("Correo");
+            $this->load->model("Configuracion_model");
+            $this->load->model("Cliente_model");
+                    
+            $correo_cliente= $resultado["correo"];
+            $correo_server = $this->Configuracion_model->obtener_config(11);
+            $correo_server = $correo_server["descripcion"];
+            $correo_empresa = $this->Configuracion_model->obtener_config(1);
+            $correo_empresa=$correo_empresa["descripcion"];
+            $cliente = $this->Cliente_model->getCliente($cliente);
+            $correo_cliente= $cliente["correo"];
+                    
+            $mensaje =
+            "
+                <p><img src='".base_url()."assets/recursos/images/logo_mas.png'></p>
+                <h3>Ha registrado un pedido en el sistema</h3>
+                <p>Numero de pedido N° ".$numero_pedido."</p>
+                <p>Total: ".$total."</p>
+                <p>Detalle del pedido registrado</p>
+                <br/>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Descuento</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            ";
+            foreach($detalle_pedido as $value)
+            {
+                $precio = (float)$value["precio"];
+                $cantidad = (float)$value["cantidad"];
+                $descuento = (float)$value["descuento"];
+                $subtotal = ($precio*$cantidad)-(($precio * $cantidad) * ($descuento / 100));
+                $mensaje.=
+                "
+                    <tr>
+                        <td>".$value["producto"]."</td>
+                        <td>$".$value["precio"]."</td>
+                        <td>".$value["cantidad"]."</td>
+                        <td>".$value["descuento"]."</td>
+                        <td>".$subtotal."</td>
+                    </tr>
+                ";
+            }
+            
+            Correo::enviar_correo($mensaje, "Pedido registrado - Masabores", $correo_server, $correo_cliente);
+        }
+        
+        private function enviar_correo_pedido_registrado_empresa($numero_pedido,$cliente,$total)
+        {
+            $detalle_pedido = $this->Pedido_model->get_detalle_pedido($numero_pedido);
+            
+            // ENVIO DE CORREOS
+            $this->load->library("Correo");
+            $this->load->model("Configuracion_model");
+            $this->load->model("Cliente_model");
+                    
+            $correo_cliente= $resultado["correo"];
+            $correo_server = $this->Configuracion_model->obtener_config(11);
+            $correo_server = $correo_server["descripcion"];
+            $correo_empresa = $this->Configuracion_model->obtener_config(1);
+            $correo_empresa=$correo_empresa["descripcion"];
+            $cliente = $this->Cliente_model->getCliente($cliente);
+            $correo_cliente= $cliente["correo"];
+                    
+            $mensaje =
+            "
+                <p><img src='".base_url()."assets/recursos/images/logo_mas.png'></p>
+                <h3>Se ha registrado un nuevo pedido en el sistema</h3>
+                <p>Numero de pedido N° ".$numero_pedido."</p>
+                 <p>Total: ".$total."</p>
+                <p>Cliente: ".$cliente["nombre"]." ".$cliente["apellido"]."</p>
+                <p>Correo del cliente: ".$correo_cliente."</p>
+                <p>Detalle del pedido registrado</p>
+                <br/>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>Descuento</th>
+                            <th>Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            ";
+            foreach($detalle_pedido as $value)
+            {
+                $precio = (float)$value["precio"];
+                $cantidad = (float)$value["cantidad"];
+                $descuento = (float)$value["descuento"];
+                $subtotal = ($precio*$cantidad)-(($precio * $cantidad) * ($descuento / 100));
+                $mensaje.=
+                "
+                    <tr>
+                        <td>".$value["producto"]."</td>
+                        <td>$".$value["precio"]."</td>
+                        <td>".$value["cantidad"]."</td>
+                        <td>".$value["descuento"]."</td>
+                        <td>".$subtotal."</td>
+                    </tr>
+                ";
+            }
+                
+            Correo::enviar_correo($mensaje, "Pedido registrado - Masabores", $correo_server, $correo_empresa);
+        }
         
         public function cerrar_sesion()
         {
@@ -691,7 +946,7 @@ class Welcome extends CI_Controller {
             $salida["localidad"]= $this->Configuracion_model->obtener_config(6);
             $salida["minimo_de_entrega"]= $this->Configuracion_model->obtener_config(10);
             
-            $salida["zonas_de_cobertura"]= $this->Zonas_cobertura_model->getZonasCoberturas();
+            $salida["zonas_de_cobertura"]= $this->Zonas_cobertura_model->getZonasCoberturasCheckoutPedido();
             
             $salida["modal_ingreso"]= $this->partes_web->getModalIngreso();
             $salida["menu_principal"]= $this->partes_web->getMenuPrincipal();

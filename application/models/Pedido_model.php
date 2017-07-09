@@ -37,7 +37,7 @@ class Pedido_model extends CI_Model {
 				'localidad' => $pedido->localidad,
 				'detenvio' => $pedido->detenvio
 		);
-		$this->db->insert('pedido', $data);
+		return $this->db->insert('pedido', $data);
 	}
 	
 	function insertarPedidoDetalle($numero_pedido, $producto, $precio, $cantidad) {
@@ -145,6 +145,11 @@ class Pedido_model extends CI_Model {
 		return $query->row_array();
 	}
 	
+        public function get_detalle_pedido($numero)
+        {
+            $r = $this->db->query("sELECT * FROM pedido_detalle where pedido_detalle.num_pedido =$numero");
+            return $r->result_array();
+        }
 	public function obtener_pedido_detalle($numero){
                 $limpiar_campo_tabla_detalle_pedido="UPDATE pedido_detalle SET producto = TRIM(producto);";
                 $limpiar_campo_tabla_productos="UPDATE productos SET cod_prod = TRIM(cod_prod);";

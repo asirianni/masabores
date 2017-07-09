@@ -15,8 +15,31 @@ class Response_Ajax extends CI_Controller
     
     public function __construct() {
         parent::__construct();
+        $this->load->library("session");
     }
     
+    public function validar_captcha_registro()
+    {
+        if($this->input->is_ajax_request() && $this->input->post())
+        {
+            $this->load->helper("captcha");
+                
+            $captcha = $this->input->post('captcha');
+                
+            $respuesta = false;
+                
+            $captcha_session= $this->session->userdata('captcha');
+                
+            if($captcha_session == $captcha)
+            {
+                $respuesta=true;
+            }
+            echo json_encode($respuesta);
+        }
+    }
+        
+       
+        
     public function busquedaClientes()
     {
         if($this->input->is_ajax_request())
@@ -246,5 +269,16 @@ class Response_Ajax extends CI_Controller
         } 
     }
     
-    
+    public function get_zona_de_cobertura()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Zonas_cobertura_model");
+            
+            $respuesta = $this->Zonas_cobertura_model->getZonaCoberturaCheckoutPedido($this->input->post("zona"));
+            
+           
+            echo json_encode($respuesta);
+        } 
+    }
 }
