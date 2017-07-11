@@ -699,7 +699,7 @@
                             {
                                 $.ajax({
                                     type: "POST",
-                                    url: "<?php echo base_url()?>index.php/Response_ajax/get_minimo_entrega",
+                                    url: "<?php echo base_url()?>index.php/Response_Ajax/get_minimo_entrega",
                                     data: {},
 
                                     beforeSend: function(event){},
@@ -747,7 +747,7 @@
                             {
                                 $.ajax({
                                     type: "POST",
-                                    url: "<?php echo base_url()?>index.php/Response_ajax/get_zona_de_cobertura",
+                                    url: "<?php echo base_url()?>index.php/Response_Ajax/get_zona_de_cobertura",
                                     data: {zona:id_zona},
 
                                     beforeSend: function(event){},

@@ -50,7 +50,7 @@ class Usuario_model extends CI_Model{
     
     public function getUsuarioPorCorreo($correo)
     {
-        $query = $this->db->query("select * from empleados where correo = '$correo'");
+        $query = $this->db->query("select * from cliente where correo = '$correo'");
         return $query->row_array();
     }
     

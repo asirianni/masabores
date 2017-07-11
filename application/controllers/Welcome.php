@@ -32,6 +32,7 @@ class Welcome extends CI_Controller {
             $this->load->library('Session');
             $this->load->library('Local');
             $this->load->library('Pedido');
+            $this->load->library('Mailer');
             $this->load->model('Almacen_model');
             $this->load->model('Cliente_model');
             $this->load->model('Local_model');
@@ -172,7 +173,7 @@ class Welcome extends CI_Controller {
                 
                     
                     // ENVIO DE CORREOS
-                    $this->load->library("Correo");
+//                    $this->load->library("Correo");
                     $this->load->model("Configuracion_model");
                     
                     $correo_cliente= $resultado["correo"];
@@ -183,11 +184,13 @@ class Welcome extends CI_Controller {
                     
                     $mensaje_para_cliente= $this->get_mensaje_cliente_registrado_para_cliente($resultado);
                     
-                    Correo::enviar_correo($mensaje_para_cliente, "Bienvenido a Masabores", $correo_server, $correo_cliente);
+//                    Correo::enviar_correo($mensaje_para_cliente, "Bienvenido a Masabores", $correo_server, $correo_cliente);
+                    $this->enviar_correo_seguro($correo_server, "masabores administracion", $correo_cliente, "Bienvenido a Masabores", $mensaje_para_cliente);
                     
                     $mensaje_para_masabores= $this->get_mensaje_cliente_registrado_para_masabores($resultado);
                     
-                    Correo::enviar_correo($mensaje_para_masabores, "Un nuevo cliente registrado - Masabores", $correo_server, $correo_empresa);
+                    $this->enviar_correo_seguro($correo_cliente, "cliente", $correo_server, "Un nuevo cliente registrado - Masabores", $mensaje_para_masabores);
+//                    Correo::enviar_correo($mensaje_para_masabores, "Un nuevo cliente registrado - Masabores", $correo_server, $correo_empresa);
                     
                     // FIN ENVIO DE CORREOS
                     
@@ -268,10 +271,11 @@ class Welcome extends CI_Controller {
                     
                     $mail = "Los datos de su cuenta son los siguientes:<br/>Usuario:".$usuario["usuario"]."<br/>/>Contraseña:".$usuario["pass"]."<br/>";
                     $titulo = "Datos de acceso al Sistema";
-                    $headers = "MIME-Version: 1.0\r\n"; 
-                    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
-                    $headers .= "From: Masabores < $nuestro_correo >\r\n";
-                    $bool = mail($correo,$titulo,$mail,$headers);
+//                    $headers = "MIME-Version: 1.0\r\n"; 
+//                    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+//                    $headers .= "From: Masabores < $nuestro_correo >\r\n";
+                    $bool = $this->enviar_correo_seguro($nuestro_correo, "administracion", $correo, $titulo, $mail);
+//                    $bool = mail($correo,$titulo,$mail,$headers);
                     
                     if($bool){
                         $output['salida_error']="Los datos de su cuenta han sido enviados a su correo";
@@ -802,11 +806,11 @@ class Welcome extends CI_Controller {
             $detalle_pedido = $this->Pedido_model->get_detalle_pedido($numero_pedido);
             
             // ENVIO DE CORREOS
-            $this->load->library("Correo");
+//            $this->load->library("Correo");
             $this->load->model("Configuracion_model");
             $this->load->model("Cliente_model");
                     
-            $correo_cliente= $resultado["correo"];
+//            $correo_cliente= $resultado["correo"];
             $correo_server = $this->Configuracion_model->obtener_config(11);
             $correo_server = $correo_server["descripcion"];
             $correo_empresa = $this->Configuracion_model->obtener_config(1);
@@ -853,8 +857,8 @@ class Welcome extends CI_Controller {
                     </tr>
                 ";
             }
-            
-            Correo::enviar_correo($mensaje, "Pedido registrado - Masabores", $correo_server, $correo_cliente);
+            $this->enviar_correo_seguro($correo_server, $cliente["nombre"], $correo_cliente, "Pedido registrado - Masabores", $mensaje);
+//            Correo::enviar_correo($mensaje, "Pedido registrado - Masabores", $correo_server, $correo_cliente);
         }
         
         private function enviar_correo_pedido_registrado_empresa($numero_pedido,$cliente,$total)
@@ -862,11 +866,11 @@ class Welcome extends CI_Controller {
             $detalle_pedido = $this->Pedido_model->get_detalle_pedido($numero_pedido);
             
             // ENVIO DE CORREOS
-            $this->load->library("Correo");
+//            $this->load->library("Correo");
             $this->load->model("Configuracion_model");
             $this->load->model("Cliente_model");
                     
-            $correo_cliente= $resultado["correo"];
+//            $correo_cliente= $resultado["correo"];
             $correo_server = $this->Configuracion_model->obtener_config(11);
             $correo_server = $correo_server["descripcion"];
             $correo_empresa = $this->Configuracion_model->obtener_config(1);
@@ -915,8 +919,8 @@ class Welcome extends CI_Controller {
                     </tr>
                 ";
             }
-                
-            Correo::enviar_correo($mensaje, "Pedido registrado - Masabores", $correo_server, $correo_empresa);
+            $this->enviar_correo_seguro($correo_server, "administracion", $correo_empresa, "Pedido registrado - Masabores", $mensaje);     
+//            Correo::enviar_correo($mensaje, "Pedido registrado - Masabores", $correo_server, $correo_empresa);
         }
         
         public function cerrar_sesion()
@@ -972,37 +976,37 @@ class Welcome extends CI_Controller {
 
 	}
 	
-	private function procesar_correo($from, $to, $subject, $mensaje){
-            $envio;
-
-            //configuracion para gmail
-//            $configCorreo = array(
-//                    'protocol' => 'smtp',
-//                    'smtp_host' => 'mail.todopositivo.net',
-//                    'smtp_port' => 25,
-//                    'smtp_user' => 'presupuestos@todopositivo.net',
-//                    'smtp_pass' => 'Presu1128',
-//                    'mailtype' => 'html',
-//                    'charset' => 'utf-8',
-//                    'newline' => "\r\n"
-//            );
-            
-            $config['protocol'] = 'sendmail';
-            $config['mailpath'] = '/usr/sbin/sendmail';
-            $config['charset'] = 'iso-8859-1';
-            $config['mailtype'] = 'html';
-            $config['wordwrap'] = TRUE;
+//	private function procesar_correo($from, $to, $subject, $mensaje){
+//            $envio;
 //
-            $this->email->initialize($config);
-
-//            $this->email->initialize($configCorreo);
-            $this->email->from('presupuestos@todopositivo.net', 'presupuestos@todopositivo.net');
-            $this->email->to($to);
-            $this->email->subject($subject);
-            $this->email->message($mensaje);
-            $envio=$this->email->send();
-            return $envio;
-	}
+//            //configuracion para gmail
+////            $configCorreo = array(
+////                    'protocol' => 'smtp',
+////                    'smtp_host' => 'mail.todopositivo.net',
+////                    'smtp_port' => 25,
+////                    'smtp_user' => 'presupuestos@todopositivo.net',
+////                    'smtp_pass' => 'Presu1128',
+////                    'mailtype' => 'html',
+////                    'charset' => 'utf-8',
+////                    'newline' => "\r\n"
+////            );
+//            
+//            $config['protocol'] = 'sendmail';
+//            $config['mailpath'] = '/usr/sbin/sendmail';
+//            $config['charset'] = 'iso-8859-1';
+//            $config['mailtype'] = 'html';
+//            $config['wordwrap'] = TRUE;
+////
+//            $this->email->initialize($config);
+//
+////            $this->email->initialize($configCorreo);
+//            $this->email->from('presupuestos@todopositivo.net', 'presupuestos@todopositivo.net');
+//            $this->email->to($to);
+//            $this->email->subject($subject);
+//            $this->email->message($mensaje);
+//            $envio=$this->email->send();
+//            return $envio;
+//	}
 	
 	private function mensaje_call_center($cliente, $pedido, $fecha, $direccion_enlace){
 		
@@ -1354,6 +1358,48 @@ class Welcome extends CI_Controller {
                     return false;
             }
 	}
+        
+        private function enviar_correo_seguro($correo_origen, $nombre, $correo_destino, $titulo, $mensaje){
+//            $mail = new Mailer();
+//            
+//            // Datos de la cuenta de correo utilizada para enviar vía SMTP
+//            $smtpHost = "mail.masabores.com";  // Dominio alternativo brindado en el email de alta 
+//            $smtpUsuario = "administracion@masabores.com";  // Mi cuenta de correo
+//            $smtpClave = "Admin03548427004";  // Mi contraseña
+//
+////            $mail->IsSMTP();
+//            $mail->SMTPAuth = true;
+//            $mail->Port = 587; 
+////            $mail->IsHTML(true); 
+//            $mail->CharSet = "utf-8";
+//
+//            // VALORES A MODIFICAR //
+//            $mail->Host = $smtpHost; 
+//            $mail->Username = $smtpUsuario; 
+//            $mail->Password = $smtpClave;
+//
+//            $mail->From = $correo_origen; // Email desde donde envío el correo.
+//            $mail->FromName = $nombre;
+//            $mail->addAddress($correo_destino, "John Doe"); // Esta es la dirección a donde enviamos los datos del formulario
+//
+//            $mail->Subject = $titulo; // Este es el titulo del email.
+//            $mensajeHtml = nl2br($mensaje);
+//            $mail->Body = "{$mensajeHtml}"; 
+//            // FIN - VALORES A MODIFICAR //
+//
+//            $estadoEnvio = $mail->Send(); 
+            
+//            $this->load->library('Email'); // Note: no $config param needed
+            $this->email->from($correo_origen, $nombre);
+            $this->email->to($correo_destino);
+            $this->email->subject($titulo);
+            $this->email->set_mailtype("html");
+            $this->email->message($mensaje);
+            
+            $estadoEnvio=$this->email->send();
+            
+            return $estadoEnvio;
+        }
         
         
 }

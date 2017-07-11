@@ -164,10 +164,10 @@
                                 </div>
                             </div>
                             <div class="item"><!-- Third-Slide -->
-                                <img src="<?php echo base_url(); ?>recursos/images/masabores_img_frente.JPG" alt="" class="img-responsive"/>
+                                <img src="<?php echo base_url(); ?>recursos/images/cocina.jpg" alt="" class="img-responsive"/>
                                 <div class="carousel-caption kb_caption kb_caption_center">
-                                    <h3 data-animation="animated fadeInLeft">Los mejores productos </h3>
-                                    <h4 data-animation="animated flipInX">para su comercio</h4>
+                                    <h3 data-animation="animated fadeInLeft">Su aliado en la cocina </h3>
+                                    <h4 data-animation="animated flipInX">con los mejores productos</h4>
                                 </div>
                             </div>
                             <div class="item"><!-- Third-Slide -->

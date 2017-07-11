@@ -264,7 +264,7 @@ class Response_Ajax extends CI_Controller
             
             $respuesta = $this->Configuracion_model->obtener_config(10);
             
-            $respuesta = (float)$respuesta["funcionalidad"];
+            $respuesta = (float)$respuesta["descripcion"];
             echo json_encode($respuesta);
         } 
     }

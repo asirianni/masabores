@@ -287,7 +287,7 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="col-md-12" style="text-align:center;">
+                                    <div class="col-md-12" style="text-align:center;" >
                                         <div class="col-md-offset-3 col-md-6">
                                             <?php echo $cap['image'];?>
                                         </div>
@@ -302,7 +302,7 @@
                                         <p style="color: #f00;font-size: 18px;" id="mensaje_error"></p>
                                     </div>
                                     <input type="button" class="btn_submit" onClick="boton_registro()" value="Registrarme">
-					<!--<div class="forgot-grid">
+<!--					<div class="forgot-grid">
 						<label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me</label>
 						<div class="forgot">
 							<a href="#">Forgot Password?</a>
@@ -608,7 +608,7 @@
                 
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url()?>index.php/Response_ajax/validar_captcha_registro",
+                    url: "<?php echo base_url()?>index.php/Response_Ajax/validar_captcha_registro",
                     data: {captcha:captcha},
 
                     beforeSend: function(event){},
