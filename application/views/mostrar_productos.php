@@ -124,6 +124,9 @@
 	</div>
 	<div class="products">	 
             <div class="container">
+                <div class="col-md-12">
+                    <h4 style='padding-left: 10px;margin-bottom: 20px;'>Mayores de $<?php echo $minimo_de_entrega["descripcion"]?> envio gratis, conozca los costos de envio <a href="<?php echo base_url()?>index.php/welcome/zonas_de_cobertura">aqui</a></h4>
+                </div>
                 <div class="col-md-12 product-w3ls-center">
                     <div class="box-content" style="display: block;">
                         <table id="productos"
@@ -141,8 +144,10 @@
                                     <th data-field="codigo" data-visible="false">Codigo-Ecomerce</th>
                                     <th data-field="cod_prod" data-visible="false">Codigo</th>
                                     <th data-field="descripcion" data-sortable="true">Producto</th>
-                                    <th data-field="precio" data-sortable="true">$ Precio</th>
-
+                                    <?php if($mostrar_precio)
+                                    { ?>
+                                    <th data-field="precio" data-sortable="true">$ Precio con iva inc</th>
+                                    <?php }?>
                                     <th data-field="options" data-formatter='optionsFormatter'></th>
                                 </tr>
                             </thead>
@@ -169,7 +174,9 @@
 <!--                                                                <th style="">CODIGO</th>  -->
 						                <th style="">PRODUCTO</th>
 						                <th style="">CANT.</th>
+                                                                
 						                <th style="">$</th>
+                                                                
 						                <th style="" class="text-center">SUBTOTAL</th>
 						                <th style="" class="text-center"></th>
 						                <th style="" class="text-center"></th>
@@ -340,6 +347,8 @@
             
             
             function agregar_producto_tabla(codigo, cod_prod, producto, cantidad, precio, total){
+                
+                
                 var index_tab=1;
                 var tabla = document.getElementById("table_body");		    
                 var hilera = document.createElement("tr");
@@ -410,6 +419,7 @@
                 hilera.appendChild(celdaDesc);
                 hilera.appendChild(celdaCant);
                 hilera.appendChild(celdaPrec);
+                
                 hilera.appendChild(celdaTot);
                 hilera.appendChild(celdaEliminar);
                 //hilera.appendChild(celdaMas);

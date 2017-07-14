@@ -146,6 +146,9 @@ ul.menu li a {
 	</div>
 	<div class="products">	 
             <div class="row">
+                <div class="col-md-12">
+                    <h4 style='padding-left: 10px;margin-bottom: 20px;'>Mayores de $<?php echo $minimo_de_entrega["descripcion"]?> envio gratis, conozca los costos de envio <a href="<?php echo base_url()?>index.php/welcome/zonas_de_cobertura">aqui</a></h4>
+                </div>
                 <?php
                     $line=1;
                     foreach ($rubros as $value) {?>

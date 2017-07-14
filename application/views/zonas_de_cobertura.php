@@ -191,7 +191,7 @@ ul.menu li a {
 	</div>
 	<div class="products">	
             <h2 style='padding-left: 10px;margin-bottom: 20px;'>ZONAS DE ENTREGA</h2>
-            <h4 style='padding-left: 10px;margin-bottom: 10px;'>SI EL PEDIDO NO SUPERA LOS $<?php echo $minimo_de_entrega["funcionalidad"]?> SE APLICARAN CARGOS DE ENVIO</h4>
+            <h4 style='padding-left: 10px;margin-bottom: 10px;'>Mayores de $<?php echo $minimo_de_entrega["descripcion"]?> envio gratis, conozca los costos de envio <a href="<?php echo base_url()?>index.php/welcome/zonas_de_cobertura">aqui</a></h4>
             <br/>
             <div class="row">
                 <?php

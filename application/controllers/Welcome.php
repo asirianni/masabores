@@ -1,24 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-    
-        public $partes_web;
+         public $partes_web;
         
         public function __construct(){
             parent::__construct();
@@ -372,6 +355,10 @@ class Welcome extends CI_Controller {
         }
         
         public function productos() {
+            
+            $this->load->model("Configuracion_model");
+            $output["minimo_de_entrega"]= $this->Configuracion_model->obtener_config(10);
+            
             $output['productos']="";
             if($this->input->post("busqueda")!=="" && $this->input->post("busqueda")!==null){
                 $output['productos']=  base_url()."index.php/welcome/get_listado_productos_by_busqueda/".$this->input->post("busqueda");
@@ -522,6 +509,9 @@ class Welcome extends CI_Controller {
         }
         
         public function lista_de_precios() {
+            $this->load->model("Configuracion_model");
+            $output["minimo_de_entrega"]= $this->Configuracion_model->obtener_config(10);
+            
             // CARGANDO METADATOS
             $vista = "productos";
             $output["description"]= $this->Metadatos_model->getDescription($vista);
@@ -551,11 +541,26 @@ class Welcome extends CI_Controller {
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
             
+            $this->load->model("Configuracion_model");
+            
+            $respuesta = $this->Configuracion_model->obtener_config(12);
+            $respuesta= $respuesta["descripcion"];
+            
+            $output["mostrar_precio"] = false;
+            
+            if($respuesta == "si")
+            {
+                $output["mostrar_precio"] = true;
+            }
+            
             $this->load->view('mostrar_productos', $output);
 
         }
         
         public function busqueda_rubro($rubro) {
+            $this->load->model("Configuracion_model");
+            $output["minimo_de_entrega"]= $this->Configuracion_model->obtener_config(10);
+            
             $vista = "productos";
             $output["description"]= $this->Metadatos_model->getDescription($vista);
             $output["title"]= $this->Metadatos_model->getTitle($vista);
@@ -582,6 +587,15 @@ class Welcome extends CI_Controller {
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
+            $respuesta = $this->Configuracion_model->obtener_config(12);
+            $respuesta= $respuesta["descripcion"];
+            
+            $output["mostrar_precio"] = false;
+            
+            if($respuesta == "si")
+            {
+                $output["mostrar_precio"] = true;
+            }
             $this->load->view('mostrar_productos', $output);
 
         }

@@ -246,7 +246,7 @@ class Partes_Web
                                     
                                     if($this->ci->session->userdata("ingresado") == true)
                                     {
-                $this->menu_principal.="<li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Todos</a></li>";
+                $this->menu_principal.="<li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Productos</a></li>";
                                     } 
             $this->menu_principal.="<li><a href='".base_url()."index.php/welcome/contacto'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> Contacto</a></li>
                                   </ul>
@@ -306,8 +306,8 @@ class Partes_Web
         $this->parte_buscador=
         "<div class='header-two'><!-- header-two -->
 			<div class='container'>
-				<div class='header-logo'>
-                                    <h1 class='hidden-xs'><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas.png' alt='img'></span></a></h1>
+				<div class='header-logo' >
+                                    <h1 class='hidden-xs' style='margin-top: 20px;'><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas.png' alt='img'></span></a></h1>
                                     <h1 class='visible-xs'><a href='".base_url()."'><span><img src='".base_url()."assets/recursos/images/logo_mas-movil.png' alt='img'></span></a></h1>
 				</div>	
 				<div class='header-search'>";
@@ -332,7 +332,9 @@ class Partes_Web
                                                          <!-- <span class='simpleCart_total'></span>	(<span id='simpleCart_quantity' class='simpleCart_quantity'></span> )-->
                                                        <i class='fa fa-cart-arrow-down' aria-hidden='true'></i> $ <span id='total_final_menu'>0</span>
                                                     </div>
+                                                    
                                                 </h3>
+                                                   
                                             </a>
 <!--                                            <form action='#' method='post' class='last'> 
                                                     <a href='#' onclick='mostrarModal();'></a>
@@ -344,6 +346,8 @@ class Partes_Web
                                             
                                              
 					</div>
+                                        <span style='font-size: 14px;color:#00F;'>Precios y promociones exclusiva para compras online contado efectivo, Consulte por otras opciones</span>
+                                                 
 					<div class='clearfix'> </div> 
 				</div> 
 				<div class='clearfix'> </div> 
