@@ -548,7 +548,7 @@ class Welcome extends CI_Controller {
             
             $output["mostrar_precio"] = false;
             
-            if($respuesta == "si")
+            if($respuesta == "si" && $this->session->userdata("ingresado") == true)
             {
                 $output["mostrar_precio"] = true;
             }
@@ -592,7 +592,7 @@ class Welcome extends CI_Controller {
             
             $output["mostrar_precio"] = false;
             
-            if($respuesta == "si")
+            if($respuesta == "si" && $this->session->userdata("ingresado") ==  TRUE)
             {
                 $output["mostrar_precio"] = true;
             }

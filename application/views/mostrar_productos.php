@@ -147,8 +147,9 @@
                                     <?php if($mostrar_precio)
                                     { ?>
                                     <th data-field="precio" data-sortable="true">$ Precio con iva inc</th>
-                                    <?php }?>
                                     <th data-field="options" data-formatter='optionsFormatter'></th>
+                                    <?php }?>
+                                    
                                 </tr>
                             </thead>
                         </table>
