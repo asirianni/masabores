@@ -242,13 +242,9 @@ class Partes_Web
                                     <li class='active'><a href='".base_url()."'><span class='glyphicon glyphicon-home' aria-hidden='true'></span> Principal</a></li>
                                     <li><a href='".base_url()."index.php/welcome/nosotros'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Nosotros</a></li>
                                     <li><a href='".base_url()."index.php/welcome/zonas_de_cobertura'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Entregas</a></li>
-                                    <li><a href='".base_url()."index.php/welcome/productos'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Categorias</a></li>";
-                                    
-                                    if($this->ci->session->userdata("ingresado") == true)
-                                    {
-                $this->menu_principal.="<li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Productos</a></li>";
-                                    } 
-            $this->menu_principal.="<li><a href='".base_url()."index.php/welcome/contacto'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> Contacto</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/productos'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Categorias</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Productos</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/contacto'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> Contacto</a></li>
                                   </ul>
                                 </div><!--/.nav-collapse -->
                               </div><!--/.container-fluid -->

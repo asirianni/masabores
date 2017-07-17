@@ -126,6 +126,9 @@
             <div class="container">
                 <div class="col-md-12">
                     <h4 style='padding-left: 10px;margin-bottom: 20px;'>Mayores de $<?php echo $minimo_de_entrega["descripcion"]?> envio gratis, conozca los costos de envio <a href="<?php echo base_url()?>index.php/welcome/zonas_de_cobertura">aqui</a></h4>
+                    <?php if($this->session->userdata("ingresado") != TRUE){?>
+                    <h4 style='padding-left: 10px;margin-bottom: 20px;'>Para ver precios ingrese o registrese</h4>
+                    <?php }?>
                 </div>
                 <div class="col-md-12 product-w3ls-center">
                     <div class="box-content" style="display: block;">
@@ -144,11 +147,11 @@
                                     <th data-field="codigo" data-visible="false">Codigo-Ecomerce</th>
                                     <th data-field="cod_prod" data-visible="false">Codigo</th>
                                     <th data-field="descripcion" data-sortable="true">Producto</th>
-                                    <?php if($mostrar_precio)
+                                    <?php if($this->session->userdata("ingresado"))
                                     { ?>
                                     <th data-field="precio" data-sortable="true">$ Precio con iva inc</th>
-                                    <th data-field="options" data-formatter='optionsFormatter'></th>
                                     <?php }?>
+                                    <th data-field="options" data-formatter='optionsFormatter'></th>
                                     
                                 </tr>
                             </thead>
@@ -299,14 +302,30 @@
 			});
                         
                         function optionsFormatter(value, row, index) {
-                            return [        
+                            var mostrar_precio = <?php if($this->session->userdata("ingresado") == TRUE){echo "true";}else{echo "false";}?>;
+                            
+                            
+                    
+                            if(mostrar_precio)
+                            {
+                                return [        
                                 '<a class="btn btn-primary" href="#sharp" onclick = "agregar_producto('+row.codigo+' , &#39&#39, &#39'+row.descripcion+'&#39;, 1, '+row.precio+')";>',
                                     '<i class="fa fa-cart-arrow-down" aria-hidden="true"> + </i>',
                                 '</a>',
+                                
                                 '<a class="btn btn-primary" href="#sharp" onclick = "ver_imagen('+row.codigo+')";>',
                                     '<i class="fa fa-search" aria-hidden="true">ver</i>',
-                                '</a>'
-                            ].join('');
+                                '</a>'].join('');
+                            }
+                            else
+                            {
+                                return [        
+                                '<a class="btn btn-primary" href="#sharp" onclick = "ver_imagen('+row.codigo+')";>',
+                                    '<i class="fa fa-search" aria-hidden="true">ver</i>',
+                                '</a>'].join('');
+                            }
+                            
+                            
                         }
                         
                         

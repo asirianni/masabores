@@ -148,6 +148,7 @@ ul.menu li a {
             <div class="row">
                 <div class="col-md-12">
                     <h4 style='padding-left: 10px;margin-bottom: 20px;'>Mayores de $<?php echo $minimo_de_entrega["descripcion"]?> envio gratis, conozca los costos de envio <a href="<?php echo base_url()?>index.php/welcome/zonas_de_cobertura">aqui</a></h4>
+                    
                 </div>
                 <?php
                     $line=1;
@@ -156,10 +157,9 @@ ul.menu li a {
                             <div style="margin-bottom: 40px;">
                                 <h3 class="text-center" syle="color: #000;"><?php echo $value["descripcion"]?></h3>
                                 <p style="margin-top: 20px;" class="text-center"><img class=img-responsive" src="<?php echo base_url()?>recursos/images/grupos/<?php echo $value["imagen"]?>" height="200"/></p>
-                                <?php if($this->session->userdata("ingresado") == true)
-                                { ?>
+                                
                                 <p style="margin-top: 10px;" class="text-center"><a href="<?php echo base_url()?>index.php/welcome/busqueda_rubro/<?php echo $value["codigo"]?>" class="btn btn-large btn-default">Ver Productos </a></p>
-                                <?php }?>
+                                
                             </div>
                         </div>
                     

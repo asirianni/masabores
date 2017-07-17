@@ -541,17 +541,7 @@ class Welcome extends CI_Controller {
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
             
-            $this->load->model("Configuracion_model");
             
-            $respuesta = $this->Configuracion_model->obtener_config(12);
-            $respuesta= $respuesta["descripcion"];
-            
-            $output["mostrar_precio"] = false;
-            
-            if($respuesta == "si" && $this->session->userdata("ingresado") == true)
-            {
-                $output["mostrar_precio"] = true;
-            }
             
             $this->load->view('mostrar_productos', $output);
 
