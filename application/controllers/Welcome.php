@@ -325,6 +325,10 @@ class Welcome extends CI_Controller {
                 }else{
                     $output['productos']=  base_url()."index.php/welcome/get_listado_productos/";
                 }
+                
+                $this->load->model("Configuracion_model");
+                $output["minimo_de_entrega"]= $this->Configuracion_model->obtener_config(10);
+                
                 $output["rubros"]=  $this->Almacen_model->obtener_rubros();
                 $output['lista']=  $this->Almacen_model->obtener_lista_precios();
 
