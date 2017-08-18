@@ -238,7 +238,31 @@ class Cliente_model extends CI_Model {
     public function actualizarClientePorPost($datos,$codigo)
     {
         $this->db->where("codigo",$codigo);
-        return $this->db->update("cliente",$datos);
+        
+        $nuevos_datos = Array(
+            "usuario"=>$datos["usuario"],	
+            "correo"=>$datos["correo"], 	
+            "pass"=>$datos["pass"], 	
+            "nombre"=>$datos["nombre"], 	
+            "apellido"=>$datos["apellido"], 	
+            "razon_social"=>$datos["razon_social"], 	
+            "nombre_comercial"=>$datos["nombre_comercial"], 	
+            "direccion"=>$datos["direccion"], 	
+            "provincia"=>$datos["provincia"], 	
+            "localidad"=>$datos["localidad"], 	
+            "cod_postal"=>$datos["cod_postal"], 	
+            "pais"=>$datos["pais"], 	
+            "celular"=>$datos["celular"], 	
+            "fijo"=>$datos["fijo"], 	
+            "tipo_iva"=>$datos["tipo_iva"], 	
+            "estado"=>$datos["estado"], 	
+            "lista_precios"=>$datos["lista_precios"], 	
+            "vendedor"=>$datos["vendedor"], 	
+            "codigo_masabores"=>$datos["codigo_masabores"], 	
+            "dni_cuil"=>$datos["dni_cuil"],
+        );
+        
+        return $this->db->update("cliente",$nuevos_datos);
     }
     
     public function modificarCliente($codigo,$usuario,$correo,$pass,$nombre,$apellido,$razon_social,$nombre_comercial,

@@ -75,6 +75,7 @@ class Welcome extends CI_Controller {
                 $this->load->model("Cliente_model");
                 $this->load->model("Vendedor_model");
                 $this->load->model("Iva_model");
+                $this->load->model("Provincias_model");
                 
                 if($this->input->post())
                 {
@@ -84,6 +85,13 @@ class Welcome extends CI_Controller {
                 
                     $datos["estado"]=$datos_actuales["estado"];
                     $datos["lista_precios"]=$datos_actuales["lista_precios"];
+
+                    if($datos["nueva_password"] != "" && $datos["nueva_password"] == $datos["nueva_password2"])
+                    {
+                       $datos["pass"]= $datos["nueva_password"];
+                    }
+                    
+                    
 
                     $respuesta = $this->Cliente_model->actualizarClientePorPost($datos,$this->session->userdata("codigo"));
                     
@@ -105,11 +113,11 @@ class Welcome extends CI_Controller {
                     
                     $mensaje_para_cliente= $this->get_mensaje_cliente_cambios_realizados_para_cliente($datos,$tipo_iva,$vendedor,$localidad);
                     
-                    $this->enviar_correo_seguro($correo_server, "masabores administracion", $correo_cliente, "Bienvenido a Masabores", $mensaje_para_cliente);
+                    $this->enviar_correo_seguro($correo_server, "Masabores ", $correo_cliente, "Cambios en la cuenta", $mensaje_para_cliente);
                     
                     if($datos_actuales["correo"] != $datos["correo"])
                     {
-                        $this->enviar_correo_seguro($correo_server, "masabores administracion", $datos_actuales["correo"], "Bienvenido a Masabores", $mensaje_para_cliente);
+                        $this->enviar_correo_seguro($correo_server, "Masabores", $datos_actuales["correo"], "Cambios en la cuenta", $mensaje_para_cliente);
                     }
                     
                     // FIN ENVIO DE CORREOS*/
@@ -127,7 +135,7 @@ class Welcome extends CI_Controller {
                     $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
                     // FIN
 
-                    $this->load->model("Provincias_model");
+                    
                     
                     $this->load->model("Paises_model");
 
@@ -338,10 +346,10 @@ class Welcome extends CI_Controller {
             <p>Codigo Postal: ".$resultado["cod_postal"]."</p>
             <p>Celular: ".$resultado["celular"]."</p>
             <p>Fijo: ".$resultado["fijo"]."</p>
-            <p>Tipo de Iva: </p>
-            <p>Vendedor: </p>
-            <p>Localidad: </p>
-            <p>Fijo: ".$resultado["codigo_masabores"]."</p>
+            <p>Tipo de Iva: ".$tipo_iva."</p>
+            <p>Vendedor: ".$vendedor."</p>
+            <p>Localidad: ".$localidad."</p>
+            <p>Codigo Masabores: ".$resultado["codigo_masabores"]."</p>
             
             
             <p><a href='".base_url()."welcome'>Masabores</a></p>

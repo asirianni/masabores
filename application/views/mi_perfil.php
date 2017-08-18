@@ -171,13 +171,13 @@ ul.menu li a {
                                     <div class="col-md-3"> 
                                         <div class="form-group">
                                             <label for="password" class="label-registro">Nueva contraseña</label>
-                                            <input type="password" class=" form-control" name="pass" id="nueva_password"  required="" value="">
+                                            <input type="password" class=" form-control" name="nueva_password" id="nueva_password"  required="" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-3"> 
                                         <div class="form-group">
                                             <label for="password" class="label-registro">Repetir nueva contraseña</label>
-                                            <input type="password" class=" form-control" name="pass" id="nueva_password2"  required="" value="">
+                                            <input type="password" class=" form-control" name="nueva_password2" id="nueva_password2"  required="" value="">
                                         </div>
                                     </div>
                                     <div class="col-md-3"> 
@@ -764,7 +764,7 @@ ul.menu li a {
 
                                     if(mensaje_error == "")
                                     {
-                                        //$("#formulario_registro").submit();
+                                        $("#formulario_registro").submit();
                                     }
 
                                 },
