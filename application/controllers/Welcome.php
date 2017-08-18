@@ -68,6 +68,105 @@ class Welcome extends CI_Controller {
             $this->load->view('entrada', $salida);
 	}
         
+        public function mi_perfil()
+        {
+            if($this->session->userdata("ingresado") == true)
+            {
+                $this->load->model("Cliente_model");
+                $this->load->model("Vendedor_model");
+                $this->load->model("Iva_model");
+                
+                if($this->input->post())
+                {
+                    $datos_actuales = $this->Cliente_model->getCliente($this->session->userdata("codigo"));
+                    
+                    $datos= $this->input->post();
+                
+                    $datos["estado"]=$datos_actuales["estado"];
+                    $datos["lista_precios"]=$datos_actuales["lista_precios"];
+
+                    $respuesta = $this->Cliente_model->actualizarClientePorPost($datos,$this->session->userdata("codigo"));
+                    
+                    
+                    // ENVIO DE CORREO
+                    $this->load->model("Configuracion_model");
+                    
+                    $correo_cliente= $datos["correo"];
+                    $correo_server = $this->Configuracion_model->obtener_config(11);
+                    $correo_server = $correo_server["descripcion"];
+                    
+                    $tipo_iva= $this->Iva_model->getTipoIva($datos["tipo_iva"]);
+                    
+                    $vendedor= $this->Vendedor_model->getVendedorMasabores($datos["vendedor"]);
+                    $vendedor= $vendedor["dni"]." ".$vendedor["nombre"]." ".$vendedor["apellido"];
+                    
+                    $localidad= $this->Provincias_model->getLocalidad($datos["localidad"]);
+                    $localidad= $localidad["localidad"];
+                    
+                    $mensaje_para_cliente= $this->get_mensaje_cliente_cambios_realizados_para_cliente($datos,$tipo_iva,$vendedor,$localidad);
+                    
+                    $this->enviar_correo_seguro($correo_server, "masabores administracion", $correo_cliente, "Bienvenido a Masabores", $mensaje_para_cliente);
+                    
+                    if($datos_actuales["correo"] != $datos["correo"])
+                    {
+                        $this->enviar_correo_seguro($correo_server, "masabores administracion", $datos_actuales["correo"], "Bienvenido a Masabores", $mensaje_para_cliente);
+                    }
+                    
+                    // FIN ENVIO DE CORREOS*/
+                    
+                    redirect("Welcome/mi_perfil");
+                }
+                else
+                {
+                    $this->load->model("Provincias_model");
+
+                    // CARGANDO METADATOS
+                    $vista = "Mi perfil";
+                    $output["description"]= $this->Metadatos_model->getDescription($vista);
+                    $output["title"]= $this->Metadatos_model->getTitle($vista);
+                    $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+                    // FIN
+
+                    $this->load->model("Provincias_model");
+                    
+                    $this->load->model("Paises_model");
+
+                    $output["paises"]=  $this->Paises_model->getPaises();
+                    $output["rubros"]=  $this->Almacen_model->obtener_rubros();
+
+
+                    $output["vendedores"]=$this->Vendedor_model->getVendedores();
+                    $output["tipos_iva"]=$this->Iva_model->getTiposIva();
+
+
+                    $output["correo"]= $this->Configuracion_model->obtener_config(1);
+                    $output["movil"]= $this->Configuracion_model->obtener_config(2);
+                    $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+                    $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+                    $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+                    $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+
+                    $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+                    $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+                    $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+                    $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+                    $output["footer"]= $this->partes_web->getFooter();
+
+
+                    $output["mis_datos"]=$this->Cliente_model->obtener_cliente($this->session->userdata("correo"));
+
+                    $output["localidades_de_mi_provincia"]= $this->Provincias_model->getLocalidadesDeProvincia($output["mis_datos"]["provincia"]);
+                    $output["provincias_de_mi_pais"]=$this->Provincias_model->getProvinciasPorPais($output["mis_datos"]["pais"]);
+
+                    $this->load->view('mi_perfil', $output);
+                }
+            }
+            else
+            {
+                redirect(base_url());
+            }
+        }
+        
         public function registrarse(){
             
             if($this->session->userdata("ingresado") == false && !$this->input->post())
@@ -147,7 +246,10 @@ class Welcome extends CI_Controller {
                 $this->load->model("Cliente_model");
                 
                 $datos= $this->input->post();
+                
                 $datos["estado"]="pendiente";
+                $datos["lista_precios"]=3;
+                
                 $respuesta = $this->Cliente_model->registrarClientePorPost($datos);
                 
                 if($respuesta)
@@ -211,7 +313,39 @@ class Welcome extends CI_Controller {
             <h5>Los datos de ingreso son:</h5>
             <p>Usuario: ".$resultado["usuario"]."</p>
             <p>Contraseña: ".$resultado["pass"]."</p>
-            <p><a href='".base_url()."'>Inicie sesion</a></p>
+            <p><a href='".base_url()."welcome/activar_usuario/".$resultado["usuario"]."'>Active su cuenta haciendo click aquí</a></p>
+        
+        ";
+        return $mensaje;
+    }
+    
+     public function get_mensaje_cliente_cambios_realizados_para_cliente($resultado,$tipo_iva,$vendedor,$localidad)
+    {
+        $mensaje=
+        "   <p><img src='".base_url()."assets/recursos/images/logo_mas.png'></p>
+            <h3>Cambios en la cuenta </h3>
+            <p>Se ha actualizado los datos en la <a href='".base_url()."'>página web</a> correctamente</p>
+            <h5>Los datos actuales de la cuenta son:</h5>
+            <p>Correo: ".$resultado["correo"]."</p>
+            <p>Usuario: ".$resultado["usuario"]."</p>
+            <p>Contraseña: ".$resultado["pass"]."</p>
+            <p>Nombre: ".$resultado["nombre"]."</p>
+            <p>Apellido: ".$resultado["apellido"]."</p>
+            <p>Razon Social: ".$resultado["razon_social"]."</p>
+            <p>Nombre Comercial: ".$resultado["nombre_comercial"]."</p>
+            <p>CUIL - DNI: ".$resultado["dni_cuil"]."</p>
+            <p>Direccion: ".$resultado["direccion"]."</p>
+            <p>Codigo Postal: ".$resultado["cod_postal"]."</p>
+            <p>Celular: ".$resultado["celular"]."</p>
+            <p>Fijo: ".$resultado["fijo"]."</p>
+            <p>Tipo de Iva: </p>
+            <p>Vendedor: </p>
+            <p>Localidad: </p>
+            <p>Fijo: ".$resultado["codigo_masabores"]."</p>
+            
+            
+            <p><a href='".base_url()."welcome'>Masabores</a></p>
+        
         ";
         return $mensaje;
     }
@@ -232,6 +366,15 @@ class Welcome extends CI_Controller {
         ";
         return $mensaje;
     }
+    
+    public function activar_usuario($user = null)
+    {
+        $this->load->model("Cliente_model");
+        
+        $this->Cliente_model->activar_cliente($user);
+        
+        redirect(base_url());
+    }
          public function acceso() {
             $output['salida_error']="";
             $this->load->view('back/loguin/ingreso', $output);
@@ -244,33 +387,44 @@ class Welcome extends CI_Controller {
                 $this->load->model("Usuario_model");
                 $correo = $this->input->post("correo");
                 
-                $usuario= $this->Usuario_model->getUsuarioPorCorreo($correo);
+                $this->load->library("Correo");
                 
-                if($usuario)
+                if(Correo::validar_correo($correo))
                 {
-                    $this->load->model("Configuracion_model");
-                    $nuestro_correo= $this->Configuracion_model->obtener_config(1);
-                    $nuestro_correo= $nuestro_correo["descripcion"];
-                    
-                    $mail = "Los datos de su cuenta son los siguientes:<br/>Usuario:".$usuario["usuario"]."<br/>/>Contraseña:".$usuario["pass"]."<br/>";
-                    $titulo = "Datos de acceso al Sistema";
-//                    $headers = "MIME-Version: 1.0\r\n"; 
-//                    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
-//                    $headers .= "From: Masabores < $nuestro_correo >\r\n";
-                    $bool = $this->enviar_correo_seguro($nuestro_correo, "administracion", $correo, $titulo, $mail);
-//                    $bool = mail($correo,$titulo,$mail,$headers);
-                    
-                    if($bool){
-                        $output['salida_error']="Los datos de su cuenta han sido enviados a su correo";
-                        $this->load->view('back/loguin/ingreso', $output);
-                    }else{
-                        $output['salida_error']="Ha ocurrido un error al intentar mandar los datos";
+                
+                    $usuario= $this->Usuario_model->getUsuarioPorCorreo($correo);
+
+                    if($usuario)
+                    {
+                        $this->load->model("Configuracion_model");
+                        $nuestro_correo= $this->Configuracion_model->obtener_config(1);
+                        $nuestro_correo= $nuestro_correo["descripcion"];
+
+                        $mail = "Los datos de su cuenta son los siguientes:<br/>Usuario:".$usuario["usuario"]."<br/>/>Contraseña:".$usuario["pass"]."<br/>";
+                        $titulo = "Datos de acceso al Sistema";
+    //                    $headers = "MIME-Version: 1.0\r\n"; 
+    //                    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n"; 
+    //                    $headers .= "From: Masabores < $nuestro_correo >\r\n";
+                        $bool = $this->enviar_correo_seguro($nuestro_correo, "administracion", $correo, $titulo, $mail);
+    //                    $bool = mail($correo,$titulo,$mail,$headers);
+
+                        if($bool){
+                            $output['salida_error']="Los datos de su cuenta han sido enviados a su correo";
+                            $this->load->view('back/loguin/ingreso', $output);
+                        }else{
+                            $output['salida_error']="Ha ocurrido un error al intentar mandar los datos";
+                            $this->load->view('back/loguin/recuperar_contrasenia', $output);
+                        }
+                    }
+                    else
+                    {
+                        $output['salida_error']="No se ha encontrado ninguna cuenta con el correo ingresado";
                         $this->load->view('back/loguin/recuperar_contrasenia', $output);
                     }
                 }
                 else
                 {
-                    $output['salida_error']="No se ha encontrado ninguna cuenta con el correo ingresado";
+                    $output['salida_error']="Correo no valido";
                     $this->load->view('back/loguin/recuperar_contrasenia', $output);
                 }
             }
@@ -845,8 +999,6 @@ class Welcome extends CI_Controller {
                         </tr>
                     </thead>
                     <tbody>
-                    </tbody>
-                </table>
             ";
             foreach($detalle_pedido as $value)
             {
@@ -865,6 +1017,10 @@ class Welcome extends CI_Controller {
                     </tr>
                 ";
             }
+            
+            $mensaje.="
+                    </tbody>
+                </table>";
             $this->enviar_correo_seguro($correo_server, $cliente["nombre"], $correo_cliente, "Pedido registrado - Masabores", $mensaje);
 //            Correo::enviar_correo($mensaje, "Pedido registrado - Masabores", $correo_server, $correo_cliente);
         }

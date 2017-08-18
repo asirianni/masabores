@@ -27,21 +27,7 @@ class Cliente_model extends CI_Model {
     }
 	
     function obtener_cliente($correo) {
-            $query = $this->db->query("SELECT c.codigo AS codigo, 
-                                                            c.correo AS correo, 
-                                                            c.pass AS pass, 
-                                                            c.nombre AS nombre, 
-                                                            c.apellido AS apellido, 
-                                                            c.sexo AS sexo, 
-                                                            c.nacimiento AS nacimiento, 
-                                                            c.direccion AS direccion, 
-                                                            c.localidad AS cod_barrio,
-                                                            c.celular AS celular, 
-                                                            c.fijo AS fijo, 
-                                                            c.estado AS estado, 
-                                                            c.dni AS dni
-                                                            FROM cliente c
-                                                            WHERE c.correo = '$correo'");
+            $query = $this->db->query("SELECT * FROM cliente WHERE correo = '$correo'");
             return $query->row_array();
     }
     function obtener_listado_direcciones($correo) {
@@ -249,6 +235,12 @@ class Cliente_model extends CI_Model {
         return $this->db->insert("cliente",$datos);
     }
     
+    public function actualizarClientePorPost($datos,$codigo)
+    {
+        $this->db->where("codigo",$codigo);
+        return $this->db->update("cliente",$datos);
+    }
+    
     public function modificarCliente($codigo,$usuario,$correo,$pass,$nombre,$apellido,$razon_social,$nombre_comercial,
                                    $direccion,$provincia,$localidad,$cod_postal,$pais,$celular,$fijo,$tipo_iva,
                                    $estado,$lista_precios,$vendedor,$codigo_masabores,$dni_cuil)
@@ -314,6 +306,12 @@ class Cliente_model extends CI_Model {
     {
         $this->db->where("codigo",$codigo);
         return $this->db->delete("cliente");
+    }
+    
+    public function activar_cliente($user)
+    {
+        $this->db->where("usuario",$user);
+        return $this->db->update("cliente",Array("estado"=>"confirmado"));
     }
     
 }

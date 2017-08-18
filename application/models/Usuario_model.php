@@ -127,4 +127,16 @@ class Usuario_model extends CI_Model{
         $r = $this->db->query("select * from cliente where correo = '$correo'");
         return $r->row_array();
     }
+    
+    public function obtenerUsuarioPorUsuarioExcepto($usuario,$codigo)
+    {
+        $r = $this->db->query("select * from cliente where usuario = '$usuario' and codigo <> $codigo");
+        return $r->row_array();
+    }
+    
+    public function obtenerUsuarioPorCorreoExcepto($correo,$codigo)
+    {
+        $r = $this->db->query("select * from cliente where correo = '$correo' and codigo <> $codigo");
+        return $r->row_array();
+    }
 }

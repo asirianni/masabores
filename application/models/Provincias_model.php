@@ -42,4 +42,10 @@ class Provincias_model extends CI_Model{
         $r = $this->db->query("select * from localidades");
         return $r->result_array();
     }
+    
+    public function getLocalidad($codigo)
+    {
+        $r = $this->db->query("select * from localidades where codigo= $codigo");
+        return $r->row_array();
+    }
 }

@@ -282,8 +282,7 @@ class Partes_Web
                                             $this->menu_superior.="<a href='#' class='dropdown-toggle' data-toggle='dropdown'><i class='fa fa-user' aria-hidden='true'></i> Mi Cuenta<span class='caret'></span></a>
                                             <ul class='dropdown-menu'>";
                                                     if($this->ci->session->userdata('ingresado')){
-                                                            $this->menu_superior.="<li><a href='#'>Bienvenido ".$this->ci->session->userdata('nombre')."</a></li>
-                                                                                   
+                                                            $this->menu_superior.="<li><a href='".base_url()."index.php/welcome/mi_perfil'>Mis datos</a></li>
                                                                                     <li><a href='".base_url()."index.php/welcome/cerrar_sesion'>Salida</a></li>";
                                                         }else{
                                                             $this->menu_superior.="<li><a href='#' onclick='iniciar_session();' >Ingreso</a></li>

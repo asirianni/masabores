@@ -22,4 +22,11 @@ class Iva_model extends CI_Model{
         $r = $this->db->query("select * from tipo_iva");
         return $r->result_array();
     }
+    
+    public function getTipoIva($codigo)
+    {
+        $r = $this->db->query("select * from tipo_iva where codigo = $codigo");
+        $r = $r->row_array();
+        return $r["iva"];
+    }
 }
