@@ -147,7 +147,7 @@ class Pedido_model extends CI_Model {
 	
         public function get_detalle_pedido($numero)
         {
-            $r = $this->db->query("sELECT * FROM pedido_detalle where pedido_detalle.num_pedido =$numero");
+            $r = $this->db->query("sELECT pedido_detalle.*,productos.descripcion FROM pedido_detalle LEFT JOIN productos on productos.cod_prod = pedido_detalle.producto where pedido_detalle.num_pedido =$numero");
             return $r->result_array();
         }
 	public function obtener_pedido_detalle($numero){

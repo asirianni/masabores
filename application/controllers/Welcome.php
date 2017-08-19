@@ -286,7 +286,7 @@ class Welcome extends CI_Controller {
                     
                     // FIN ENVIO DE CORREOS
                     
-                    $datos = Array(
+                    /*$datos = Array(
                         "codigo"=>$resultado["codigo"],
                         "usuario"=>$resultado["usuario"],
                         "correo"=>$resultado["correo"],
@@ -305,7 +305,22 @@ class Welcome extends CI_Controller {
                     
                     $this->session->set_userdata($datos);
                     
-                    redirect("Welcome");
+                    redirect("Welcome");*/
+                    
+                    $output["correo"]= $this->Configuracion_model->obtener_config(1);
+                    $output["movil"]= $this->Configuracion_model->obtener_config(2);
+                    $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+                    $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+                    $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+                    $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+                    $output["footer"]= $this->partes_web->getFooter();
+                    $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+                    $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+                    $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+                    $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+            
+            
+                    $this->load->view("registrado",$output);
                     
                 }
             }
@@ -320,7 +335,7 @@ class Welcome extends CI_Controller {
             <h5>Los datos de ingreso son:</h5>
             <p>Usuario: ".$resultado["usuario"]."</p>
             <p>Contraseña: ".$resultado["pass"]."</p>
-            <p><a href='".base_url()."welcome/activar_usuario/".$resultado["usuario"]."'>Active su cuenta haciendo click aquí</a></p>
+            <p><a href='".base_url()."index.php/welcome/activar_usuario/".$resultado["usuario"]."'>Active su cuenta haciendo click aquí</a></p>
         
         ";
         return $mensaje;
@@ -998,6 +1013,7 @@ class Welcome extends CI_Controller {
                 <table>
                     <thead>
                         <tr>
+                            <th>Cod. Producto</th>
                             <th>Producto</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
@@ -1017,6 +1033,7 @@ class Welcome extends CI_Controller {
                 "
                     <tr>
                         <td>".$value["producto"]."</td>
+                        <td>".$value["descripcion"]."</td>
                         <td>$".$value["precio"]."</td>
                         <td>".$value["cantidad"]."</td>
                         <td>".$value["descuento"]."</td>
