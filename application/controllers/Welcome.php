@@ -254,7 +254,6 @@ class Welcome extends CI_Controller {
                 $this->load->model("Cliente_model");
                 
                 $datos= $this->input->post();
-                
                 $datos["estado"]="pendiente";
                 $datos["lista_precios"]=3;
                 
@@ -301,7 +300,7 @@ class Welcome extends CI_Controller {
                         "dni_cuil"=>$resultado["dni_cuil"],
                         "localidad"=>$resultado["localidad"],
                         "ingresado"=>true,
-                        "cod_masabores"=>$datos["codigo_masabores"],
+                        "cod_masabores"=>$resultado["codigo_masabores"],
                     );
                     
                     $this->session->set_userdata($datos);

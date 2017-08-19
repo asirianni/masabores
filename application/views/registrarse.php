@@ -221,6 +221,7 @@
 					<div class="form-group">
 						<label for="localidad" class="label-registro">Localidad</label>
 						<select class="form-control" name="localidad" id="localidad" readonly="readonly">
+                                                    <option value="seleccione-localidad" selected>Seleccione una localidad</option>
 						</select>
 					</div>
                                     </div>
@@ -722,16 +723,18 @@
 
 
                                     $("#mensaje_error").html(mensaje_error);
+                                    
+                                    if(mensaje_error == "")
+                                    {
+                                        $("#formulario_registro").submit();
+                                    }
 
                                 },
-                                    error: function(event){alert(event.responseText);},
+                                    error: function(event){alert("ERROR AQUI!!!");},
                               });
 
 
-                            if(mensaje_error == "")
-                            {
-                                $("#formulario_registro").submit();
-                            }
+                           
                         
                     },
                         error: function(event){alert(event.responseText);},

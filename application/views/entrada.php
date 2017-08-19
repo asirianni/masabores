@@ -825,7 +825,7 @@
                             }
 
                         },
-                        error: function(event){$("#mensaje_inicio_sesion_usuario").html("Datos incorrectos");},
+                        error: function(event){alert(event.responseText());$("#mensaje_inicio_sesion_usuario").html("Datos incorrectos");},
                     });
 
             }
