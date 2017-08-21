@@ -281,7 +281,7 @@ class Welcome extends CI_Controller {
                     
                     $mensaje_para_masabores= $this->get_mensaje_cliente_registrado_para_masabores($resultado);
                     
-                    $this->enviar_correo_seguro($correo_cliente, "cliente", $correo_server, "Un nuevo cliente registrado - Masabores", $mensaje_para_masabores);
+                    $this->enviar_correo_seguro($correo_server, "cliente", $correo_empresa, "Un nuevo cliente registrado - Masabores", $mensaje_para_masabores);
 //                    Correo::enviar_correo($mensaje_para_masabores, "Un nuevo cliente registrado - Masabores", $correo_server, $correo_empresa);
                     
                     // FIN ENVIO DE CORREOS
