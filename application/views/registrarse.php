@@ -799,30 +799,7 @@
                 }
             }
 
-            function cambio_provincia()
-            {
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url()?>index.php/Response_Ajax/obtenerLocalidadesDeProvincia",
-                    data:{provincia:$("#provincia").val()},
-                    
-                    beforeSend: function(event){},
-                    success: function(data){
-                        
-                        data= JSON.parse(data);
-                        var html ="";
-                        
-                        for(var i=0; i < data.length;i++)
-                        {
-                            html+="<option value='"+data[i]["codigo"]+"'>"+data[i]["localidad"]+"</option>";
-                        }
-                        
-                        $("#localidad").html(html);
-                        $("#localidad").removeAttr("readonly");
-                    },
-                    error: function(event){alert("error");},
-                });
-            }
+            
             
             function cambio_pais()
             {

@@ -24,7 +24,8 @@ class Usuario_model extends CI_Model{
         $usuario= new Usuario();
         $usuario->setExiste(false);
         
-        $query = $this->db->query("SELECT * FROM empleados WHERE usuario = '$usua' and pass = '$pass'");
+        $sql="SELECT * FROM empleados WHERE usuario = ? and pass = ?";
+        $query = $this->db->query($sql,Array($usua,$pass));
         $valor_obtenido=$query->row_array();
         
         if ($valor_obtenido!=null) {

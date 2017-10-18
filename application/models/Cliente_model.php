@@ -17,7 +17,8 @@ class Cliente_model extends CI_Model {
     }
     
     function getClienteInicioSesion($usuario, $password){
-        $resultado = $this->db->query("select cliente.codigo,cliente.usuario,cliente.correo,cliente.pass,cliente.nombre,cliente.apellido,cliente.razon_social,cliente.nombre_comercial,cliente.direccion,cliente.provincia,cliente.cod_postal,cliente.pais,cliente.celular,cliente.fijo,cliente.tipo_iva,cliente.estado,cliente.lista_precios,cliente.vendedor,cliente.codigo_masabores,cliente.dni_cuil,localidades.localidad from cliente LEFT JOIN localidades on localidades.codigo = cliente.localidad where cliente.usuario = '$usuario' and cliente.pass='$password'");
+        $sql = "select cliente.codigo,cliente.usuario,cliente.correo,cliente.pass,cliente.nombre,cliente.apellido,cliente.razon_social,cliente.nombre_comercial,cliente.direccion,cliente.provincia,cliente.cod_postal,cliente.pais,cliente.celular,cliente.fijo,cliente.tipo_iva,cliente.estado,cliente.lista_precios,cliente.vendedor,cliente.codigo_masabores,cliente.dni_cuil,localidades.localidad from cliente LEFT JOIN localidades on localidades.codigo = cliente.localidad where cliente.usuario = ? and cliente.pass= ?";
+        $resultado = $this->db->query($sql,Array($usuario,$password));
         return $resultado->row_array();
     }
     
