@@ -341,7 +341,7 @@ class Partes_Web
                                             
                                              
 					</div>
-                                        <span style='font-size: 14px;color:#00F;'>Precios y promociones exclusiva para compras online contado efectivo, Consulte por otras opciones</span>
+                                        <span class='hidden-xs' style='font-size: 14px;color:#00F;'>Precios y promociones exclusiva para compras online contado efectivo, Consulte por otras opciones</span>
                                                  
 					<div class='clearfix'> </div> 
 				</div> 
