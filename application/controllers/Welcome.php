@@ -879,22 +879,34 @@ class Welcome extends CI_Controller {
             //datos traidos del form registrar pedido del checkout
             $codigo_masabores = "";
             $precio_reparto = "";
+
+            $total=(float)$this->input->post("total");
+
             if($this->input->post("tipo_de_retiro") == "reparto")
             {
-                $zona = $this->input->post("localidad_cargo");
+                if($total < 1000)
+                {
+                   $zona = $this->input->post("localidad_cargo");
                 
-                $this->load->model("Zonas_cobertura_model");
-                $zona = $this->Zonas_cobertura_model->getZonaCoberturaCheckoutPedido($zona);
-                $codigo_masabores= $zona["codigo_entrega"];
-                $precio_reparto= $zona["costo"];
+                    $this->load->model("Zonas_cobertura_model");
+                    $zona = $this->Zonas_cobertura_model->getZonaCoberturaCheckoutPedido($zona);
+                    $codigo_masabores= $zona["codigo_entrega"];
+                    $precio_reparto= $zona["costo"]; 
+                }
+                else
+                {
+                    $zona = 0;
                 
+                    $codigo_masabores= 0;
+                    $precio_reparto= 0;
+                }
             }
             
             $cliente=$this->input->post("cliente");
             $cod_direccion=$this->input->post("cod_direccion");
             $localidad_entrega=$this->input->post("localidad");
             $cod_local_retiro=$this->input->post("cod_local_retiro");
-            $total=(float)$this->input->post("total");
+            
             
             if($codigo_masabores != "")
             {

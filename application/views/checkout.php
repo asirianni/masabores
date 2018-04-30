@@ -688,6 +688,7 @@
                         
                         function tipo_de_retiro(tipo)
                         {
+
                             if(tipo == "local")
                             {
                                 $("#parte_entrega").css("display","none");
@@ -738,6 +739,7 @@
                             
                             $("#localidad_cargo_form").val(id_zona);
                             
+
                             if(id_zona == 0)
                             {
                                 $("#precio_recargo_muestra").css("disaplay","none");
