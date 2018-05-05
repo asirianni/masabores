@@ -23,7 +23,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/masabores/';
+//$config['base_url'] = 'http://localhost/masabores/';
+
+define('SERVER_NAME_DEV', 'localhost');
+define('SERVER_NAME_EMPRESA', 'masabores.com.ar');
+define('SERVER_NAME_FINAL', 'masabores.com');
+
+$nombreServerActual = $_SERVER['SERVER_NAME'];
+switch($nombreServerActual)
+{
+    case SERVER_NAME_DEV:
+            $config['base_url']    = "http://localhost/masabores/";
+            break;
+    case SERVER_NAME_EMPRESA:
+            $config['base_url']    = "http://masabores.com.ar/";
+            break;
+    case SERVER_NAME_FINAL:
+            $config['base_url']    = "http://masabores.com/";
+            break;
+    default:
+            $config['base_url']    = "http://masabores.com.ar/";
+            break;       
+}
+
 
 /*
 |--------------------------------------------------------------------------
