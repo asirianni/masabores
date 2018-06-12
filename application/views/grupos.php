@@ -31,6 +31,7 @@
         <link href='http://www.fonts.googleapis.com/css?family=Lovers+Quarrel' rel='stylesheet' type='text/css'>
         <link href='http://www.fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
         <link href='http://www.fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' type='text/css' href='<?php echo base_url() ?>recursos/slippry/dist/slippry.min.css'/>
         <style type="text/css">
 		ul.menu {
   clear: both;
@@ -147,9 +148,27 @@ ul.menu li a {
 	<div class="products">	 
             <div class="row">
                 <div class="col-md-2">
-                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                    <ul id="publicidad_izquierda">
+                    <?php
+                        if($publicidades_vertical_izquierdo) { 
+                        ?>
+                            <li>
+                                <a href="#">
+                                    <img src="<?php echo base_url()?>recursos/images/loader.gif"  class="img-responsive">
+                                </a>
+                            </li>
+                        <?php
+                                
+                         } else {?>
+                            <li>
+                                <a href="#">
+                                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg" >
+                                </a>
+                            </li>
+                        <?php }?>
+                    </ul>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" >
                     <h4 style='padding-left: 10px;margin-bottom: 20px;'>Mayores de $<?php echo $minimo_de_entrega["descripcion"]?> envio gratis, conozca los costos de envio <a href="<?php echo base_url()?>index.php/welcome/zonas_de_cobertura">aqui</a></h4>
                     
                 <?php
@@ -158,7 +177,7 @@ ul.menu li a {
                         <div class="col-md-4">
                             <div style="margin-bottom: 40px;">
                                 <h3 class="text-center" syle="color: #000;"><?php echo $value["descripcion"]?></h3>
-                                <p style="margin-top: 20px;" class="text-center"><img class=img-responsive" src="<?php echo base_url()?>recursos/images/grupos/<?php echo $value["imagen"]?>" height="200"/></p>
+                                <p style="margin-top: 20px;" class="text-center"><img class=img-responsive" src="<?php echo base_url()?>recursos/images/grupos/<?php echo $value["imagen"]?>" height="100"/></p>
                                 
                                 <p style="margin-top: 10px;" class="text-center"><a href="<?php echo base_url()?>index.php/welcome/busqueda_rubro/<?php echo $value["codigo"]?>" class="btn btn-large btn-default">Ver Productos </a></p>
                                 
@@ -167,15 +186,48 @@ ul.menu li a {
                     
                 <?php //if($line==3){echo"</div><div class='row'>"; $line=0;}$line++;
                 }?>
-
+                    <div class="col-md-12" style="text-align: center;">
+                        <ul id="publicidades_horizontal">
+                            <?php
+                            if($publicidades_horizontal) { 
+                            ?>
+                                <li>
+                                    <a href="#">
+                                        <img src="<?php echo base_url()?>recursos/images/loader.gif"  class="img-responsive">
+                                    </a>
+                                </li>
+                            <?php
+                                    
+                             } else {?>
+                                <li>
+                                    <a href="#">
+                                        <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg" >
+                                    </a>
+                                </li>
+                            <?php }?>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-md-2">
-                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" style="text-align: center;">
-                    <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg">
+                   <ul id="publicidad_derecha">
+                        <?php
+                        if($publicidades_vertical_derecho) { 
+                        ?>
+                            <li>
+                                <a href="#">
+                                    <img src="<?php echo base_url()?>recursos/images/loader.gif" >
+                                </a>
+                            </li>
+                        <?php
+                                
+                         } else {?>
+                            <li>
+                                <a href="#">
+                                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg" >
+                                </a>
+                            </li>
+                        <?php }?>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -524,5 +576,122 @@ ul.menu li a {
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster --> 
+    <script src="<?php echo base_url(); ?>recursos/slippry/src/slippry.min.js"></script>
+
+    <script type="text/javascript">
+    var publicidades_vertical_izquierdo = new Array();
+    var publicidades_vertical_derecho = new Array();
+    var publicidades_horizontal = new Array();
+
+    $(window).load(function(){
+    // CARGANDO ARREGLO DE PUIBLICIDADES
+    <?php
+    
+        foreach($publicidades_vertical_izquierdo as $publicidad)
+        {
+    ?>
+        publicidades_vertical_izquierdo.push({
+            "id":'<?php echo $publicidad["id"] ?>',
+            "imagen":'<?php echo $publicidad["imagen"] ?>',
+        });
+                                    
+    <?php
+        } 
+        
+        foreach($publicidades_vertical_derecho as $publicidad)
+        {
+    ?>
+        publicidades_vertical_derecho.push({
+            "id":'<?php echo $publicidad["id"] ?>',
+            "imagen":'<?php echo $publicidad["imagen"] ?>',
+        });
+                                    
+    <?php
+        }
+        
+        foreach($publicidades_horizontal as $publicidad)
+        {
+    ?>
+        publicidades_horizontal.push({
+            "id":'<?php echo $publicidad["id"] ?>',
+            "imagen":'<?php echo $publicidad["imagen"] ?>',
+        });
+                                    
+    <?php
+        } 
+    ?>
+
+    if(publicidades_vertical_izquierdo.length > 0)
+    {
+        var html_publicidades_izquierda='';
+
+        for(var i=0; i < publicidades_vertical_izquierdo.length;i++)
+        {
+            
+            html_publicidades_izquierda+='<li> \n\
+                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_vertical_izquierdo[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/170_638/'+publicidades_vertical_izquierdo[i]["imagen"]+'"></a>\n\
+            </li>';
+        }
+
+        $("#publicidad_izquierda").html(html_publicidades_izquierda);
+    }
+    
+    if(publicidades_vertical_derecho.length > 0)
+    {
+        var html_publicidades_derecha='';
+
+        for(var i=0; i < publicidades_vertical_derecho.length;i++)
+        {
+            
+            html_publicidades_derecha+='<li> \n\
+                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_vertical_derecho[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/170_638/'+publicidades_vertical_derecho[i]["imagen"]+'"></a>\n\
+            </li>';
+        }
+
+        $("#publicidad_derecha").html(html_publicidades_derecha);
+    }
+    
+
+    if(publicidades_horizontal.length > 0)
+    {
+
+        var html_publicidades_horizontal_html='';
+
+        for(var i=0; i < publicidades_horizontal.length;i++)
+        {
+            
+            html_publicidades_horizontal_html+='<li> \n\
+                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_horizontal[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/729_90/'+publicidades_horizontal[i]["imagen"]+'"></a>\n\
+            </li>';
+        }
+
+        $("#publicidades_horizontal").html(html_publicidades_horizontal_html);
+
+    }
+    correr_publicidades();
+});
+
+
+function correr_publicidades()
+{
+    $("#publicidad_derecha").slippry({
+        "controls":false,
+        "hideOnEnd":false,
+        "pager":false,
+    });
+
+    $("#publicidad_izquierda").slippry({
+        "controls":false,
+        "hideOnEnd":false,
+        "pager":false,
+    });
+
+    $("#publicidades_horizontal").slippry({
+        "controls":false,
+        "hideOnEnd":false,
+        "pager":false,
+    });
+}
+</script>
 </body>
 </html>

@@ -33,13 +33,9 @@
         <!-- js -->
         <script src="<?php echo base_url(); ?>recursos/js/jquery-2.2.3.min.js"></script>
         
-        <!-- //js -->
-        <!-- web-fonts -->
-<!--        <link href='http://www.fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
-        <link href='http://www.fonts.googleapis.com/css?family=Lovers+Quarrel' rel='stylesheet' type='text/css'>
-        <link href='http://www.fonts.googleapis.com/css?family=Offside' rel='stylesheet' type='text/css'>
-        <link href='http://www.fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>-->
-        <!-- web-fonts --> 
+        <link rel='stylesheet' type='text/css' href='<?php echo base_url() ?>recursos/slippry/dist/slippry.min.css'/>
+
+
         <script src="<?php echo base_url(); ?>recursos/js/owl.carousel.js"></script>
         <script src="<?php echo base_url(); ?>recursos/js/pedido-simple-web.js"></script>
         <script src="<?php echo base_url(); ?>recursos/bxslider/jquery.bxslider.min.js"></script> 
@@ -259,7 +255,25 @@
 	<div class="welcome"> 
 		<div class="container"> 
             <div class="col-md-2">
-                <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                <ul id="publicidad_inicio_izquierda">
+                <?php
+                if($publicidades_inicio_vertical_izquierdo) { 
+                ?>
+                    <li>
+                        <a href="#">
+                            <img src="<?php echo base_url()?>recursos/images/loader.gif"  class="img-responsive">
+                        </a>
+                    </li>
+                <?php
+                        
+                 } else {?>
+                    <li>
+                        <a href="#">
+                            <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/<?php echo $default_publicidad_170_638?>"  class="img-responsive">
+                        </a>
+                    </li>
+                <?php }?>
+                </ul>
             </div>
             <div class="col-md-8">
 			<div class="welcome-info">
@@ -310,7 +324,7 @@
                                                                                         <p>".$d_1["detalle"]."</p>
                                                                                         <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_1["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 1,  ".$d_1["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> </i> COMPRAR + $".$d_1["precio"]."
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> </i> COMPRAR +<br/> $".$d_1["precio"]."
                                                                                         </a></p>
                                                                                        
                                                                                          
@@ -356,7 +370,7 @@
                                                                                         <p>".$d_2["detalle"]."</p>
                                                                                         <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_2["codigo"]." , &#29;&#29;, &#29;".$detalle."&#29;, 2,  ".$d_2["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_2["precio"]."</i>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR +<br/> $".$d_2["precio"]."</i>
                                                                                         </a></p>
                                                                                        
                                                                                          
@@ -402,7 +416,7 @@
                                                                                         <p>".$d_3["detalle"]."</p>
                                                                                         <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_3["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 3,  ".$d_3["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_3["precio"]."</i>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR +<br/> $".$d_3["precio"]."</i>
                                                                                         </a></p>
                                                                                        
                                                                                          
@@ -448,7 +462,7 @@
                                                                                         <p>".$d_4["detalle"]."</p>
                                                                                         <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_4["codigo"]." , &#49;&#49;, &#49;".$detalle."&#49;, 4,  ".$d_4["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_4["precio"]."</i>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR +<br/> $".$d_4["precio"]."</i>
                                                                                         </a></p>
                                                                                        
                                                                                          
@@ -493,7 +507,7 @@
                                                                                         <p>".$d_5["detalle"]."</p>
                                                                                         <p></p>
                                                                                         <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_5["codigo"]." , &#59;&#59;, &#59;".$detalle."&#59;, 5,  ".$d_5["precio"].")'>
-                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR + $".$d_5["precio"]."</i>
+                                                                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR +<br/> $".$d_5["precio"]."</i>
                                                                                         </a></p>
                                                                                        
                                                                                          
@@ -512,16 +526,50 @@
 				</div>  
 			</div>  
 
+            <div class="col-md-12" style="text-align:center;">
+                <ul id="publicidad_inicio_central">
+                <?php
+                if($publicidades_inicio_horizontal) { ?>
+                    <li>
+                        <a href="#">
+                            <img src="<?php echo base_url()?>recursos/images/loader.gif"  class="img-responsive">
+                        </a>
+                    </li>
+                <?php 
+                } else { ?>
+                    <li>
+                        <a href="#">
+                            <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg" class="img-responsive">
+                        </a>
+                    </li>
+                <?php }?>
+                </ul>
+            </div>
+
             <!-- FIN PRODUCTOS DESTACADOS -->	
         </div>
 
         <div class="col-md-2">
-            <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+            <ul id="publicidad_inicio_derecha">
+            <?php
+            if($publicidades_inicio_vertical_derecho) { ?>
+                <li>
+                    <a href="#">
+                        <img src="<?php echo base_url()?>recursos/images/loader.gif"  class="img-responsive">
+                    </a>
+                </li>
+            <?php
+             } else {?>
+                <li>
+                    <a href="#">
+                        <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/<?php echo $default_publicidad_170_638?>"  class="img-responsive">
+                    </a>
+                </li>
+            <?php }?>
+        </ul>
         </div>
 
-        <div class="col-md-12" style="text-align:center;">
-            <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg">
-        </div>
+        
 
 		</div>  	
 	</div> 
@@ -798,7 +846,8 @@
 	<!-- menu js aim -->
 	<script src="<?php echo base_url(); ?>recursos/js/jquery.menu-aim.js"> </script>
 	<script src="<?php echo base_url(); ?>recursos/js/main.js"></script> <!-- Resource jQuery -->
-        
+    <script src="<?php echo base_url(); ?>recursos/slippry/src/slippry.min.js"></script>
+
         <script>
             
             function generar_clave_cliente()
@@ -971,10 +1020,123 @@
 
         </script>
         
-        
-	<!-- //menu js aim --> 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster --> 
+         
+<script type="text/javascript">
+
+var publicidades_inicio_vertical_izquierdo = new Array();
+var publicidades_inicio_vertical_derecho = new Array();
+var publicidades_inicio_horizontal = new Array();
+
+
+$(window).load(function(){
+    // CARGANDO ARREGLO DE PUIBLICIDADES
+    <?php
+    
+        foreach($publicidades_inicio_vertical_izquierdo as $publicidad)
+        {
+    ?>
+        publicidades_inicio_vertical_izquierdo.push({
+            "id":'<?php echo $publicidad["id"] ?>',
+            "imagen":'<?php echo $publicidad["imagen"] ?>',
+        });
+                                    
+    <?php
+        } 
+    
+        foreach($publicidades_inicio_vertical_derecho as $publicidad)
+        {
+    ?>
+        publicidades_inicio_vertical_derecho.push({
+            "id":'<?php echo $publicidad["id"] ?>',
+            "imagen":'<?php echo $publicidad["imagen"] ?>',
+        });
+                                    
+    <?php
+        }
+     
+        foreach($publicidades_inicio_horizontal as $publicidad)
+        {
+    ?>
+        publicidades_inicio_horizontal.push({
+            "id":'<?php echo $publicidad["id"] ?>',
+            "imagen":'<?php echo $publicidad["imagen"] ?>',
+        });
+                                    
+    <?php
+        } 
+    ?>
+
+    if(publicidades_inicio_vertical_izquierdo.length > 0)
+    {
+        var html_publicidades_izquierda='';
+
+        for(var i=0; i < publicidades_inicio_vertical_izquierdo.length;i++)
+        {
+            
+            html_publicidades_izquierda+='<li> \n\
+                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_inicio_vertical_izquierdo[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/170_638/'+publicidades_inicio_vertical_izquierdo[i]["imagen"]+'"></a>\n\
+            </li>';
+        }
+
+        $("#publicidad_inicio_izquierda").html(html_publicidades_izquierda);
+    }
+    
+    if(publicidades_inicio_vertical_derecho.length > 0)
+    {
+        var html_publicidades_derecha='';
+
+        for(var i=0; i < publicidades_inicio_vertical_derecho.length;i++)
+        {
+            
+            html_publicidades_derecha+='<li> \n\
+                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_inicio_vertical_derecho[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/170_638/'+publicidades_inicio_vertical_derecho[i]["imagen"]+'"></a>\n\
+            </li>';
+        }
+
+        $("#publicidad_inicio_derecha").html(html_publicidades_derecha);
+    }
+
+    if(publicidades_inicio_horizontal.length > 0)
+    {
+
+        var html_publicidades_horizontal_html='';
+
+        for(var i=0; i < publicidades_inicio_horizontal.length;i++)
+        {
+            
+            html_publicidades_horizontal_html+='<li> \n\
+                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_inicio_horizontal[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/729_90/'+publicidades_inicio_horizontal[i]["imagen"]+'"></a>\n\
+            </li>';
+        }
+
+        $("#publicidad_inicio_central").html(html_publicidades_horizontal_html);
+
+    }
+    correr_publicidades();
+});
+
+
+function correr_publicidades()
+{
+    $("#publicidad_inicio_derecha").slippry({
+        "controls":false,
+        "hideOnEnd":false,
+        "pager":false,
+    });
+
+    $("#publicidad_inicio_izquierda").slippry({
+        "controls":false,
+        "hideOnEnd":false,
+        "pager":false,
+    });
+
+    $("#publicidad_inicio_central").slippry({
+        "controls":false,
+        "hideOnEnd":false,
+        "pager":false,
+    });
+}
+
+</script>
 </body>
 </html>

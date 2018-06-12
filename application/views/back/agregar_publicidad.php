@@ -200,25 +200,8 @@
                    <!-- BOTONERA -->
                   <div class="col-md-12">
                     <div class="form-group">
-                      <div class="col-md-4">
-                        <button class="btn btn-primary form-control" onclick="cambio_tipo_sector('busqueda_sector_web')">Solo Sector Web</button> 
-                      </div>
-                      <div class="col-md-4">
-                        <button class="btn btn-primary form-control" onclick="cambio_tipo_sector('busqueda_rubro')">Sector y Rubro</button> 
-                      </div>
-                      <div class="col-md-4">
-                        <button class="btn btn-primary form-control" onclick="cambio_tipo_sector('busqueda_subrubro')">Sector y Subrubro</button> 
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="clearfix"></div>
-                  <br><br>
-
-                  <div class="col-md-12" id="busqueda_sector_web" hidden>
-                    <div class="form-group">
                       <label for="option_sector_web"  id="label_option_sector_web">Sector Web</label>
-                      <select class="form-control" id="option_sector_web">
+                      <select class="form-control" id="option_sector_web"  onchange="cambio_sector()">
                         <option value="0">Seleccionar</option>
                         <?php
                         
@@ -230,56 +213,10 @@
                         ?>
                       </select>
                     </div>
-                  </div>
 
-                  <div class="col-md-12" id="busqueda_rubro" hidden >
-                    <div class="form-group">
-                      <label for="option_sector_web_rubro"  id="label_option_sector_web_rubro">Sector Web</label>
-                      <select class="form-control" id="option_sector_web_rubro">
-                        <option value="0">Seleccionar</option>
-                        <?php
-                        
-
-                        for($i=0; $i < count($sectores_web_publicitarios);$i++)
-                        {
-                          if($sectores_web_publicitarios[$i]["id"] != 1 && $sectores_web_publicitarios[$i]["id"] != 2 && $sectores_web_publicitarios[$i]["id"] != 3)
-                          {
-                            echo "<option value='".$sectores_web_publicitarios[$i]["id"]."'>".$sectores_web_publicitarios[$i]["nombre_sector"]."</option>";
-                          }
-                        }
-                        ?>
-                      </select>
-                    </div>
-
-                    <div class="form-group">
+                     <div class="form-group" id="buscador_rubro" hidden>
                       <label for="" id="label_select_busqueda_rubro">Seelccionar Rubro</label>
                       <select class="form-control" id="select_busqueda_rubro" style="width: 100%;">
-                        <option value="0">Seleccionar</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="col-md-12" id="busqueda_subrubro" hidden>
-                    <div class="form-group">
-                      <label for="option_sector_web_subrubro"  id="label_option_sector_web_subrubro">Sector Web</label>
-                      <select class="form-control" id="option_sector_web_subrubro">
-                        <option value="0">Seleccionar</option>
-                        <?php
-                        
-
-                        for($i=0; $i < count($sectores_web_publicitarios);$i++)
-                        {
-                          if($sectores_web_publicitarios[$i]["id"] != 1 && $sectores_web_publicitarios[$i]["id"] != 2 && $sectores_web_publicitarios[$i]["id"] != 3)
-                          {
-                            echo "<option value='".$sectores_web_publicitarios[$i]["id"]."'>".$sectores_web_publicitarios[$i]["nombre_sector"]."</option>";
-                          }
-                        }
-                        ?>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="" id="label_select_busqueda_subrubro">Subrubro</label>
-                      <select class="form-control" id="select_busqueda_subrubro" style="width: 100%;">
                         <option value="0">Seleccionar</option>
                       </select>
                     </div>
@@ -403,57 +340,33 @@ $(document).ready(function(){
     },
     minimumInputLength: 1
   });
-
-  $("#select_busqueda_subrubro").select2({        
-    ajax: {
-        url: "<?=base_url()?>index.php/backoffice/get_subrubro_sin_id_rubro_busqueda_select2",
-        dataType: 'json',
-        type: 'post',
-        delay: 250,
-        data: function (params) {
-            return {
-                q: params.term 
-            };
-        },
-        processResults: function (data) {
-            return {
-                results: data
-            };
-        },
-        cache: true
-    },
-    minimumInputLength: 1
-  });
 });
 
 function abrir_modal_agregar()
 {
   resetar_selecciones();
-  cambio_tipo_sector("busqueda_sector_web");
   $("#modal_agregar_sector").modal("show");
-}
-function cambio_tipo_sector(id)
-{
-  ocultar_busquedas();
-  resetar_selecciones();
-  
-  $("#"+id).css("display","block");
 }
 
 function resetar_selecciones()
 {
   $("#option_sector_web").val(0);
-  $("#option_sector_web_rubro").val(0);
-  $("#select_busqueda_rubro").val(0).trigger("change");
-  $("#option_sector_web_subrubro").val(0);
+  $("#buscador_rubro").attr("hidden",true);
   $("#select_busqueda_subrubro").val(0).trigger("change");
 }
 
-function ocultar_busquedas()
+function cambio_sector()
 {
-  $("#busqueda_sector_web").css("display","none");
-  $("#busqueda_rubro").css("display","none");
-  $("#busqueda_subrubro").css("display","none");
+  var option = $("#option_sector_web").val();
+
+  if(option >= 19 && option <=21)
+  {
+    $("#buscador_rubro").removeAttr("hidden");
+  }
+  else
+  {
+    $("#buscador_rubro").attr("hidden",true);
+  }
 }
 
 function agregar_sector()
@@ -462,81 +375,49 @@ function agregar_sector()
 
   var seguir = true;
 
-  var id_sector =0;
-  var id_rubro =0;
-  var id_subrubro =0;
+  var id_sector =$("#option_sector_web").val();
+  var id_rubro = parseInt($("#select_busqueda_rubro").val());
   var html_tabla="";
 
-  if($("#busqueda_sector_web").css("display") =="block")
-  {
-    id_sector = $("#option_sector_web").val();
+  var desc_sector = $("#option_sector_web :selected").text();
+  var desc_rubro ="";
 
-    if(id_sector == 0)
+  if(id_sector >= 19 && id_sector <=21)
+  {
+    if(isNaN(id_rubro) || id_rubro ==0)
     {
+      seguir = false;
       alert("Por favor complete todos los datos");
-      seguir=false;
     }
     else
     {
-      var desc_sector = $("#option_sector_web :selected").text();
+      desc_rubro = $("#select_busqueda_rubro :selected").text();
 
       html_tabla="<tr id='id_tr_"+proximo_id_sectores+"'> \n\
         <td>"+desc_sector+"</td> \n\
-        <td></td> \n\
-        <td></td> \n\
+        <td>"+desc_rubro+"</td> \n\
         <td> \n\
           <button class='btn btn-danger' onclick='sacar_sector("+proximo_id_sectores+")'><i class='fa fa-close'></i></button> \n\
         </td> \n\
       </tr>";
     }
   }
-  else if($("#busqueda_rubro").css("display") =="block")
+  else if(id_sector == 0)
   {
-    id_sector = $("#option_sector_web_rubro").val();
-    id_rubro = parseInt($("#select_busqueda_rubro").val());
+    seguir = false;
+    alert("Por favor complete todos los datos");
+  }
+  else
+  {
+    id_rubro=0;
 
-    if(id_sector == 0 || isNaN(id_rubro) || id_rubro <= 0)
-    {
-      alert("Por favor complete todos los datos");
-      seguir=false;
-    }
-    else
-    {
-      var desc_sector = $("#option_sector_web_rubro :selected").text();
-      var desc_rubro = $("#select_busqueda_rubro :selected").text();
-      html_tabla="<tr id='id_tr_"+proximo_id_sectores+"'> \n\
+    html_tabla="<tr id='id_tr_"+proximo_id_sectores+"'> \n\
         <td>"+desc_sector+"</td> \n\
         <td>"+desc_rubro+"</td> \n\
-        <td></td> \n\
         <td> \n\
           <button class='btn btn-danger' onclick='sacar_sector("+proximo_id_sectores+")'><i class='fa fa-close'></i></button> \n\
         </td> \n\
       </tr>";
-    }
-
-  }else if($("#busqueda_subrubro").css("display") =="block")
-  {
-    id_sector = $("#option_sector_web_subrubro").val();
-    id_subrubro = parseInt($("#select_busqueda_subrubro").val());
-
-    if(id_sector == 0 || isNaN(id_subrubro) || id_subrubro <= 0)
-    {
-      alert("Por favor complete todos los datos");
-      seguir=false;
-    }
-    else
-    {
-      var desc_sector = $("#option_sector_web_rubro :selected").text();
-      var desc_subrubro = $("#select_busqueda_subrubro :selected").text();
-      html_tabla="<tr id='id_tr_"+proximo_id_sectores+"'> \n\
-        <td>"+desc_sector+"</td> \n\
-        <td></td> \n\
-        <td>"+desc_subrubro+"</td> \n\
-        <td> \n\
-          <button class='btn btn-danger' onclick='sacar_sector("+proximo_id_sectores+")'><i class='fa fa-close'></i></button> \n\
-        </td> \n\
-      </tr>";
-    }
   }
 
   if(seguir)
@@ -544,7 +425,6 @@ function agregar_sector()
     var html_name="<div id='contenedor_name_sector_"+proximo_id_sectores+"'> \n\
     <input type='text' name='id_sector[]' value='"+id_sector+"'> \n\
     <input type='text' name='id_rubro[]' value='"+id_rubro+"'> \n\
-    <input type='text' name='id_subrubro[]' value='"+id_subrubro+"'> \n\
     </div>";
 
     $("#contenedores_sectores_agregados").append(html_name);

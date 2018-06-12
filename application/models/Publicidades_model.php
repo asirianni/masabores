@@ -35,21 +35,143 @@ class Publicidades_model extends CI_Model{
 
     public function get_publicidades_inicio_vertical_izquierdo()
     {
-        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 1  and ubicaciones_publicidades.id_rubro = 0 and ubicaciones_publicidades.id_subrubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 1  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
         return $r->result_array();
     }
 
     public function get_publicidades_inicio_vertical_derecho()
     {
-        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 2  and ubicaciones_publicidades.id_rubro = 0 and ubicaciones_publicidades.id_subrubro = 0)  and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 2  and ubicaciones_publicidades.id_rubro = 0)  and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
         return $r->result_array();
     }
 
     public function get_publicidades_inicio_horizontal()
     {
-        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 3  and ubicaciones_publicidades.id_rubro = 0 and ubicaciones_publicidades.id_subrubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 3  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
         return $r->result_array();
     }
+
+    public function get_publicidades_nosotros_vertical_izquierdo()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 4  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_nosotros_vertical_derecho()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 5  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_nosotros_horizontal()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 6  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_entregas_vertical_izquierdo()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 7  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_entregas_vertical_derecho()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 8  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_entregas_horizontal()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 9  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_categorias_vertical_izquierdo()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 10  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_categorias_vertical_derecho()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 11  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_categorias_horizontal()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 12  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_productos_vertical_izquierdo()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 13  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_productos_vertical_derecho()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 14  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_productos_horizontal()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 15  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_contacto_vertical_izquierdo()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 16  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_contacto_vertical_derecho()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 17  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_contacto_horizontal()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 18  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_rubro_vertical_izquierdo($id_rubro = 0)
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 19  and ubicaciones_publicidades.id_rubro = ".$id_rubro.") and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_rubro_vertical_derecho($id_rubro = 0)
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 20  and ubicaciones_publicidades.id_rubro = ".$id_rubro.") and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_rubro_horizontal($id_rubro = 0)
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 21  and ubicaciones_publicidades.id_rubro = ".$id_rubro.") and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        return $r->result_array();
+    }
+
+
+    /*
+    public function get_publicidades_inicio_vertical_derecho()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 2  and ubicaciones_publicidades.id_rubro = 0)  and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_inicio_horizontal()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 3  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        return $r->result_array();
+    }*/
 
     public function get_publicidades_busqueda_vertical_derecho($id_rubro = 0,$id_subrubro=0)
     {
@@ -161,13 +283,12 @@ class Publicidades_model extends CI_Model{
         return $borrada;
     }
 
-    public function agregar_ubicacion_publicidad($id_publicidad,$id_sector_publicitario,$id_rubro,$id_subrubro)
+    public function agregar_ubicacion_publicidad($id_publicidad,$id_sector_publicitario,$id_rubro)
     {
         $datos = Array(
             "id_publicidad"=>$id_publicidad,
             "id_sector_publicitario"=>$id_sector_publicitario,
-            "id_rubro"=>$id_rubro,
-            "id_subrubro"=>$id_subrubro
+            "id_rubro"=>$id_rubro
         );
 
         return $this->db->insert("ubicaciones_publicidades",$datos);
@@ -190,15 +311,12 @@ class Publicidades_model extends CI_Model{
         $r =$this->db->query(
         "SELECT ubicaciones_publicidades.*,
         sectores_web_publicitarios.nombre_sector as sectores_web_publicitarios_nombre_sector, 
-        grupos_padres.descripcion as rubro_rubro,
-        grupos.grupo as sub_rubro_subrubro  
+        grupos_padres.descripcion as rubro_rubro
         FROM ubicaciones_publicidades 
         LEFT JOIN sectores_web_publicitarios on 
                 sectores_web_publicitarios.id = ubicaciones_publicidades.id_sector_publicitario
         LEFT JOIN grupos_padres 
                 on grupos_padres.codigo = ubicaciones_publicidades.id_rubro
-        LEFT JOIN grupos 
-                on grupos.codigo = ubicaciones_publicidades.id_subrubro 
         WHERE ubicaciones_publicidades.id_publicidad = ? ",array($id_publicidad));
         
 

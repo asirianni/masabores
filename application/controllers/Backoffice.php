@@ -726,14 +726,13 @@ class Backoffice extends CI_Controller {
                         // ARREGLOS A RECORRER PARA AGREGAR LOS SECTORES DE UBICACIONES
                         $id_sector= $this->input->post("id_sector");
                         $id_rubro= $this->input->post("id_rubro");
-                        $id_subrubro= $this->input->post("id_subrubro");
                         // FIN ARREGLOS UBICACIONES
 
-                        if(count($id_sector) == count($id_rubro) && count($id_sector) == count($id_subrubro))
+                        if(count($id_sector) == count($id_rubro))
                         {
                             for($i=0; $i < count($id_sector);$i++)
                             {
-                                $this->Publicidades_model->agregar_ubicacion_publicidad($agregado["id"],$id_sector[$i],$id_rubro[$i],$id_subrubro[$i]);
+                                $this->Publicidades_model->agregar_ubicacion_publicidad($agregado["id"],$id_sector[$i],$id_rubro[$i]);
                             }
                         }
                     }
@@ -752,8 +751,7 @@ class Backoffice extends CI_Controller {
 
             if($publicidad)
             {
-              
-				$output = array();
+              	$output = array();
 
 	            $output["sectores_web_publicitarios"]=$this->Publicidades_model->get_sectores_web_publicitarios();
 	            $output["modal_alert"]= $this->load->view("back/modal_alert",array(),true);
@@ -854,16 +852,15 @@ class Backoffice extends CI_Controller {
                     // ARREGLOS A RECORRER PARA AGREGAR LOS SECTORES DE UBICACIONES
                     $id_sector= $this->input->post("id_sector");
                     $id_rubro= $this->input->post("id_rubro");
-                    $id_subrubro= $this->input->post("id_subrubro");
                     // FIN ARREGLOS UBICACIONES
 
                     $this->Publicidades_model->eliminar_ubicaciones_publicidad($id);
 
-                    if(count($id_sector) == count($id_rubro) && count($id_sector) == count($id_subrubro))
+                    if(count($id_sector) == count($id_rubro) && count($id_sector))
                     {
                         for($i=0; $i < count($id_sector);$i++)
                         {
-                            $this->Publicidades_model->agregar_ubicacion_publicidad($id,$id_sector[$i],$id_rubro[$i],$id_subrubro[$i]);
+                            $this->Publicidades_model->agregar_ubicacion_publicidad($id,$id_sector[$i],$id_rubro[$i]);
                         }
                     }
                 }

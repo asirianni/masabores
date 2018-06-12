@@ -22,6 +22,7 @@ class Welcome extends CI_Controller {
             $this->load->model('Configuracion_model');
             $this->load->model('Pedido_model');
             $this->load->model('Metadatos_model');
+            $this->load->model("Publicidades_model");
             
             $this->load->library('Partes_Web');
             $this->partes_web = new Partes_Web();
@@ -64,6 +65,15 @@ class Welcome extends CI_Controller {
             
             $this->load->model("Home_seccion_model");
             $salida["secciones_activas"]= $this->Home_seccion_model->getHomeSecciones();
+
+            // OBTENIENDO PUBLICIDADES
+
+            $salida["publicidades_inicio_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_inicio_vertical_izquierdo();
+
+            $salida["publicidades_inicio_vertical_derecho"]= $this->Publicidades_model->get_publicidades_inicio_vertical_derecho();
+
+            $salida["publicidades_inicio_horizontal"]= $this->Publicidades_model->
+                get_publicidades_inicio_horizontal();
             
             $this->load->view('entrada', $salida);
 	}
@@ -559,6 +569,13 @@ class Welcome extends CI_Controller {
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
+
+            $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_categorias_vertical_izquierdo();
+
+            $output["publicidades_vertical_derecho"]= $this->Publicidades_model->get_publicidades_categorias_vertical_derecho();
+
+            $output["publicidades_horizontal"]= $this->Publicidades_model->get_publicidades_categorias_horizontal();
+
             $this->load->view('grupos', $output);
 
         }
@@ -583,6 +600,13 @@ class Welcome extends CI_Controller {
             $output["menu_superior"]= $this->partes_web->getMenuSuperior();
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
+
+            $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_entregas_vertical_izquierdo();
+
+            $output["publicidades_vertical_derecho"]= $this->Publicidades_model->get_publicidades_entregas_vertical_derecho();
+
+            $output["publicidades_horizontal"]= $this->Publicidades_model->get_publicidades_entregas_horizontal();
+
             $this->load->view('zonas_de_cobertura', $output);
 
         }
@@ -611,8 +635,16 @@ class Welcome extends CI_Controller {
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
             $output["nosotros"]= $this->Nosotros_model->getNosotros();
-            $this->load->view('nosotros', $output);
 
+             // OBTENIENDO PUBLICIDADES
+
+            $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_nosotros_vertical_izquierdo();
+
+            $output["publicidades_vertical_derecho"]= $this->Publicidades_model->get_publicidades_nosotros_vertical_derecho();
+
+            $output["publicidades_horizontal"]= $this->Publicidades_model->get_publicidades_nosotros_horizontal();
+
+            $this->load->view('nosotros', $output);
         }
         
         public function contacto() {
@@ -639,6 +671,14 @@ class Welcome extends CI_Controller {
             $output["footer"]= $this->partes_web->getFooter();
             
             $output["mensaje_error"]="";
+
+            $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_contacto_vertical_izquierdo();
+
+            $output["publicidades_vertical_derecho"]= $this->Publicidades_model->get_publicidades_contacto_vertical_derecho();
+
+            $output["publicidades_horizontal"]= $this->Publicidades_model->get_publicidades_contacto_horizontal();
+
+
             $this->load->view('contacto', $output);
 
         }
@@ -721,7 +761,11 @@ class Welcome extends CI_Controller {
             $output["parte_buscador"]= $this->partes_web->getParteBuscador();
             $output["footer"]= $this->partes_web->getFooter();
             
-            
+            $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_productos_vertical_izquierdo();
+
+            $output["publicidades_vertical_derecho"]= $this->Publicidades_model->get_publicidades_productos_vertical_derecho();
+
+            $output["publicidades_horizontal"]= $this->Publicidades_model->get_publicidades_productos_horizontal();
             
             $this->load->view('mostrar_productos', $output);
 
@@ -766,8 +810,14 @@ class Welcome extends CI_Controller {
             {
                 $output["mostrar_precio"] = true;
             }
-            $this->load->view('mostrar_productos', $output);
 
+            $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_rubro_vertical_izquierdo($rubro);
+
+            $output["publicidades_vertical_derecho"]= $this->Publicidades_model->get_publicidades_rubro_vertical_derecho($rubro);
+
+            $output["publicidades_horizontal"]= $this->Publicidades_model->get_publicidades_rubro_horizontal($rubro);
+
+            $this->load->view('mostrar_productos', $output);
         }
         
         function get_listado_productos_by_rubro($rubro) {
