@@ -130,7 +130,10 @@
                     <h4 style='padding-left: 10px;margin-bottom: 20px;'>Para ver precios ingrese o registrese</h4>
                     <?php }?>
                 </div>
-                <div class="col-md-12 product-w3ls-center">
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+                <div class="col-md-8 product-w3ls-center">
                     <div class="box-content" style="display: block;">
                         <table id="productos"
                            data-toggle="table" 
@@ -157,6 +160,14 @@
                             </thead>
                         </table>
                     </div>
+                </div>
+
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+
+                <div class="col-md-12" style="text-align: center;">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg">
                 </div>
             </div>
         </div>
@@ -311,7 +322,7 @@
                                 return [        
                                 '<a class="btn btn-primary" href="#sharp" onclick = "agregar_producto('+row.codigo+' , &#39&#39, &#39'+row.descripcion+'&#39;, 1, '+row.precio+')";>',
                                     '<i class="fa fa-cart-arrow-down" aria-hidden="true"> + </i>',
-                                '</a>',
+                                '</a> &nbsp;',
                                 
                                 '<a class="btn btn-primary" href="#sharp" onclick = "ver_imagen('+row.codigo+')";>',
                                     '<i class="fa fa-search" aria-hidden="true">ver</i>',

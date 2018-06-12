@@ -258,6 +258,10 @@
         
 	<div class="welcome"> 
 		<div class="container"> 
+            <div class="col-md-2">
+                <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+            </div>
+            <div class="col-md-8">
 			<div class="welcome-info">
                             <h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
@@ -506,7 +510,19 @@
                                         <!-- FIN PRODUCTOS DESTACADOS-->
                                         <?}?>
 				</div>  
-			</div>  	
+			</div>  
+
+            <!-- FIN PRODUCTOS DESTACADOS -->	
+        </div>
+
+        <div class="col-md-2">
+            <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+        </div>
+
+        <div class="col-md-12" style="text-align:center;">
+            <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg">
+        </div>
+
 		</div>  	
 	</div> 
 	<!-- footer-top -->

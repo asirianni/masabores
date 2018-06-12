@@ -597,7 +597,290 @@ class Backoffice extends CI_Controller {
 		}
 	}
 	
-	
+	public function publicidades(){
+		if ($this->verificar_acceso()) {
+			
+			$this->load->model("Publicidades_model");
+			$output = array();
+            $output["publicidades"]= $this->Publicidades_model->get_publicidades();
+
+			$this->load->view('back/publicidades.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin/ingreso.php', $output);
+		}
+	}
+
+	public function agregar_publicidad(){
+		if ($this->verificar_acceso()) {
+			
+			$this->load->model("Publicidades_model");
+			$output = array();
+
+            $output["sectores_web_publicitarios"]=$this->Publicidades_model->get_sectores_web_publicitarios();
+            $output["modal_alert"]= $this->load->view("back/modal_alert",array(),true);
+            $output["modal_loading"]= $this->load->view("back/modal_loading",array(),true);
+
+			$this->load->view('back/agregar_publicidad.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin/ingreso.php', $output);
+		}
+	}
+
+	public function agregar_publicidad_post()
+	{
+		if($this->verificar_acceso())
+		{
+			$this->load->model("Publicidades_model");
+
+			$respuesta = array("respuesta"=>true,"mensaje"=>"");
+
+            $descripcion = trim($this->input->post("descripcion"));
+            $url = trim($this->input->post("url"));
+            $mostrar = trim($this->input->post("mostrar"));
+            $width = (int)$this->input->post("width");
+            $height = (int)$this->input->post("height");
+            
+            $nombre_imagen="";
+
+            if($descripcion == ""){
+                $respuesta["respuesta"]=false;
+                $respuesta["mensaje"].="<p>Campo descripcion vacio</p>";
+            }
+
+            if($url == ""){
+                $respuesta["respuesta"]=false;
+                $respuesta["mensaje"]="<p>Campo url vacio</p>";
+            }
+
+            if($mostrar != "si" && $mostrar != "no"){
+                $respuesta["respuesta"]=false;
+                $respuesta["mensaje"].="<p>Campo mostrar no valido</p>";
+            }
+
+            if($respuesta["respuesta"])
+            {   
+
+                $name_img=uniqid();
+                // SUBIR IMAGEN 
+                $config['upload_path']          = './recursos/images/publicidades/';
+                $config['allowed_types']        = 'jpg|jpeg';
+                $config['max_size']             = 100000;
+                $config["file_name"]=$name_img;
+                $config['overwrite']= true;
+
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload('imagen'))
+                {
+                    $error = array('error' => $this->upload->display_errors());
+                    $respuesta["respuesta"]= false;
+                    $respuesta["mensaje"].= "No se ha podido subir la imagen";
+                }
+                else
+                {
+                    $data = array('upload_data' => $this->upload->data());
+
+                    $this->load->library("myHelperImage");
+                    $myHelperImage = new myHelperImage();
+                    $data = array('upload_data' => $this->upload->data());
+
+                    $nombre_imagen=$name_img;
+                    $nombre_imagen.=".";
+                    $nombre_imagen.=$myHelperImage->obtenerExtensionFichero($_FILES["imagen"]['name']);
+                    
+                    $respuesta["nombre_imagen"]=$nombre_imagen;
+
+                    $src=base_url()."recursos/images/publicidades/".$nombre_imagen;
+
+                    $dir_file ="recursos/images/publicidades/".$width."_".$height."/".$nombre_imagen;
+                    $myHelperImage->redimensionar_imagen($width,$height,$src,$dir_file);
+
+                    unlink("recursos/images/publicidades/".$nombre_imagen);
+
+                    $agregado = $this->Publicidades_model->agregar_publicidad($descripcion,$nombre_imagen,$width,$height,$mostrar,$url);
+
+                    $respuesta["respuesta"]=(boolean)$agregado;
+
+                    if($respuesta["respuesta"] == false)
+                    {
+                        $respuesta["mensaje"].= "<p>No se ha podido agregar</p>";
+                    }
+                    else
+                    {
+                        // SI SE AGREGO LA PUBLICIDAD AGREGO SUS SECTORES
+                        // ARREGLOS A RECORRER PARA AGREGAR LOS SECTORES DE UBICACIONES
+                        $id_sector= $this->input->post("id_sector");
+                        $id_rubro= $this->input->post("id_rubro");
+                        $id_subrubro= $this->input->post("id_subrubro");
+                        // FIN ARREGLOS UBICACIONES
+
+                        if(count($id_sector) == count($id_rubro) && count($id_sector) == count($id_subrubro))
+                        {
+                            for($i=0; $i < count($id_sector);$i++)
+                            {
+                                $this->Publicidades_model->agregar_ubicacion_publicidad($agregado["id"],$id_sector[$i],$id_rubro[$i],$id_subrubro[$i]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            echo json_encode($respuesta);
+		}
+	}
+
+	public function editar_publicidad($id_publicidad = null){
+		if ($this->verificar_acceso() && $id_publicidad != null) {
+
+			 $this->load->model("Publicidades_model");
+			 $publicidad = $this->Publicidades_model->get_publicidad($id_publicidad);
+
+            if($publicidad)
+            {
+              
+				$output = array();
+
+	            $output["sectores_web_publicitarios"]=$this->Publicidades_model->get_sectores_web_publicitarios();
+	            $output["modal_alert"]= $this->load->view("back/modal_alert",array(),true);
+	            $output["modal_loading"]= $this->load->view("back/modal_loading",array(),true);
+	            $output["publicidad"]=$publicidad;
+
+                $output["ubicaciones"]= $this->Publicidades_model->get_ubicaciones_publicidad($id_publicidad);
+
+				$this->load->view('back/editar_publicidad.php', $output);
+            }
+
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin/ingreso.php', $output);
+		}
+	}
+
+	public function editar_publicidad_post()
+	{
+		if($this->verificar_acceso() && $this->input->post())
+		{
+			$this->load->model("Publicidades_model");
+			
+			$respuesta = array("respuesta"=>true,"mensaje"=>"");
+
+            $id= $this->input->post("id");
+            $descripcion = trim($this->input->post("descripcion"));
+            $url = trim($this->input->post("url"));
+            $mostrar = trim($this->input->post("mostrar"));
+            $width = (int)$this->input->post("width");
+            $height = (int)$this->input->post("height");
+            $nombre_imagen="";
+
+            if($descripcion == ""){
+                $respuesta["respuesta"]=false;
+                $respuesta["mensaje"].="<p>Campo descripcion vacio</p>";
+            }
+
+            if($url == ""){
+                $respuesta["respuesta"]=false;
+                $respuesta["mensaje"]="<p>Campo url vacio</p>";
+            }
+
+            if($mostrar != "si" && $mostrar != "no"){
+                $respuesta["respuesta"]=false;
+                $respuesta["mensaje"].="<p>Campo mostrar no valido</p>";
+            }
+
+            if($respuesta["respuesta"])
+            {   
+
+                $name_img=uniqid();
+                // SUBIR IMAGEN 
+                $config['upload_path']          = './recursos/images/publicidades/';
+                $config['allowed_types']        = 'jpg|jpeg';
+                $config['max_size']             = 100000;
+                $config["file_name"]=$name_img;
+                $config['overwrite']= true;
+
+                $this->load->library('upload', $config);
+
+                if(!$this->upload->do_upload('imagen'))
+                {
+                    $error = array('error' => $this->upload->display_errors());
+                }
+                else
+                {
+                    $data = array('upload_data' => $this->upload->data());
+
+                    $this->load->library("myHelperImage");
+                    $myHelperImage = new myHelperImage();
+                    $data = array('upload_data' => $this->upload->data());
+
+                    $nombre_imagen=$name_img;
+                    $nombre_imagen.=".";
+                    $nombre_imagen.=$myHelperImage->obtenerExtensionFichero($_FILES["imagen"]['name']);
+                    
+                    $respuesta["nombre_imagen"]=$nombre_imagen;
+
+
+                    $src=base_url()."/recursos/images/publicidades/".$nombre_imagen;
+
+                    $dir_file ="recursos/images/publicidades/".$width."_".$height."/".$nombre_imagen;
+                    $myHelperImage->redimensionar_imagen($width,$height,$src,$dir_file);
+
+                    unlink("recursos/images/publicidades/".$nombre_imagen);
+                }
+
+                $respuesta["respuesta"]= $this->Publicidades_model->editar_publicidad($id,$descripcion,$nombre_imagen,$width,$height,$mostrar,$url);
+
+                if($respuesta["respuesta"] == false)
+                {
+                    $respuesta["mensaje"].= "<p>No se ha podido editar</p>";
+                }
+                else
+                {
+                    // SI SE AGREGO LA PUBLICIDAD AGREGO SUS SECTORES
+                    // ARREGLOS A RECORRER PARA AGREGAR LOS SECTORES DE UBICACIONES
+                    $id_sector= $this->input->post("id_sector");
+                    $id_rubro= $this->input->post("id_rubro");
+                    $id_subrubro= $this->input->post("id_subrubro");
+                    // FIN ARREGLOS UBICACIONES
+
+                    $this->Publicidades_model->eliminar_ubicaciones_publicidad($id);
+
+                    if(count($id_sector) == count($id_rubro) && count($id_sector) == count($id_subrubro))
+                    {
+                        for($i=0; $i < count($id_sector);$i++)
+                        {
+                            $this->Publicidades_model->agregar_ubicacion_publicidad($id,$id_sector[$i],$id_rubro[$i],$id_subrubro[$i]);
+                        }
+                    }
+                }
+            }
+
+            echo json_encode($respuesta);
+		}
+	}
+
+	public function get_rubro_busqueda_select2(){
+		if ($this->verificar_acceso()) {
+			$this->load->model("Rubro_model");
+
+			$respuesta = $this->Rubro_model->get_rubro_busqueda_select2($this->input->post("q"));
+            
+            echo json_encode($respuesta);
+		}
+	}
+
+	public function get_subrubro_sin_id_rubro_busqueda_select2()
+	{
+		if ($this->verificar_acceso()) {
+			$this->load->model("Rubro_model");
+
+			$respuesta = $this->Rubro_model->get_subrubro_sin_id_rubro_busqueda_select2($this->input->post("q"));
+            
+            echo json_encode($respuesta);
+		}
+	}
+
 	public function productos(){
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();

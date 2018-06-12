@@ -151,45 +151,61 @@ ul.menu li a {
 	</div>
 	<div class="products">	 
             <div class="row">
-                <div class="col-md-12" style="margin-bottom: 30px;">
-                    <h1 class="text-center">Contactanos</h1>
-                </div>
-                <div class="col-md-offset-1 col-md-5">
-                    <h4 style="margin-bottom: 10px;color:#dd4448;"><?php echo $mensaje_error?></h4>
-                    <form action="<?php echo base_url()?>index.php/Welcome/enviar_mensaje_contacto" method="post">
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre_contacto" name="nombre">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="correo">Correo</label>
-                            <input type="text" class="form-control" id="correo_contacto" name="correo">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="telefono">Telefono</label>
-                            <input type="text" class="form-control" id="telefono_contacto" name="telefono">
-                        </div>
-                        <div class="form-group">
-                            <label for="mensaje">Mensaje:</label>
-                            <textarea class="form-control" name="mensaje" id="mensaje_contacto"></textarea>
-                        </div>
-                        <div class="form-group" style="text-align: center;">
-                            <label for=""></label>
-                            <input type="submit" class="btn btn-primary" id="enviar_mensaje" value="Enviar mensaje" style="background-color: #dd4448;border-color: #dd4448;font-weight: bold;font-size: 16px;">
-                        </div>
-                    </form>
-                </div>
                 
-                <div class="col-md-offset-1 col-md-5">
-                    <h3 style="margin-top: 30px;margin-bottom: 30px;">Nuestros datos: </h3>
-                    <p>Direccion <?php echo $direccion["descripcion"]?></p>
-                    <p>Correo <?php echo $correo["descripcion"]?></p>
-                    <p>Movil <?php echo $movil["descripcion"]?></p>
-                    <p>Telefono <?php echo $telefono["descripcion"]?></p>
-                    <p>Localidad <?php echo $localidad["descripcion"]?></p>
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
                 </div>
+                <div class="col-md-8">
+                    <div class="col-md-12" style="margin-bottom: 30px;">
+                        <h1 class="text-center">Contactanos</h1>
+                    </div>
+                    <div class="col-md-offset-1 col-md-5">
+                        <h4 style="margin-bottom: 10px;color:#dd4448;"><?php echo $mensaje_error?></h4>
+                        <form action="<?php echo base_url()?>index.php/Welcome/enviar_mensaje_contacto" method="post">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre_contacto" name="nombre">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="correo">Correo</label>
+                                <input type="text" class="form-control" id="correo_contacto" name="correo">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefono">Telefono</label>
+                                <input type="text" class="form-control" id="telefono_contacto" name="telefono">
+                            </div>
+                            <div class="form-group">
+                                <label for="mensaje">Mensaje:</label>
+                                <textarea class="form-control" name="mensaje" id="mensaje_contacto"></textarea>
+                            </div>
+                            <div class="form-group" style="text-align: center;">
+                                <label for=""></label>
+                                <input type="submit" class="btn btn-primary" id="enviar_mensaje" value="Enviar mensaje" style="background-color: #dd4448;border-color: #dd4448;font-weight: bold;font-size: 16px;">
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="col-md-offset-1 col-md-5">
+                        <h3 style="margin-top: 30px;margin-bottom: 30px;">Nuestros datos: </h3>
+                        <p>Direccion <?php echo $direccion["descripcion"]?></p>
+                        <p>Correo <?php echo $correo["descripcion"]?></p>
+                        <p>Movil <?php echo $movil["descripcion"]?></p>
+                        <p>Telefono <?php echo $telefono["descripcion"]?></p>
+                        <p>Localidad <?php echo $localidad["descripcion"]?></p>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+
+                <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg">
+                </div>
+            </div>
             </div>
         </div>
 	<!-- footer -->

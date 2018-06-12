@@ -149,31 +149,6 @@ ul.menu li a {
                                                     ?> 
                                                 </ul> 
 					</li> 
-<!--					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-percent" aria-hidden="true"></i> Today's Deals<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="offers.html">Cash Back Offers</a></li> 
-							<li><a href="offers.html">Product Discounts</a></li>
-							<li><a href="offers.html">Special Offers</a></li> 
-						</ul> 
-					</li> 
-					<li class="dropdown head-dpdn">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-gift" aria-hidden="true"></i> Gift Cards<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="offers.html">Product Gift card</a></li> 
-							<li><a href="offers.html">Occasions Register</a></li>
-							<li><a href="offers.html">View Balance</a></li> 
-						</ul> 
-					</li> 
-					<li class="dropdown head-dpdn">
-						<a href="contact.html" class="dropdown-toggle"><i class="fa fa-map-marker" aria-hidden="true"></i> Store Finder</a>
-					</li> 
-					<li class="dropdown head-dpdn">
-						<a href="card.html" class="dropdown-toggle"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> Credit Card</a>
-					</li> 
-					<li class="dropdown head-dpdn">
-						<a href="help.html" class="dropdown-toggle"><i class="fa fa-question-circle" aria-hidden="true"></i> Help</a>
-					</li>-->
 				</ul>
 			</div>
 			<div class="clearfix"> </div> 
@@ -194,6 +169,10 @@ ul.menu li a {
             <h4 style='padding-left: 10px;margin-bottom: 10px;'>Mayores de $<?php echo $minimo_de_entrega["descripcion"]?> envio gratis, conozca los costos de envio <a href="<?php echo base_url()?>index.php/welcome/zonas_de_cobertura">aqui</a></h4>
             <br/>
             <div class="row">
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+                <div class="col-md-8">
                 <?php
                     $i=0; 
                     
@@ -227,7 +206,16 @@ ul.menu li a {
                         
                         echo "</div>";
                     }
-                   ?>  
+                   ?> 
+                   </div> 
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg">
+                </div>
             </div>
         </div>
 	<!-- footer -->

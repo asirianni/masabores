@@ -36,6 +36,11 @@ class Partes_Backoffice
                         <li>
                             <a href='".site_url('backoffice/escritorio')."'><i class='fa fa-dashboard fa-fw'></i> Escritorio</a>
                         </li>
+
+                        <li>
+                            <a href='".site_url('backoffice/publicidades')."'><i class='fa fa-table fa-mouse-pointer'></i> Publicidades</a>
+                        </li>
+
 <!--                        <li>
                             <a href='".site_url('backoffice/abm_rubros')."'><i class='fa fa-table fa-fw'></i> Home</a>
                         </li>

@@ -150,9 +150,20 @@ ul.menu li a {
 	</div>
 	<div class="products">	 
             <div class="row">
-                <div class="col-md-offset-1 col-md-10">
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+                <div class="col-md-8">
                     <h2 class="text-center" style="margin-bottom: 30px;">Nosotros</h2>
                     <p style="color: #000 !important;"><?php echo $nosotros["contenido"]?></p>
+                </div>
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg">
                 </div>
             </div>
         </div>

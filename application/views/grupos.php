@@ -146,10 +146,12 @@ ul.menu li a {
 	</div>
 	<div class="products">	 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+                <div class="col-md-8">
                     <h4 style='padding-left: 10px;margin-bottom: 20px;'>Mayores de $<?php echo $minimo_de_entrega["descripcion"]?> envio gratis, conozca los costos de envio <a href="<?php echo base_url()?>index.php/welcome/zonas_de_cobertura">aqui</a></h4>
                     
-                </div>
                 <?php
                     $line=1;
                     foreach ($rubros as $value) {?>
@@ -163,7 +165,18 @@ ul.menu li a {
                             </div>
                         </div>
                     
-                <?php if($line==3){echo"</div><div class='row'>"; $line=0;}$line++;}?>
+                <?php //if($line==3){echo"</div><div class='row'>"; $line=0;}$line++;
+                }?>
+
+                </div>
+                <div class="col-md-2">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center;">
+                    <img src="<?php echo base_url() ?>recursos/images/publicidades/729_90/default.jpg">
+                </div>
             </div>
         </div>
 	<!-- footer -->
