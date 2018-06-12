@@ -141,6 +141,37 @@
     </div>
     <!-- /#wrapper -->
 
+
+<div class="modal modal-default modal_eliminar" id="modal_eliminar">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Eliminar publicidad:</h4>
+            </div>
+            <div class="modal-body">
+                <form action="<?=base_url()?>index.php/Rubros/eliminar_rubro" method="post" id="formulario_eliminar">
+                    <input type='text' id='id_eliminar' name="id_eliminar" hidden="">
+                    <div class="col-md-12">
+                        <p style="font-size: 17px;font-weight: bold;text-align: center;">¿Seguro desea eliminar la publicidad?</p>
+                    </div>
+                
+                <div class='clearfix'></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <div class="form-group" style="text-align: center;">
+                        <button class="btn btn-sm btn-default pull-left" onClick="$('#modal_eliminar').modal('hide');"><i class='fa fa-close'></i> Cerrar</button>
+                        <button class="btn btn-sm btn-danger pull-right" onClick="eliminar()"><i class='fa fa-trash-o'></i> Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
     <div class="modal modal-default modal_agregar" id="modal_ver_imagen">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -198,12 +229,49 @@ $(document).ready(function(){
 });
 
 
+var id_trabajando=0;
+  
+
 function abrir_modal_ver_imagen(url)
 {
   $("#src_modal_ver_imagen").attr("src",url);
   $("#modal_ver_imagen").modal("show");
 }
 
+function abrir_modal_eliminar(id)
+{
+    id_trabajando=id;
+    $("#modal_eliminar").modal("show");
+}
+
+
+function eliminar()
+{
+  $.ajax({
+      url: "<?php echo base_url()?>index.php/backoffice/eliminar_publicidad",
+      type: "POST",
+      data:{id:id_trabajando},
+      success: function(data)
+      {
+        data= JSON.parse(data);
+
+        if(data["respuesta"])
+        {
+          location.reload();
+        }
+        else
+        {
+          alert("No se ha podido eliminar");
+        }
+
+        $("#modal_eliminar").modal("hide");
+         
+      },
+      error: function(event){
+        alert("No se ha podido eliminar");
+      },
+  });
+}
 </script>
 </body>
 

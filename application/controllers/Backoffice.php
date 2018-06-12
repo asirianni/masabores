@@ -611,6 +611,19 @@ class Backoffice extends CI_Controller {
 		}
 	}
 
+	public function eliminar_publicidad()
+	{
+		if ($this->verificar_acceso() && $this->input->post()) {
+			$this->load->model("Publicidades_model");
+
+			$respuesta= array("respuesta"=>false);
+
+			$id = (int)$this->input->post("id");
+			$respuesta["respuesta"]=$this->Publicidades_model->eliminar_publicidad($id);
+			echo json_encode($respuesta);
+		}
+	}
+
 	public function agregar_publicidad(){
 		if ($this->verificar_acceso()) {
 			
