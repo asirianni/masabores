@@ -646,6 +646,43 @@ class Welcome extends CI_Controller {
 
             $this->load->view('nosotros', $output);
         }
+
+        public function videos() {
+            
+            $this->load->model("Videos_model");
+            
+            // CARGANDO METADATOS
+            $vista = "videos";
+            $output["description"]= $this->Metadatos_model->getDescription($vista);
+            $output["title"]= $this->Metadatos_model->getTitle($vista);
+            $output["keywords"]= $this->Metadatos_model->getKeywords($vista);
+            // FIN
+            
+            $output["correo"]= $this->Configuracion_model->obtener_config(1);
+            $output["movil"]= $this->Configuracion_model->obtener_config(2);
+            $output["telefono"]= $this->Configuracion_model->obtener_config(3);
+            $output["direccion"]= $this->Configuracion_model->obtener_config(4);
+            $output["horarios"]= $this->Configuracion_model->obtener_config(5);
+            $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+            
+            $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
+            $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
+            $output["menu_superior"]= $this->partes_web->getMenuSuperior();
+            $output["parte_buscador"]= $this->partes_web->getParteBuscador();
+            $output["footer"]= $this->partes_web->getFooter();
+
+            $output["videos"]= $this->Videos_model->get_videos_visibles();
+
+             // OBTENIENDO PUBLICIDADES
+
+            $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_videos_vertical_izquierdo();
+
+            $output["publicidades_vertical_derecho"]= $this->Publicidades_model->get_publicidades_videos_vertical_derecho();
+
+            $output["publicidades_horizontal"]= $this->Publicidades_model->get_publicidades_videos_horizontal();
+
+            $this->load->view('videos', $output);
+        }
         
         public function contacto() {
             

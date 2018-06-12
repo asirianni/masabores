@@ -41,6 +41,10 @@ class Partes_Backoffice
                             <a href='".site_url('backoffice/publicidades')."'><i class='fa fa-table fa-mouse-pointer'></i> Publicidades</a>
                         </li>
 
+                        <li>
+                            <a href='".site_url('backoffice/videos')."'><i class='fa fa-table fa-mouse-pointer'></i> Videos</a>
+                        </li>
+
 <!--                        <li>
                             <a href='".site_url('backoffice/abm_rubros')."'><i class='fa fa-table fa-fw'></i> Home</a>
                         </li>

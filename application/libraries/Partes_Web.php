@@ -244,6 +244,7 @@ class Partes_Web
                                     <li><a href='".base_url()."index.php/welcome/zonas_de_cobertura'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Entregas</a></li>
                                     <li><a href='".base_url()."index.php/welcome/productos'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Categorias</a></li>
                                     <li><a href='".base_url()."index.php/welcome/lista_de_precios'><span class='glyphicon glyphicon-list-alt' aria-hidden='true'></span> Productos</a></li>
+                                    <li><a href='".base_url()."index.php/welcome/videos'><span class='glyphicon glyphicon-facetime-video' aria-hidden='true'></span> Videos</a></li>
                                     <li><a href='".base_url()."index.php/welcome/contacto'><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> Contacto</a></li>
                                   </ul>
                                 </div><!--/.nav-collapse -->

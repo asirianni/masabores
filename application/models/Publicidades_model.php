@@ -159,6 +159,24 @@ class Publicidades_model extends CI_Model{
         return $r->result_array();
     }
 
+    public function get_publicidades_videos_vertical_izquierdo()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 23  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_videos_vertical_derecho()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 24  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 170 and publicidades.height = 638");
+        return $r->result_array();
+    }
+
+    public function get_publicidades_videos_horizontal()
+    {
+        $r = $this->db->query("select * from publicidades where publicidades.id in (select ubicaciones_publicidades.id_publicidad from ubicaciones_publicidades where ubicaciones_publicidades.id_sector_publicitario = 25  and ubicaciones_publicidades.id_rubro = 0) and publicidades.mostrar = 'si' and publicidades.width = 729 and publicidades.height = 90");
+        return $r->result_array();
+    }
+
     public function get_ultima_publicidad()
     {
         $r = $this->db->query("SELECT * FROM publicidades where id in (select max(id) from publicidades)");

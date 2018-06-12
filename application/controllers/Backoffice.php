@@ -597,6 +597,79 @@ class Backoffice extends CI_Controller {
 		}
 	}
 	
+	public function agregar_video_post()
+	{
+		if ($this->verificar_acceso()) {
+			
+			$this->load->model("Videos_model");
+			
+			$titulo = $this->input->post("titulo");
+	        $link = $this->input->post("link");
+	        $mostrar = $this->input->post("mostrar");
+
+            $respuesta = $this->Videos_model->agregar($titulo,$link,$mostrar);
+
+			echo json_encode($respuesta);
+		}
+	}
+
+	public function editar_video_post()
+	{
+		if ($this->verificar_acceso()) {
+			
+			$this->load->model("Videos_model");
+			
+			$id = $this->input->post("id");
+			$titulo = $this->input->post("titulo");
+	        $link = $this->input->post("link");
+	        $mostrar = $this->input->post("mostrar");
+
+            $respuesta = $this->Videos_model->editar($id,$titulo,$link,$mostrar);
+
+			echo json_encode($respuesta);
+		}
+	}
+
+	public function eliminar_video_post()
+	{
+		if ($this->verificar_acceso()) {
+			
+			$this->load->model("Videos_model");
+			
+			$id = $this->input->post("id");
+
+            $respuesta = $this->Videos_model->eliminar($id);
+
+			echo json_encode($respuesta);
+		}
+	}
+
+	public function get_video_post()
+	{
+		if ($this->verificar_acceso()) {
+			
+			$this->load->model("Videos_model");
+			
+			$respuesta = $this->Videos_model->get_video($this->input->post("id"));
+
+			echo json_encode($respuesta);
+		}
+	}
+
+	public function videos(){
+		if ($this->verificar_acceso()) {
+			
+			$this->load->model("Videos_model");
+			$output = array();
+            $output["videos"]= $this->Videos_model->get_videos();
+
+			$this->load->view('back/videos.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin/ingreso.php', $output);
+		}
+	}
+
 	public function publicidades(){
 		if ($this->verificar_acceso()) {
 			
