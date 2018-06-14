@@ -269,7 +269,7 @@
                  } else {?>
                     <li>
                         <a href="#">
-                            <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/<?php echo $default_publicidad_170_638?>"  class="img-responsive">
+                            <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg"  class="img-responsive">
                         </a>
                     </li>
                 <?php }?>
@@ -562,7 +562,7 @@
              } else {?>
                 <li>
                     <a href="#">
-                        <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/<?php echo $default_publicidad_170_638?>"  class="img-responsive">
+                        <img src="<?php echo base_url() ?>recursos/images/publicidades/170_638/default.jpg"  class="img-responsive">
                     </a>
                 </li>
             <?php }?>
