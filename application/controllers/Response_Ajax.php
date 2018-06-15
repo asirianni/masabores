@@ -297,6 +297,18 @@ class Response_Ajax extends CI_Controller
         } 
     }
     
+    public function get_formas_pago()
+    {
+       if($this->input->is_ajax_request())
+        {
+            $this->load->model("Formas_pago_model");
+            
+            $respuesta = $this->Formas_pago_model->getFormaPago($this->input->post("id"));
+ 
+            echo json_encode($respuesta);
+        } 
+    }
+    
     public function get_zona_de_cobertura()
     {
        if($this->input->is_ajax_request())

@@ -7,6 +7,7 @@ class Backoffice extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+                date_default_timezone_set("America/Argentina/Buenos_Aires");
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->library('form_validation');
@@ -502,6 +503,19 @@ class Backoffice extends CI_Controller {
                 $output["menu_lateral"]=$this->partes_backoffice->getMenuLateralAdministrador();
 		$this->load->view('back/pedidos.php', $output);
 	}
+        
+        public function forma_pago(){
+            if ($this->verificar_acceso()) {
+                $crud = new grocery_CRUD();
+                $crud->set_table('forma_pago');
+                $output = $crud->render();
+                $this->load->view('back/forma_pago.php', $output);
+            }else{
+                $output['salida_error']="";
+                $this->load->view('back/loguin/ingreso.php', $output);
+            }
+	}
+        
 	public function pedidos_historico(){
 		/* $crud = new grocery_CRUD();
 		$crud->set_table('pedido');
@@ -1691,26 +1705,47 @@ class Backoffice extends CI_Controller {
         }
         
         public function generar_pedidos_texto() {
-            
+            $fecha=date("Y-m-d-H-i-s");
+            $texto_archivo="pedidos-".$fecha."-w.odb";
             header('Content-type: text/plain');
-            header("Content-Disposition: attachment; filename=\"pedidos.odb\"");
+            header("Content-Disposition: attachment; filename=\"$texto_archivo\"");
             $this->load->model("Vendedor_model");
             $pedido_numero=1;
             
             $pedido=$this->Pedido_model->obtener_pedidos_pendientes();
+            $this->load->model("Formas_pago_model");
             
             foreach($pedido as $p){
+                
+                $pago_select = explode("-", $p["pago"]);
+                
+            
+                $respuesta = $this->Formas_pago_model->getFormaPago(1);
+                $pago=$respuesta["sigla"];
+                
+                if (count($pago_select)>2) {
+                   $pago=$pago_select[1]; 
+                }
+                
                 $detalle=$this->Pedido_model->obtener_detalle_pedido($p["numero"]);
                 $datos_complementarios_cliente=$this->Cliente_model->getCliente($p["cliente"]);
                 $vendedor_cod_masabores=$this->Vendedor_model->getVendedorMasabores($datos_complementarios_cliente["vendedor"]);
+                $cliente="";
+                $articulo="";
+                $cantidad="";
+                $descuento="";
+                $vendedor="";
                 foreach ($detalle as $d) {
                     $cliente=$datos_complementarios_cliente["codigo_masabores"];
                     $articulo=$d["producto"];
                     $cantidad=$d["cantidad"];
-                    $descuento=$d["descuento"];;
+                    $descuento=$d["descuento"];
                     $vendedor=$vendedor_cod_masabores["cod_masabores"];
                     echo "\"".$pedido_numero."\",\"".$cliente."\",\"".$articulo."\",\"".$cantidad."\",\"".$descuento."\",\"".$vendedor."\"\r\n";
                 }
+                $cantidad=1;
+                $descuento=0;
+                echo "\"".$pedido_numero."\",\"".$cliente."\",\"".$pago."\",\"".$cantidad."\",\"".$descuento."\",\"".$vendedor."\"\r\n";
                 $this->Pedido_model->actualizar_pedido($p["numero"], 2);
                 $pedido_numero++; 
             }

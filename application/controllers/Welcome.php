@@ -23,7 +23,7 @@ class Welcome extends CI_Controller {
             $this->load->model('Pedido_model');
             $this->load->model('Metadatos_model');
             $this->load->model("Publicidades_model");
-            
+            $this->load->model("Formas_pago_model");
             $this->load->library('Partes_Web');
             $this->partes_web = new Partes_Web();
             
@@ -1238,7 +1238,7 @@ class Welcome extends CI_Controller {
             $salida["minimo_de_entrega"]= $this->Configuracion_model->obtener_config(10);
             
             $salida["zonas_de_cobertura"]= $this->Zonas_cobertura_model->getZonasCoberturasCheckoutPedido();
-            
+            $salida["formas_pago"]= $this->Formas_pago_model->getListado();
             $salida["modal_ingreso"]= $this->partes_web->getModalIngreso();
             $salida["menu_principal"]= $this->partes_web->getMenuPrincipal();
             $salida["menu_superior"]= $this->partes_web->getMenuSuperior();

@@ -51,8 +51,12 @@ class Partes_Backoffice
                         
                         -->
                         <li>
+                            <a href='".site_url('backoffice/forma_pago')."'><i class='fa fa-table fa-fw'></i> Forma de pago</a>
+                        </li>
+                        <li>
                             <a href='".site_url('backoffice/pedidos/0')."'><i class='fa fa-table fa-fw'></i> Pedidos</a>
                         </li>
+                        
                         <li>
                             <a href='".site_url('backoffice/productos')."'><i class='fa fa-table fa-fw'></i> Productos</a>
                         </li>

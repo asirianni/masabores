@@ -197,7 +197,8 @@ class Pedido_model extends CI_Model {
 	
         public function obtener_pedidos_pendientes(){
 		$consulta="SELECT p.numero as numero,
-                                  p.cliente as cliente
+                                  p.cliente as cliente,
+                                  p.pago as pago
                             FROM pedido as p, cliente as c
                             WHERE p.cliente=c.codigo
                             AND c.codigo_masabores IS NOT NULL

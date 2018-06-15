@@ -239,17 +239,29 @@
                                                             echo "	</div>";
                                                             echo "</div>";
                                                             echo "<br>";
-                                                            echo "<label style='display:none;'>FORMA DE PAGO</label>";
-                                                            echo "<select id='forma_pago' name='pago' class='form-group' style='display:none;'>";
-                                                            echo "	<option value='contado'>Contado</option>";
-                                                            echo "	<option value='cuenta_corriente'>Cuenta Corriente</option>";
-                                                            echo "	<option value='transferencia'>Trasferencia</option>";
-                                                            echo "	<option value='cheque 15 dias'>Cheque a 15 dias</option>";
-                                                            echo "	<option value='cheque 30 dias'>Cheque a 30 dias</option>";
-                                                            echo "	<option value='cheque 60 dias'>Cheque a 60 dias</option>";
-                                                            echo "	<option value='cheque 90 dias'>Cheque a 90 dias</option>";
+                                                            echo "<label >FORMA DE PAGO</label>";
+                                                            echo "<select id='forma_pago' name='pago' class='form-group'>";
+                                                            foreach ($formas_pago as $fp) {
+                                                            
+                                                                echo "<option value ='".$fp["id"]."-".$fp["sigla"]."-".$fp["descripcion"]."'>".$fp["descripcion"]."</option>";
+                                                            }
+                                                                                                                      
                                                             echo "</select>";
                                                             echo "<br>";
+                                                        ?>
+                                                         <div class="">
+                                                            <div class="resumen">
+<!--                                                            <label>Forma de pago</label>-->
+
+
+                                                            <div id="mostrar_mensaje_forma_pago" >
+                                                                
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                        
+                                                        <?php
+                                                        echo "<br>";
                                                             $attributes = array('id' => 'registar_pedido', 'name' => 'form_regis_pedido');
                                                             echo form_open('welcome/registrar_pedido', $attributes);
                                                                     echo "<input id='cliente_reg_id' type='hidden' name='cliente' value='".$this->session->userdata('codigo')."'>";
@@ -1025,6 +1037,32 @@
                 document.getElementById('pago_reg_id').value=document.getElementById('forma_pago').value;
                 document.form_regis_pedido.submit();
             }
+            
+            $(function(){
+                $("#forma_pago").on('change', function(){
+                    var cadena = $( "#forma_pago" ).val();
+                    separador = "-",
+                    arregloDeSubCadenas = cadena.split(separador);
+                    var id=arregloDeSubCadenas[0];
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "<?php echo base_url()?>index.php/Response_Ajax/get_formas_pago",
+                        data: {id:id},
+
+                        beforeSend: function(event){},
+                        success: function(data)
+                        {
+                            data = JSON.parse(data);
+                            
+
+//                            alert(data.detalle);
+                            $( "#mostrar_mensaje_forma_pago" ).empty().append( data.detalle );
+                        },
+                        error: function(event){alert(event.responseText);},
+                    });
+                });
+            });
                 
             
         </script>
