@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
-         public $partes_web;
+    public $partes_web;
         
-        public function __construct(){
+    public function __construct(){
             parent::__construct();
             $this->output->set_header('Access-Control-Allow-Origin: *');
             $this->load->helper('url');
@@ -25,11 +25,12 @@ class Welcome extends CI_Controller {
             $this->load->model("Publicidades_model");
             $this->load->model("Formas_pago_model");
             $this->load->library('Partes_Web');
+            $this->load->model("Home_seccion_model");
             $this->partes_web = new Partes_Web();
             
 	}
         
-	public function index(){
+    public function index(){
             
             // CARGANDO METADATOS
             $vista = "home";
@@ -49,6 +50,7 @@ class Welcome extends CI_Controller {
             
             $salida["horarios"]= $this->Configuracion_model->obtener_config(5);
             $salida["tabla_destacado"]= $this->Almacen_model->tabla_destacados();
+            $salida["modulo_destacado_abierto"]= "si";
             $salida["destacado_1"]= $this->Almacen_model->productos_destacados(1);
             $salida["destacado_2"]= $this->Almacen_model->productos_destacados(2);
             $salida["destacado_3"]= $this->Almacen_model->productos_destacados(3);
@@ -62,6 +64,7 @@ class Welcome extends CI_Controller {
             $salida["parte_buscador"]= $this->partes_web->getParteBuscador();
             $salida["footer"]= $this->partes_web->getFooter();
             $salida["siganos_en"]= $this->partes_web->getSiganosEn();
+           
             
             $this->load->model("Home_seccion_model");
             $salida["secciones_activas"]= $this->Home_seccion_model->getHomeSecciones();
@@ -78,8 +81,8 @@ class Welcome extends CI_Controller {
             $this->load->view('entrada', $salida);
 	}
         
-        public function mi_perfil()
-        {
+    public function mi_perfil()
+    {
             if($this->session->userdata("ingresado") == true)
             {
                 $this->load->model("Cliente_model");
@@ -185,7 +188,7 @@ class Welcome extends CI_Controller {
             }
         }
         
-        public function registrarse(){
+    public function registrarse(){
             
             if($this->session->userdata("ingresado") == false && !$this->input->post())
             {
@@ -351,7 +354,7 @@ class Welcome extends CI_Controller {
         return $mensaje;
     }
     
-     public function get_mensaje_cliente_cambios_realizados_para_cliente($resultado,$tipo_iva,$vendedor,$localidad)
+    public function get_mensaje_cliente_cambios_realizados_para_cliente($resultado,$tipo_iva,$vendedor,$localidad)
     {
         $mensaje=
         "   <p><img src='".base_url()."assets/recursos/images/logo_mas.png'></p>
@@ -407,12 +410,12 @@ class Welcome extends CI_Controller {
         
         redirect(base_url());
     }
-         public function acceso() {
+    public function acceso() {
             $output['salida_error']="";
             $this->load->view('back/loguin/ingreso', $output);
         }
         
-        public function recuperar_password() {
+    public function recuperar_password() {
                         
             if($this->input->post())
             {
@@ -467,7 +470,7 @@ class Welcome extends CI_Controller {
             }
         }
         
-        public function validar_usuario(){
+    public function validar_usuario(){
                         
             //$this->form_validation->set_rules('usuario', 'Usuario', 'trim|required|valid_email');
             $this->form_validation->set_rules('usuario', 'Usuario', 'required');
@@ -502,7 +505,7 @@ class Welcome extends CI_Controller {
             }
 	}
         
-        public function buscar() {
+    public function buscar() {
             if($this->session->userdata("ingresado") == true)
             {
                 $output['productos']="";
@@ -637,6 +640,15 @@ class Welcome extends CI_Controller {
             $output["nosotros"]= $this->Nosotros_model->getNosotros();
 
              // OBTENIENDO PUBLICIDADES
+            $cod_sector_destacado=$this->Almacen_model->obtener_sector_activacion_destacados(2);
+            $output["modulo_destacado_abierto"]= $cod_sector_destacado["mostrar_destacado"];
+            $output["secciones_activas"]= $this->Home_seccion_model->getHomeSecciones();
+            $output["tabla_destacado"]= $this->Almacen_model->tabla_destacados();
+            $output["destacado_1"]= $this->Almacen_model->productos_destacados(1);
+            $output["destacado_2"]= $this->Almacen_model->productos_destacados(2);
+            $output["destacado_3"]= $this->Almacen_model->productos_destacados(3);
+            $output["destacado_4"]= $this->Almacen_model->productos_destacados(4);
+            $output["destacado_5"]= $this->Almacen_model->productos_destacados(5);
 
             $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_nosotros_vertical_izquierdo();
 

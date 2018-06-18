@@ -93,17 +93,18 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Productos</h1>
                 </div>
-                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/productos')?>'> ABM Productos </a> |
+                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/productos')?>'> Productos </a> |
 <!--                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/rubros')?>'> ABM Rubros </a> |-->
-                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/imagenes')?>'> ABM Imagenes </a> |
-                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/tabla_destacados')?>'> ABM Tabla Destacados </a> |
-                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/productos_destacados')?>'> ABM Productos Destacados </a> |
+                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/imagenes')?>'> Imagenes </a> |
+                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/tabla_destacados')?>'> Tabla Destacados </a> |
+                 <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/sectores_destacados')?>'> Sectores Destacados </a> |
+                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/productos_destacados')?>'> Productos Destacados </a> |
 <!--	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/subrubros')?>'> ABM Sub Rubros </a> |
 	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/talles')?>'> ABM Talles </a> |
 	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/colores')?>'> ABM Colores </a> |
 	            <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/cantidades')?>'> ABM Cantidades </a> |-->
-	        <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos')?>'> ABM Grupos </a> |
-                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos_padres')?>'> ABM Grupos Padres </a> |
+	        <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos')?>'> Grupos </a> |
+                <i class="fa fa-table fa-fw"></i><a href='<?php echo site_url('backoffice/abm_grupos_padres')?>'> Grupos Padres </a> |
                 <i class="fa fa-table fa-fw"></i><a href='#' onclick="actualizar_imagenes()"> Cargar imagenes </a>  
                 <!-- /.col-lg-12 -->
             </div>

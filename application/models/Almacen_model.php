@@ -291,6 +291,11 @@ class Almacen_model extends CI_Model {
             }
             return $exito;
         }
+        
+        function obtener_sector_activacion_destacados($codigo) {
+            $query = $this->db->query("SELECT * FROM sector_activacion_destacados WHERE id = $codigo ");
+            return $query->row_array();
+	}
 	
 	
 }

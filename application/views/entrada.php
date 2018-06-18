@@ -275,6 +275,11 @@
                 <?php }?>
                 </ul>
             </div>
+            
+            <?php  
+                if($modulo_destacado_abierto=='si'){
+            ?>      
+                    
             <div class="col-md-8">
 			<div class="welcome-info">
                             <h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
@@ -548,7 +553,11 @@
 
             <!-- FIN PRODUCTOS DESTACADOS -->	
         </div>
-
+        
+                                        <?php
+                                            }
+                                        ?>            
+                    
         <div class="col-md-2">
             <ul id="publicidad_inicio_derecha">
             <?php

@@ -1023,6 +1023,33 @@ class Backoffice extends CI_Controller {
                         $crud->set_field_upload('imagen_2','assets/recursos/images/productos-destacados');
                         $crud->set_field_upload('imagen_3','assets/recursos/images/productos-destacados');
                         $crud->required_fields('cod_producto','destacado','detalle', 'imagen_1','precio', 'mostrar');
+                        $listado_secciones= array("inicio", "nosotros", "entregas", "categorias", "productos", "contacto", "videos");
+
+                        $crud->field_type('secciones', 'multiselect', $listado_secciones); 
+			$output = $crud->render();
+			$this->load->view('back/productos.php', $output);
+		}else{
+			$output['salida_error']="";
+			$this->load->view('back/loguin/ingreso.php', $output);
+		}
+	}
+        
+        public function sectores_destacados(){
+		if ($this->verificar_acceso()) {
+			$crud = new grocery_CRUD();
+			$crud->set_table('sector_activacion_destacados');
+//                      $crud->set_primary_key('cod_producto','productos');
+//			$crud->set_relation('cod_producto','productos','codigo');
+//                      $crud->set_relation('destacado','tabla_destacados','descripcion');
+//                      $crud->set_field_upload('imagen_1','assets/recursos/images/productos-destacados');
+//                      $crud->set_field_upload('imagen_2','assets/recursos/images/productos-destacados');
+//                      $crud->set_field_upload('imagen_3','assets/recursos/images/productos-destacados');
+//                      $crud->required_fields('cod_producto','destacado','detalle', 'imagen_1','precio', 'mostrar');
+//                        $listado_secciones= array("inicio", "nosotros", "entregas", "categorias", "productos", "contacto", "videos");
+//
+//                        $crud->field_type('secciones', 'multiselect', $listado_secciones);
+                        $crud->unset_add();
+                        $crud->unset_delete();  
 			$output = $crud->render();
 			$this->load->view('back/productos.php', $output);
 		}else{
