@@ -80,6 +80,17 @@ class Welcome extends CI_Controller {
             
             $this->load->view('entrada', $salida);
 	}
+
+    public function ver_publicidad($id = 0)
+    {
+        $publicidad = $this->Publicidades_model->get_publicidad($id);
+
+        if($publicidad)
+        {
+            $this->Publicidades_model->set_visitas_publicidad($id,($publicidad["visitas"]+1));
+            redirect($publicidad["url"]);
+        }
+    }
         
     public function mi_perfil()
     {

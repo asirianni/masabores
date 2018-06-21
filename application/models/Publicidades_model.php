@@ -183,7 +183,7 @@ class Publicidades_model extends CI_Model{
         return $r->row_array();
     }
 
-    public function agregar_publicidad($descripcion,$imagen,$width,$height,$mostrar,$url)
+    public function agregar_publicidad($descripcion,$imagen,$width,$height,$mostrar,$url,$id_usuario)
     {
     	$datos = Array(
     		"descripcion" =>$descripcion,
@@ -193,6 +193,7 @@ class Publicidades_model extends CI_Model{
             "mostrar" =>$mostrar,
             "url"=>$url,
             "visitas"=>0,
+            "id_usuario"=>$id_usuario,
     	);
 
     	$agregada = $this->db->insert("publicidades",$datos);
@@ -205,7 +206,7 @@ class Publicidades_model extends CI_Model{
         return $agregada;
     }
 
-    public function editar_publicidad($id,$descripcion,$imagen,$width,$height,$mostrar,$url)
+    public function editar_publicidad($id,$descripcion,$imagen,$width,$height,$mostrar,$url,$id_usuario)
     {
         $row_actual = $this->get_publicidad($id);
 
@@ -215,6 +216,7 @@ class Publicidades_model extends CI_Model{
             "height" =>$height,
             "mostrar" =>$mostrar,
             "url"=>$url,
+            "id_usuario"=>$id_usuario,
         );
 
         if($imagen != "")

@@ -741,6 +741,7 @@ class Backoffice extends CI_Controller {
             $mostrar = trim($this->input->post("mostrar"));
             $width = (int)$this->input->post("width");
             $height = (int)$this->input->post("height");
+            $id_usuario = (int)$this->session->userdata("dni");
             
             $nombre_imagen="";
 
@@ -799,7 +800,7 @@ class Backoffice extends CI_Controller {
 
                     unlink("recursos/images/publicidades/".$nombre_imagen);
 
-                    $agregado = $this->Publicidades_model->agregar_publicidad($descripcion,$nombre_imagen,$width,$height,$mostrar,$url);
+                    $agregado = $this->Publicidades_model->agregar_publicidad($descripcion,$nombre_imagen,$width,$height,$mostrar,$url,$id_usuario);
 
                     $respuesta["respuesta"]=(boolean)$agregado;
 
@@ -870,6 +871,7 @@ class Backoffice extends CI_Controller {
             $mostrar = trim($this->input->post("mostrar"));
             $width = (int)$this->input->post("width");
             $height = (int)$this->input->post("height");
+            $id_usuario = (int)$this->session->userdata("dni");
             $nombre_imagen="";
 
             if($descripcion == ""){
@@ -927,7 +929,7 @@ class Backoffice extends CI_Controller {
                     unlink("recursos/images/publicidades/".$nombre_imagen);
                 }
 
-                $respuesta["respuesta"]= $this->Publicidades_model->editar_publicidad($id,$descripcion,$nombre_imagen,$width,$height,$mostrar,$url);
+                $respuesta["respuesta"]= $this->Publicidades_model->editar_publicidad($id,$descripcion,$nombre_imagen,$width,$height,$mostrar,$url,$id_usuario);
 
                 if($respuesta["respuesta"] == false)
                 {

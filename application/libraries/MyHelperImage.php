@@ -10,7 +10,7 @@ class MyHelperImage
         $dst = imagecreatetruecolor($w, $h);
         imagefill($dst, 0, 0, imagecolorallocate($dst, 255, 255, 255));
         $this->scale_image($src, $dst, $mode);
-        $guardo= imagejpeg($dst,$dir_file);
+        $guardo= imagejpeg($dst,$dir_file,100);
         return $guardo;
     }
     

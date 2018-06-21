@@ -668,7 +668,7 @@ ul.menu li a {
         {
             
             html_publicidades_izquierda+='<li> \n\
-                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_vertical_izquierdo[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/170_638/'+publicidades_vertical_izquierdo[i]["imagen"]+'"></a>\n\
+                <a href="<?php echo base_url()?>index.php/welcome/ver_publicidad/'+publicidades_vertical_izquierdo[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/170_638/'+publicidades_vertical_izquierdo[i]["imagen"]+'"></a>\n\
             </li>';
         }
 
@@ -683,7 +683,7 @@ ul.menu li a {
         {
             
             html_publicidades_derecha+='<li> \n\
-                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_vertical_derecho[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/170_638/'+publicidades_vertical_derecho[i]["imagen"]+'"></a>\n\
+                <a href="<?php echo base_url()?>index.php/welcome/ver_publicidad/'+publicidades_vertical_derecho[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/170_638/'+publicidades_vertical_derecho[i]["imagen"]+'"></a>\n\
             </li>';
         }
 
@@ -700,7 +700,7 @@ ul.menu li a {
         {
             
             html_publicidades_horizontal_html+='<li> \n\
-                <a href="<?php echo base_url()?>index.php/web/ver_publicidad/'+publicidades_horizontal[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/729_90/'+publicidades_horizontal[i]["imagen"]+'"></a>\n\
+                <a href="<?php echo base_url()?>index.php/welcome/ver_publicidad/'+publicidades_horizontal[i]["id"]+'" target="_blank"><img src="<?php echo base_url()?>recursos/images/publicidades/729_90/'+publicidades_horizontal[i]["imagen"]+'"></a>\n\
             </li>';
         }
 
