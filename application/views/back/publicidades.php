@@ -83,7 +83,7 @@
             </div>
             <div class="row">
 	            <div class="col-md-12">
-                    <a href="<?php echo base_url() ?>/index.php/backoffice/agregar_publicidad" class="btn btn-primary">
+                    <a href="<?php echo base_url() ?>index.php/backoffice/agregar_publicidad" class="btn btn-primary">
                         <i class="fa fa-plus"></i> Agregar
                     </a>
                     <br><br>

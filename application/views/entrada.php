@@ -284,7 +284,7 @@
 			<div class="welcome-info">
                             <h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
 				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<ul id="myTab" class=" nav-tabs" role="tablist">
+					<ul id="myTab" class=" nav-tabs" role="tablist" style="font-size: 10px;">
 						<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" >
 							<i class="fa fa-tags" aria-hidden="true"></i> 
 							<h5><?php echo $tabla_destacado[0]["descripcion"]; ?></h5>
