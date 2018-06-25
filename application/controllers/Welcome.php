@@ -538,6 +538,23 @@ class Welcome extends CI_Controller {
                 $output["direccion"]= $this->Configuracion_model->obtener_config(4);
                 $output["horarios"]= $this->Configuracion_model->obtener_config(5);
                 $output["localidad"]= $this->Configuracion_model->obtener_config(6);
+                
+                    // OBTENIENDO PUBLICIDADES
+                $cod_sector_destacado=$this->Almacen_model->obtener_sector_activacion_destacados(4);
+                $output["modulo_destacado_abierto"]= $cod_sector_destacado["mostrar_destacado"];
+                $output["secciones_activas"]= $this->Home_seccion_model->getHomeSecciones();
+                $output["tabla_destacado"]= $this->Almacen_model->tabla_destacados();
+                $output["destacado_1"]= $this->Almacen_model->productos_destacados(1);
+                $output["destacado_2"]= $this->Almacen_model->productos_destacados(2);
+                $output["destacado_3"]= $this->Almacen_model->productos_destacados(3);
+                $output["destacado_4"]= $this->Almacen_model->productos_destacados(4);
+                $output["destacado_5"]= $this->Almacen_model->productos_destacados(5);
+                
+                $output["publicidades_vertical_izquierdo"]= $this->Publicidades_model->get_publicidades_categorias_vertical_izquierdo();
+
+                $output["publicidades_vertical_derecho"]= $this->Publicidades_model->get_publicidades_categorias_vertical_derecho();
+
+                $output["publicidades_horizontal"]= $this->Publicidades_model->get_publicidades_categorias_horizontal();
 
                 $output["modal_ingreso"]= $this->partes_web->getModalIngreso();
                 $output["menu_principal"]= $this->partes_web->getMenuPrincipal();
