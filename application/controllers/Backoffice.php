@@ -1734,7 +1734,7 @@ class Backoffice extends CI_Controller {
         }
         
         public function generar_pedidos_texto() {
-            $fecha=date("Y-m-d-H-i-s");
+            $fecha=date("YmdHis");
             $texto_archivo="pedidos-".$fecha."-w.odb";
             header('Content-type: text/plain');
             header("Content-Disposition: attachment; filename=\"$texto_archivo\"");
@@ -1775,6 +1775,8 @@ class Backoffice extends CI_Controller {
                 $cantidad=1;
                 $descuento=0;
                 echo "\"".$pedido_numero."\",\"".$cliente."\",\"".$pago."\",\"".$cantidad."\",\"".$descuento."\",\"".$vendedor."\"\r\n";
+                $web="WEB";
+                echo "\"".$pedido_numero."\",\"".$cliente."\",\"".$web."\",\"".$cantidad."\",\"".$descuento."\",\"".$vendedor."\"\r\n";
                 $this->Pedido_model->actualizar_pedido($p["numero"], 2);
                 $pedido_numero++; 
             }

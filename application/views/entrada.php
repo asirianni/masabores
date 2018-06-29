@@ -335,12 +335,8 @@
                             });
                         });
                     </script>
-                    
-                    
-                    
                 </div>
-                    
-                    
+            </div>
 
             <div class="col-md-12" style="text-align:center;">
                 <ul id="publicidad_inicio_central">

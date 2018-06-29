@@ -188,6 +188,275 @@ ul.menu li a {
                             <?php echo $video["titulo"] ?>
                         </div>
                         <?php } ?>
+                        
+                        <div class="welcome">
+                            <div class="container"> 
+                                <?php  
+                                    if($modulo_destacado_abierto=='si'){
+                                ?>      
+
+                                <div class="col-md-10">
+                                    <div class="welcome-info">
+                                        <h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
+                                            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                                                    <ul id="myTab" class=" nav-tabs" role="tablist">
+                                                            <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" >
+                                                                    <i class="fa fa-tags" aria-hidden="true"></i> 
+                                                                    <h5><?php echo $tabla_destacado[0]["descripcion"]; ?></h5>
+                                                            </a></li>
+                                                            <li role="presentation"><a href="#carl" role="tab" id="carl-tab" data-toggle="tab"> 
+                                                                    <i class="fa fa-tags" aria-hidden="true"></i>
+                                                                    <h5><?php echo $tabla_destacado[1]["descripcion"]; ?></h5>
+                                                            </a></li>
+                                                            <li role="presentation"><a href="#james" role="tab" id="james-tab" data-toggle="tab"> 
+                                                                    <i class="fa fa-tags" aria-hidden="true"></i>
+                                                                    <h5><?php echo $tabla_destacado[2]["descripcion"]; ?></h5>
+                                                            </a></li>
+                                                            <li role="presentation"><a href="#decor" role="tab" id="decor-tab" data-toggle="tab"> 
+                                                                    <i class="fa fa-tags" aria-hidden="true"></i>
+                                                                    <h5><?php echo $tabla_destacado[3]["descripcion"]; ?></h5>
+                                                            </a></li>
+                                                            <li role="presentation"><a href="#sports" role="tab" id="sports-tab" data-toggle="tab"> 
+                                                                    <i class="fa fa-tags" aria-hidden="true"></i>
+                                                                    <h5><?php echo $tabla_destacado[4]["descripcion"]; ?></h5>
+                                                            </a></li> 
+                                                    </ul>
+                                                    <div class="clearfix"> </div>
+                                                    <!-- INICIO PRODUCTOS DESTACADOS-->
+                                                    <?php if ($secciones_activas[2]["mostrar"] == "si"){?>
+
+                                                    <div id="myTabContent" class="tab-content">
+                                                            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                                                                    <div class="tabcontent-grids">  
+                                                                            <div id="owl-demo" class="owl-carousel">
+                                                                                <?php 
+
+                                                                                    foreach ($destacado_1 as $d_1) {
+                                                                                        $detalle_seleccionado=$d_1["detalle"];
+                                                                                        $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                                        $detalle=str_replace("</p>", "", $detalle);
+                                                                                        $detalle=  trim($detalle);
+                                                                                        $mensaje="<div class='item'>
+                                                                                            <div class='glry-w3agile-grids'> 
+                                                                                                <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_1["imagen_1"]."' alt='img'>
+                                                                                                <div class=''>           
+                                                                                                    <h4><a href='#'>".$d_1["producto"]."</a></h4>
+                                                                                                    <p>".$d_1["detalle"]."</p>
+                                                                                                    <p></p>
+                                                                                                    <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_1["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 1,  ".$d_1["precio"].")'>
+                                                                                                        <i class='fa fa-cart-arrow-down' aria-hidden='true'> </i> COMPRAR +<br/> $".$d_1["precio"]."
+                                                                                                    </a></p>
+
+
+                                                                                                </div>   
+                                                                                            </div>   
+                                                                                        </div>";
+                                                                                        echo $mensaje;
+                                                                                    }
+                                                                                ?>
+                                                                            </div> 
+                                                                    </div>
+                                                            </div>
+                                                            <div role="tabpanel" class="tab-pane fade" id="carl" aria-labelledby="carl-tab">
+                                                                    <div class="tabcontent-grids">
+                                                                            <script>
+                                                                                    $(document).ready(function() { 
+                                                                                            $("#owl-demo1").owlCarousel({
+
+                                                                                              autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                                                                                              items :4,
+                                                                                              itemsDesktop : [640,5],
+                                                                                              itemsDesktopSmall : [414,4],
+                                                                                              navigation : true
+
+                                                                                            });
+
+                                                                                    }); 
+                                                                            </script>
+                                                                            <div id="owl-demo1" class="owl-carousel">
+                                                                                <?php 
+
+                                                                                    foreach ($destacado_2 as $d_2) {
+                                                                                        $detalle_seleccionado=$d_2["detalle"];
+                                                                                        $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                                        $detalle=str_replace("</p>", "", $detalle);
+                                                                                        $detalle=  trim($detalle);
+                                                                                        $mensaje="<div class='item'>
+                                                                                            <div class='glry-w2agile-grids'> 
+                                                                                                <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_2["imagen_1"]."' alt='img'>
+                                                                                                <div class=''>           
+                                                                                                    <h4><a href='#'>".$d_2["producto"]."</a></h4>
+                                                                                                    <p>".$d_2["detalle"]."</p>
+                                                                                                    <p></p>
+                                                                                                    <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_2["codigo"]." , &#29;&#29;, &#29;".$detalle."&#29;, 2,  ".$d_2["precio"].")'>
+                                                                                                        <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR +<br/> $".$d_2["precio"]."</i>
+                                                                                                    </a></p>
+
+
+                                                                                                </div>   
+                                                                                            </div>   
+                                                                                        </div>";
+                                                                                        echo $mensaje;
+                                                                                    }
+                                                                                ?>
+                                                                            </div>   
+                                                                    </div>
+                                                            </div> 
+                                                            <div role="tabpanel" class="tab-pane fade" id="james" aria-labelledby="james-tab">
+                                                                    <div class="tabcontent-grids">
+                                                                            <script>
+                                                                                    $(document).ready(function() { 
+                                                                                            $("#owl-demo2").owlCarousel({
+
+                                                                                              autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                                                                                              items :4,
+                                                                                              itemsDesktop : [640,5],
+                                                                                              itemsDesktopSmall : [414,4],
+                                                                                              navigation : true
+
+                                                                                            });
+
+                                                                                    }); 
+                                                                            </script>
+                                                                            <div id="owl-demo2" class="owl-carousel"> 
+                                                                                    <?php 
+
+                                                                                    foreach ($destacado_3 as $d_3) {
+                                                                                        $detalle_seleccionado=$d_3["detalle"];
+                                                                                        $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                                        $detalle=str_replace("</p>", "", $detalle);
+                                                                                        $detalle=  trim($detalle);
+                                                                                        $mensaje="<div class='item'>
+                                                                                            <div class='glry-w3agile-grids'> 
+                                                                                                <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_3["imagen_1"]."' alt='img'>
+                                                                                                <div class=''>           
+                                                                                                    <h4><a href='#'>".$d_3["producto"]."</a></h4>
+                                                                                                    <p>".$d_3["detalle"]."</p>
+                                                                                                    <p></p>
+                                                                                                    <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_3["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 3,  ".$d_3["precio"].")'>
+                                                                                                        <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR +<br/> $".$d_3["precio"]."</i>
+                                                                                                    </a></p>
+
+
+                                                                                                </div>   
+                                                                                            </div>   
+                                                                                        </div>";
+                                                                                        echo $mensaje;
+                                                                                    }
+                                                                                ?>
+                                                                            </div>    
+                                                                    </div>
+                                                            </div>
+                                                            <div role="tabpanel" class="tab-pane fade" id="decor" aria-labelledby="decor-tab">
+                                                                    <div class="tabcontent-grids">
+                                                                            <script>
+                                                                                    $(document).ready(function() { 
+                                                                                            $("#owl-demo3").owlCarousel({
+
+                                                                                              autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                                                                                              items :4,
+                                                                                              itemsDesktop : [640,5],
+                                                                                              itemsDesktopSmall : [414,4],
+                                                                                              navigation : true
+
+                                                                                            });
+
+                                                                                    }); 
+                                                                            </script>
+                                                                            <div id="owl-demo3" class="owl-carousel"> 
+                                                                                <?php 
+
+                                                                                    foreach ($destacado_4 as $d_4) {
+                                                                                        $detalle_seleccionado=$d_4["detalle"];
+                                                                                        $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                                        $detalle=str_replace("</p>", "", $detalle);
+                                                                                        $detalle=  trim($detalle);
+                                                                                        $mensaje="<div class='item'>
+                                                                                            <div class='glry-w4agile-grids'> 
+                                                                                                <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_4["imagen_1"]."' alt='img'>
+                                                                                                <div class=''>           
+                                                                                                    <h4><a href='#'>".$d_4["producto"]."</a></h4>
+                                                                                                    <p>".$d_4["detalle"]."</p>
+                                                                                                    <p></p>
+                                                                                                    <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_4["codigo"]." , &#49;&#49;, &#49;".$detalle."&#49;, 4,  ".$d_4["precio"].")'>
+                                                                                                        <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR +<br/> $".$d_4["precio"]."</i>
+                                                                                                    </a></p>
+
+
+                                                                                                </div>   
+                                                                                            </div>   
+                                                                                        </div>";
+                                                                                        echo $mensaje;
+                                                                                    }
+                                                                                ?>
+                                                                            </div>    
+                                                                    </div>
+                                                            </div>
+                                                            <div role="tabpanel" class="tab-pane fade" id="sports" aria-labelledby="sports-tab">
+                                                                    <div class="tabcontent-grids">
+                                                                            <script>
+                                                                                    $(document).ready(function() { 
+                                                                                            $("#owl-demo4").owlCarousel({
+
+                                                                                              autoPlay: 3000, //Set AutoPlay to 3 seconds
+
+                                                                                              items :4,
+                                                                                              itemsDesktop : [640,5],
+                                                                                              itemsDesktopSmall : [414,4],
+                                                                                              navigation : true
+
+                                                                                            }); 
+                                                                                    }); 
+                                                                            </script>
+                                                                            <div id="owl-demo4" class="owl-carousel"> 
+                                                                                <?php 
+
+                                                                                    foreach ($destacado_5 as $d_5) {
+                                                                                        $detalle_seleccionado=$d_5["detalle"];
+                                                                                        $detalle=str_replace("<p>", "", $detalle_seleccionado);
+                                                                                        $detalle=str_replace("</p>", "", $detalle);
+                                                                                        $detalle=  trim($detalle);
+                                                                                        $mensaje="<div class='item'>
+                                                                                            <div class='glry-w5agile-grids'> 
+                                                                                                <img height='200' width='179' src='".base_url()."assets/recursos/images/productos-destacados/".$d_5["imagen_1"]."' alt='img'>
+                                                                                                <div class=''>           
+                                                                                                    <h4><a href='#'>".$d_5["producto"]."</a></h4>
+                                                                                                    <p>".$d_5["detalle"]."</p>
+                                                                                                    <p></p>
+                                                                                                    <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_5["codigo"]." , &#59;&#59;, &#59;".$detalle."&#59;, 5,  ".$d_5["precio"].")'>
+                                                                                                        <i class='fa fa-cart-arrow-down' aria-hidden='true'> COMPRAR +<br/> $".$d_5["precio"]."</i>
+                                                                                                    </a></p>
+
+
+                                                                                                </div>   
+                                                                                            </div>   
+                                                                                        </div>";
+                                                                                        echo $mensaje;
+                                                                                    }
+                                                                                ?>
+                                                                            </div>    
+                                                                    </div>
+                                                            </div> 
+                                                    </div> 
+                                                    <!-- FIN PRODUCTOS DESTACADOS-->
+                                                    <?}?>
+                                            </div>  
+                                    </div>  
+
+
+
+                        <!-- FIN PRODUCTOS DESTACADOS -->	
+                    </div>
+
+                                <?php
+                                    }
+                                ?>
+                            </div> 
+                        </div>
+                        
                     </div>
                     
                     <div class="clearfix"></div>
