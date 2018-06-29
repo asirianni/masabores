@@ -250,18 +250,28 @@ class Almacen_model extends CI_Model {
         }
         
         function productos_destacados($destacado) {
-            
-            
+
             $limpiar_campo_tabla_productos="UPDATE productos SET cod_prod = TRIM(cod_prod);";
             $this->db->query($limpiar_campo_tabla_productos);
-            
-            
             
             $query = $this->db->query("Select pd.cod_producto as cod_producto, p.codigo as codigo, "
                     . "p.descripcion as producto, pd.detalle as detalle, pd.imagen_1 as imagen_1, "
                     . "pd.precio as precio from productos_destacados as pd, productos as p "
                     . "where pd.cod_producto=p.cod_prod "
                     . "and pd.destacado=$destacado "
+                    . "and pd.mostrar='si'");
+            return $query->result_array();
+        }
+
+        function get_productos_destacados() {
+        	
+            $limpiar_campo_tabla_productos="UPDATE productos SET cod_prod = TRIM(cod_prod);";
+            $this->db->query($limpiar_campo_tabla_productos);
+            
+            $query = $this->db->query("Select pd.cod_producto as cod_producto, p.codigo as codigo, "
+                    . "p.descripcion as producto, pd.detalle as detalle, pd.imagen_1 as imagen_1, "
+                    . "pd.precio as precio from productos_destacados as pd, productos as p "
+                    . "where pd.cod_producto=p.cod_prod "
                     . "and pd.mostrar='si'");
             return $query->result_array();
         }

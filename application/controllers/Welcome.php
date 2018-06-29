@@ -51,11 +51,12 @@ class Welcome extends CI_Controller {
             $salida["horarios"]= $this->Configuracion_model->obtener_config(5);
             $salida["tabla_destacado"]= $this->Almacen_model->tabla_destacados();
             $salida["modulo_destacado_abierto"]= "si";
-            $salida["destacado_1"]= $this->Almacen_model->productos_destacados(1);
+            /*$salida["destacado_1"]= $this->Almacen_model->productos_destacados(1);
             $salida["destacado_2"]= $this->Almacen_model->productos_destacados(2);
             $salida["destacado_3"]= $this->Almacen_model->productos_destacados(3);
             $salida["destacado_4"]= $this->Almacen_model->productos_destacados(4);
-            $salida["destacado_5"]= $this->Almacen_model->productos_destacados(5);
+            $salida["destacado_5"]= $this->Almacen_model->productos_destacados(5);*/
+            $salida["productos_destacados"]=$this->Almacen_model->get_productos_destacados();
             $salida["marcas"]=$this->Slider_marcas->getSliderMarcas();
             
             $salida["modal_ingreso"]= $this->partes_web->getModalIngreso();
