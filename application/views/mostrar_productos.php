@@ -175,7 +175,7 @@
                                     <th data-field="descripcion" data-sortable="true">Producto</th>
                                     <?php if($this->session->userdata("ingresado"))
                                     { ?>
-                                    <th data-field="precio" data-sortable="true">$ Precio con iva inc</th>
+                                    <th data-field="precio" data-sortable="true">$ iva inc</th>
                                     <?php }?>
                                     <th data-field="options" data-formatter='optionsFormatter'></th>
                                     

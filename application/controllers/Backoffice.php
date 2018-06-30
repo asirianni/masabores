@@ -1017,6 +1017,8 @@ class Backoffice extends CI_Controller {
         public function productos_destacados(){
 		if ($this->verificar_acceso()) {
 			$crud = new grocery_CRUD();
+                        $this->load->config('grocery_crud');
+                        $this->config->set_item('grocery_crud_file_upload_allow_file_types', 'jpg');
 			$crud->set_table('productos_destacados');
                         $crud->set_primary_key('cod_producto','productos');
 			//$crud->set_relation('cod_producto','productos','codigo');
@@ -1025,9 +1027,13 @@ class Backoffice extends CI_Controller {
                         $crud->set_field_upload('imagen_2','assets/recursos/images/productos-destacados');
                         $crud->set_field_upload('imagen_3','assets/recursos/images/productos-destacados');
                         $crud->required_fields('cod_producto','destacado','detalle', 'imagen_1','precio', 'mostrar');
+                        
                         $listado_secciones= array("inicio", "nosotros", "entregas", "categorias", "productos", "contacto", "videos");
 
-                        $crud->field_type('secciones', 'multiselect', $listado_secciones); 
+                        $crud->field_type('secciones', 'multiselect', $listado_secciones);
+                        
+                        $crud->callback_after_upload(array($this,'example_callback_after_upload'));
+                        
 			$output = $crud->render();
 			$this->load->view('back/productos.php', $output);
 		}else{
@@ -1035,6 +1041,20 @@ class Backoffice extends CI_Controller {
 			$this->load->view('back/loguin/ingreso.php', $output);
 		}
 	}
+        
+        function example_callback_after_upload($uploader_response,$field_info, $files_to_upload)
+        {
+//            $this->load->library('image_moo');
+
+            //Is only one file uploaded so it ok to use it with $uploader_response[0].
+//            $file_uploaded = $field_info->upload_path.'/'.$uploader_response[0]->name;
+            
+            $this->redimension_imagen($uploader_response[0]->name);
+
+//            $this->image_moo->load($file_uploaded)->resize(210,180)->save($file_uploaded,true);
+
+            return true;
+        }
         
         public function sectores_destacados(){
 		if ($this->verificar_acceso()) {
@@ -1823,6 +1843,90 @@ class Backoffice extends CI_Controller {
         
         redirect("backoffice/productos");
     }
+    
+    public function redimensionar() {
+        $directorio = 'assets/recursos/images/productos-destacados';
+        $ficheros1  = scandir($directorio);
+        print_r($ficheros1);
+        for ($index = 0; $index < count($ficheros1); $index++) {
+            $texto_a_buscar=".jpg";
+            $resultado= strpos($ficheros1[$index], $texto_a_buscar);
+            
+            if($resultado  !== FALSE){
+                $this->redimension_imagen($ficheros1[$index]);
+            }
+            
+        }
+    }
+    
+    public function redimension_imagen($nombre_imagen) {
+        /*GUARDANDO LISTADO imagenes redimenionado*/
+                
+        $src=base_url()."assets/recursos/images/productos-destacados/".$nombre_imagen;
+        $dir_file ="assets/recursos/images/productos-destacados/redimension/".$nombre_imagen;
+        $width=210;
+        $height= 180;
+        $this->redimensionar_imagen($width,$height,$src,$dir_file);
+    
+        
+    }
+    
+    function redimensionar_imagen($width,$height,$src,$dir_file){
+        // Input parametres check
+        $w = $width;
+        $h = $height;
+        $mode = 'fit';
+//        if ($w <= 1 || $w >= 1000) $w = 100;
+//        if ($h <= 1 || $h >= 1000) $h = 100;
+
+        // Source image
+        $src = imagecreatefromjpeg($src);
+
+        // Destination image with white background
+        $dst = imagecreatetruecolor($w, $h);
+        imagefill($dst, 0, 0, imagecolorallocate($dst, 255, 255, 255));
+
+        // All Magic is here
+        $this->scale_image($src, $dst, $mode);
+
+        // Output to the browser
+        //Header('Content-Type: image/jpeg');
+        //imagejpeg($dst);
+        
+        $guardo= imagejpeg($dst,$dir_file);
+        return $guardo;
+    }
+    
+    function scale_image($src_image, $dst_image, $op = 'fit') {
+    $src_width = imagesx($src_image);
+    $src_height = imagesy($src_image);
+ 
+    $dst_width = imagesx($dst_image);
+    $dst_height = imagesy($dst_image);
+ 
+    // Try to match destination image by width
+    $new_width = $dst_width;
+    $new_height = round($new_width*($src_height/$src_width));
+    $new_x = 0;
+    $new_y = round(($dst_height-$new_height)/2);
+ 
+    // FILL and FIT mode are mutually exclusive
+    if ($op =='fill')
+        $next = $new_height < $dst_height;
+     else
+        $next = $new_height > $dst_height;
+ 
+    // If match by width failed and destination image does not fit, try by height 
+    if ($next) {
+        $new_height = $dst_height;
+        $new_width = round($new_height*($src_width/$src_height));
+        $new_x = round(($dst_width - $new_width)/2);
+        $new_y = 0;
+    }
+ 
+    // Copy image on right place
+    imagecopyresampled($dst_image, $src_image , $new_x, $new_y, 0, 0, $new_width, $new_height, $src_width, $src_height);
+}
 
 	
 }

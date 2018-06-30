@@ -24,20 +24,24 @@
         <link rel="icon" type="image/png" href="<?php echo base_url(); ?>recursos/images/t_.ico"/>
         <!-- //Custom Theme files -->
         <!-- font-awesome icons -->
-        <link href="<?php echo base_url(); ?>recursos/recursos/css/font-awesome.css" rel="stylesheet"> 
+        <link href="<?php echo base_url(); ?>recursos/css/font-awesome.css" rel="stylesheet"> 
         <!-- CSS MARIO -->
         <link href="<?php echo base_url(); ?>recursos/css/agregado-estilos.css" rel="stylesheet"> 
          <!-- CSS MARIO -->
-        <link href="<?php echo base_url(); ?>recursos/bxslider/jquery.bxslider.css" rel="stylesheet"> 
+        <link href="<?php echo base_url(); ?>recursos/bxslider/jquery.bxslider.css" rel="stylesheet">
+        
+        <!-- CSS flexlider destacados-->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>recursos/slider-destacados/css/flexslider.css" type="text/css" media="screen" />
         <!-- //font-awesome icons -->
         <!-- js -->
         <script src="<?php echo base_url(); ?>recursos/js/jquery-2.2.3.min.js"></script>
         
         <link rel='stylesheet' type='text/css' href='<?php echo base_url() ?>recursos/slippry/dist/slippry.min.css'/>
+
+
         <script src="<?php echo base_url(); ?>recursos/js/owl.carousel.js"></script>
         <script src="<?php echo base_url(); ?>recursos/js/pedido-simple-web.js"></script>
         <script src="<?php echo base_url(); ?>recursos/bxslider/jquery.bxslider.min.js"></script> 
-
         <script>
         $(document).ready(function() { 
                 $("#owl-demo").owlCarousel({ 
@@ -120,7 +124,7 @@
                 if($this->session->userdata("ingresado")){
 
                 }else{
-                    //echo "$('#myModal88').modal('show');";  
+                    echo "$('#myModal88').modal('show');";  
                 }
             ?> 
 	</script> 
@@ -280,63 +284,47 @@
             ?>      
                     
             <div class="col-md-8">
-                <!-- COMIENZO WELCOME INFO -->
-                <div>
-                    <h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
-                    <!-- FIN WELCOME INFO -->
-                    <div class="owl-carousel owl-theme">
-                     <!-- INICIO PRODUCTOS DESTACADOS-->
-                    <?php if ($secciones_activas[2]["mostrar"] == "si"){
-
-                        foreach ($productos_destacados as $prod_destacado) {
-                                $detalle_seleccionado=$prod_destacado["detalle"];
+                <div class="flexslider carousel">
+                    <ul class="slides">
+                        <?php 
+                                                                    
+                            foreach ($destacado_todos as $d_t) {
+                                
+                                $detalle_seleccionado=$d_t["detalle"];
                                 $detalle=str_replace("<p>", "", $detalle_seleccionado);
                                 $detalle=str_replace("</p>", "", $detalle);
                                 $detalle=  trim($detalle);
-                        }
-                    ?>  
-                        <div class="item">
-                                <h4><img  src='<?php echo base_url() ?>assets/recursos/images/productos-destacados/<?php echo $prod_destacado["imagen_1"] ?>' alt='img' class='img-responsive'></h4>
-                                <h3 style='color: #00c57e;text-align:center;'>$ 129290.00</h3>
-                                <h3 style="color: #000;"><?php echo $prod_destacado["producto"] ?></h3>
-                                <a style='text-align: center;' class='btn btn-primary form-control' href='#sharp'
-                                    onclick = 'agregar_producto("<?php echo $prod_destacado["codigo"]?>" , "", "<?php echo $detalle?>", 4, <?php  echo $prod_destacado["precio"];?>)'
-                                    >
-                                    <i class='fa fa-cart-arrow-down' aria-hidden='true'></i> Comprar
-                                </a>
-                            </div>
-                        </div>
+                                echo "<li>";
+                                echo "<img src='".base_url()."assets/recursos/images/productos-destacados/redimension/".$d_t["imagen_1"]."' />";
+                                echo "<div class=''>           
+                                        <h4><a href='#'>".substr($d_t["producto"],0,18)."</a></h4>
+                                        <p>".substr($d_t["detalle"],0,18)."</p>
+                                        <p></p>
+                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_t["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 1,  ".$d_t["precio"].")'>
+                                            <i class='fa fa-cart-arrow-down' aria-hidden='true'> </i> COMPRAR +<br/> $".$d_t["precio"]."
+                                        </a></p>
 
-                    <?php } ?>
-                    <script type="text/javascript">
-                        $(document).ready(function(){
-                            $('.owl-carousel').owlCarousel({
-                                margin: 15,
-                                items:3,
-                                responsiveClass:true,
-                                nav: true,
-                                autoHeight: true,
-                                loop:false,
-                                navigation:true,
-                                navText: [
-                                  "<i class='glyphicon glyphicon-chevron-left'></i>",
-                                  "<i class='glyphicon glyphicon-chevron-right'></i>"
-                                ],
-                                loop:true,
-                                responsiveClass:true,
-                                responsive:{
-                                    0:{
-                                        items:1
-                                    },
-                                    1000:{
-                                        items:3
-                                    }
-                                }
-                            });
-                        });
-                    </script>
-                </div>
-            </div>
+
+                                    </div>";
+                                echo "</li>";
+                            }
+                        
+                        ?>
+                        <li>
+                            
+                        </li>         
+                    </ul>
+                  </div>
+                
+                
+                
+			<div class="welcome-info">
+                            
+                            
+                            
+                            <h3 class="w3ls-title">PRODUCTOS DESTACADOS</h3>
+				
+			</div>  
 
             <div class="col-md-12" style="text-align:center;">
                 <ul id="publicidad_inicio_central">
@@ -389,9 +377,6 @@
 
 		</div>  	
 	</div> 
-
-    
-
 	<!-- footer-top -->
         <?php if( $secciones_activas[3]["mostrar"] == "si"){?>
         <div class="hidden-sm hidden-xs">
@@ -488,9 +473,6 @@
              </ul>
         </div>
         <?php }?>
-
-        
-
 	<div class="w3agile-ftr-top">
 		<div class="container">
 			<div class="ftr-toprow">
@@ -960,8 +942,30 @@ function correr_publicidades()
 }
 
 </script>
+  <!-- jQuery -->
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
+  <!--<script>window.jQuery || document.write('<script src="<?php echo base_url(); ?>recursos/slider-destacados/js/libs/jquery-1.7.min.js">\x3C/script>')</script>-->
 
+  <!-- FlexSlider -->
+  <script defer src="<?php echo base_url(); ?>recursos/slider-destacados/js/jquery.flexslider.js"></script>
 
+  <script type="text/javascript">
+    $(function(){
+      SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        animationLoop: false,
+        itemWidth: 210,
+        itemMargin: 5,
+        pausePlay: true,
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
