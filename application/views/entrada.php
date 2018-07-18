@@ -297,10 +297,10 @@
                                 echo "<li>";
                                 echo "<img src='".base_url()."assets/recursos/images/productos-destacados/redimension/".$d_t["imagen_1"]."' />";
                                 echo "<div class=''>           
-                                        <h4><a href='#'>".substr($d_t["producto"],0,18)."</a></h4>
+                                        <h4><a href='#g'>".substr($d_t["producto"],0,18)."</a></h4>
                                         <p>".substr($d_t["detalle"],0,18)."</p>
                                         <p></p>
-                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_t["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 1,  ".$d_t["precio"].")'>
+                                        <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_t["codigo"]." , &#39;&#39;, &#39;".$d_t["producto"]."&#39;, 1,  ".$d_t["precio"].")'>
                                             <i class='fa fa-cart-arrow-down' aria-hidden='true'> </i> COMPRAR +<br/> $".$d_t["precio"]."
                                         </a></p>
 

@@ -240,7 +240,7 @@ ul.menu li a {
                                                                                                 <h4><a href='#'>".$d_1["producto"]."</a></h4>
                                                                                                 <p>".$d_1["detalle"]."</p>
                                                                                                 <p></p>
-                                                                                                <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_1["codigo"]." , &#39;&#39;, &#39;".$detalle."&#39;, 1,  ".$d_1["precio"].")'>
+                                                                                                <p><a class='btn btn-primary' href='#sharp' onclick = 'agregar_producto(".$d_1["codigo"]." , &#39;&#39;, &#39;".$d_1["producto"]."&#39;, 1,  ".$d_1["precio"].")'>
                                                                                                     <i class='fa fa-cart-arrow-down' aria-hidden='true'> </i> COMPRAR +<br/> $".$d_1["precio"]."
                                                                                                 </a></p>
 
