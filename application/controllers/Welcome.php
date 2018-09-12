@@ -920,6 +920,19 @@ class Welcome extends CI_Controller {
             }else{
                 $output['productos']=  base_url()."index.php/welcome/get_listado_productos/";
             }
+            
+            
+             // OBTENIENDO PUBLICIDADES
+            $cod_sector_destacado=$this->Almacen_model->obtener_sector_activacion_destacados(2);
+            $output["modulo_destacado_abierto"]= $cod_sector_destacado["mostrar_destacado"];
+            $output["secciones_activas"]= $this->Home_seccion_model->getHomeSecciones();
+            $output["tabla_destacado"]= $this->Almacen_model->tabla_destacados();
+            $output["destacado_1"]= $this->Almacen_model->productos_destacados(1);
+            $output["destacado_2"]= $this->Almacen_model->productos_destacados(2);
+            $output["destacado_3"]= $this->Almacen_model->productos_destacados(3);
+            $output["destacado_4"]= $this->Almacen_model->productos_destacados(4);
+            $output["destacado_5"]= $this->Almacen_model->productos_destacados(5);
+            
             $output["rubros"]=  $this->Almacen_model->obtener_rubros();
             $output['lista']=  $this->Almacen_model->obtener_lista_precios();
             
